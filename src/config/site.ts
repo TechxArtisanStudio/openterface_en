@@ -1,5 +1,7 @@
 export const siteConfig = {
   name: 'Openterface',
+  /** BCP-47-ish locale for YouTube CSV prioritization (matches `language` column). */
+  locale: 'en',
   url: 'https://en.openterface.com',
   legacyUrl: 'https://openterface.com',
   description:
