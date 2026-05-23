@@ -2,11 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import DocLinkBanner from '../components/DocLinkBanner.astro';
 import { legacyPath } from '../config/site';
+import { pageOgImages } from '../lib/seo';
 ---
 
 <BaseLayout
   title="Videos"
   description="Openterface product demos, tutorials, and reviews on YouTube."
+  ogImage={pageOgImages.videos}
+  ogImageAlt="Openterface KVM product demos and community reviews on YouTube"
   canonicalPath="/videos/"
 >
   <DocLinkBanner message="The full filterable YouTube video grid is on the legacy site until we port the video pipeline." />
