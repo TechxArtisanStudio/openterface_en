@@ -4,6 +4,7 @@ import HomeHeroCarousel from '../components/HomeHeroCarousel.astro';
 import HomeVideosStrip from '../components/HomeVideosStrip.astro';
 import HomeSubscribeSection from '../components/HomeSubscribeSection.astro';
 import DocLinkBanner from '../components/DocLinkBanner.astro';
+import SiteJsonLd from '../components/SiteJsonLd.astro';
 import { homeSlides, homeSeo } from '../data/homeSlides';
 import { siteConfig } from '../config/site';
 ---
@@ -14,6 +15,7 @@ import { siteConfig } from '../config/site';
   keywords={homeSeo.keywords}
   canonicalPath="/"
 >
+  <SiteJsonLd slot="head" />
   <HomeHeroCarousel slides={homeSlides} />
 
   <HomeVideosStrip />
