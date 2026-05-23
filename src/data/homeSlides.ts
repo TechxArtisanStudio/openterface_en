@@ -8,7 +8,13 @@ export interface HomeSlide {
   image: string;
   imageAlt: string;
   images?: string[];
-  primaryCta?: { label: string; href: string; external?: boolean };
+  primaryCta?: {
+    label: string;
+    href: string;
+    external?: boolean;
+    analyticsEvent?: string;
+    analyticsProduct?: string;
+  };
   secondaryCta?: { label: string; href: string; external?: boolean };
   funding?: { amount: string; date: string; backers: string };
   progressSmall: string;
@@ -29,7 +35,13 @@ export const homeSlides: HomeSlide[] = [
       'https://assets2.openterface.com/images/keymod/keymod.webp',
       'https://assets2.openterface.com/images/keymod/feature.webp',
     ],
-    primaryCta: { label: 'Support NOW', href: siteConfig.links.keymodCrowdsupply, external: true },
+    primaryCta: {
+      label: 'Support NOW',
+      href: siteConfig.links.keymodCrowdsupply,
+      external: true,
+      analyticsEvent: 'crowdsupply_click',
+      analyticsProduct: 'keymod',
+    },
     secondaryCta: { label: 'View Product', href: '/products/keymod/' },
     progressSmall: 'KeyMod Series',
     progressLarge: 'Turn Your Phone into a Mini Keyboard',
@@ -46,7 +58,13 @@ export const homeSlides: HomeSlide[] = [
       'https://assets.openterface.com/images/cover/kvm-go-triple.webp',
       'https://assets.openterface.com/images/cover/kvm-go-triple-2.webp',
     ],
-    primaryCta: { label: 'Pre-Order NOW', href: siteConfig.links.kvmgoPurchase, external: true },
+    primaryCta: {
+      label: 'Pre-Order NOW',
+      href: siteConfig.links.kvmgoPurchase,
+      external: true,
+      analyticsEvent: 'crowdsupply_click',
+      analyticsProduct: 'kvm-go',
+    },
     secondaryCta: { label: 'View Product', href: '/products/kvm-go/' },
     funding: { amount: '$101,548', date: 'Funded on Dec 30, 2025', backers: '478' },
     progressSmall: 'KVM-GO Series',
@@ -64,7 +82,13 @@ export const homeSlides: HomeSlide[] = [
       'https://assets.openterface.com/images/cover/mini-kvm-toolkit.webp',
       'https://assets.openterface.com/images/cover/mini-kvm.webp',
     ],
-    primaryCta: { label: 'Order NOW', href: siteConfig.links.minikvmPurchase, external: true },
+    primaryCta: {
+      label: 'Order NOW',
+      href: siteConfig.links.minikvmPurchase,
+      external: true,
+      analyticsEvent: 'crowdsupply_click',
+      analyticsProduct: 'minikvm',
+    },
     secondaryCta: { label: 'View Product', href: '/products/minikvm/' },
     funding: { amount: '$505,471', date: 'Funded on Jun 13, 2024', backers: '3,775' },
     progressSmall: 'Mini-KVM Series',
@@ -78,7 +102,13 @@ export const homeSlides: HomeSlide[] = [
       'Explore our range of essential accessories including video adapters, high-speed cables, and storage solutions. Enhance your Openterface experience with quality accessories designed for professionals.',
     image: 'https://assets.openterface.com/images/cover.webp',
     imageAlt: 'TxA Shop Accessories',
-    primaryCta: { label: 'Shop NOW', href: siteConfig.links.shop, external: true },
+    primaryCta: {
+      label: 'Shop NOW',
+      href: siteConfig.links.shop,
+      external: true,
+      analyticsEvent: 'shop_click',
+      analyticsProduct: 'accessories',
+    },
     secondaryCta: { label: 'View Accessories', href: '/products/accessories/' },
     progressSmall: 'TxA Shop',
     progressLarge: 'Complete Your Setup with Premium Accessories',
