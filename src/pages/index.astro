@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HomeHeroCarousel from '../components/HomeHeroCarousel.astro';
 import HomeVideosStrip from '../components/HomeVideosStrip.astro';
+import HomeSubscribeSection from '../components/HomeSubscribeSection.astro';
 import DocLinkBanner from '../components/DocLinkBanner.astro';
 import { homeSlides, homeSeo } from '../data/homeSlides';
 import { siteConfig } from '../config/site';
@@ -49,4 +50,6 @@ import { siteConfig } from '../config/site';
       </a>
     </div>
   </section>
+
+  <HomeSubscribeSection />
 </BaseLayout>

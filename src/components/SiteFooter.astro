@@ -1,6 +1,7 @@
 ---
 import { siteConfig } from '../config/site';
 import Logo from './Logo.astro';
+import SubscribeForm from './SubscribeForm.astro';
 ---
 
 <footer class="border-t border-gray-200 bg-surface">
@@ -29,6 +30,22 @@ import Logo from './Logo.astro';
         </ul>
       </div>
     </div>
+
+    <div id="newsletter" class="mt-10 rounded-xl border border-gray-200 bg-white p-6">
+      <h3 class="text-sm font-semibold text-ink">Newsletter</h3>
+      <p class="mt-1 text-sm text-muted">Monthly updates on products, firmware, and KVM tips.</p>
+      <div class="mt-4">
+        <SubscribeForm
+          formId="footer-subscribe-form"
+          variant="compact"
+          submitLabel="Subscribe"
+          namePlaceholder="Name"
+          emailPlaceholder="Email *"
+          footnote="Unsubscribe anytime."
+        />
+      </div>
+    </div>
+
     <div class="mt-8 border-t border-gray-200 pt-6 text-center text-xs text-muted">
       <p>© {new Date().getFullYear()} Openterface. Open-source KVM-over-USB.</p>
       <p class="mt-1">
