@@ -6,6 +6,14 @@ test('home page loads and has carousel', async ({ page }) => {
   await expect(page.locator('h1').first()).toBeVisible();
 });
 
+test('home page has newsletter subscribe form', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.getByRole('heading', { name: /Get KVM-GO, KeyMod/i })).toBeVisible({ timeout: 10000 });
+  const form = page.locator('#home-subscribe-form');
+  await expect(form).toBeVisible();
+  await expect(form.locator('input[type="email"]')).toBeVisible();
+});
+
 test('home page has YouTube video strip with external links', async ({ page }) => {
   await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
   const strip = page.getByRole('region', { name: 'Community videos on YouTube' });
