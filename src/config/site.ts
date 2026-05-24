@@ -48,7 +48,7 @@ export const siteConfig = {
       storageKey: 'openterface-cookie-consent',
       title: 'Cookie Consent',
       description:
-        'We use cookies to enhance quality of docs content, analyse site effectiveness and needs. By consenting, you help us improve our website. Thanks!',
+        'We use cookies to improve our website and analyse how it is used. By consenting, you help us enhance your experience. Thanks!',
       acceptLabel: 'Accept',
       rejectLabel: 'Reject',
       cookieLabel: 'Cookie',
