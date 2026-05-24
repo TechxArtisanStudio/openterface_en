@@ -14,7 +14,7 @@ export const siteConfig = {
     keymodCrowdsupply: 'https://www.crowdsupply.com/techxartisan/openterface-keymod',
     shop: 'https://shop.techxartisan.com/',
     docs: 'https://docs.openterface.com',
-    appOverview: 'https://docs.openterface.com/en/app/overview/',
+    appOverview: 'https://docs.openterface.com/app/overview/',
     subscribe: 'https://subscribe.openterface.com/api/subscribe/',
     news: 'https://news.openterface.com',
   },
@@ -60,12 +60,16 @@ export function legacyPath(path: string): string {
   return `${siteConfig.legacyUrl}${normalized}`;
 }
 
-/** Build a docs.openterface.com URL for this site's locale (English uses /en/ prefix). */
+/** Build a docs.openterface.com URL for this site's locale (English unprefixed at /). */
 export function docsPath(subpath = ''): string {
-  const { locale } = siteConfig;
   const normalized = subpath.startsWith('/') ? subpath : subpath ? `/${subpath}` : '';
   const suffix = normalized && !normalized.endsWith('/') ? `${normalized}/` : normalized || '/';
-  return `${siteConfig.links.docs}/${locale}${suffix === '/' ? '/' : suffix}`;
+  const { locale } = siteConfig;
+  const base = siteConfig.links.docs;
+  if (locale === 'en') {
+    return suffix === '/' ? `${base}/` : `${base}${suffix}`;
+  }
+  return `${base}/${locale}${suffix === '/' ? '/' : suffix}`;
 }
 
 /** News hub URL — English is unprefixed at news.openterface.com/ */
