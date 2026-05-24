@@ -23,7 +23,17 @@ test('home page has YouTube video strip with external links', async ({ page }) =
   expect(await youtubeLinks.count()).toBeGreaterThanOrEqual(5);
 });
 
-test('product landing has single h1', async ({ page }) => {
+test('videos catalog page loads with filter controls and video grid', async ({ page }) => {
+  await page.goto('/videos/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.getByRole('heading', { level: 1, name: /YouTube Videos/i })).toBeVisible({
+    timeout: 10000,
+  });
+  await expect(page.getByRole('region', { name: 'Video catalog filters' })).toBeVisible();
+  const cards = page.locator('.video-catalog-card a[href*="youtube.com/watch"]');
+  await expect(cards.first()).toBeVisible();
+  expect(await cards.count()).toBeGreaterThanOrEqual(10);
+});
+
   await page.goto('/products/minikvm/', { waitUntil: 'commit', timeout: 15000 });
   await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
 });
