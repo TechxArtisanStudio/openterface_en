@@ -154,3 +154,18 @@ test('analytics events do not fire before consent', async ({ page }) => {
   });
   expect(hasClickEvent).toBe(false);
 });
+
+test('locale switch href preserves landing UTMs without _gl', async ({ page }) => {
+  await page.goto(
+    '/?utm_source=test_instagram&utm_campaign=p0_test&_gl=1*linker*noise',
+    { waitUntil: 'domcontentloaded' },
+  );
+
+  const deLink = page.locator('a[data-locale-switch][href*="de.openterface.com"]').first();
+  await expect(deLink).not.toHaveCount(0);
+
+  const href = await deLink.getAttribute('href');
+  expect(href).toContain('utm_source=test_instagram');
+  expect(href).toContain('utm_campaign=p0_test');
+  expect(href).not.toContain('_gl=');
+});
