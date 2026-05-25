@@ -1,5 +1,8 @@
 ---
 import SubscribeForm from './SubscribeForm.astro';
+import { ui } from '../i18n/ui';
+
+const s = ui.homeSubscribe;
 ---
 
 <section
@@ -10,26 +13,25 @@ import SubscribeForm from './SubscribeForm.astro';
     class="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-x-16 lg:gap-y-12 lg:px-10"
   >
     <div class="min-w-0">
-      <p class="text-xs font-bold uppercase tracking-widest text-accent-on-light">Stay in the loop</p>
+      <p class="text-xs font-bold uppercase tracking-widest text-accent-on-light">{s.kicker}</p>
       <h2 id="home-subscribe-heading" class="mt-2 text-2xl font-bold text-ink md:text-3xl">
-        Get KVM-GO, KeyMod &amp; Mini-KVM updates first
+        {s.heading}
       </h2>
       <p class="mt-3 text-base leading-relaxed text-muted md:text-lg">
-        Product launches, firmware releases, and practical IT tips — delivered at most once a month. No spam, just
-        useful news from the Openterface team.
+        {s.description}
       </p>
       <ul class="mt-5 space-y-2 text-sm text-ink">
         <li class="flex gap-2">
           <span class="text-accent-on-light" aria-hidden="true">✓</span>
-          Early access to crowdfunding and pre-order windows
+          {s.benefitCrowdfunding}
         </li>
         <li class="flex gap-2">
           <span class="text-accent-on-light" aria-hidden="true">✓</span>
-          Setup guides and app release notes
+          {s.benefitGuides}
         </li>
         <li class="flex gap-2">
           <span class="text-accent-on-light" aria-hidden="true">✓</span>
-          Unsubscribe anytime with one click
+          {s.benefitUnsubscribe}
         </li>
       </ul>
     </div>
@@ -39,10 +41,10 @@ import SubscribeForm from './SubscribeForm.astro';
     >
       <SubscribeForm
         formId="home-subscribe-form"
-        submitLabel="Subscribe for updates"
-        namePlaceholder="Name (optional)"
-        emailPlaceholder="Email address *"
-        footnote="At most one email per month. Unsubscribe anytime. For inquiries: info@openterface.com"
+        submitLabel={s.submitLabel}
+        namePlaceholder={s.namePlaceholder}
+        emailPlaceholder={s.emailPlaceholder}
+        footnote={s.footnote}
       />
     </div>
   </div>

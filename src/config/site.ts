@@ -46,7 +46,7 @@ export const siteConfig = {
         'nl.openterface.com',
         'news.openterface.com',
         'docs.openterface.com',
-      ],
+      ]
     },
     ahrefs: {
       dataKey: 'b3G5nUND8OglcZwfjfwixQ',
