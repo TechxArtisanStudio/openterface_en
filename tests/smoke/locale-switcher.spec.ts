@@ -1,5 +1,13 @@
 import { test, expect } from '@playwright/test';
 
+test('locale switch links Wave 2 subdomains (hk, ru, nl)', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  for (const host of ['hk.openterface.com', 'ru.openterface.com', 'nl.openterface.com']) {
+    const link = page.locator(`a[data-locale-switch][href*="${host}"]`).first();
+    await expect(link).not.toHaveCount(0);
+  }
+});
+
 test('locale switch preserves UTM params but not _gl in href', async ({ page }) => {
   await page.goto(
     '/?utm_source=test&utm_campaign=launch&_gl=1*abc*_ga*xyz&product=kvm-go',
