@@ -20,8 +20,6 @@ PLAYWRIGHT_BASE_URL=http://127.0.0.1:4321 CI=true npm test
 
 - **Smoke:** route loads, carousel, product pages
 - **a11y:** axe-core via Playwright (no critical/serious violations)
-- **UX audit skill:** `.cursor/skills/ux-audit/SKILL.md`
-
 ## Site map (Wave 1–2)
 
 | Route | Status |
