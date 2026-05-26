@@ -4,7 +4,9 @@ export const siteConfig = {
   name: 'Openterface',
   /** BCP-47-ish locale for YouTube CSV prioritization (matches `language` column). */
   locale: 'en',
-  url: 'https://en.openterface.com',
+  url: 'https://openterface.com',
+  /** Pre-cutover EN subdomain; CF 301 en.openterface.com → apex on cutover day. */
+  legacyEnSubdomain: 'https://en.openterface.com',
   legacyUrl: 'https://openterface.com',
   description:
     'Ultra-compact KVM-over-USB solutions for IT professionals — KVM-GO, Mini-KVM, KeyMod, and uConsole KVM Extension.',
@@ -25,7 +27,7 @@ export const siteConfig = {
     google: {
       provider: 'google' as const,
       measurementId: 'G-EKZEH6QYWT',
-      linkerDomains: ['openterface.com', 'forum.openterface.com']
+      linkerDomains: ['openterface.com', 'en.openterface.com', 'forum.openterface.com'],
     },
     ahrefs: {
       dataKey: 'b3G5nUND8OglcZwfjfwixQ',

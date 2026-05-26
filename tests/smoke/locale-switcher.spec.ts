@@ -6,10 +6,10 @@ test('locale switch preserves UTM params but not _gl in href', async ({ page }) 
     { waitUntil: 'domcontentloaded' },
   );
 
-  const ruLink = page.locator('a[data-locale-switch][href*="ru.openterface.com"]').first();
-  await expect(ruLink).not.toHaveCount(0);
+  const deLink = page.locator('a[data-locale-switch][href*="de.openterface.com"]').first();
+  await expect(deLink).not.toHaveCount(0);
 
-  const href = await ruLink.getAttribute('href');
+  const href = await deLink.getAttribute('href');
   expect(href).toContain('utm_source=test');
   expect(href).toContain('utm_campaign=launch');
   expect(href).toContain('product=kvm-go');

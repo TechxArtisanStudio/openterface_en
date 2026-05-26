@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://en.openterface.com',
+  site: 'https://openterface.com',
   trailingSlash: 'always',
   integrations: [
     sitemap({
