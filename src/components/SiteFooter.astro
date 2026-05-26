@@ -46,9 +46,9 @@ const f = ui.siteFooter;
     <div class="mt-8 border-t border-gray-200 pt-6 text-center text-xs text-muted">
       <p>© {new Date().getFullYear()} {f.copyright}</p>
       <p class="mt-1">
-        <a href={siteConfig.legacyUrl + '/policy/privacy/'} class="hover:text-primary-dark" target="_blank" rel="noopener">{f.privacy}</a>
+        <a href={docsPath('/policy/privacy/')} class="hover:text-primary-dark" target="_blank" rel="noopener">{f.privacy}</a>
         ·
-        <a href={siteConfig.legacyUrl + '/policy/terms-of-service/'} class="hover:text-primary-dark" target="_blank" rel="noopener">{f.terms}</a>
+        <a href={docsPath('/policy/terms-of-service/')} class="hover:text-primary-dark" target="_blank" rel="noopener">{f.terms}</a>
         {siteConfig.analytics.enabled && (
           <>
             ·
