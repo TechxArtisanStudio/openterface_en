@@ -20,6 +20,15 @@ export const mainNav: NavItem[] = [
       { label: 'Accessories', href: '/accessories/' },
     ],
   },
+  {
+    label: 'Apps',
+    href: '/app/',
+    children: [
+      { label: 'All Apps', href: '/app/' },
+      { label: 'KVM Control', href: '/kvm/' },
+      { label: 'KeyCmd', href: '/keycmd/' },
+    ],
+  },
   { label: 'Videos', href: '/videos/' },
   { label: 'About', href: '/about/' },
   { label: 'Docs', href: docsPath(), external: true },

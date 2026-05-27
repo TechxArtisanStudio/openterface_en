@@ -76,6 +76,25 @@ test('products hub lists all five product lines', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Openterface Accessories' })).toBeVisible();
 });
 
+test('app hub and subpages load with expected CTAs', async ({ page }) => {
+  await page.goto('/app/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.getByRole('heading', { level: 1, name: 'Openterface Apps' })).toHaveCount(1);
+  await expect(page.getByRole('link', { name: /Explore KVM Control/i })).toBeVisible();
+
+  await page.goto('/kvm/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.getByRole('heading', { level: 1, name: 'KVM Control' })).toHaveCount(1);
+  await expect(page.getByRole('link', { name: 'Download on docs' }).first()).toBeVisible();
+
+  await page.goto('/keycmd/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.getByRole('heading', { level: 1, name: 'KeyCmd' })).toHaveCount(1);
+  await expect(page.getByRole('link', { name: 'Download Android beta APK' })).toBeVisible();
+});
+
+test('home page App CTA links to /app/', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.getByRole('link', { name: 'Download Openterface App' })).toHaveAttribute('href', '/app/');
+});
+
 test('legacy /products/keymod/ redirects to /keymod/', async ({ page }) => {
   await page.goto('/products/keymod/', { waitUntil: 'commit', timeout: 15000 });
   await expect(page).toHaveURL(/\/keymod\/$/);
@@ -92,7 +111,7 @@ test('/use-cases/ redirects to /products/', async ({ page }) => {
 });
 
 test('products hub and flat product routes return 200', async ({ page }) => {
-  for (const path of ['/products/', '/minikvm/', '/kvmgo/', '/keymod/', '/kvmext/', '/accessories/']) {
+  for (const path of ['/products/', '/minikvm/', '/kvmgo/', '/keymod/', '/kvmext/', '/accessories/', '/app/', '/kvm/', '/keycmd/']) {
     const response = await page.goto(path, { waitUntil: 'commit', timeout: 15000 });
     expect(response?.status()).toBe(200);
   }
