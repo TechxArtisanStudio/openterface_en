@@ -89,7 +89,7 @@ export const homeSlides: HomeSlide[] = [
       analyticsEvent: 'crowdsupply_click',
       analyticsProduct: 'minikvm',
     },
-    secondaryCta: { label: 'View Product', href: '/products/minikvm/' },
+    secondaryCta: { label: 'View Product', href: '/minikvm/' },
     funding: { amount: '$505,471', date: 'Funded on Jun 13, 2024', backers: '3,775' },
     progressSmall: 'Mini-KVM Series',
     progressLarge: 'The Compact KVM Solution for Professionals',

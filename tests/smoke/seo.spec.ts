@@ -32,7 +32,7 @@ const EXPECTED_ROUTES = [
   '/use-cases/',
   '/products/keymod/',
   '/products/kvm-go/',
-  '/products/minikvm/',
+  '/minikvm/',
   '/products/uconsole-kvm-extension/',
   '/products/accessories/',
 ];

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const routes = ['/', '/products/keymod/', '/products/kvm-go/', '/products/minikvm/'];
+const routes = ['/', '/products/keymod/', '/products/kvm-go/', '/minikvm/'];
 
 for (const route of routes) {
   test(`visual: ${route}`, async ({ page }) => {
