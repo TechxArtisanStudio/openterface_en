@@ -59,6 +59,23 @@ test('kvmext landing has single h1 and Order NOW CTA', async ({ page }) => {
   await expect(page.getByRole('link', { name: /View certificate on OSHWA/i })).toBeVisible();
 });
 
+test('accessories landing has single h1 and SKU grid', async ({ page }) => {
+  await page.goto('/accessories/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
+  await expect(page.getByRole('link', { name: 'Shop NOW' }).first()).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Shop by SKU' })).toBeVisible();
+  await expect(page.getByRole('article').filter({ hasText: 'VGA to HDMI Converter Cable' })).toBeVisible();
+});
+
+test('products hub lists all five product lines', async ({ page }) => {
+  await page.goto('/products/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.getByRole('heading', { name: 'Openterface KeyMod Series' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Openterface KVM-GO Series' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Openterface Mini-KVM' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Openterface KVM Extension for uConsole' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Openterface Accessories' })).toBeVisible();
+});
+
 test('legacy /products/keymod/ redirects to /keymod/', async ({ page }) => {
   await page.goto('/products/keymod/', { waitUntil: 'commit', timeout: 15000 });
   await expect(page).toHaveURL(/\/keymod\/$/);
@@ -75,7 +92,7 @@ test('/use-cases/ redirects to /products/', async ({ page }) => {
 });
 
 test('products hub and flat product routes return 200', async ({ page }) => {
-  for (const path of ['/products/', '/minikvm/', '/kvmgo/', '/keymod/', '/kvmext/']) {
+  for (const path of ['/products/', '/minikvm/', '/kvmgo/', '/keymod/', '/kvmext/', '/accessories/']) {
     const response = await page.goto(path, { waitUntil: 'commit', timeout: 15000 });
     expect(response?.status()).toBe(200);
   }

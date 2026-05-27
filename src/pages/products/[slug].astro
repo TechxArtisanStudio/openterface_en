@@ -9,7 +9,11 @@ export function getStaticPaths() {
   return productSlugs
     .filter(
       (slug) =>
-        slug !== 'minikvm' && slug !== 'kvm-go' && slug !== 'keymod' && slug !== 'uconsole-kvm-extension',
+        slug !== 'minikvm' &&
+        slug !== 'kvm-go' &&
+        slug !== 'keymod' &&
+        slug !== 'uconsole-kvm-extension' &&
+        slug !== 'accessories',
     )
     .map((slug) => ({ params: { slug } }));
 }
