@@ -1,8 +1,8 @@
-import { docsPath, siteConfig } from '../config/site';
 import { minikvmProduct } from './products/minikvm';
 import { kvmgoProduct } from './products/kvmgo';
 import { keymodProduct } from './products/keymod';
 import { kvmextProduct } from './products/kvmext';
+import { accessoriesProduct } from './products/accessories';
 
 export interface ProductDocLink {
   label: string;
@@ -69,35 +69,7 @@ export const products: Record<string, Product> = {
   'kvm-go': kvmgoProduct,
   minikvm: minikvmProduct,
   'uconsole-kvm-extension': kvmextProduct,
-  accessories: {
-    slug: 'accessories',
-    title: 'Openterface Accessories',
-    slogan: 'Complete Your Setup',
-    subtitle: 'Premium cables, adapters, and toolkit bags for professionals.',
-    description:
-      'Essential accessories including video adapters, high-speed cables, and storage solutions. Enhance your Openterface experience with quality gear from TxA Shop.',
-    seoDescription: 'Openterface accessories — cables, adapters, toolkit bags, and video connectors.',
-    keywords: 'KVM accessories, HDMI cable, USB-C cable, toolkit bag',
-    heroImage: 'https://assets.openterface.com/images/cover.webp',
-    heroImages: ['https://assets.openterface.com/images/cover.webp'],
-    buyLabel: 'Shop NOW',
-    buyHref: siteConfig.links.shop,
-    painPoints: ['Missing the right cable in the field delays every fix'],
-    solutions: ['Curated accessories tested with Openterface products'],
-    hwFeatures: [
-      { title: 'Video adapters', description: 'HDMI, VGA, and specialty connectors.' },
-      { title: 'High-speed cables', description: 'USB-C and Type-A cables built for KVM workloads.' },
-      { title: 'Toolkit bag', description: 'Organize your full Openterface kit.' },
-    ],
-    swFeatures: [],
-    specs: [],
-    useCases: ['Field kit organization', 'Video format conversion', 'Backup cables for IT go-bags'],
-    docLinks: [
-      { label: 'All SKUs', href: docsPath('/product/accessories/') },
-      { label: 'TxA Shop', href: siteConfig.links.shop },
-    ],
-    legacyBase: '/product/accessories/',
-  },
+  accessories: accessoriesProduct,
 };
 
 export const productSlugs = Object.keys(products);
