@@ -23,15 +23,30 @@ test('home page has YouTube video strip with external links', async ({ page }) =
   expect(await youtubeLinks.count()).toBeGreaterThanOrEqual(5);
 });
 
-test('videos catalog page loads with filter controls and video grid', async ({ page }) => {
+test('media hub page loads with format chips and catalog grid', async ({ page }) => {
   await page.goto('/videos/', { waitUntil: 'commit', timeout: 15000 });
-  await expect(page.getByRole('heading', { level: 1, name: /YouTube Videos/i })).toBeVisible({
+  await expect(page.getByRole('heading', { level: 1, name: 'Media' })).toBeVisible({
     timeout: 10000,
   });
-  await expect(page.getByRole('region', { name: 'Video catalog filters' })).toBeVisible();
-  const cards = page.locator('.video-catalog-card a[href*="youtube.com/watch"]');
+  await expect(page.getByRole('region', { name: 'Media catalog filters' })).toBeVisible();
+  await expect(page.getByRole('group', { name: 'Filter by media format' })).toBeVisible();
+  const cards = page.locator('.media-catalog-card a[href*="youtube.com/watch"]');
   await expect(cards.first()).toBeVisible();
   expect(await cards.count()).toBeGreaterThanOrEqual(10);
+});
+
+test('media hub format=short filter loads', async ({ page }) => {
+  await page.goto('/videos/?format=short', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.getByRole('heading', { level: 1, name: 'Media' })).toBeVisible();
+  await expect(page.locator('[data-format-chip="short"]')).toHaveAttribute('aria-pressed', 'true');
+});
+
+test('media hub product=minikvm filter loads', async ({ page }) => {
+  await page.goto('/videos/?product=minikvm', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.getByRole('heading', { level: 1, name: 'Media' })).toBeVisible();
+  await expect(page.locator('[data-filter-product]')).toHaveValue('minikvm');
+  const visible = page.locator('.media-catalog-card--video');
+  expect(await visible.count()).toBeGreaterThanOrEqual(1);
 });
 
 test('product landing has single h1', async ({ page }) => {
