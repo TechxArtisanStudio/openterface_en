@@ -7,7 +7,10 @@ import { products, productSlugs } from '../../data/products';
 
 export function getStaticPaths() {
   return productSlugs
-    .filter((slug) => slug !== 'minikvm' && slug !== 'kvm-go' && slug !== 'keymod')
+    .filter(
+      (slug) =>
+        slug !== 'minikvm' && slug !== 'kvm-go' && slug !== 'keymod' && slug !== 'uconsole-kvm-extension',
+    )
     .map((slug) => ({ params: { slug } }));
 }
 
