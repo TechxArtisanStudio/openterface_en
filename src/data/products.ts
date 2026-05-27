@@ -2,6 +2,7 @@ import { docsPath, siteConfig } from '../config/site';
 import { minikvmProduct } from './products/minikvm';
 import { kvmgoProduct } from './products/kvmgo';
 import { keymodProduct } from './products/keymod';
+import { kvmextProduct } from './products/kvmext';
 
 export interface ProductDocLink {
   label: string;
@@ -67,51 +68,7 @@ export const products: Record<string, Product> = {
   keymod: keymodProduct,
   'kvm-go': kvmgoProduct,
   minikvm: minikvmProduct,
-  'uconsole-kvm-extension': {
-    slug: 'uconsole-kvm-extension',
-    title: 'uConsole KVM Extension',
-    slogan: 'KVM Power for Your uConsole',
-    subtitle: 'Turn the portable uConsole into a full KVM terminal.',
-    description:
-      'A hardware extension that adds KVM-over-USB capability to the Clockwork uConsole. Perfect for portable IT work with a built-in keyboard and display.',
-    seoDescription:
-      'uConsole KVM Extension adds KVM-over-USB to the Clockwork uConsole portable computer.',
-    keywords: 'uConsole, KVM extension, portable KVM, Clockwork uConsole',
-    heroImage: 'https://assets.openterface.com/images/uconsole-kvm-extension/uconsole-kvm-extension-1.webp',
-    heroImages: [
-      'https://assets.openterface.com/images/uconsole-kvm-extension/uconsole-kvm-extension-1.webp',
-    ],
-    buyLabel: 'Learn More',
-    buyHref: docsPath('/product/uconsole-kvm-extension/'),
-    painPoints: [
-      'Portable consoles lack integrated KVM for headless targets',
-      'Field technicians want one device for everything',
-    ],
-    solutions: [
-      'Native uConsole form-factor extension board',
-      'Full Openterface KVM stack on a pocketable device',
-    ],
-    hwFeatures: [
-      { title: 'uConsole native', description: 'Designed specifically for Clockwork uConsole.' },
-      { title: 'Compact PCB', description: 'Installs inside the uConsole chassis.' },
-    ],
-    swFeatures: [
-      { title: 'Openterface apps', description: 'Same trusted software as Mini-KVM and KVM-GO.' },
-      { title: 'Setup guides', description: 'Step-by-step hardware and software installation docs.' },
-    ],
-    specs: [
-      { label: 'Compatibility', value: 'Clockwork uConsole' },
-      { label: 'Certification', value: 'OSHWA certified' },
-    ],
-    useCases: ['Portable datacenter tool', 'Maker & homelab on the go'],
-    docLinks: [
-      { label: 'Hardware Installation', href: docsPath('/product/uconsole-kvm-extension/hardware-installation/') },
-      { label: 'Software Setup', href: docsPath('/product/uconsole-kvm-extension/software-setup/') },
-      { label: 'How to Connect', href: docsPath('/product/uconsole-kvm-extension/connect-to-target/') },
-      { label: 'FAQs', href: docsPath('/product/uconsole-kvm-extension/faq/') },
-    ],
-    legacyBase: '/product/uconsole-kvm-extension/',
-  },
+  'uconsole-kvm-extension': kvmextProduct,
   accessories: {
     slug: 'accessories',
     title: 'Openterface Accessories',
