@@ -10,17 +10,17 @@ export interface NavItem {
 export const mainNav: NavItem[] = [
   {
     label: 'Products',
-    href: '#',
+    href: '/products/',
     children: [
-      { label: 'KeyMod Series', href: '/products/keymod/' },
-      { label: 'KVM-GO Series', href: '/products/kvm-go/' },
+      { label: 'All Products', href: '/products/' },
+      { label: 'KeyMod Series', href: '/keymod/' },
+      { label: 'KVM-GO Series', href: '/kvmgo/' },
       { label: 'Mini-KVM', href: '/minikvm/' },
-      { label: 'uConsole KVM Extension', href: '/products/uconsole-kvm-extension/' },
-      { label: 'Accessories', href: '/products/accessories/' },
+      { label: 'uConsole KVM Extension', href: '/kvmext/' },
+      { label: 'Accessories', href: '/accessories/' },
     ],
   },
   { label: 'Videos', href: '/videos/' },
-  { label: 'Use Cases', href: '/use-cases/' },
   { label: 'About', href: '/about/' },
   { label: 'Docs', href: docsPath(), external: true },
   { label: 'News', href: newsPath(), external: true },

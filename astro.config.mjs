@@ -6,9 +6,14 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://openterface.com',
   trailingSlash: 'always',
-  // site-refactor-redirects:start (Phase 1C: minikvm only; expand in 1D–1G)
+  // site-refactor-redirects:start (Phase 1B: full slug-map redirects)
   redirects: {
+    '/products/keymod/': '/keymod/',
+    '/products/kvm-go/': '/kvmgo/',
     '/products/minikvm/': '/minikvm/',
+    '/products/uconsole-kvm-extension/': '/kvmext/',
+    '/products/accessories/': '/accessories/',
+    '/use-cases/': '/products/',
   },
   // site-refactor-redirects:end
   integrations: [
