@@ -45,9 +45,16 @@ test('kvmgo landing has single h1 and pre-order CTA', async ({ page }) => {
   await expect(page.getByRole('link', { name: 'Pre-Order NOW' }).first()).toBeVisible();
 });
 
-test('legacy /products/kvm-go/ redirects to /kvmgo/', async ({ page }) => {
-  await page.goto('/products/kvm-go/', { waitUntil: 'commit', timeout: 15000 });
-  await expect(page).toHaveURL(/\/kvmgo\/$/);
+test('keymod landing has single h1 and Crowd Supply CTA', async ({ page }) => {
+  await page.goto('/keymod/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
+  await expect(page.getByRole('link', { name: 'Support NOW' }).first()).toBeVisible();
+  await expect(page.getByRole('link', { name: /KeyCmd app hub/i })).toBeVisible();
+});
+
+test('legacy /products/keymod/ redirects to /keymod/', async ({ page }) => {
+  await page.goto('/products/keymod/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page).toHaveURL(/\/keymod\/$/);
 });
 
 test('legacy /products/minikvm/ redirects to /minikvm/', async ({ page }) => {
@@ -61,7 +68,7 @@ test('/use-cases/ redirects to /products/', async ({ page }) => {
 });
 
 test('products hub and flat product routes return 200', async ({ page }) => {
-  for (const path of ['/products/', '/minikvm/', '/kvmgo/']) {
+  for (const path of ['/products/', '/minikvm/', '/kvmgo/', '/keymod/']) {
     const response = await page.goto(path, { waitUntil: 'commit', timeout: 15000 });
     expect(response?.status()).toBe(200);
   }

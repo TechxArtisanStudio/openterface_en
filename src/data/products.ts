@@ -1,6 +1,7 @@
 import { docsPath, siteConfig } from '../config/site';
 import { minikvmProduct } from './products/minikvm';
 import { kvmgoProduct } from './products/kvmgo';
+import { keymodProduct } from './products/keymod';
 
 export interface ProductDocLink {
   label: string;
@@ -63,59 +64,7 @@ export interface Product {
 }
 
 export const products: Record<string, Product> = {
-  keymod: {
-    slug: 'keymod',
-    title: 'Openterface KeyMod Series',
-    slogan: 'Turn Your Phone into a Smart Keyboard',
-    subtitle: 'Programmable keyboard and mouse control for tech, professionals, and gaming.',
-    description:
-      'A compact, programmable USB + Bluetooth HID emulator that turns your phone into a portable keyboard and trackpad console. Built on the proven HID core from Openterface Mini-KVM — plug and play, 100% open source.',
-    seoDescription:
-      'KeyMod Series turns your phone into a portable keyboard and trackpad. USB + Bluetooth HID emulator, open source, perfect for kiosks and workflow shortcuts.',
-    keywords: 'KeyMod, HID emulator, phone keyboard, Bluetooth keyboard, USB keyboard, open source',
-    heroImage: 'https://assets2.openterface.com/images/keymod/2in1.webp',
-    heroImages: [
-      'https://assets2.openterface.com/images/keymod/2in1.webp',
-      'https://assets2.openterface.com/images/keymod/keymod.webp',
-      'https://assets2.openterface.com/images/keymod/feature.webp',
-    ],
-    buyLabel: 'Support NOW',
-    buyHref: siteConfig.links.keymodCrowdsupply,
-    painPoints: [
-      'Carrying a full keyboard for kiosk or TV setup is impractical',
-      'Workflow shortcuts need programmable macros on the go',
-      'Many HID tools are closed-source with limited customization',
-    ],
-    solutions: [
-      'Use your phone as a portable keyboard and trackpad',
-      'USB and Bluetooth HID in one compact device',
-      '100% open source with Openterface app support',
-    ],
-    hwFeatures: [
-      { title: 'Compact form factor', description: 'Fits in your pocket for field work and travel.' },
-      { title: 'USB + Bluetooth', description: 'Dual connectivity for maximum device compatibility.' },
-      { title: 'Open hardware', description: 'Transparent design built on proven Openterface HID core.' },
-    ],
-    swFeatures: [
-      { title: 'KeyMod App', description: 'Configure macros, layouts, and gamepad profiles from your phone.' },
-      { title: 'Cross-platform', description: 'Works with Android, iPadOS, and desktop hosts via Openterface apps.' },
-      { title: 'Open source', description: 'Full stack available on GitHub for community contributions.' },
-    ],
-    specs: [
-      { label: 'Connectivity', value: 'USB-C + Bluetooth LE' },
-      { label: 'HID modes', value: 'Keyboard, mouse, gamepad' },
-      { label: 'License', value: 'Open source hardware & software' },
-    ],
-    useCases: ['Smart TV & kiosk input', 'Mobile workflow macros', 'Gaming & accessibility setups'],
-    docLinks: [
-      { label: 'Features', href: docsPath('/product/keymod/features/') },
-      { label: "What's in the Box", href: docsPath('/product/keymod/whats-in-the-box/') },
-      { label: 'How to Connect', href: docsPath('/product/keymod/how-to-connect/') },
-      { label: 'FAQs', href: docsPath('/product/keymod/faq/') },
-      { label: 'Download KeyMod App', href: docsPath('/app/overview/') },
-    ],
-    legacyBase: '/product/keymod/',
-  },
+  keymod: keymodProduct,
   'kvm-go': kvmgoProduct,
   minikvm: minikvmProduct,
   'uconsole-kvm-extension': {
