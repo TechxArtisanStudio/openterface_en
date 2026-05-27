@@ -43,25 +43,25 @@ export const kvmPlatforms: AppPlatform[] = [
   {
     name: 'Windows',
     description: 'Cross-platform QT host app — installer and portable EXE builds.',
-    docsHref: docsPath('/app/overview/'),
+    docsHref: docsPath('/app/kvm/'),
     downloadLabel: 'Downloads on docs',
   },
   {
     name: 'macOS',
     description: 'Native macOS app with App Store and portable DMG options.',
-    docsHref: docsPath('/app/overview/'),
+    docsHref: docsPath('/app/kvm/'),
     downloadLabel: 'Downloads on docs',
   },
   {
     name: 'Linux',
     description: 'DEB, RPM, and AppImage packages for AMD64 and ARM64.',
-    docsHref: docsPath('/app/overview/'),
+    docsHref: docsPath('/app/kvm/'),
     downloadLabel: 'Downloads on docs',
   },
   {
     name: 'Android',
     description: 'Mobile KVM host for on-the-go access via USB-C.',
-    docsHref: docsPath('/app/overview/'),
+    docsHref: docsPath('/app/kvm/'),
     downloadLabel: 'Google Play & APK on docs',
   },
 ];
@@ -96,7 +96,7 @@ export const keycmdHardware = [
 ];
 
 export const appDocsLinks = {
-  overview: docsPath('/app/overview/'),
+  overview: docsPath('/app/kvm/'),
   updates: docsPath('/app/updates/'),
   keycmdFaq: docsPath('/app/keycmd/faq/'),
   keycmdApk: siteConfig.links.keycmdAndroidApk,

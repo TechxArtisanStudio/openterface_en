@@ -18,7 +18,7 @@ export const siteConfig = {
     keymodCrowdsupply: 'https://www.crowdsupply.com/techxartisan/openterface-keymod',
     shop: 'https://shop.techxartisan.com/',
     docs: 'https://docs.openterface.com',
-    appOverview: 'https://docs.openterface.com/app/overview/',
+    appOverview: 'https://docs.openterface.com/app/kvm/',
     keycmdAndroidApk: 'https://assets2.openterface.com/data/KeyCmd-release-0.19.apk',
     subscribe: 'https://subscribe.openterface.com/api/subscribe/',
     news: 'https://news.openterface.com',
