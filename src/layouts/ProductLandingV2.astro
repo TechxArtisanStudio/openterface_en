@@ -53,7 +53,7 @@ const videoProductSlug = product.videoProductSlug ?? product.slug;
       <HeroCarousel images={product.heroImages} alt={product.title} videoEmbedUrl={product.heroVideoEmbedUrl} />
       <div class="mt-8 text-center">
         <h1 class="product-display-title">{product.title}</h1>
-        <p class="mt-2 text-xl font-semibold text-primary-dark">{product.slogan}</p>
+        <p class="product-lead mt-2">{product.slogan}</p>
         <p class="mt-1 text-muted">{product.subtitle}</p>
         <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
           <a
@@ -89,7 +89,7 @@ const videoProductSlug = product.videoProductSlug ?? product.slug;
 
   <section class="product-section">
     <div class="product-section__inner">
-      <p class="mx-auto max-w-3xl text-center text-lg leading-relaxed text-muted">{product.description}</p>
+      <p class="product-body mx-auto max-w-3xl text-center">{product.description}</p>
     </div>
   </section>
 
