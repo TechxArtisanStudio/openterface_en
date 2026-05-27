@@ -3,7 +3,7 @@ import type { Product } from '../products';
 
 /**
  * Mini-KVM marketing payload — reference template for Phase 1D–1G.
- * Sourced from docs/product/minikvm/ (index, features, reviews).
+ * Sourced from docs/products/minikvm/ (index, features, reviews).
  */
 export const minikvmProduct: Product = {
   slug: 'minikvm',
@@ -83,7 +83,7 @@ export const minikvmProduct: Product = {
     {
       title: 'Data center & server rooms',
       description: 'Replace rolling crash carts with the laptop you already carry.',
-      href: docsPath('/product/minikvm/reviews/'),
+      href: docsPath('/products/minikvm/reviews/'),
     },
     {
       title: 'Homelab & SBC setup',
@@ -92,7 +92,7 @@ export const minikvmProduct: Product = {
     {
       title: 'BIOS & firmware access',
       description: 'Reach boot menus and recovery screens with no network KVM required.',
-      href: docsPath('/product/minikvm/features/'),
+      href: docsPath('/products/minikvm/features/'),
     },
     {
       title: 'Developer bench',
@@ -105,12 +105,12 @@ export const minikvmProduct: Product = {
     {
       title: 'MSP field toolkit',
       description: 'Quick headless access on customer sites — fast, offline-capable, pocket-sized.',
-      href: docsPath('/product/minikvm/reviews/'),
+      href: docsPath('/products/minikvm/reviews/'),
     },
   ],
-  useCasesDocsHref: docsPath('/product/minikvm/'),
-  specsDocsHref: docsPath('/product/minikvm/features/'),
-  docsOverviewHref: docsPath('/product/minikvm/'),
+  useCasesDocsHref: docsPath('/products/minikvm/'),
+  specsDocsHref: docsPath('/products/minikvm/features/'),
+  docsOverviewHref: docsPath('/products/minikvm/'),
   videoProductSlug: 'minikvm',
   videoSectionTitle: 'Community reviews & demos',
   socialProofTitle: 'What reviewers & testers say',
@@ -157,12 +157,12 @@ export const minikvmProduct: Product = {
   latestNewsSubtitle: 'Firmware releases, app updates, and community news.',
   latestNewsLabel: 'Read on Openterface News →',
   docLinks: [
-    { label: 'Features', href: docsPath('/product/minikvm/features/') },
-    { label: 'How to Connect', href: docsPath('/product/minikvm/how-to-connect/') },
-    { label: 'USB Switch', href: docsPath('/product/minikvm/usb-switch/') },
-    { label: 'Reviews & Media', href: docsPath('/product/minikvm/reviews/') },
-    { label: 'FAQs', href: docsPath('/product/minikvm/faq/') },
-    { label: 'Download App', href: docsPath('/app/overview/') },
+    { label: 'Features', href: docsPath('/products/minikvm/features/') },
+    { label: 'How to Connect', href: docsPath('/products/minikvm/how-to-connect/') },
+    { label: 'USB Switch', href: docsPath('/products/minikvm/usb-switch/') },
+    { label: 'Reviews & Media', href: docsPath('/products/minikvm/reviews/') },
+    { label: 'FAQs', href: docsPath('/products/minikvm/faq/') },
+    { label: 'Download App', href: docsPath('/app/kvm/') },
   ],
-  legacyBase: '/product/minikvm/',
+  legacyBase: '/products/minikvm/',
 };

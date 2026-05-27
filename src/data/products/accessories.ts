@@ -12,7 +12,7 @@ export interface AccessorySku {
 
 /**
  * Accessories marketing payload — Phase 1G flat landing at /accessories/.
- * Sourced from docs/product/accessories/ (index + 6 SKU pages).
+ * Sourced from docs/products/accessories/ (index + 6 SKU pages).
  */
 export const accessorySkus: AccessorySku[] = [
   {
@@ -20,7 +20,7 @@ export const accessorySkus: AccessorySku[] = [
     description: 'VGA video + 3.5 mm audio to HDMI — connect legacy targets to modern displays. USB-powered, up to 1080p.',
     image: 'https://assets.openterface.com/images/product/part/CABLE100-VGA2HDMI-1.webp',
     shopHref: 'https://shop.techxartisan.com/products/vga-to-hdmi-converter-cable',
-    docsHref: docsPath('/product/accessories/vga-to-hdmi-cable/'),
+    docsHref: docsPath('/products/accessories/vga-to-hdmi-cable/'),
     badge: 'Video adapter',
   },
   {
@@ -29,7 +29,7 @@ export const accessorySkus: AccessorySku[] = [
     image: 'https://assets.openterface.com/images/product/part/nylon-usb-c-cable.webp',
     shopHref:
       'https://shop.techxartisan.com/products/upgraded-nylon-usb-c-cable-240w-fast-charging-10gbps-data-transfer-1-5m-with-usb-a-adapter-eye-catching-orange',
-    docsHref: docsPath('/product/accessories/nylong-c-to-c-150/'),
+    docsHref: docsPath('/products/accessories/nylong-c-to-c-150/'),
     badge: 'Host cable',
   },
   {
@@ -38,7 +38,7 @@ export const accessorySkus: AccessorySku[] = [
     image: 'https://assets.openterface.com/images/product/part/OP-05-CABLE150-C2C.webp',
     shopHref:
       'https://shop.techxartisan.com/products/type-c-cable-with-usb-a-adapter-1-5m-4-11ft-240w-fast-charging-data-transfer-usb2-0',
-    docsHref: docsPath('/product/accessories/type-c-to-c-cable-with-adapter/'),
+    docsHref: docsPath('/products/accessories/type-c-to-c-cable-with-adapter/'),
     badge: 'Host cable',
   },
   {
@@ -46,7 +46,7 @@ export const accessorySkus: AccessorySku[] = [
     description: 'Short black target-side cable with USB-A/C adapter — keyboard, mouse, and data to the target device.',
     image: 'https://assets.openterface.com/images/product/part/OP-04-CABLE30-C2A.webp',
     shopHref: 'https://shop.techxartisan.com/products/type-c-to-usb-a-cable-with-adapter',
-    docsHref: docsPath('/product/accessories/black-c-to-a-30/'),
+    docsHref: docsPath('/products/accessories/black-c-to-a-30/'),
     badge: 'Target cable',
   },
   {
@@ -54,7 +54,7 @@ export const accessorySkus: AccessorySku[] = [
     description: 'Compact HDMI for target video capture — pairs with Mini-KVM and KVM-GO setups.',
     image: 'https://assets.openterface.com/images/product/part/OP-03-CABLE30-HDMI.webp',
     shopHref: 'https://shop.techxartisan.com/products/hdmi-male-to-male-cable',
-    docsHref: docsPath('/product/accessories/hdmi-male-to-male-cable/'),
+    docsHref: docsPath('/products/accessories/hdmi-male-to-male-cable/'),
     badge: 'Video cable',
   },
   {
@@ -62,7 +62,7 @@ export const accessorySkus: AccessorySku[] = [
     description: '180 × 115 × 50 mm carry bag with mesh pockets — organize Mini-KVM, cables, and adapters on the go.',
     image: 'https://assets.openterface.com/images/product/part/OP-06-BAG-TOOLKIT.webp',
     shopHref: 'https://shop.techxartisan.com/products/openterface-toolkit-bag',
-    docsHref: docsPath('/product/accessories/openterface-toolkit-bag/'),
+    docsHref: docsPath('/products/accessories/openterface-toolkit-bag/'),
     badge: 'Storage',
   },
 ];
@@ -113,27 +113,27 @@ export const accessoriesProduct: Product = {
     {
       title: 'Build a crash-cart replacement kit',
       description: 'Host cable, target HDMI, and USB adapter — everything for a Mini-KVM walk-through.',
-      href: docsPath('/product/accessories/'),
+      href: docsPath('/products/accessories/'),
     },
     {
       title: 'Convert legacy VGA targets',
       description: 'VGA + audio to HDMI when the rack still speaks analog video.',
-      href: docsPath('/product/accessories/vga-to-hdmi-cable/'),
+      href: docsPath('/products/accessories/vga-to-hdmi-cable/'),
     },
     {
       title: 'Stay organized on site',
       description: 'Toolkit bag keeps KVM hardware and spares in one pocketable bundle.',
-      href: docsPath('/product/accessories/openterface-toolkit-bag/'),
+      href: docsPath('/products/accessories/openterface-toolkit-bag/'),
     },
   ],
-  useCasesDocsHref: docsPath('/product/accessories/'),
-  specsDocsHref: docsPath('/product/accessories/'),
-  docsOverviewHref: docsPath('/product/accessories/'),
+  useCasesDocsHref: docsPath('/products/accessories/'),
+  specsDocsHref: docsPath('/products/accessories/'),
+  docsOverviewHref: docsPath('/products/accessories/'),
   docLinks: [
-    { label: 'All accessories on docs', href: docsPath('/product/accessories/') },
-    { label: 'VGA to HDMI cable', href: docsPath('/product/accessories/vga-to-hdmi-cable/') },
-    { label: 'Toolkit bag', href: docsPath('/product/accessories/openterface-toolkit-bag/') },
+    { label: 'All accessories on docs', href: docsPath('/products/accessories/') },
+    { label: 'VGA to HDMI cable', href: docsPath('/products/accessories/vga-to-hdmi-cable/') },
+    { label: 'Toolkit bag', href: docsPath('/products/accessories/openterface-toolkit-bag/') },
     { label: 'TxA Shop', href: siteConfig.links.shop },
   ],
-  legacyBase: '/product/accessories/',
+  legacyBase: '/products/accessories/',
 };
