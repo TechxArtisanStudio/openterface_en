@@ -14,7 +14,7 @@ export const mainNav: NavItem[] = [
     children: [
       { label: 'KeyMod Series', href: '/products/keymod/' },
       { label: 'KVM-GO Series', href: '/products/kvm-go/' },
-      { label: 'Mini-KVM', href: '/products/minikvm/' },
+      { label: 'Mini-KVM', href: '/minikvm/' },
       { label: 'uConsole KVM Extension', href: '/products/uconsole-kvm-extension/' },
       { label: 'Accessories', href: '/products/accessories/' },
     ],

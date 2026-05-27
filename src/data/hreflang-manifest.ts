@@ -43,9 +43,9 @@ export const marketingPaths = [
   '/about/',
   '/videos/',
   '/use-cases/',
+  '/minikvm/',
   '/products/keymod/',
   '/products/kvm-go/',
-  '/products/minikvm/',
   '/products/uconsole-kvm-extension/',
   '/products/accessories/',
 ] as const;

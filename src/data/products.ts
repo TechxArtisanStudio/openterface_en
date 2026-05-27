@@ -1,4 +1,5 @@
 import { docsPath, siteConfig } from '../config/site';
+import { minikvmProduct } from './products/minikvm';
 
 export interface ProductDocLink {
   label: string;
@@ -167,95 +168,7 @@ export const products: Record<string, Product> = {
     ],
     legacyBase: '/product/kvm-go/',
   },
-  minikvm: {
-    slug: 'minikvm',
-    title: 'Openterface Mini-KVM',
-    slogan: 'Turn Your Laptop into a KVM Console',
-    subtitle: 'Simplify Your Tech Life.',
-    status: 'shipping',
-    description:
-      'A plug-and-play KVM-over-USB solution. Control a nearby headless computer from your laptop using USB and HDMI — no extra peripherals or network required.',
-    seoDescription:
-      'Openterface Mini-KVM: plug-and-play KVM-over-USB with HDMI. Control headless computers from your laptop without network.',
-    keywords: 'Mini-KVM, KVM over USB, headless control, HDMI KVM, plug and play KVM',
-    heroImage: 'https://assets.openterface.com/images/cover/mini-kvm-toolkit.webp',
-    heroImages: [
-      'https://assets.openterface.com/images/cover/mini-kvm-toolkit.webp',
-      'https://assets.openterface.com/images/cover/mini-kvm.webp',
-    ],
-    buyLabel: 'Order NOW',
-    buyHref: siteConfig.links.minikvmPurchase,
-    funding: { amount: '$505,471', date: 'Funded on Jun 13, 2024', backers: '3,775' },
-    painPoints: [
-      'Lugging a monitor and keyboard for every server fix is impractical',
-      'Network KVM requires configuration and connectivity',
-      'IT professionals need a reliable pocket KVM daily',
-    ],
-    solutions: [
-      'Use your existing laptop as the KVM console',
-      'HDMI capture + USB HID in one compact device',
-      'Proven by 5,000+ community members since 2024',
-    ],
-    hwFeatures: [
-      { title: 'HDMI capture', description: 'Full video from target machine to your host laptop.' },
-      { title: 'USB switch', description: 'Toggle USB devices between host and target.' },
-      { title: 'Extension pins', description: 'Hardware hacking and custom integration options.' },
-    ],
-    swFeatures: [
-      { title: 'Qt / macOS / Android apps', description: 'Native apps for every major host platform.' },
-      { title: 'Open source', description: 'Fully open hardware and software ecosystem.' },
-      { title: 'Active community', description: 'Discord, GitHub, and regular firmware updates.' },
-    ],
-    specs: [
-      { label: 'Video input', value: 'HDMI' },
-      { label: 'USB', value: 'USB-C with switchable port' },
-      { label: 'Status', value: 'Shipping — Crowd Supply' },
-    ],
-    useCases: ['Homelab management', 'Developer workstation side-by-side control', 'IT bench troubleshooting'],
-    useCaseCards: [
-      {
-        title: 'Homelab management',
-        description: 'Control headless servers and SBCs from the laptop you already carry.',
-      },
-      {
-        title: 'Developer workstation',
-        description: 'Side-by-side host/target control without a second monitor.',
-      },
-      {
-        title: 'IT bench troubleshooting',
-        description: 'BIOS-level access when network KVM is unavailable.',
-      },
-    ],
-    useCasesDocsHref: docsPath('/product/minikvm/'),
-    specsDocsHref: docsPath('/product/minikvm/features/'),
-    docsOverviewHref: docsPath('/product/minikvm/'),
-    videoProductSlug: 'minikvm',
-    socialProofTitle: 'What reviewers say',
-    socialProof: [
-      {
-        quote: 'This USB KVM Console is Awesome!',
-        author: 'Cameron Gray — TechxArtisan review',
-        href: 'https://www.youtube.com/watch?v=xAEQpWyOmY4',
-      },
-      {
-        quote: 'A Tiny KVM That Solves Big IT Headaches',
-        author: 'Geek Of All Trades',
-        href: 'https://www.youtube.com/watch?v=ZZ5P6MnBcHw',
-      },
-    ],
-    latestNewsHref: 'https://news.openterface.com/',
-    latestNewsTitle: 'Latest Mini-KVM updates',
-    latestNewsSubtitle: 'Firmware releases, app updates, and community news.',
-    latestNewsLabel: 'Read on Openterface News →',
-    docLinks: [
-      { label: 'Features', href: docsPath('/product/minikvm/features/') },
-      { label: 'USB Switch', href: docsPath('/product/minikvm/usb-switch/') },
-      { label: 'Tech Support', href: docsPath('/product/minikvm/support/') },
-      { label: 'FAQs', href: docsPath('/product/minikvm/faq/') },
-      { label: 'Download App', href: docsPath('/app/overview/') },
-    ],
-    legacyBase: '/product/minikvm/',
-  },
+  minikvm: minikvmProduct,
   'uconsole-kvm-extension': {
     slug: 'uconsole-kvm-extension',
     title: 'uConsole KVM Extension',

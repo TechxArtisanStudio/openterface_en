@@ -1,24 +1,18 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProductJsonLd from '../../components/ProductJsonLd.astro';
-import ProductLanding from '../../layouts/ProductLanding.astro';
+import ProductLandingV2 from '../../layouts/ProductLandingV2.astro';
 import { siteConfig } from '../../config/site';
-import { products, productSlugs } from '../../data/products';
+import { minikvmProduct as product } from '../../data/products/minikvm';
 
-export function getStaticPaths() {
-  return productSlugs.filter((slug) => slug !== 'minikvm').map((slug) => ({ params: { slug } }));
-}
-
-const { slug } = Astro.params;
-const product = products[slug!];
-
-if (!product) {
-  return Astro.redirect('/404');
-}
-
-const canonicalPath = `/products/${slug}/`;
+const canonicalPath = '/minikvm/';
 const productUrl = new URL(canonicalPath, siteConfig.url).href;
 ---
+
+<!--
+  TODO(phase-1c-v2): Add hero lifestyle video embed when new footage ships.
+  v1 uses CDN carousel images only (mini-kvm-toolkit.webp, mini-kvm.webp).
+-->
 
 <BaseLayout
   title={product.title}
@@ -30,5 +24,5 @@ const productUrl = new URL(canonicalPath, siteConfig.url).href;
   canonicalPath={canonicalPath}
 >
   <ProductJsonLd slot="head" product={product} url={productUrl} />
-  <ProductLanding product={product} />
+  <ProductLandingV2 product={product} />
 </BaseLayout>
