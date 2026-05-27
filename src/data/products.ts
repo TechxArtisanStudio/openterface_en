@@ -5,6 +5,20 @@ export interface ProductDocLink {
   href: string;
 }
 
+export interface ProductUseCaseCard {
+  title: string;
+  description?: string;
+  href?: string;
+}
+
+export interface ProductSocialQuote {
+  quote: string;
+  author: string;
+  href?: string;
+}
+
+export type ProductStatus = 'shipping' | 'pre-order' | 'pre-launch' | 'oshwa';
+
 export interface Product {
   slug: string;
   title: string;
@@ -15,15 +29,33 @@ export interface Product {
   keywords: string;
   heroImage: string;
   heroImages: string[];
+  /** Optional hero video embed (YouTube nocookie URL). */
+  heroVideoEmbedUrl?: string;
   buyLabel: string;
   buyHref: string;
+  /** Shipping / pre-order badge shown in ProductLandingV2 hero. */
+  status?: ProductStatus;
   painPoints: string[];
   solutions: string[];
   hwFeatures: { title: string; description: string }[];
   swFeatures: { title: string; description: string }[];
   specs: { label: string; value: string }[];
   useCases: string[];
+  /** Rich use-case cards for ProductLandingV2 strip. Falls back to useCases strings. */
+  useCaseCards?: ProductUseCaseCard[];
+  useCasesDocsHref?: string;
+  specsDocsHref?: string;
+  docsOverviewHref?: string;
   funding?: { amount: string; date: string; backers: string };
+  socialProof?: ProductSocialQuote[];
+  socialProofTitle?: string;
+  /** catalogVideos.ts product key (may differ from marketing slug, e.g. kvm-go). */
+  videoProductSlug?: string;
+  videoSectionTitle?: string;
+  latestNewsHref?: string;
+  latestNewsTitle?: string;
+  latestNewsSubtitle?: string;
+  latestNewsLabel?: string;
   docLinks: ProductDocLink[];
   legacyBase: string;
 }
@@ -140,6 +172,7 @@ export const products: Record<string, Product> = {
     title: 'Openterface Mini-KVM',
     slogan: 'Turn Your Laptop into a KVM Console',
     subtitle: 'Simplify Your Tech Life.',
+    status: 'shipping',
     description:
       'A plug-and-play KVM-over-USB solution. Control a nearby headless computer from your laptop using USB and HDMI — no extra peripherals or network required.',
     seoDescription:
@@ -179,6 +212,41 @@ export const products: Record<string, Product> = {
       { label: 'Status', value: 'Shipping — Crowd Supply' },
     ],
     useCases: ['Homelab management', 'Developer workstation side-by-side control', 'IT bench troubleshooting'],
+    useCaseCards: [
+      {
+        title: 'Homelab management',
+        description: 'Control headless servers and SBCs from the laptop you already carry.',
+      },
+      {
+        title: 'Developer workstation',
+        description: 'Side-by-side host/target control without a second monitor.',
+      },
+      {
+        title: 'IT bench troubleshooting',
+        description: 'BIOS-level access when network KVM is unavailable.',
+      },
+    ],
+    useCasesDocsHref: docsPath('/product/minikvm/'),
+    specsDocsHref: docsPath('/product/minikvm/features/'),
+    docsOverviewHref: docsPath('/product/minikvm/'),
+    videoProductSlug: 'minikvm',
+    socialProofTitle: 'What reviewers say',
+    socialProof: [
+      {
+        quote: 'This USB KVM Console is Awesome!',
+        author: 'Cameron Gray — TechxArtisan review',
+        href: 'https://www.youtube.com/watch?v=xAEQpWyOmY4',
+      },
+      {
+        quote: 'A Tiny KVM That Solves Big IT Headaches',
+        author: 'Geek Of All Trades',
+        href: 'https://www.youtube.com/watch?v=ZZ5P6MnBcHw',
+      },
+    ],
+    latestNewsHref: 'https://news.openterface.com/',
+    latestNewsTitle: 'Latest Mini-KVM updates',
+    latestNewsSubtitle: 'Firmware releases, app updates, and community news.',
+    latestNewsLabel: 'Read on Openterface News →',
     docLinks: [
       { label: 'Features', href: docsPath('/product/minikvm/features/') },
       { label: 'USB Switch', href: docsPath('/product/minikvm/usb-switch/') },
