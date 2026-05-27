@@ -1,5 +1,6 @@
 import { docsPath, siteConfig } from '../config/site';
 import { minikvmProduct } from './products/minikvm';
+import { kvmgoProduct } from './products/kvmgo';
 
 export interface ProductDocLink {
   label: string;
@@ -115,59 +116,7 @@ export const products: Record<string, Product> = {
     ],
     legacyBase: '/product/keymod/',
   },
-  'kvm-go': {
-    slug: 'kvm-go',
-    title: 'Openterface KVM-GO Series',
-    slogan: 'Ultra-Compact KVM That Fits on Your Keychain',
-    subtitle: 'For Critical Tech Moments — Plug. Control. Go.',
-    description:
-      'The next-generation KVM-over-USB solution with built-in video connectors (HDMI, DisplayPort, or VGA). Ultra-compact, keychain-sized, and built for rapid IT operations in data centers and server rooms.',
-    seoDescription:
-      'Control headless computers with Openterface KVM-Go. Built-in HDMI/DP/VGA, keychain-sized, 4K KVM-over-USB for IT professionals.',
-    keywords: 'KVM-Go, KVM over USB, ultra-compact KVM, keychain KVM, 4K KVM, headless control',
-    heroImage: 'https://assets.openterface.com/images/cover/kvm-go-triple.webp',
-    heroImages: [
-      'https://assets.openterface.com/images/cover/kvm-go-triple.webp',
-      'https://assets.openterface.com/images/cover/kvm-go-triple-2.webp',
-    ],
-    buyLabel: 'Pre-Order NOW',
-    buyHref: siteConfig.links.kvmgoPurchase,
-    funding: { amount: '$101,548', date: 'Funded on Dec 30, 2025', backers: '478' },
-    painPoints: [
-      'Traditional KVM gear is bulky and requires separate video cables',
-      'Emergency server access in the field needs a pocket-sized tool',
-      'Headless troubleshooting without network access is slow',
-    ],
-    solutions: [
-      'Built-in video connectors eliminate extra cables',
-      'Keychain form factor always within reach',
-      'KVM-over-USB — no network or drivers required on target',
-    ],
-    hwFeatures: [
-      { title: 'Built-in video', description: 'HDMI, DisplayPort, or VGA models — no loose cables.' },
-      { title: 'Keychain size', description: 'Smallest KVM-over-USB in the Openterface lineup.' },
-      { title: '4K support', description: 'High-resolution capture for modern displays.' },
-    ],
-    swFeatures: [
-      { title: 'Openterface Qt App', description: 'Cross-platform host control for Windows, macOS, and Linux.' },
-      { title: 'MicroSD switch', description: 'Switchable storage for portable OS images and tools.' },
-      { title: 'Open source stack', description: 'Community-driven firmware and host applications.' },
-    ],
-    specs: [
-      { label: 'Video', value: 'HDMI / DP / VGA (model dependent)' },
-      { label: 'Resolution', value: 'Up to 4K' },
-      { label: 'Connection', value: 'USB-C KVM-over-USB' },
-    ],
-    useCases: ['Data center walk-throughs', 'Headless device setup', 'Field IT and homelab rescue'],
-    docLinks: [
-      { label: 'Features', href: docsPath('/product/kvm-go/features/') },
-      { label: 'Beta Quick Start', href: docsPath('/product/kvm-go/beta-quick-start/') },
-      { label: 'How to Connect', href: docsPath('/product/kvm-go/how-to-connect/') },
-      { label: 'FAQs', href: docsPath('/product/kvm-go/faq/') },
-      { label: 'Download App', href: docsPath('/app/overview/') },
-    ],
-    legacyBase: '/product/kvm-go/',
-  },
+  'kvm-go': kvmgoProduct,
   minikvm: minikvmProduct,
   'uconsole-kvm-extension': {
     slug: 'uconsole-kvm-extension',
