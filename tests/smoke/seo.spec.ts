@@ -25,17 +25,8 @@ const OG_LOCALE_BY_HOST: Record<string, string> = {
 
 const EXPECTED_OG_LOCALE = OG_LOCALE_BY_HOST[SITE_HOST] ?? 'en_US';
 
-const EXPECTED_ROUTES = [
-  '/',
-  '/about/',
-  '/videos/',
-  '/use-cases/',
-  '/products/keymod/',
-  '/products/kvm-go/',
-  '/minikvm/',
-  '/products/uconsole-kvm-extension/',
-  '/products/accessories/',
-];
+/** Routes that exist as built pages in sitemap (flat product landings added in 1D–1G). */
+const SITEMAP_ROUTES = ['/', '/about/', '/videos/', '/products/', '/minikvm/'];
 
 test('robots.txt is valid', async ({ request }) => {
   const res = await request.get('/robots.txt');
@@ -56,7 +47,7 @@ test('sitemap-0.xml lists marketing routes and excludes 404', async ({ request }
   const res = await request.get('/sitemap-0.xml');
   expect(res.status()).toBe(200);
   const body = await res.text();
-  for (const route of EXPECTED_ROUTES) {
+  for (const route of SITEMAP_ROUTES) {
     expect(body).toContain(`https://${SITE_HOST}${route}`);
   }
   expect(body).not.toContain('/404');
@@ -91,15 +82,15 @@ test('home page has Open Graph and Twitter social meta', async ({ page }) => {
 });
 
 test('product page has Product JSON-LD and og:type product', async ({ page }) => {
-  await page.goto('/products/keymod/', { waitUntil: 'commit', timeout: 15000 });
+  await page.goto('/minikvm/', { waitUntil: 'commit', timeout: 15000 });
   await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'product');
   const jsonLdScripts = await page.locator('script[type="application/ld+json"]').allTextContents();
   const productLd = jsonLdScripts.find((text) => text.includes('"@type":"Product"'));
   expect(productLd).toBeTruthy();
   const product = JSON.parse(productLd!);
   expect(product['@type']).toBe('Product');
-  expect(String(product.name)).toMatch(/KeyMod/i);
-  expect(String(product.url)).toContain('/products/keymod/');
+  expect(String(product.name)).toMatch(/Mini-KVM/i);
+  expect(String(product.url)).toContain('/minikvm/');
 });
 
 test('home page has Organization and WebSite JSON-LD', async ({ page }) => {

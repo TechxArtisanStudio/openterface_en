@@ -44,16 +44,27 @@ test('legacy /products/minikvm/ redirects to /minikvm/', async ({ page }) => {
   await expect(page).toHaveURL(/\/minikvm\/$/);
 });
 
-test('all product routes return 200', async ({ page }) => {
-  const routes = [
-    '/products/keymod/',
-    '/products/kvm-go/',
-    '/minikvm/',
-    '/products/uconsole-kvm-extension/',
-    '/products/accessories/',
-  ];
-  for (const path of routes) {
+test('/use-cases/ redirects to /products/', async ({ page }) => {
+  await page.goto('/use-cases/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page).toHaveURL(/\/products\/$/);
+});
+
+test('products hub and flat minikvm route return 200', async ({ page }) => {
+  for (const path of ['/products/', '/minikvm/']) {
     const response = await page.goto(path, { waitUntil: 'commit', timeout: 15000 });
     expect(response?.status()).toBe(200);
+  }
+});
+
+test('legacy nested product URLs redirect to flat paths', async ({ page }) => {
+  const redirects: [string, RegExp][] = [
+    ['/products/keymod/', /\/keymod\/$/],
+    ['/products/kvm-go/', /\/kvmgo\/$/],
+    ['/products/uconsole-kvm-extension/', /\/kvmext\/$/],
+    ['/products/accessories/', /\/accessories\/$/],
+  ];
+  for (const [from, toPattern] of redirects) {
+    await page.goto(from, { waitUntil: 'commit', timeout: 15000 });
+    await expect(page).toHaveURL(toPattern);
   }
 });

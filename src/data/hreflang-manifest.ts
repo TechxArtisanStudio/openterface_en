@@ -42,12 +42,12 @@ export const marketingPaths = [
   '/',
   '/about/',
   '/videos/',
-  '/use-cases/',
+  '/products/',
+  '/keymod/',
+  '/kvmgo/',
   '/minikvm/',
-  '/products/keymod/',
-  '/products/kvm-go/',
-  '/products/uconsole-kvm-extension/',
-  '/products/accessories/',
+  '/kvmext/',
+  '/accessories/',
 ] as const;
 
 export function normalizePath(path: string): string {

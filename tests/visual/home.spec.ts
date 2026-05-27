@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const routes = ['/', '/products/keymod/', '/products/kvm-go/', '/minikvm/'];
+const routes = ['/', '/products/', '/minikvm/'];
 
 for (const route of routes) {
   test(`visual: ${route}`, async ({ page }) => {
@@ -20,6 +20,6 @@ test('home carousel is visible', async ({ page }) => {
 });
 
 test('product page has buy CTA', async ({ page }) => {
-  await page.goto('/products/keymod/');
-  await expect(page.getByRole('link', { name: 'Support NOW' }).first()).toBeVisible();
+  await page.goto('/minikvm/');
+  await expect(page.getByRole('link', { name: 'Order NOW' }).first()).toBeVisible();
 });
