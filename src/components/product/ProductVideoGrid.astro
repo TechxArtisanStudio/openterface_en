@@ -19,7 +19,7 @@ const {
 } = Astro.props;
 
 const videos: CatalogVideo[] = catalogVideos
-  .filter((v) => v.product === productSlug)
+  .filter((v) => v.product === productSlug && (v.format === 'long' || v.format === 'short' || !v.format))
   .slice(0, limit);
 
 if (videos.length === 0) return null;

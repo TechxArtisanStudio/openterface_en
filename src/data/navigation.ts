@@ -29,7 +29,7 @@ export const mainNav: NavItem[] = [
       { label: 'KeyCmd', href: '/keycmd/' },
     ],
   },
-  { label: 'Videos', href: '/videos/' },
+  { label: 'Media', href: '/videos/' },
   { label: 'About', href: '/about/' },
   { label: 'Docs', href: docsPath(), external: true },
   { label: 'News', href: newsPath(), external: true },
