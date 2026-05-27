@@ -19,6 +19,7 @@ export const siteConfig = {
     shop: 'https://shop.techxartisan.com/',
     docs: 'https://docs.openterface.com',
     appOverview: 'https://docs.openterface.com/app/overview/',
+    keycmdAndroidApk: 'https://assets2.openterface.com/data/KeyCmd-release-0.19.apk',
     subscribe: 'https://subscribe.openterface.com/api/subscribe/',
     news: 'https://news.openterface.com',
   },
