@@ -6,7 +6,7 @@ const KVMEXT_SHOP =
 
 /**
  * KVM Extension (uConsole) marketing payload — Phase 1F flat landing at /kvmext/.
- * Sourced from docs/product/uconsole-kvm-extension/ (index, features).
+ * Sourced from docs/products/kvmext/ (index, features).
  */
 export const kvmextProduct: Product = {
   slug: 'uconsole-kvm-extension',
@@ -92,12 +92,12 @@ export const kvmextProduct: Product = {
     {
       title: 'Portable datacenter tool',
       description: 'Walk racks with your uConsole — one device for display, keyboard, and KVM.',
-      href: docsPath('/product/uconsole-kvm-extension/'),
+      href: docsPath('/products/kvmext/'),
     },
     {
       title: 'Maker & homelab on the go',
       description: 'Configure headless SBCs, NAS nodes, and lab gear from a pocketable console.',
-      href: docsPath('/product/uconsole-kvm-extension/features/'),
+      href: docsPath('/products/kvmext/features/'),
     },
     {
       title: 'Field IT & MSP visits',
@@ -106,25 +106,25 @@ export const kvmextProduct: Product = {
     {
       title: 'Network-free troubleshooting',
       description: 'When the target has no IP — HDMI + HID still works.',
-      href: docsPath('/product/uconsole-kvm-extension/connect-to-target/'),
+      href: docsPath('/products/kvmext/connect-to-target/'),
     },
   ],
-  useCasesDocsHref: docsPath('/product/uconsole-kvm-extension/'),
-  specsDocsHref: docsPath('/product/uconsole-kvm-extension/features/'),
-  docsOverviewHref: docsPath('/product/uconsole-kvm-extension/'),
+  useCasesDocsHref: docsPath('/products/kvmext/'),
+  specsDocsHref: docsPath('/products/kvmext/features/'),
+  docsOverviewHref: docsPath('/products/kvmext/'),
   videoProductSlug: 'uconsole-kvm-extension',
   videoSectionTitle: 'Installation & community demos',
-  latestNewsHref: `${siteConfig.links.news}/product/uconsole-kvm-extension/2025-08-28-oshwa-certification/`,
+  latestNewsHref: `${siteConfig.links.news}/products/kvmext/2025-08-28-oshwa-certification/`,
   latestNewsTitle: 'OSHWA certification achieved',
   latestNewsSubtitle: 'Official Open Source Hardware Association certification for the uConsole KVM Extension.',
   latestNewsLabel: 'Read on Openterface News →',
   docLinks: [
-    { label: 'Features', href: docsPath('/product/uconsole-kvm-extension/features/') },
-    { label: "What's in the Box", href: docsPath('/product/uconsole-kvm-extension/whats-in-the-box/') },
-    { label: 'Hardware Installation', href: docsPath('/product/uconsole-kvm-extension/hardware-installation/') },
-    { label: 'Software Setup', href: docsPath('/product/uconsole-kvm-extension/software-setup/') },
-    { label: 'How to Connect', href: docsPath('/product/uconsole-kvm-extension/connect-to-target/') },
-    { label: 'FAQs', href: docsPath('/product/uconsole-kvm-extension/faq/') },
+    { label: 'Features', href: docsPath('/products/kvmext/features/') },
+    { label: "What's in the Box", href: docsPath('/products/kvmext/whats-in-the-box/') },
+    { label: 'Hardware Installation', href: docsPath('/products/kvmext/hardware-installation/') },
+    { label: 'Software Setup', href: docsPath('/products/kvmext/software-setup/') },
+    { label: 'How to Connect', href: docsPath('/products/kvmext/connect-to-target/') },
+    { label: 'FAQs', href: docsPath('/products/kvmext/faq/') },
   ],
-  legacyBase: '/product/uconsole-kvm-extension/',
+  legacyBase: '/products/kvmext/',
 };

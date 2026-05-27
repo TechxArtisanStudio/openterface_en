@@ -3,7 +3,7 @@ import type { Product } from '../products';
 
 /**
  * KVM-GO marketing payload — cloned from Mini-KVM template (Phase 1D).
- * Sourced from docs/product/kvm-go/ (index, features, reviews, use-cases).
+ * Sourced from docs/products/kvmgo/ (index, features, reviews, use-cases).
  */
 export const kvmgoProduct: Product = {
   slug: 'kvm-go',
@@ -95,12 +95,12 @@ export const kvmgoProduct: Product = {
     {
       title: 'Data center & server rooms',
       description: 'Replace rolling crash carts with a keychain KVM that plugs straight in.',
-      href: docsPath('/product/kvm-go/use-cases/'),
+      href: docsPath('/products/kvmgo/use-cases/'),
     },
     {
       title: 'EDC field toolkit',
       description: 'Always in your bag — built-in connector means one less cable to forget.',
-      href: docsPath('/product/kvm-go/use-cases/'),
+      href: docsPath('/products/kvmgo/use-cases/'),
     },
     {
       title: 'Headless homelab rescue',
@@ -109,22 +109,22 @@ export const kvmgoProduct: Product = {
     {
       title: 'Legacy VGA systems',
       description: 'VGA model targets older racks and industrial gear (in development).',
-      href: docsPath('/product/kvm-go/features/'),
+      href: docsPath('/products/kvmgo/features/'),
     },
     {
       title: 'BIOS & firmware access',
       description: 'Boot menus and recovery screens with no network dependency.',
-      href: docsPath('/product/kvm-go/features/'),
+      href: docsPath('/products/kvmgo/features/'),
     },
     {
       title: 'MicroSD OS installs',
       description: 'Switchable storage for imaging and portable recovery tools.',
-      href: docsPath('/product/kvm-go/microsd-switch/'),
+      href: docsPath('/products/kvmgo/microsd-switch/'),
     },
   ],
-  useCasesDocsHref: docsPath('/product/kvm-go/use-cases/'),
-  specsDocsHref: docsPath('/product/kvm-go/features/'),
-  docsOverviewHref: docsPath('/product/kvm-go/'),
+  useCasesDocsHref: docsPath('/products/kvmgo/use-cases/'),
+  specsDocsHref: docsPath('/products/kvmgo/features/'),
+  docsOverviewHref: docsPath('/products/kvmgo/'),
   videoProductSlug: 'kvm-go',
   videoSectionTitle: 'Community reviews & demos',
   socialProofTitle: 'What press & early users say',
@@ -159,12 +159,12 @@ export const kvmgoProduct: Product = {
   latestNewsSubtitle: 'Production milestones, app releases, and community news.',
   latestNewsLabel: 'Read on Openterface News →',
   docLinks: [
-    { label: 'Features', href: docsPath('/product/kvm-go/features/') },
-    { label: 'Beta Quick Start', href: docsPath('/product/kvm-go/beta-quick-start/') },
-    { label: 'How to Connect', href: docsPath('/product/kvm-go/how-to-connect/') },
-    { label: 'MicroSD Switch', href: docsPath('/product/kvm-go/microsd-switch/') },
-    { label: 'Reviews & Media', href: docsPath('/product/kvm-go/reviews/') },
-    { label: 'FAQs', href: docsPath('/product/kvm-go/faq/') },
+    { label: 'Features', href: docsPath('/products/kvmgo/features/') },
+    { label: 'Beta Quick Start', href: docsPath('/products/kvmgo/beta-quick-start/') },
+    { label: 'How to Connect', href: docsPath('/products/kvmgo/how-to-connect/') },
+    { label: 'MicroSD Switch', href: docsPath('/products/kvmgo/microsd-switch/') },
+    { label: 'Reviews & Media', href: docsPath('/products/kvmgo/reviews/') },
+    { label: 'FAQs', href: docsPath('/products/kvmgo/faq/') },
   ],
-  legacyBase: '/product/kvm-go/',
+  legacyBase: '/products/kvmgo/',
 };

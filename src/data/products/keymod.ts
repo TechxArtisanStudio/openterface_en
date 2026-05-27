@@ -3,7 +3,7 @@ import type { Product } from '../products';
 
 /**
  * KeyMod marketing payload — Phase 1E flat landing at /keymod/.
- * Sourced from docs/product/keymod/ (index, features, use-cases).
+ * Sourced from docs/products/keymod/ (index, features, use-cases).
  */
 export const keymodProduct: Product = {
   slug: 'keymod',
@@ -94,17 +94,17 @@ export const keymodProduct: Product = {
     {
       title: 'Outdoor display computers',
       description: 'Configure and troubleshoot outdoor PCs without carrying a keyboard.',
-      href: docsPath('/product/keymod/use-cases/'),
+      href: docsPath('/products/keymod/use-cases/'),
     },
     {
       title: 'LED signage players',
       description: 'On-site updates to signage controllers — phone as full keyboard.',
-      href: docsPath('/product/keymod/use-cases/'),
+      href: docsPath('/products/keymod/use-cases/'),
     },
     {
       title: 'Kiosks',
       description: 'Debug, configure, or maintain kiosks with immediate HID access.',
-      href: docsPath('/product/keymod/use-cases/'),
+      href: docsPath('/products/keymod/use-cases/'),
     },
     {
       title: 'Smart TVs & set-top boxes',
@@ -113,16 +113,16 @@ export const keymodProduct: Product = {
     {
       title: 'Quick workflow shortcuts',
       description: 'Developers and IT staff — occasional input without extra gear.',
-      href: docsPath('/product/keymod/use-cases/'),
+      href: docsPath('/products/keymod/use-cases/'),
     },
     {
       title: 'Portable & plug-and-play',
       description: 'Your phone is always with you; KeyMod stays compact in your bag.',
     },
   ],
-  useCasesDocsHref: docsPath('/product/keymod/use-cases/'),
-  specsDocsHref: docsPath('/product/keymod/features/'),
-  docsOverviewHref: docsPath('/product/keymod/'),
+  useCasesDocsHref: docsPath('/products/keymod/use-cases/'),
+  specsDocsHref: docsPath('/products/keymod/features/'),
+  docsOverviewHref: docsPath('/products/keymod/'),
   videoProductSlug: 'keymod',
   videoSectionTitle: 'Community reviews & demos',
   latestNewsHref: 'https://news.openterface.com/',
@@ -130,11 +130,11 @@ export const keymodProduct: Product = {
   latestNewsSubtitle: 'Beta releases, app updates, and pre-launch news.',
   latestNewsLabel: 'Read on Openterface News →',
   docLinks: [
-    { label: 'Features', href: docsPath('/product/keymod/features/') },
-    { label: "What's in the Box", href: docsPath('/product/keymod/whats-in-the-box/') },
-    { label: 'How to Connect', href: docsPath('/product/keymod/how-to-connect/') },
-    { label: 'Use Cases', href: docsPath('/product/keymod/use-cases/') },
-    { label: 'FAQs', href: docsPath('/product/keymod/faq/') },
+    { label: 'Features', href: docsPath('/products/keymod/features/') },
+    { label: "What's in the Box", href: docsPath('/products/keymod/whats-in-the-box/') },
+    { label: 'How to Connect', href: docsPath('/products/keymod/how-to-connect/') },
+    { label: 'Use Cases', href: docsPath('/products/keymod/use-cases/') },
+    { label: 'FAQs', href: docsPath('/products/keymod/faq/') },
   ],
-  legacyBase: '/product/keymod/',
+  legacyBase: '/products/keymod/',
 };
