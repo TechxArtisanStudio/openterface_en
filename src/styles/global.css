@@ -177,4 +177,46 @@
     box-shadow: 0 0 0 1px var(--color-primary-dark);
   }
 
+  /* Product landing v2 design tokens */
+  .product-section {
+    --product-section-y: 3rem;
+    padding-block: var(--product-section-y);
+  }
+
+  @media (min-width: 768px) {
+    .product-section {
+      --product-section-y: 3.5rem;
+    }
+  }
+
+  .product-section--hero {
+    --product-section-y: 3rem;
+  }
+
+  .product-section__inner {
+    @apply mx-auto max-w-6xl px-4;
+  }
+
+  .product-display-title {
+    @apply text-3xl font-bold tracking-tight md:text-4xl;
+  }
+
+  .product-landing-v2 .card {
+    @apply motion-safe:transition-shadow motion-safe:duration-200;
+  }
+
+  .product-landing-v2 .card:hover {
+    @apply motion-safe:shadow-md;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .product-landing-v2 .card {
+    transition: none !important;
+  }
 }
