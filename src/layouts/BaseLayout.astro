@@ -36,8 +36,10 @@ const robots =
 
 const pageTitle = buildPageTitle(title, siteConfig.name);
 const canonical = new URL(canonicalPath, siteConfig.url).href;
-const hreflangAlternates = getHreflangAlternates(canonicalPath);
-const xDefaultHref = getXDefaultUrl(canonicalPath);
+const hreflangAlternates = isWave2Locale(siteConfig.locale)
+  ? []
+  : getHreflangAlternates(canonicalPath);
+const xDefaultHref = isWave2Locale(siteConfig.locale) ? null : getXDefaultUrl(canonicalPath);
 const ogLocale = getOgLocale(siteConfig.locale);
 const ogLocaleAlternates = hreflangAlternates.length > 0 ? getOgLocaleAlternates(siteConfig.locale) : [];
 const resolvedOgImageAlt = ogImageAlt ?? description;
