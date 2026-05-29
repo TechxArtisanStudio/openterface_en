@@ -23,16 +23,20 @@ test('home page has YouTube video strip with external links', async ({ page }) =
   expect(await youtubeLinks.count()).toBeGreaterThanOrEqual(5);
 });
 
-test('media hub page loads with format chips and catalog grid', async ({ page }) => {
+test('media hub has legacy press and post content (no samples)', async ({ page }) => {
   await page.goto('/media/', { waitUntil: 'commit', timeout: 15000 });
-  await expect(page.getByRole('heading', { level: 1, name: 'Media' })).toBeVisible({
-    timeout: 10000,
-  });
-  await expect(page.getByRole('region', { name: 'Media catalog filters' })).toBeVisible();
-  await expect(page.getByRole('group', { name: 'Filter by media format' })).toBeVisible();
-  const cards = page.locator('.media-catalog-card a[href*="youtube.com/watch"]');
-  await expect(cards.first()).toBeVisible();
-  expect(await cards.count()).toBeGreaterThanOrEqual(10);
+  await expect(page.getByRole('heading', { level: 1, name: 'Media' })).toBeVisible();
+  await expect(page.locator('.media-catalog-tag--sample')).toHaveCount(0);
+  await expect(page.getByRole('heading', { level: 2, name: 'In the press' })).toBeVisible();
+  await expect(page.locator('.media-catalog-card--coverage').first()).toBeVisible();
+  await expect(page.locator('.media-catalog-card--post').first()).toBeVisible();
+});
+
+test('media hub format=coverage filter shows press items', async ({ page }) => {
+  await page.goto('/media/?format=coverage', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.locator('[data-format-chip="coverage"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.media-catalog-card--coverage')).toHaveCount(6);
+  await expect(page.locator('.media-catalog-card--video')).toHaveCount(0);
 });
 
 test('media hub format=short filter loads', async ({ page }) => {
