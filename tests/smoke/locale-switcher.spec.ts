@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { isLocalPreview } from './helpers';
 
 test('locale switch links Wave 2 subdomains (hk, ru, nl)', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
@@ -32,6 +33,9 @@ test('_gl is removed from address bar after page load', async ({ page }) => {
 
 test('gtag config uses shared cookie domain', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
+  if (await isLocalPreview(page)) {
+    test.skip(true, 'gtag config cookie_domain is only pushed on production hosts');
+  }
   const hasCookieDomain = await page.evaluate(() => {
     const dl = window.dataLayer || [];
     return dl.some(
