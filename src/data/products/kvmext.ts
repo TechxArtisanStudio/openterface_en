@@ -20,10 +20,9 @@ export const kvmextProduct: Product = {
     'Openterface KVM Extension turns the Clockwork uConsole into a portable KVM console. HDMI capture, USB HID, BIOS-level access, OSHWA certified open hardware.',
   keywords:
     'uConsole KVM, KVM extension, portable KVM, Clockwork uConsole, HDMI KVM, USB HID, headless control, OSHWA',
-  heroImage:
-    'https://assets.openterface.com/images/uconsole-kvm-extension/uconsole-kvm-extension-1.webp',
+  heroImage: 'https://assets.openterface.com/images/cover/uconsole.webp',
   heroImages: [
-    'https://assets.openterface.com/images/uconsole-kvm-extension/uconsole-kvm-extension-1.webp',
+    'https://assets.openterface.com/images/cover/uconsole.webp',
     'https://assets.openterface.com/images/product/openterface-kvm-uconsole-extension.webp',
   ],
   buyLabel: 'Order NOW',
