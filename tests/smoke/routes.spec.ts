@@ -24,7 +24,7 @@ test('home page has YouTube video strip with external links', async ({ page }) =
 });
 
 test('media hub page loads with format chips and catalog grid', async ({ page }) => {
-  await page.goto('/videos/', { waitUntil: 'commit', timeout: 15000 });
+  await page.goto('/media/', { waitUntil: 'commit', timeout: 15000 });
   await expect(page.getByRole('heading', { level: 1, name: 'Media' })).toBeVisible({
     timeout: 10000,
   });
@@ -36,13 +36,13 @@ test('media hub page loads with format chips and catalog grid', async ({ page })
 });
 
 test('media hub format=short filter loads', async ({ page }) => {
-  await page.goto('/videos/?format=short', { waitUntil: 'commit', timeout: 15000 });
+  await page.goto('/media/?format=short', { waitUntil: 'commit', timeout: 15000 });
   await expect(page.getByRole('heading', { level: 1, name: 'Media' })).toBeVisible();
   await expect(page.locator('[data-format-chip="short"]')).toHaveAttribute('aria-pressed', 'true');
 });
 
 test('media hub product=minikvm filter loads', async ({ page }) => {
-  await page.goto('/videos/?product=minikvm', { waitUntil: 'commit', timeout: 15000 });
+  await page.goto('/media/?product=minikvm', { waitUntil: 'commit', timeout: 15000 });
   await expect(page.getByRole('heading', { level: 1, name: 'Media' })).toBeVisible();
   await expect(page.locator('[data-filter-product]')).toHaveValue('minikvm');
   const visible = page.locator('.media-catalog-card--video');
@@ -92,7 +92,7 @@ test('products hub lists all five product lines', async ({ page }) => {
 });
 
 test('app hub and subpages load with expected CTAs', async ({ page }) => {
-  await page.goto('/app/', { waitUntil: 'commit', timeout: 15000 });
+  await page.goto('/apps/', { waitUntil: 'commit', timeout: 15000 });
   await expect(page.getByRole('heading', { level: 1, name: 'Openterface Apps' })).toHaveCount(1);
   await expect(page.getByRole('link', { name: /Explore KVM Control/i })).toBeVisible();
 
@@ -105,11 +105,29 @@ test('app hub and subpages load with expected CTAs', async ({ page }) => {
   await expect(page.getByRole('link', { name: 'Download Android beta APK' })).toBeVisible();
 });
 
-test('home page App CTA links to /app/', async ({ page }) => {
+test('home page App CTA links to /apps/', async ({ page }) => {
   await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
-  await expect(page.getByRole('link', { name: 'Download Openterface App' })).toHaveAttribute('href', '/app/');
+  await expect(page.getByRole('link', { name: 'Download Openterface App' })).toHaveAttribute('href', '/apps/');
 });
 
+test('/legacy /app/ redirects to /apps/', async ({ page }) => {
+  await page.goto('/app/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page).toHaveURL(/\/apps\/$/);
+});
+
+test('/legacy /videos/ redirects to /media/', async ({ page }) => {
+  await page.goto('/videos/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page).toHaveURL(/\/media\/$/);
+});
+
+test('ecosystem header shows unified nav items', async ({ page }) => {
+  await page.setViewportSize({ width: 1400, height: 900 });
+  await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
+  const header = page.locator('header');
+  for (const label of ['Products', 'Apps', 'Docs', 'Media', 'News', 'Community']) {
+    await expect(header).toContainText(label);
+  }
+});
 test('legacy /products/keymod/ redirects to /keymod/', async ({ page }) => {
   await page.goto('/products/keymod/', { waitUntil: 'commit', timeout: 15000 });
   await expect(page).toHaveURL(/\/keymod\/$/);
@@ -126,7 +144,7 @@ test('/use-cases/ redirects to /products/', async ({ page }) => {
 });
 
 test('products hub and flat product routes return 200', async ({ page }) => {
-  for (const path of ['/products/', '/minikvm/', '/kvmgo/', '/keymod/', '/kvmext/', '/accessories/', '/app/', '/kvm/', '/keycmd/']) {
+  for (const path of ['/products/', '/minikvm/', '/kvmgo/', '/keymod/', '/kvmext/', '/accessories/', '/apps/', '/media/', '/community/', '/kvm/', '/keycmd/']) {
     const response = await page.goto(path, { waitUntil: 'commit', timeout: 15000 });
     expect(response?.status()).toBe(200);
   }
