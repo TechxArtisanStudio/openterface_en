@@ -27,22 +27,27 @@ test('media hub has legacy press and post content (no samples)', async ({ page }
   await page.goto('/media/', { waitUntil: 'commit', timeout: 15000 });
   await expect(page.getByRole('heading', { level: 1, name: 'Media' })).toBeVisible();
   await expect(page.locator('.media-catalog-tag--sample')).toHaveCount(0);
+  await expect(page.getByRole('heading', { level: 2, name: 'Videos' })).toBeVisible();
   await expect(page.getByRole('heading', { level: 2, name: 'In the press' })).toBeVisible();
-  await expect(page.locator('.media-catalog-card--coverage').first()).toBeVisible();
+  await expect(page.locator('.media-catalog-card--coverage')).toHaveCount(6);
   await expect(page.locator('.media-catalog-card--post').first()).toBeVisible();
 });
 
-test('media hub format=coverage filter shows press items', async ({ page }) => {
+test('media hub format=coverage filter shows press items only', async ({ page }) => {
   await page.goto('/media/?format=coverage', { waitUntil: 'commit', timeout: 15000 });
   await expect(page.locator('[data-format-chip="coverage"]')).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.locator('.media-catalog-card--coverage')).toHaveCount(6);
+  await expect(page.locator('[data-media-section="coverage"] .media-catalog-card--coverage')).toHaveCount(6);
+  await expect(page.locator('[data-media-section="long"]')).toBeHidden();
+  await expect(page.locator('[data-media-section="short"]')).toBeHidden();
   await expect(page.locator('.media-catalog-card--video')).toHaveCount(0);
 });
 
-test('media hub format=short filter loads', async ({ page }) => {
+test('media hub format=short filter hides other sections', async ({ page }) => {
   await page.goto('/media/?format=short', { waitUntil: 'commit', timeout: 15000 });
   await expect(page.getByRole('heading', { level: 1, name: 'Media' })).toBeVisible();
   await expect(page.locator('[data-format-chip="short"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('[data-media-section="long"]')).toBeHidden();
+  await expect(page.locator('[data-media-section="coverage"]')).toBeHidden();
 });
 
 test('media hub product=minikvm filter loads', async ({ page }) => {
