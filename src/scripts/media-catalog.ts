@@ -2,7 +2,7 @@
 
 import { MEDIA_SECTIONS } from '../lib/media-sections';
 
-type MediaFormat = 'long' | 'short' | 'post' | 'testimonial' | 'coverage';
+type MediaFormat = 'long' | 'short' | 'post' | 'coverage';
 
 type MediaCatalogEntry = {
   id: string;
@@ -81,11 +81,12 @@ function populateSelect(
 
 function readUrlState(): { product: string; language: string; sort: string; format: string; app: string } {
   const sp = new URLSearchParams(window.location.search);
+  const format = sp.get('format') ?? '';
   return {
     product: sp.get('product') ?? sp.get('p') ?? '',
     language: sp.get('l') ?? '',
     sort: sp.get('s') ?? 'newest',
-    format: sp.get('format') ?? '',
+    format: format === 'testimonial' ? 'post' : format,
     app: sp.get('app') ?? '',
   };
 }
@@ -260,9 +261,7 @@ function renderPostCard(entry: MediaCatalogEntry, config: MediaCatalogConfig): H
 
   const platform = entry.platform
     ? config.platformLabels[entry.platform] ?? entry.platform
-    : entry.format === 'testimonial'
-      ? 'Testimonial'
-      : 'Social';
+    : 'Social';
   const productLabel = entry.product
     ? `<span class="media-catalog-tag media-catalog-tag--product">${escapeHtml(config.productLabels[entry.product] ?? entry.product)}</span>`
     : '';
@@ -276,10 +275,7 @@ function renderPostCard(entry: MediaCatalogEntry, config: MediaCatalogConfig): H
   const titleClass = entry.externalUrl
     ? 'mt-3 line-clamp-2 text-base font-semibold leading-snug text-ink group-hover:text-primary-dark'
     : 'mt-3 line-clamp-2 text-base font-semibold leading-snug text-ink';
-  const excerptClass =
-    entry.format === 'testimonial'
-      ? 'mt-2 line-clamp-3 text-sm italic text-muted'
-      : 'mt-2 line-clamp-3 text-sm text-muted';
+  const excerptClass = 'mt-2 line-clamp-3 text-sm text-muted';
   const platformHeader = entry.thumbnail
     ? ''
     : `<div class="flex items-start justify-between gap-2"><span class="text-xs font-bold uppercase tracking-wide text-muted">${escapeHtml(platform)}</span></div>`;
