@@ -65,6 +65,24 @@ test('media hub product=kvm-go filter shows kvm-go press and posts', async ({ pa
   await expect(page.locator('[data-media-section="post"] .media-catalog-card--post')).toHaveCount(5);
 });
 
+test('media hub format=post shows post cards with preview images', async ({ page }) => {
+  await page.goto('/media/?format=post', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.locator('[data-format-chip="post"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('[data-media-section="post"] .media-catalog-card--post')).toHaveCount(12);
+  await expect(
+    page.locator('[data-media-section="post"] .media-catalog-card--post .media-catalog-thumb img').first(),
+  ).toBeVisible();
+});
+
+test('media hub format=testimonial shows testimonial cards with preview images', async ({ page }) => {
+  await page.goto('/media/?format=testimonial', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.locator('[data-format-chip="testimonial"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('[data-media-section="testimonial"] .media-catalog-card--post')).toHaveCount(15);
+  await expect(
+    page.locator('[data-media-section="testimonial"] .media-catalog-card--post .media-catalog-thumb img').first(),
+  ).toBeVisible();
+});
+
 test('product landing has single h1', async ({ page }) => {
   await page.goto('/minikvm/', { waitUntil: 'commit', timeout: 15000 });
   await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
