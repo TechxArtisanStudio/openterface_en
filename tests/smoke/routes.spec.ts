@@ -165,6 +165,11 @@ test('/legacy /videos/ redirects to /media/', async ({ page }) => {
   await expect(page).toHaveURL(/\/media\/$/);
 });
 
+test('/support/appointment redirects to Google Calendar booking', async ({ page }) => {
+  await page.goto('/support/appointment', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page).toHaveURL(/calendar\.(app\.)?google\.com/);
+});
+
 test('ecosystem header shows unified nav items', async ({ page }) => {
   await page.setViewportSize({ width: 1400, height: 900 });
   await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
