@@ -17,6 +17,18 @@ export interface MarketingUi {
     emailPlaceholder: string;
     footnote: string;
   };
+  productSubscribe: {
+    kicker: string;
+    heading: string;
+    description: string;
+    benefitCrowdfunding: string;
+    benefitGuides: string;
+    benefitUnsubscribe: string;
+    submitLabel: string;
+    namePlaceholder: string;
+    emailPlaceholder: string;
+    footnote: string;
+  };
   siteFooter: {
     tagline: string;
     productsHeading: string;
@@ -29,6 +41,7 @@ export interface MarketingUi {
     faqs: string;
     apps: string;
     support: string;
+    newsletterLink: string;
     newsletterTitle: string;
     newsletterDescription: string;
     newsletterSubmit: string;
@@ -88,8 +101,9 @@ export const ui: MarketingUi = {
     "faqs": "FAQs",
     "apps": "Apps",
     "support": "Support",
+    "newsletterLink": "Newsletter",
     "newsletterTitle": "Newsletter",
-    "newsletterDescription": "Monthly updates on products, firmware, and KVM tips.",
+    "newsletterDescription": "Early access to launches, monthly product & firmware updates, and KVM tips — at most one email per month.",
     "newsletterSubmit": "Subscribe",
     "newsletterNamePlaceholder": "Name",
     "newsletterEmailPlaceholder": "Email *",
@@ -113,5 +127,17 @@ export const ui: MarketingUi = {
     "documentation": "Documentation",
     "ctaTitle": "Ready to get started?",
     "ctaSubtitle": "Order hardware and download the Openterface app for your platform."
+  },
+  "productSubscribe": {
+    "kicker": "Stay in the loop",
+    "heading": "Get {product} launch & firmware updates",
+    "description": "Be first to know about pre-orders, firmware releases, and setup tips for this product — at most one email per month.",
+    "benefitCrowdfunding": "Early access to crowdfunding and pre-order windows",
+    "benefitGuides": "Setup guides and app release notes",
+    "benefitUnsubscribe": "Unsubscribe anytime with one click",
+    "submitLabel": "Subscribe for updates",
+    "namePlaceholder": "Name (optional)",
+    "emailPlaceholder": "Email address *",
+    "footnote": "At most one email per month. Unsubscribe anytime."
   }
 };
