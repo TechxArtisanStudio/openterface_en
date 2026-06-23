@@ -12,6 +12,20 @@ test('home page has newsletter subscribe form', async ({ page }) => {
   const form = page.locator('#home-subscribe-form');
   await expect(form).toBeVisible();
   await expect(form.locator('input[type="email"]')).toBeVisible();
+  const subscribeBeforeProducts = await page.evaluate(() => {
+    const subscribe = document.querySelector('#home-subscribe-form');
+    const productLink = document.querySelector('a[href="/keymod/"]');
+    if (!subscribe || !productLink) return false;
+    return Boolean(subscribe.compareDocumentPosition(productLink) & Node.DOCUMENT_POSITION_FOLLOWING);
+  });
+  expect(subscribeBeforeProducts).toBe(true);
+});
+
+test('kvm-go product page has product subscribe form', async ({ page }) => {
+  await page.goto('/kvmgo/', { waitUntil: 'commit', timeout: 15000 });
+  const form = page.locator('#product-subscribe-form-kvm-go');
+  await expect(form).toBeVisible({ timeout: 10000 });
+  await expect(form.locator('input[type="email"]')).toBeVisible();
 });
 
 test('home page has YouTube video strip with external links', async ({ page }) => {
