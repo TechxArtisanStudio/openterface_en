@@ -21,7 +21,7 @@ export const kvmextProduct: Product = {
   heroImages: [
     'https://assets.openterface.com/images/product/kvmext-v2/kvmext-v2-hero-1.webp',
     'https://assets.openterface.com/images/product/kvmext-v2/kvmext-v2-use-case-1.webp',
-    'https://assets.openterface.com/images/product/kvmext-v2/kvmext-v2-pcb-front.webp',
+    'https://assets.openterface.com/images/product/kvmext-v2/kvmext-v2-pcb-detail.webp',
   ],
   buyLabel: 'Order NOW',
   buyHref: siteConfig.links.kvmextPurchase,
