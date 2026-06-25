@@ -17,8 +17,8 @@ export const keymodAssets: KeymodAssetSlot[] = [
     section: 'hero',
     slot: 'center',
     txaId: 'ccb718e87639a6cf',
-    src: '/keymod/rebirth/hero-center.png',
-    alt: 'KeyMod dongle — hero product',
+    src: '/keymod/rebirth/hero-center.webp',
+    alt: 'KeyMod dongle on a light surface — hero product',
     kind: 'image',
     status: 'ready',
   },
@@ -26,9 +26,37 @@ export const keymodAssets: KeymodAssetSlot[] = [
     section: 'hero',
     slot: 'prop-tl',
     txaId: '4f6c94b6915656f6',
-    alt: 'KeyMod cutout — scattered prop',
+    src: '/keymod/rebirth/props/cutout-a.webp',
+    alt: '',
     kind: 'image',
-    status: 'placeholder',
+    status: 'ready',
+  },
+  {
+    section: 'hero',
+    slot: 'prop-tr',
+    txaId: 'daccacbc4bb4b3da',
+    src: '/keymod/rebirth/props/cutout-b.webp',
+    alt: '',
+    kind: 'image',
+    status: 'ready',
+  },
+  {
+    section: 'hero',
+    slot: 'prop-bl',
+    txaId: '2be55cda9ace4e84',
+    src: '/keymod/rebirth/props/usb-back.webp',
+    alt: '',
+    kind: 'image',
+    status: 'ready',
+  },
+  {
+    section: 'hero',
+    slot: 'prop-br',
+    txaId: 'cf336cb298c03008',
+    src: '/keymod/rebirth/props/cutout-c.webp',
+    alt: '',
+    kind: 'image',
+    status: 'ready',
   },
   {
     section: 'sku',
@@ -83,3 +111,12 @@ export const keymodAssets: KeymodAssetSlot[] = [
 export function getKeymodAsset(section: string, slot: string): KeymodAssetSlot | undefined {
   return keymodAssets.find((a) => a.section === section && a.slot === slot);
 }
+
+export function getKeymodAssets(section: string, slotPrefix?: string): KeymodAssetSlot[] {
+  return keymodAssets.filter(
+    (a) => a.section === section && (!slotPrefix || a.slot.startsWith(slotPrefix)),
+  );
+}
+
+/** Flipper-style scatter positions for hero props */
+export const heroPropPositions = ['prop-tl', 'prop-tr', 'prop-bl', 'prop-br'] as const;
