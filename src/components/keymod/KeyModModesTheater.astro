@@ -1,0 +1,99 @@
+---
+import KeyModSection from './KeyModSection.astro';
+import KeyModModeBlock from './KeyModModeBlock.astro';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['modesTheater'];
+}
+
+const { copy } = Astro.props;
+const m = copy;
+---
+
+<KeyModSection id="modes-theater" eyebrow={copy.eyebrow} title={copy.title} subtitle={copy.subtitle} centered>
+  <KeyModModeBlock
+    badge={m.basic.badge}
+    title={m.basic.title}
+    body={m.basic.body}
+    mediaLabel={m.basic.mediaLabel}
+    video
+  />
+
+  <div class="km-zone-matrix" data-km-zone="geek">
+    <div class="km-zone-matrix__inner">
+      <p class="km-eyebrow">{m.geekZone.eyebrow}</p>
+      <KeyModModeBlock
+        badge={m.proTerminal.badge}
+        title={m.proTerminal.title}
+        body={m.proTerminal.body}
+        mediaLabel={m.proTerminal.mediaLabel}
+        video
+      />
+      <KeyModModeBlock
+        badge={m.composeSend.badge}
+        title={m.composeSend.title}
+        body={m.composeSend.body}
+        mediaLabel={m.composeSend.mediaLabel}
+        video
+      />
+      <KeyModModeBlock
+        badge={m.terminalBle.badge}
+        title={m.terminalBle.title}
+        body={m.terminalBle.body}
+        mediaLabel={m.terminalBle.mediaLabel}
+        roadmap
+      />
+    </div>
+  </div>
+
+  <div class="km-zone-game" data-km-zone="game">
+    <div class="km-zone-game__inner">
+      <p class="km-eyebrow">{m.gameZone.eyebrow}</p>
+      <KeyModModeBlock
+        badge={m.gamepad.badge}
+        title={m.gamepad.title}
+        body={m.gamepad.body}
+        mediaLabel={m.gamepad.mediaLabel}
+        video
+      />
+    </div>
+  </div>
+
+  <div class="km-split" style="margin-top: 2rem;">
+    <KeyModModeBlock
+      badge={m.presentation.badge}
+      title={m.presentation.title}
+      body={m.presentation.body}
+      mediaLabel={m.presentation.mediaLabel}
+    />
+    <div class="km-card">
+      <h3 class="km-card__title">{m.future.title}</h3>
+      <div class="km-future-chips">
+        {
+          m.future.chips.map((chip) => (
+            <span class="km-future-chip">{chip}</span>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</KeyModSection>
+
+<style>
+  .km-future-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .km-future-chip {
+    font-family: var(--km-font-mono);
+    font-size: 0.75rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    border: 1px solid var(--km-border);
+    color: var(--km-muted);
+  }
+</style>

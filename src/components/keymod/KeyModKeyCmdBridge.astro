@@ -1,0 +1,24 @@
+---
+import KeyModSection from './KeyModSection.astro';
+import KeyModMediaPlaceholder from './KeyModMediaPlaceholder.astro';
+import { keymodLinks } from '../../i18n/keymodLanding';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['keycmdBridge'];
+}
+
+const { copy } = Astro.props;
+---
+
+<KeyModSection id="keycmd" eyebrow={copy.eyebrow} title={copy.title} variant="elevated">
+  <div class="km-split">
+    <div>
+      <p class="km-body">{copy.body}</p>
+      <a href={keymodLinks.keycmd} class="km-btn km-btn--primary" style="margin-top: 1.5rem;">
+        {copy.cta} →
+      </a>
+    </div>
+    <KeyModMediaPlaceholder label={copy.mediaLabel} variant="portrait" />
+  </div>
+</KeyModSection>

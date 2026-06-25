@@ -1,0 +1,23 @@
+---
+import KeyModSection from './KeyModSection.astro';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['faq'];
+}
+
+const { copy } = Astro.props;
+---
+
+<KeyModSection id="faq" eyebrow={copy.eyebrow} title={copy.title} narrow>
+  <div class="km-faq">
+    {
+      copy.items.map((item) => (
+        <details>
+          <summary>{item.q}</summary>
+          <p class="km-faq__answer">{item.a}</p>
+        </details>
+      ))
+    }
+  </div>
+</KeyModSection>

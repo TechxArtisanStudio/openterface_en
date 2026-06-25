@@ -36,3 +36,5 @@ pnpm-debug.log*
 !.env.example
 *.log
 translate-missing*
+
+/tmp
