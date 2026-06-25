@@ -1,0 +1,47 @@
+---
+import KeyModLayout from '../../../layouts/KeyModLayout.astro';
+import KeyModNav from '../../../components/keymod/KeyModNav.astro';
+import KeyModHero from '../../../components/keymod/KeyModHero.astro';
+import KeyModWhatItIs from '../../../components/keymod/KeyModWhatItIs.astro';
+import KeyModHowItWorks from '../../../components/keymod/KeyModHowItWorks.astro';
+import KeyModSkuCompare from '../../../components/keymod/KeyModSkuCompare.astro';
+import KeyModScenarios from '../../../components/keymod/KeyModScenarios.astro';
+import KeyModModesTheater from '../../../components/keymod/KeyModModesTheater.astro';
+import KeyModSocialProof from '../../../components/keymod/KeyModSocialProof.astro';
+import KeyModKeyCmdBridge from '../../../components/keymod/KeyModKeyCmdBridge.astro';
+import KeyModRoadmapStrip from '../../../components/keymod/KeyModRoadmapStrip.astro';
+import KeyModProductLine from '../../../components/keymod/KeyModProductLine.astro';
+import KeyModFaq from '../../../components/keymod/KeyModFaq.astro';
+import KeyModFooter from '../../../components/keymod/KeyModFooter.astro';
+import { getKeymodLanding } from '../../../i18n/keymodLanding';
+
+/** Phase 0 skeleton — full scroll story at /preview/keymod-rebirth/ */
+const copy = getKeymodLanding();
+const canonicalPath = '/preview/keymod-rebirth/';
+---
+
+<KeyModLayout
+  title={copy.meta.title}
+  description={copy.meta.description}
+  keywords={copy.meta.keywords}
+  canonicalPath={canonicalPath}
+  robots="noindex, nofollow"
+  showPreviewBanner
+  previewBannerText={copy.previewBanner}
+>
+  <KeyModNav copy={copy.nav} />
+  <main>
+    <KeyModHero copy={copy.hero} />
+    <KeyModWhatItIs copy={copy.whatItIs} />
+    <KeyModHowItWorks copy={copy.howItWorks} />
+    <KeyModSkuCompare copy={copy.skuCompare} />
+    <KeyModScenarios copy={copy.scenarios} />
+    <KeyModModesTheater copy={copy.modesTheater} />
+    <KeyModSocialProof copy={copy.socialProof} />
+    <KeyModKeyCmdBridge copy={copy.keycmdBridge} />
+    <KeyModRoadmapStrip copy={copy.roadmap} />
+    <KeyModProductLine copy={copy.productLine} />
+    <KeyModFaq copy={copy.faq} />
+  </main>
+  <KeyModFooter copy={copy.footer} />
+</KeyModLayout>

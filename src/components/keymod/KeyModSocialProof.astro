@@ -1,0 +1,39 @@
+---
+import KeyModSection from './KeyModSection.astro';
+import KeyModMediaPlaceholder from './KeyModMediaPlaceholder.astro';
+import { keymodSocialProof } from '../../data/keymodSocialProof';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['socialProof'];
+}
+
+const { copy } = Astro.props;
+---
+
+<KeyModSection id="social-proof" eyebrow={copy.eyebrow} title={copy.title} centered>
+  <div class="km-grid km-grid--3">
+    {
+      keymodSocialProof.map((post) => (
+        <article class="km-card">
+          <KeyModMediaPlaceholder label={`IG ${post.handle}`} />
+          <p class="km-card__title" style="margin-top: 1rem;">{post.handle}</p>
+          {post.quote && <p class="km-card__body">&ldquo;{post.quote}&rdquo;</p>}
+          {post.scenarioTag && (
+            <p class="km-card__body" style="font-size: 0.8125rem; margin-top: 0.5rem;">
+              {post.scenarioTag}
+            </p>
+          )}
+          <a href={post.url} class="km-btn km-btn--ghost" style="margin-top: 1rem; width: 100%;" target="_blank" rel="noopener noreferrer">
+            {copy.viewOnIg} ↗
+          </a>
+        </article>
+      ))
+    }
+  </div>
+  <p class="km-subtitle" style="margin-top: 2rem; text-align: center; max-width: none;">
+    <a href="https://www.instagram.com/techxartisan/" target="_blank" rel="noopener noreferrer">
+      {copy.followIg} ↗
+    </a>
+  </p>
+</KeyModSection>

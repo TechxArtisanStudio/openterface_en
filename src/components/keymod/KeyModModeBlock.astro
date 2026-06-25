@@ -1,0 +1,25 @@
+---
+import KeyModSection from './KeyModSection.astro';
+import KeyModMediaPlaceholder from './KeyModMediaPlaceholder.astro';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  badge: string;
+  title: string;
+  body: string;
+  mediaLabel: string;
+  roadmap?: boolean;
+  video?: boolean;
+}
+
+const { badge, title, body, mediaLabel, roadmap = false, video = false } = Astro.props;
+---
+
+<article class="km-mode-block">
+  <span class={`km-mode-block__badge${roadmap ? ' km-mode-block__badge--roadmap' : ''}`}>{badge}</span>
+  <h3 class="km-title" style="font-size: 1.375rem;">{title}</h3>
+  <p class="km-body" style="margin-top: 0.75rem;">{body}</p>
+  <div style="margin-top: 1.25rem;">
+    <KeyModMediaPlaceholder label={mediaLabel} variant={video ? 'video' : 'default'} />
+  </div>
+</article>

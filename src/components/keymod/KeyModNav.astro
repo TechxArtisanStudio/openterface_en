@@ -1,0 +1,31 @@
+---
+import { keymodLinks } from '../../i18n/keymodLanding';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['nav'];
+}
+
+const { copy } = Astro.props;
+---
+
+<header class="km-nav" data-km-nav-theme="default">
+  <div class="km-nav__inner">
+    <a href="/" class="km-nav__logo">Openterface <span>KeyMod</span></a>
+    <nav class="km-nav__links" aria-label="KeyMod landing">
+      <a href={keymodLinks.docs} class="km-nav__link" target="_blank" rel="noopener noreferrer">
+        {copy.docs}
+      </a>
+      <a href={keymodLinks.crowdSupply} class="km-btn km-btn--primary" target="_blank" rel="noopener noreferrer">
+        {copy.cta}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  import { initKeymodZoneNav } from '../../scripts/keymod-zone-nav';
+
+  initKeymodZoneNav();
+  document.addEventListener('astro:page-load', initKeymodZoneNav);
+</script>
