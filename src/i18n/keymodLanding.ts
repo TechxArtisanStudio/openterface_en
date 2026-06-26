@@ -22,6 +22,7 @@ export type KeymodLandingStrings = {
   nav: {
     docs: string;
     cta: string;
+    ctaMobile: string;
   };
   hero: {
     productName: string;
@@ -29,7 +30,7 @@ export type KeymodLandingStrings = {
     headline: string;
     subhead: string;
     leadScenario: string;
-    cta: string;
+    docsCta: string;
   };
   whatItIs: {
     eyebrow: string;
@@ -95,6 +96,18 @@ export type KeymodLandingStrings = {
     title: string;
     body: string;
   };
+  subscribe: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    benefits: string[];
+    submitLabel: string;
+    namePlaceholder: string;
+    emailPlaceholder: string;
+    footnote: string;
+    crowdSupplyPrompt: string;
+    crowdSupplyLink: string;
+  };
   faq: {
     eyebrow: string;
     title: string;
@@ -118,7 +131,8 @@ const en: KeymodLandingStrings = {
   },
   nav: {
     docs: 'Docs',
-    cta: 'Get launch updates',
+    cta: 'Get updates',
+    ctaMobile: 'Updates',
   },
   hero: {
     productName: 'KeyMod',
@@ -128,23 +142,23 @@ const en: KeymodLandingStrings = {
       'KeyMod is a pocket Wireless USB Multi-tool. Plug into the target, open KeyCmd, control keyboard and mouse over BLE. Zero-driver. Works in BIOS.',
     leadScenario:
       'At the rack, the kiosk, or the bench — watch the machine\'s screen, control input from your phone.',
-    cta: 'Get launch updates',
+    docsCta: 'Docs',
   },
   whatItIs: {
     eyebrow: 'What it is',
     title: 'Hardware plugs in. Software takes control.',
     cards: [
       {
-        title: 'Wireless HID',
-        body: 'Keyboard and mouse on the target USB port. BIOS-capable. No install on the host.',
+        title: 'Plug in KeyMod',
+        body: 'USB HID on the target. BIOS-capable. No install on the host.',
       },
       {
-        title: 'KeyCmd console',
-        body: 'Basic available now. Pro, Macro, and Voice maturing toward launch.',
+        title: 'Open KeyCmd',
+        body: 'Pick a mode — keyboard, gamepad, macros, and more.',
       },
       {
-        title: 'Two SKUs, one story',
-        body: 'Mini (USB-C male) for modern C-first hosts. Plus (USB-A male) for servers and legacy.',
+        title: 'Mini or Plus',
+        body: 'Match the port on the machine you control.',
       },
     ],
   },
@@ -285,6 +299,23 @@ const en: KeymodLandingStrings = {
     title: 'Need video on your laptop?',
     body: 'Mini-KVM and KVM-GO: video + control. KeyMod: wireless input when the target already has a screen.',
   },
+  subscribe: {
+    eyebrow: 'Stay in the loop',
+    title: 'Get KeyMod launch updates',
+    description:
+      'Product launches, firmware releases, and setup guides — at most one email per month. No spam.',
+    benefits: [
+      'Early access to crowdfunding and pre-order windows',
+      'Setup guides and KeyCmd release notes',
+      'Unsubscribe anytime with one click',
+    ],
+    submitLabel: 'Subscribe for updates',
+    namePlaceholder: 'Name (optional)',
+    emailPlaceholder: 'Email address *',
+    footnote: 'At most one email per month. Unsubscribe anytime. Questions? info@openterface.com',
+    crowdSupplyPrompt: 'Already on Crowd Supply?',
+    crowdSupplyLink: 'View the campaign ↗',
+  },
   faq: {
     eyebrow: 'FAQ',
     title: 'Common questions',
@@ -308,11 +339,11 @@ const en: KeymodLandingStrings = {
     ],
   },
   footer: {
-    ctaPrimary: 'Get launch updates',
+    ctaPrimary: 'Get updates',
     ctaKeycmd: 'KeyCmd app',
     legal: `© ${new Date().getFullYear()} TechxArtisan · Openterface KeyMod Rebirth preview`,
   },
-  previewBanner: 'PREVIEW — /preview/keymod-rebirth/ · Phase 0 skeleton · not indexed',
+  previewBanner: 'PREVIEW — /preview/keymod-rebirth/ · Phase 1 CTA · not indexed',
 };
 
 const translations: Record<string, KeymodLandingStrings> = { en };

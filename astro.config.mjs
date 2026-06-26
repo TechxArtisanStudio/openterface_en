@@ -30,5 +30,8 @@ export default defineConfig({
   ],
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      allowedHosts: ['of.youyoubilly.com', 'nova.youyoubilly.com', '45.40.228.92'],
+    },
   },
 });

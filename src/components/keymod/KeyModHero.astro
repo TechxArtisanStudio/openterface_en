@@ -1,7 +1,7 @@
 ---
 import KeyModWordmark from './KeyModWordmark.astro';
 import { keymodLinks } from '../../i18n/keymodLanding';
-import { getKeymodAsset, getKeymodAssets, heroPropPositions } from '../../data/keymodAssets';
+import { getKeymodAsset, getKeymodAssets, heroPropLayout, heroPropPositions, heroPropTiers } from '../../data/keymodAssets';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
@@ -20,15 +20,22 @@ const propsBySlot = Object.fromEntries(propAssets.map((a) => [a.slot, a]));
       heroPropPositions.map((slot) => {
         const asset = propsBySlot[slot];
         if (!asset?.src) return null;
+        const tier = heroPropTiers[slot];
+        const layout = heroPropLayout[slot];
+        const posClass = slot.slice(5);
         return (
           <img
-            class={`km-hero__prop km-hero__prop--${slot.replace('prop-', '')}`}
+            class={`km-hero__prop km-hero__prop--${posClass} km-hero__prop--tier${tier}`}
             src={asset.src}
             alt=""
-            width="420"
-            height="747"
+            width="1024"
+            height="1024"
             loading="lazy"
             decoding="async"
+            style={{
+              '--km-prop-scale': String(layout.scale),
+              '--km-prop-opacity': String(layout.opacity),
+            }}
           />
         );
       })
@@ -63,11 +70,8 @@ const propsBySlot = Object.fromEntries(propAssets.map((a) => [a.slot, a]));
     <p class="km-hero__lead km-hero__lead--scenario">{copy.leadScenario}</p>
 
     <div class="km-hero__actions">
-      <a href={keymodLinks.crowdSupply} class="km-btn km-btn--primary" target="_blank" rel="noopener noreferrer">
-        {copy.cta}
-      </a>
       <a href={keymodLinks.docs} class="km-btn km-btn--ghost" target="_blank" rel="noopener noreferrer">
-        Docs
+        {copy.docsCta}
       </a>
     </div>
   </div>
