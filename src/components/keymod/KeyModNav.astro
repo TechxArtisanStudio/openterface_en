@@ -7,19 +7,38 @@ interface Props {
 }
 
 const { copy } = Astro.props;
+
+/** CDN wordmark — filename uses project spelling `ligth` */
+const openterfaceLogoUrl = 'https://assets.openterface.com/images/logo/openterface-ligth.svg';
 ---
 
 <header class="km-nav" data-km-nav-theme="default">
   <div class="km-nav__inner">
-    <a href="/" class="km-nav__logo">Openterface <span>KeyMod</span></a>
-    <nav class="km-nav__links" aria-label="KeyMod landing">
-      <a href={keymodLinks.docs} class="km-nav__link" target="_blank" rel="noopener noreferrer">
-        {copy.docs}
+    <a href="/keymod/" class="km-nav__logo">
+      <span class="km-nav__product">KeyMod</span>
+    </a>
+
+    <div class="km-nav__end">
+      <nav class="km-nav__links" aria-label="KeyMod landing">
+        <a href={keymodLinks.docs} class="km-nav__link" target="_blank" rel="noopener noreferrer">
+          {copy.docs}
+        </a>
+        <a href={keymodLinks.crowdSupply} class="km-btn km-btn--primary" target="_blank" rel="noopener noreferrer">
+          {copy.cta}
+        </a>
+      </nav>
+      <a href="/" class="km-nav__brand" aria-label="Openterface home">
+        <img
+          class="km-nav__brand-logo"
+          src={openterfaceLogoUrl}
+          alt="Openterface"
+          width="120"
+          height="20"
+          loading="eager"
+          decoding="async"
+        />
       </a>
-      <a href={keymodLinks.crowdSupply} class="km-btn km-btn--primary" target="_blank" rel="noopener noreferrer">
-        {copy.cta}
-      </a>
-    </nav>
+    </div>
   </div>
 </header>
 
