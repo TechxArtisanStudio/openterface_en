@@ -1,7 +1,7 @@
 ---
 import KeyCmdWordmark from './KeyCmdWordmark.astro';
 import KeyModSection from './KeyModSection.astro';
-import KeyModMediaPlaceholder from './KeyModMediaPlaceholder.astro';
+import KeyModMedia from './KeyModMedia.astro';
 import { keymodLinks } from '../../i18n/keymodLanding';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
@@ -24,6 +24,11 @@ const { copy } = Astro.props;
         {copy.cta} →
       </a>
     </div>
-    <KeyModMediaPlaceholder label={copy.mediaLabel} variant="portrait" />
+    <KeyModMedia
+      section="keycmdBridge"
+      slot="ui"
+      fallbackLabel={copy.mediaLabel}
+      variant="portrait"
+    />
   </div>
 </KeyModSection>

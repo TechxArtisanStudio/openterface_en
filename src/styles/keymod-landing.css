@@ -516,10 +516,11 @@
   padding: 2rem 1.25rem 4rem;
   overflow: hidden;
   text-align: center;
-  /* Responsive prop ring — inset from edges; safe-half clears the 48rem content column */
-  --km-prop-inset-x: clamp(0.5rem, 4vw, 2.5rem);
+  /* Prop ring — anchored to hero center (product focal point), not viewport edges */
   --km-prop-inset-y: clamp(0.35rem, 3vh, 1.75rem);
-  --km-prop-safe-half: max(8rem, calc(22.5rem + 0.35rem));
+  --km-prop-ring-x: clamp(5.25rem, 15vw, 10.25rem);
+  --km-prop-ring-y-top: clamp(18.5rem, 40vh, 21.5rem);
+  --km-prop-ring-y-low: clamp(4.75rem, 10.5vh, 6.25rem);
 }
 
 .km-hero--light {
@@ -557,66 +558,64 @@
 }
 
 .km-hero__prop--tl {
-  top: calc(var(--km-nav-height, 0px) + var(--km-prop-inset-y) + 0.25rem);
-  left: clamp(1.5rem, 13vw, 7.5rem);
+  top: calc(50% - var(--km-prop-ring-y-top));
+  left: calc(50% - var(--km-prop-ring-x));
   transform: rotate(-12deg);
 }
 
 .km-hero__prop--tr {
-  top: calc(var(--km-nav-height, 0px) + var(--km-prop-inset-y) + 0.5rem);
-  right: clamp(1.5rem, 13vw, 7.5rem);
+  top: calc(50% - var(--km-prop-ring-y-top) + 0.35rem);
+  right: calc(50% - var(--km-prop-ring-x));
   transform: rotate(10deg);
 }
 
 .km-hero__prop--tr-arcade {
   display: none;
-  top: calc(var(--km-nav-height, 0px) + clamp(6rem, 17vh, 10rem));
-  right: clamp(2.75rem, 16vw, 9.5rem);
+  top: calc(50% - clamp(3.5rem, 8vh, 5rem));
+  right: calc(50% - var(--km-prop-ring-x) + clamp(0.75rem, 2vw, 1.5rem));
   transform: rotate(5deg);
 }
 
 .km-hero__prop--bl {
-  bottom: clamp(5.5rem, 14vh, 8.5rem);
-  left: clamp(1.75rem, 14vw, 8rem);
+  top: calc(50% + var(--km-prop-ring-y-low));
+  left: calc(50% - var(--km-prop-ring-x) + 0.5rem);
   transform: rotate(6deg);
 }
 
-/* Console cable — lowest right corner */
 .km-hero__prop--br {
-  bottom: clamp(3.25rem, 8vh, 5.25rem);
-  right: clamp(1.5rem, 11vw, 6.5rem);
+  top: calc(50% + var(--km-prop-ring-y-low) + 0.35rem);
+  right: calc(50% - var(--km-prop-ring-x));
   transform: rotate(-8deg);
 }
 
-/* Terminal monitor — mid-right, above br (homelab pair, no overlap) */
+/* Homelab pair — terminal left, cable right; both flank product, above copy */
 .km-hero__prop--terminal {
-  bottom: clamp(8.5rem, 22vh, 12.5rem);
-  right: clamp(4rem, 20vw, 12rem);
+  top: calc(50% + var(--km-prop-ring-y-low) - 0.25rem);
+  left: calc(50% - var(--km-prop-ring-x) - clamp(0.75rem, 2vw, 1.25rem));
   transform: rotate(-4deg);
 }
 
 .km-hero__prop--l {
   top: 50%;
-  left: clamp(1rem, 10vw, 5.75rem);
-  transform: translateY(-46%) rotate(-6deg);
+  left: calc(50% - var(--km-prop-ring-x) - clamp(1.25rem, 3.5vw, 2.5rem));
+  transform: translateY(-50%) rotate(-6deg);
 }
 
 .km-hero__prop--r {
   top: 50%;
-  right: clamp(1rem, 10vw, 5.75rem);
-  transform: translateY(-54%) rotate(8deg);
+  right: calc(50% - var(--km-prop-ring-x) - clamp(1.25rem, 3.5vw, 2.5rem));
+  transform: translateY(-50%) rotate(8deg);
 }
 
-/* Lavalier mic — top band, right of mouse; clear prop-tl corner + tagline */
 .km-hero__prop--t {
-  top: calc(var(--km-nav-height, 0px) + clamp(0.75rem, 3vh, 1.5rem));
-  left: 44%;
+  top: calc(50% - var(--km-prop-ring-y-top) - clamp(0.5rem, 1.5vh, 1rem));
+  left: 50%;
   transform: translateX(-50%) rotate(-4deg);
 }
 
 .km-hero__prop--b {
-  bottom: clamp(6.5rem, 17vh, 9.5rem);
-  left: calc(50% + var(--km-prop-safe-half));
+  top: calc(50% + var(--km-prop-ring-y-low) + 0.15rem);
+  left: calc(50% + var(--km-prop-ring-x) - clamp(2.5rem, 6vw, 3.75rem));
   transform: rotate(4deg);
 }
 
@@ -679,8 +678,9 @@
 
 @media (min-width: 768px) {
   .km-hero {
-    --km-prop-inset-y: clamp(0.75rem, 4vh, 2.25rem);
-    --km-prop-safe-half: max(7.75rem, calc(22rem + 0.25rem));
+    --km-prop-ring-x: clamp(5.75rem, 14.5vw, 10.75rem);
+    --km-prop-ring-y-top: clamp(19rem, 41vh, 22rem);
+    --km-prop-ring-y-low: clamp(5rem, 11vh, 6.5rem);
   }
 
   .km-hero__prop--tier1 {
@@ -694,49 +694,6 @@
   .km-hero__prop--tr-arcade {
     display: block;
   }
-
-  .km-hero__prop--tl {
-    top: calc(var(--km-nav-height, 0px) + clamp(1rem, 4vh, 2.25rem));
-    left: clamp(2rem, 12vw, 8.5rem);
-  }
-
-  .km-hero__prop--tr {
-    top: calc(var(--km-nav-height, 0px) + clamp(1.5rem, 5vh, 3rem));
-    right: clamp(2.5rem, 16vw, 10rem);
-  }
-
-  .km-hero__prop--tr-arcade {
-    top: calc(var(--km-nav-height, 0px) + clamp(7rem, 18vh, 11.5rem));
-    right: clamp(4rem, 18vw, 11.5rem);
-  }
-
-  .km-hero__prop--bl {
-    bottom: clamp(4.5rem, 12vh, 7.5rem);
-    left: clamp(2.75rem, 17vw, 10.5rem);
-  }
-
-  .km-hero__prop--br {
-    bottom: clamp(3rem, 8vh, 5rem);
-    right: clamp(2.25rem, 13vw, 7.5rem);
-  }
-
-  .km-hero__prop--terminal {
-    bottom: clamp(9rem, 23vh, 13rem);
-    right: clamp(5.5rem, 23vw, 14.5rem);
-  }
-
-  .km-hero__prop--l {
-    left: clamp(2rem, 12vw, 7.25rem);
-  }
-
-  .km-hero__prop--r {
-    right: clamp(2rem, 12vw, 7.25rem);
-  }
-
-  .km-hero__prop--t {
-    top: calc(var(--km-nav-height, 0px) + clamp(0.85rem, 3vh, 1.75rem));
-    left: 45%;
-  }
 }
 
 @media (min-width: 768px) and (max-width: 899px) {
@@ -748,7 +705,9 @@
 
 @media (min-width: 1024px) {
   .km-hero {
-    --km-prop-safe-half: max(7.5rem, calc(21.5rem + 0.25rem));
+    --km-prop-ring-x: clamp(6rem, 14vw, 11.25rem);
+    --km-prop-ring-y-top: clamp(19.5rem, 42vh, 22.5rem);
+    --km-prop-ring-y-low: clamp(5.25rem, 11.5vh, 6.75rem);
   }
 
   .km-hero__prop--tier1 {
@@ -758,85 +717,21 @@
   .km-hero__prop--tier2 {
     --km-prop-base: clamp(3.25rem, 6.25vw, 6.75rem);
   }
-
-  .km-hero__prop--tl {
-    left: clamp(2.75rem, 12vw, 9.5rem);
-  }
-
-  .km-hero__prop--tr {
-    right: clamp(3.25rem, 17vw, 12.5rem);
-  }
-
-  .km-hero__prop--tr-arcade {
-    top: calc(var(--km-nav-height, 0px) + clamp(7.5rem, 19vh, 12rem));
-    right: clamp(4.75rem, 19vw, 12.5rem);
-  }
-
-  .km-hero__prop--bl {
-    left: clamp(3.5rem, 18vw, 12rem);
-  }
-
-  .km-hero__prop--br {
-    bottom: clamp(3.25rem, 8vh, 5.5rem);
-    right: clamp(2.75rem, 14vw, 8.25rem);
-  }
-
-  .km-hero__prop--terminal {
-    bottom: clamp(9.5rem, 24vh, 13.5rem);
-    right: clamp(6.5rem, 24vw, 16rem);
-  }
-
-  .km-hero__prop--l {
-    left: clamp(2.5rem, 13vw, 8.5rem);
-  }
-
-  .km-hero__prop--r {
-    right: clamp(2.5rem, 13vw, 8.5rem);
-  }
 }
 
 @media (min-width: 1280px) {
-  .km-hero__prop--tl {
-    left: clamp(3rem, 11vw, 9rem);
-  }
-
-  .km-hero__prop--t {
-    left: 46%;
-  }
-
-  .km-hero__prop--tr {
-    right: clamp(4rem, 18vw, 14rem);
-  }
-
-  .km-hero__prop--tr-arcade {
-    top: calc(var(--km-nav-height, 0px) + clamp(8rem, 20vh, 12.5rem));
-    right: clamp(5.25rem, 20vw, 13.5rem);
-  }
-
-  .km-hero__prop--bl {
-    left: clamp(4.25rem, 19vw, 13.5rem);
-  }
-
-  .km-hero__prop--br {
-    bottom: clamp(3.5rem, 9vh, 6rem);
-    right: clamp(3.25rem, 15vw, 9rem);
-  }
-
-  .km-hero__prop--terminal {
-    bottom: clamp(10rem, 25vh, 14rem);
-    right: clamp(7.5rem, 25vw, 17.5rem);
-  }
-
-  .km-hero__prop--l {
-    left: clamp(3rem, 14vw, 9.5rem);
-  }
-
-  .km-hero__prop--r {
-    right: clamp(3rem, 14vw, 9.5rem);
+  .km-hero {
+    --km-prop-ring-x: clamp(6.25rem, 13.5vw, 11.5rem);
   }
 }
 
 @media (max-width: 767px) {
+  .km-hero {
+    --km-prop-ring-x: clamp(4.25rem, 22vw, 6.5rem);
+    --km-prop-ring-y-top: clamp(16.5rem, 36vh, 19rem);
+    --km-prop-ring-y-low: clamp(4.25rem, 9.5vh, 5.5rem);
+  }
+
   .km-hero__prop--tier2 {
     display: none;
   }
@@ -845,34 +740,15 @@
     --km-prop-base: clamp(2.85rem, 14vw, 4.35rem);
   }
 
-  .km-hero__prop--tl {
-    top: calc(var(--km-nav-height, 0px) + 0.35rem);
-    left: clamp(0.25rem, 2vw, 0.75rem);
-  }
-
+  .km-hero__prop--tl,
   .km-hero__prop--tr {
-    top: calc(var(--km-nav-height, 0px) + 0.5rem);
-    right: clamp(0.25rem, 2vw, 0.75rem);
-  }
-
-  .km-hero__prop--bl {
-    bottom: clamp(7rem, 19vh, 10.5rem);
-    left: clamp(0.35rem, 3vw, 1rem);
-  }
-
-  .km-hero__prop--br {
-    right: clamp(0.35rem, 3vw, 1rem);
+    --km-prop-mobile-factor: 0.9;
   }
 
   .km-hero__prop--bl,
   .km-hero__prop--br {
     --km-prop-mobile-factor: 0.86;
     opacity: calc(var(--km-prop-opacity) * 0.9);
-  }
-
-  .km-hero__prop--tl,
-  .km-hero__prop--tr {
-    --km-prop-mobile-factor: 0.9;
   }
 }
 
@@ -1105,6 +981,44 @@
   opacity: 0.85;
 }
 
+/* Real media (KeyModMedia) */
+.km-media {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: var(--km-surface);
+  border: 1px solid var(--km-border);
+  margin: 0;
+}
+
+.km-media__img,
+.km-media__video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.km-media--video {
+  aspect-ratio: 16 / 9;
+}
+
+.km-media--video .km-media__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.km-media--portrait {
+  max-width: 14rem;
+  margin-inline: auto;
+  aspect-ratio: 9 / 16;
+}
+
+.km-media--portrait .km-media__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* Steps */
 .km-steps {
   display: grid;
@@ -1162,6 +1076,22 @@
   background: var(--km-surface);
   color: var(--km-muted);
   border: 1px solid var(--km-border);
+}
+
+.km-mode-block--roadmap {
+  border-left: 3px solid #f59e0b;
+  padding-left: 1rem;
+}
+
+.km-mode-block__notice {
+  margin: 0 0 1rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 0.5rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: #92400e;
+  background: #fffbeb;
+  border: 1px solid #fcd34d;
 }
 
 /* Matrix geek zone — full-bleed dark band */
@@ -1223,6 +1153,21 @@
   border-color: rgba(0, 255, 65, 0.25);
   background: rgba(0, 0, 0, 0.35);
   color: rgba(232, 255, 232, 0.55);
+}
+
+.km-zone-matrix .km-media {
+  border-color: rgba(0, 255, 65, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.km-zone-matrix .km-mode-block--roadmap {
+  border-left-color: rgba(251, 191, 36, 0.85);
+}
+
+.km-zone-matrix .km-mode-block__notice {
+  color: rgba(254, 243, 199, 0.95);
+  background: rgba(120, 53, 15, 0.45);
+  border-color: rgba(251, 191, 36, 0.45);
 }
 
 /* Game zone — full-bleed neon gaming band */
@@ -1292,6 +1237,57 @@
   box-shadow:
     0 0 0 1px rgba(255, 61, 154, 0.15),
     0 8px 32px rgba(0, 212, 255, 0.12);
+}
+
+.km-zone-game .km-media {
+  border-color: rgba(0, 212, 255, 0.35);
+  background: rgba(0, 0, 0, 0.45);
+  box-shadow:
+    0 0 0 1px rgba(255, 61, 154, 0.15),
+    0 8px 32px rgba(0, 212, 255, 0.12);
+}
+
+/* Launch depth strip */
+.km-launch-strip__list {
+  margin: 1rem 0 0;
+  padding-left: 1.25rem;
+  color: var(--km-muted);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.km-launch-strip__list li {
+  margin-bottom: 0.5rem;
+}
+
+.km-launch-strip__list li:last-child {
+  margin-bottom: 0;
+}
+
+/* Social proof cards */
+.km-social-card__thumb {
+  margin: 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  aspect-ratio: 1;
+  background: var(--km-surface);
+  border: 1px solid var(--km-border);
+}
+
+.km-social-card__thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.km-social-card__thumb--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--km-font-mono);
+  font-size: 0.75rem;
+  color: var(--km-muted);
 }
 
 /* FAQ */
