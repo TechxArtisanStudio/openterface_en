@@ -1,5 +1,6 @@
 ---
 import KeyModSection from './KeyModSection.astro';
+import { getKeymodAsset } from '../../data/keymodAssets';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
@@ -7,17 +8,35 @@ interface Props {
 }
 
 const { copy } = Astro.props;
+const welcomeAsset = getKeymodAsset('whatItIs', 'welcome-screen');
 ---
 
 <KeyModSection id="what-it-is" eyebrow={copy.eyebrow} title={copy.title} centered>
-  <div class="km-grid km-grid--3">
+  <div class="km-whatitis">
     {
-      copy.cards.map((card) => (
-        <article class="km-card">
-          <h3 class="km-card__title">{card.title}</h3>
-          <p class="km-card__body">{card.body}</p>
-        </article>
-      ))
+      welcomeAsset?.src ? (
+        <figure class="km-whatitis__figure">
+          <img
+            class="km-whatitis__visual"
+            src={welcomeAsset.src}
+            alt={welcomeAsset.alt}
+            width="1280"
+            height="1428"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      ) : null
     }
+    <div class="km-grid km-grid--3 km-whatitis__cards">
+      {
+        copy.cards.map((card) => (
+          <article class="km-card">
+            <h3 class="km-card__title">{card.title}</h3>
+            <p class="km-card__body">{card.body}</p>
+          </article>
+        ))
+      }
+    </div>
   </div>
 </KeyModSection>

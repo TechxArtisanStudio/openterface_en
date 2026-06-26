@@ -27,8 +27,9 @@ const { copy } = Astro.props;
       <a href={keymodLinks.docs} class="km-nav__link" target="_blank" rel="noopener noreferrer">
         {copy.docs}
       </a>
-      <a href={keymodLinks.crowdSupply} class="km-btn km-btn--primary" target="_blank" rel="noopener noreferrer">
-        {copy.cta}
+      <a href="#updates" class="km-btn km-btn--primary km-nav__cta">
+        <span class="km-nav__cta-label km-nav__cta-label--desktop">{copy.cta}</span>
+        <span class="km-nav__cta-label km-nav__cta-label--mobile">{copy.ctaMobile}</span>
       </a>
     </nav>
   </div>
