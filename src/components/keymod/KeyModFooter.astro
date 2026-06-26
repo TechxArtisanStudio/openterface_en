@@ -1,4 +1,5 @@
 ---
+import KeyCmdWordmark from './KeyCmdWordmark.astro';
 import { keymodLinks } from '../../i18n/keymodLanding';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
@@ -15,7 +16,10 @@ const { copy } = Astro.props;
       <a href={keymodLinks.crowdSupply} class="km-btn km-btn--primary" target="_blank" rel="noopener noreferrer">
         {copy.ctaPrimary}
       </a>
-      <a href={keymodLinks.keycmd} class="km-btn km-btn--ghost">{copy.ctaKeycmd}</a>
+      <a href={keymodLinks.keycmd} class="km-btn km-btn--ghost km-footer__keycmd-btn">
+        <KeyCmdWordmark size="footer" decorative />
+        <span class="sr-only">{copy.ctaKeycmd}</span>
+      </a>
       <a href={keymodLinks.docs} class="km-btn km-btn--ghost" target="_blank" rel="noopener noreferrer">
         Docs
       </a>

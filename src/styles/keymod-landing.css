@@ -43,6 +43,124 @@
   color: var(--km-accent-dim);
 }
 
+.keymod-landing a.km-btn--primary,
+.keymod-landing a.km-btn--primary:hover {
+  color: #ffffff;
+}
+
+.keymod-landing a.km-footer__keycmd-btn {
+  color: var(--km-muted);
+}
+
+.keymod-landing a.km-footer__keycmd-btn:hover {
+  color: var(--km-accent);
+}
+
+.km-footer__keycmd-btn .km-wordmark--keycmd {
+  color: inherit;
+}
+
+/* Wordmarks — mask SVGs tinted via currentColor */
+.km-wordmark {
+  display: inline-block;
+  flex-shrink: 0;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.km-wordmark--keymod {
+  aspect-ratio: 606.67 / 150;
+  -webkit-mask-image: url("/keymod/logo/keymod-wordmark.svg");
+  mask-image: url("/keymod/logo/keymod-wordmark.svg");
+}
+
+.km-wordmark--keycmd {
+  aspect-ratio: 521.03 / 113.76;
+  -webkit-mask-image: url("/keymod/logo/keycmd-wordmark.svg");
+  mask-image: url("/keymod/logo/keycmd-wordmark.svg");
+}
+
+.km-wordmark--openterface {
+  aspect-ratio: 469.34 / 70;
+  -webkit-mask-image: url("/images/openterface.svg");
+  mask-image: url("/images/openterface.svg");
+}
+
+.km-wordmark--nav {
+  height: 1.25rem;
+  width: auto;
+}
+
+.km-wordmark--nav-parent {
+  height: 0.8125rem;
+  width: auto;
+}
+
+.km-wordmark--hero {
+  height: clamp(2.5rem, 7vw, 4rem);
+  width: auto;
+}
+
+.km-wordmark--section {
+  height: 1.375rem;
+  width: auto;
+}
+
+.km-wordmark--inline {
+  height: 1rem;
+  width: auto;
+}
+
+.km-wordmark--footer {
+  height: 0.9375rem;
+  width: auto;
+}
+
+.km-keycmd-bridge__cta {
+  margin-top: 1.5rem;
+}
+
+.km-footer__keycmd-btn {
+  color: var(--km-muted);
+}
+
+.km-footer__keycmd-btn:hover {
+  color: var(--km-accent);
+}
+
+.km-eyebrow-row,
+.km-eyebrow-lockup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.625rem 0.875rem;
+}
+
+.km-eyebrow-lockup__text {
+  margin: 0;
+}
+
+.km-section__header--center .km-eyebrow-lockup {
+  justify-content: center;
+}
+
+.km-section .km-wordmark--keycmd {
+  color: var(--km-accent);
+}
+
+.km-zone-matrix .km-wordmark--keycmd {
+  color: var(--km-matrix-accent);
+}
+
+.km-zone-game .km-wordmark--keycmd {
+  color: var(--km-game-accent);
+}
+
 /* Nav */
 .km-nav {
   position: sticky;
@@ -60,8 +178,9 @@
 
 .km-nav__logo,
 .km-nav__link,
-.km-nav__product,
-.km-nav__brand-logo,
+.km-nav__brand-parent,
+.km-nav__product-link,
+.km-nav__wordmark,
 .km-btn {
   transition:
     color 380ms ease,
@@ -77,16 +196,16 @@
   box-shadow: none;
 }
 
-.km-nav[data-km-nav-theme="default"] .km-nav__logo {
-  color: var(--km-text);
+.km-nav[data-km-nav-theme="default"] .km-nav__brand-parent {
+  color: var(--km-muted);
 }
 
-.km-nav[data-km-nav-theme="default"] .km-nav__product {
+.km-nav[data-km-nav-theme="default"] .km-nav__product-link {
   color: var(--km-accent);
 }
 
-.km-nav[data-km-nav-theme="default"] .km-nav__brand-logo {
-  filter: none;
+.km-nav[data-km-nav-theme="default"] .km-nav__brand-sep {
+  background: var(--km-border);
 }
 
 .km-nav[data-km-nav-theme="default"] .km-nav__link {
@@ -117,18 +236,16 @@
   box-shadow: 0 4px 24px rgba(0, 255, 65, 0.08);
 }
 
-.km-nav[data-km-nav-theme="geek"] .km-nav__logo {
-  color: var(--km-matrix-text);
+.km-nav[data-km-nav-theme="geek"] .km-nav__brand-parent {
+  color: rgba(232, 255, 232, 0.5);
 }
 
-.km-nav[data-km-nav-theme="geek"] .km-nav__product {
+.km-nav[data-km-nav-theme="geek"] .km-nav__product-link {
   color: var(--km-matrix-accent);
-  font-family: var(--km-font-mono);
 }
 
-.km-nav[data-km-nav-theme="geek"] .km-nav__brand-logo {
-  filter: brightness(0) saturate(100%) invert(72%) sepia(98%) saturate(1200%) hue-rotate(88deg)
-    brightness(104%) contrast(101%);
+.km-nav[data-km-nav-theme="geek"] .km-nav__brand-sep {
+  background: rgba(0, 255, 65, 0.25);
 }
 
 .km-nav[data-km-nav-theme="geek"] .km-nav__link {
@@ -162,17 +279,16 @@
     0 4px 24px rgba(255, 61, 154, 0.12);
 }
 
-.km-nav[data-km-nav-theme="game"] .km-nav__logo {
-  color: var(--km-game-text);
+.km-nav[data-km-nav-theme="game"] .km-nav__brand-parent {
+  color: rgba(236, 232, 255, 0.5);
 }
 
-.km-nav[data-km-nav-theme="game"] .km-nav__product {
+.km-nav[data-km-nav-theme="game"] .km-nav__product-link {
   color: var(--km-game-accent);
 }
 
-.km-nav[data-km-nav-theme="game"] .km-nav__brand-logo {
-  filter: brightness(0) saturate(100%) invert(76%) sepia(48%) saturate(1800%) hue-rotate(163deg)
-    brightness(103%) contrast(101%);
+.km-nav[data-km-nav-theme="game"] .km-nav__brand-sep {
+  background: rgba(0, 212, 255, 0.28);
 }
 
 .km-nav[data-km-nav-theme="game"] .km-nav__link {
@@ -208,39 +324,40 @@
   height: 100%;
 }
 
-.km-nav__logo {
-  font-weight: 700;
-  font-size: 1.125rem;
-  letter-spacing: 0.02em;
-  color: var(--km-text);
+.km-nav__brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.km-nav__brand-parent,
+.km-nav__product-link {
+  display: flex;
+  align-items: center;
+  line-height: 0;
   text-decoration: none;
   flex-shrink: 0;
 }
 
-.km-nav__product {
-  color: var(--km-accent);
+.km-nav__brand-parent:hover {
+  color: var(--km-text);
 }
 
-.km-nav__end {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  min-width: 0;
+.km-nav[data-km-nav-theme="geek"] .km-nav__brand-parent:hover {
+  color: rgba(232, 255, 232, 0.75);
 }
 
-.km-nav__brand {
-  display: flex;
-  align-items: center;
+.km-nav[data-km-nav-theme="game"] .km-nav__brand-parent:hover {
+  color: rgba(236, 232, 255, 0.75);
+}
+
+.km-nav__brand-sep {
   flex-shrink: 0;
-  line-height: 0;
-}
-
-.km-nav__brand-logo {
-  display: block;
+  width: 1px;
   height: 1.125rem;
-  width: auto;
-  max-width: 7.5rem;
-  transition: filter 380ms ease;
+  background: var(--km-border);
 }
 
 .km-nav__links {
@@ -249,6 +366,7 @@
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: flex-end;
+  margin-left: auto;
 }
 
 .km-nav__link {
@@ -441,10 +559,12 @@
 }
 
 .km-hero__product-name {
-  font-size: clamp(2.5rem, 7vw, 4rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
+  margin: 0;
+  line-height: 1;
+  color: var(--km-text);
+}
+
+.km-hero__product-name .km-wordmark--keymod {
   color: var(--km-text);
 }
 
@@ -871,10 +991,10 @@
   }
 
   .km-nav,
-  .km-nav__logo,
+  .km-nav__brand-parent,
+  .km-nav__product-link,
   .km-nav__link,
-  .km-nav__product,
-  .km-nav__brand-logo,
+  .km-nav__wordmark,
   .km-btn {
     transition: none !important;
   }

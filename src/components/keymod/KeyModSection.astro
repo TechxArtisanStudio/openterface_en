@@ -33,9 +33,15 @@ const headerClass = centered ? 'km-section__header km-section__header--center' :
 <section id={id} class={sectionClass} aria-labelledby={`${id}-title`}>
   <div class={innerClass}>
     {
-      (eyebrow || title || subtitle) && (
+      (eyebrow || title || subtitle || Astro.slots.has('eyebrow')) && (
         <header class={headerClass}>
-          {eyebrow && <p class="km-eyebrow">{eyebrow}</p>}
+          {Astro.slots.has('eyebrow') ? (
+            <div class="km-eyebrow-row">
+              <slot name="eyebrow" />
+            </div>
+          ) : (
+            eyebrow && <p class="km-eyebrow">{eyebrow}</p>
+          )}
           {title && (
             <h2 id={`${id}-title`} class="km-title">
               {title}

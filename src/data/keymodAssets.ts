@@ -14,6 +14,22 @@ export type KeymodAssetSlot = {
 
 export const keymodAssets: KeymodAssetSlot[] = [
   {
+    section: 'brand',
+    slot: 'keymod-wordmark',
+    src: '/keymod/logo/keymod-wordmark.svg',
+    alt: 'KeyMod',
+    kind: 'image',
+    status: 'ready',
+  },
+  {
+    section: 'brand',
+    slot: 'keycmd-wordmark',
+    src: '/keymod/logo/keycmd-wordmark.svg',
+    alt: 'KeyCmd',
+    kind: 'image',
+    status: 'ready',
+  },
+  {
     section: 'hero',
     slot: 'center',
     txaId: 'ccb718e87639a6cf',

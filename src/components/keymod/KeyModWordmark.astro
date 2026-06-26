@@ -1,0 +1,18 @@
+---
+type WordmarkSize = 'nav' | 'hero' | 'section' | 'inline' | 'footer';
+
+interface Props {
+  class?: string;
+  size?: WordmarkSize;
+  decorative?: boolean;
+}
+
+const { class: className = '', size = 'inline', decorative = false } = Astro.props;
+const sizeClass = size === 'inline' ? '' : `km-wordmark--${size}`;
+---
+
+<span
+  class:list={['km-wordmark km-wordmark--keymod', sizeClass, className]}
+  role={decorative ? 'presentation' : 'img'}
+  aria-label={decorative ? undefined : 'KeyMod'}
+></span>
