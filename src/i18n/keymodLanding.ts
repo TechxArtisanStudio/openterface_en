@@ -60,9 +60,9 @@ export type KeymodLandingStrings = {
     basic: { badge: string; title: string; body: string; mediaLabel: string };
     proTerminal: { badge: string; title: string; body: string; mediaLabel: string };
     composeSend: { badge: string; title: string; body: string; mediaLabel: string };
-    terminalBle: { badge: string; title: string; body: string; mediaLabel: string };
+    terminalBle: { badge: string; title: string; body: string; mediaLabel: string; notice: string };
     geekZone: { eyebrow: string };
-    gameZone: { eyebrow: string };
+    gameZone: { eyebrow: string; kvmGoNote: string; kvmGoCta: string };
     gamepad: { badge: string; title: string; body: string; mediaLabel: string };
     presentation: { badge: string; title: string; body: string; mediaLabel: string };
     future: { title: string; chips: string[] };
@@ -80,9 +80,10 @@ export type KeymodLandingStrings = {
     cta: string;
     mediaLabel: string;
   };
-  roadmap: {
+  launchStrip: {
     eyebrow: string;
     title: string;
+    subtitle: string;
     atLaunchTitle: string;
     atLaunchItems: string[];
     comingLaterTitle: string;
@@ -229,13 +230,18 @@ const en: KeymodLandingStrings = {
       badge: 'Coming later',
       title: 'Terminal over Bluetooth',
       body: 'Wireless serial terminal without a laptop at the rack. On the roadmap — honest depth, no dates yet.',
-      mediaLabel: 'Terminal over BLE — concept / reshoot',
+      mediaLabel: 'Terminal over BLE — concept',
+      notice:
+        'BLE serial is not in the launch build. KM Pro terminal over USB HID is maturing now; wireless serial is a future firmware target.',
     },
     geekZone: {
       eyebrow: 'Geek zone',
     },
     gameZone: {
       eyebrow: 'Game Zone',
+      kvmGoNote:
+        'Same KeyCmd gamepad mode powers our KVM-GO Minecraft demos — swap the USB bridge for KeyMod when the target already has a screen.',
+      kvmGoCta: 'See KVM-GO gamepad demos',
     },
     gamepad: {
       badge: 'Gamepad mode · Preview',
@@ -267,9 +273,10 @@ const en: KeymodLandingStrings = {
     cta: 'Meet KeyCmd',
     mediaLabel: 'KeyCmd UI + dongle inset',
   },
-  roadmap: {
+  launchStrip: {
     eyebrow: 'Honest depth',
     title: 'At launch vs coming later',
+    subtitle: 'What ships with the first KeyMod units — and what we are still building in firmware and KeyCmd.',
     atLaunchTitle: 'At launch',
     atLaunchItems: [
       'HID keyboard/mouse',

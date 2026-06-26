@@ -2,6 +2,7 @@
 import KeyModSection from './KeyModSection.astro';
 import KeyCmdWordmark from './KeyCmdWordmark.astro';
 import KeyModModeBlock from './KeyModModeBlock.astro';
+import { keymodLinks } from '../../i18n/keymodLanding';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
@@ -22,7 +23,8 @@ const m = copy;
     title={m.basic.title}
     body={m.basic.body}
     mediaLabel={m.basic.mediaLabel}
-    video
+    assetSection="modes"
+    assetSlot="basic-video"
   />
 
   <div class="km-zone-matrix" data-km-zone="geek">
@@ -33,20 +35,25 @@ const m = copy;
         title={m.proTerminal.title}
         body={m.proTerminal.body}
         mediaLabel={m.proTerminal.mediaLabel}
-        video
+        assetSection="modes"
+        assetSlot="pro-terminal"
       />
       <KeyModModeBlock
         badge={m.composeSend.badge}
         title={m.composeSend.title}
         body={m.composeSend.body}
         mediaLabel={m.composeSend.mediaLabel}
-        video
+        assetSection="modes"
+        assetSlot="compose-send"
       />
       <KeyModModeBlock
         badge={m.terminalBle.badge}
         title={m.terminalBle.title}
         body={m.terminalBle.body}
         mediaLabel={m.terminalBle.mediaLabel}
+        notice={m.terminalBle.notice}
+        assetSection="modes"
+        assetSlot="terminal-monitor"
         roadmap
       />
     </div>
@@ -60,8 +67,14 @@ const m = copy;
         title={m.gamepad.title}
         body={m.gamepad.body}
         mediaLabel={m.gamepad.mediaLabel}
-        video
+        assetSection="modes"
+        assetSlot="gamepad"
       />
+      <p class="km-game-kvmgo">
+        {m.gameZone.kvmGoNote}
+        {' '}
+        <a href={keymodLinks.kvmgo}>{m.gameZone.kvmGoCta} →</a>
+      </p>
     </div>
   </div>
 
@@ -71,6 +84,8 @@ const m = copy;
       title={m.presentation.title}
       body={m.presentation.body}
       mediaLabel={m.presentation.mediaLabel}
+      assetSection="modes"
+      assetSlot="presentation"
     />
     <div class="km-card">
       <h3 class="km-card__title">{m.future.title}</h3>
@@ -100,5 +115,13 @@ const m = copy;
     border-radius: 999px;
     border: 1px solid var(--km-border);
     color: var(--km-muted);
+  }
+
+  .km-game-kvmgo {
+    margin-top: 1.25rem;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: rgba(236, 232, 255, 0.78);
+    max-width: 42rem;
   }
 </style>

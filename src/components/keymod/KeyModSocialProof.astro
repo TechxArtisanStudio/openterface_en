@@ -1,6 +1,5 @@
 ---
 import KeyModSection from './KeyModSection.astro';
-import KeyModMediaPlaceholder from './KeyModMediaPlaceholder.astro';
 import { keymodSocialProof } from '../../data/keymodSocialProof';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
@@ -15,8 +14,23 @@ const { copy } = Astro.props;
   <div class="km-grid km-grid--3">
     {
       keymodSocialProof.map((post) => (
-        <article class="km-card">
-          <KeyModMediaPlaceholder label={`IG ${post.handle}`} />
+        <article class="km-card km-social-card">
+          {
+            post.thumbnailSrc ? (
+              <figure class="km-social-card__thumb">
+                <img
+                  src={post.thumbnailSrc}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            ) : (
+              <div class="km-social-card__thumb km-social-card__thumb--empty">
+                <span>{post.handle}</span>
+              </div>
+            )
+          }
           <p class="km-card__title" style="margin-top: 1rem;">{post.handle}</p>
           {post.quote && <p class="km-card__body">&ldquo;{post.quote}&rdquo;</p>}
           {post.scenarioTag && (

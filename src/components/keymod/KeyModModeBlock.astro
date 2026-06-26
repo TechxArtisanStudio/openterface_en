@@ -1,25 +1,42 @@
 ---
-import KeyModSection from './KeyModSection.astro';
-import KeyModMediaPlaceholder from './KeyModMediaPlaceholder.astro';
-import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+import KeyModMedia from './KeyModMedia.astro';
 
 interface Props {
   badge: string;
   title: string;
   body: string;
   mediaLabel: string;
+  assetSection?: string;
+  assetSlot?: string;
   roadmap?: boolean;
   video?: boolean;
+  notice?: string;
 }
 
-const { badge, title, body, mediaLabel, roadmap = false, video = false } = Astro.props;
+const {
+  badge,
+  title,
+  body,
+  mediaLabel,
+  assetSection,
+  assetSlot,
+  roadmap = false,
+  video = false,
+  notice,
+} = Astro.props;
 ---
 
-<article class="km-mode-block">
-  <span class={`km-mode-block__badge${roadmap ? ' km-mode-block__badge--roadmap' : ''}`}>{badge}</span>
-  <h3 class="km-title" style="font-size: 1.375rem;">{title}</h3>
-  <p class="km-body" style="margin-top: 0.75rem;">{body}</p>
-  <div style="margin-top: 1.25rem;">
-    <KeyModMediaPlaceholder label={mediaLabel} variant={video ? 'video' : 'default'} />
+<article class:list={['km-mode-block', roadmap && 'km-mode-block--roadmap']}>
+  <span class:list={['km-mode-block__badge', roadmap && 'km-mode-block__badge--roadmap']}>{badge}</span>
+  <h3 class="km-title km-mode-block__title">{title}</h3>
+  <p class="km-body km-mode-block__body">{body}</p>
+  {notice ? <p class="km-mode-block__notice">{notice}</p> : null}
+  <div class="km-mode-block__media">
+    <KeyModMedia
+      section={assetSection}
+      slot={assetSlot}
+      fallbackLabel={mediaLabel}
+      variant={video ? 'video' : 'default'}
+    />
   </div>
 </article>
