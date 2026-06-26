@@ -11,7 +11,7 @@ const { copy } = Astro.props;
 const welcomeAsset = getKeymodAsset('whatItIs', 'welcome-screen');
 ---
 
-<KeyModSection id="what-it-is" eyebrow={copy.eyebrow} title={copy.title} centered>
+<KeyModSection id="what-it-is" eyebrow={copy.eyebrow} title={copy.title} subtitle={copy.subtitle} centered>
   <div class="km-whatitis">
     {
       welcomeAsset?.src ? (

@@ -35,21 +35,18 @@ export type KeymodLandingStrings = {
   whatItIs: {
     eyebrow: string;
     title: string;
-    cards: { title: string; body: string }[];
-  };
-  howItWorks: {
-    eyebrow: string;
-    title: string;
     subtitle: string;
-    steps: { title: string; body: string }[];
-    diagramLabel: string;
+    cards: { title: string; body: string }[];
   };
   skuCompare: {
     eyebrow: string;
     title: string;
+    stackLine: string;
     contrastLine: string;
-    mini: { name: string; port: string; audience: string; tagline: string };
-    plus: { name: string; port: string; audience: string; tagline: string };
+    connectivityTitle: string;
+    bleRange: string;
+    mini: { name: string; port: string; audience: string; connect: string; tagline: string };
+    plus: { name: string; port: string; audience: string; connect: string; tagline: string };
   };
   scenarios: {
     eyebrow: string;
@@ -147,6 +144,7 @@ const en: KeymodLandingStrings = {
   whatItIs: {
     eyebrow: 'What it is',
     title: 'Hardware plugs in. Software takes control.',
+    subtitle: 'Phone ↔ KeyMod · KeyMod → target over USB HID.',
     cards: [
       {
         title: 'Plug in KeyMod',
@@ -154,7 +152,7 @@ const en: KeymodLandingStrings = {
       },
       {
         title: 'Open KeyCmd',
-        body: 'Pick a mode — keyboard, gamepad, macros, and more.',
+        body: 'Pick a mode — KM Basic, KM Pro, gamepad, macros, and more.',
       },
       {
         title: 'Mini or Plus',
@@ -162,32 +160,25 @@ const en: KeymodLandingStrings = {
       },
     ],
   },
-  howItWorks: {
-    eyebrow: 'How it works',
-    title: 'Four steps to wireless control',
-    subtitle: 'Phone ↔ KeyMod over BLE. KeyMod → target over USB HID.',
-    steps: [
-      { title: 'Choose Mini or Plus', body: 'Match the target\'s port — C or A.' },
-      { title: 'Plug into the target', body: 'Bus-powered dongle on the machine under control.' },
-      { title: 'Open KeyCmd', body: 'On iPhone or Android.' },
-      { title: 'Pair over BLE', body: 'Best ~5 m, max ~10 m. Pick your KeyCmd tier.' },
-    ],
-    diagramLabel: 'Stack diagram — Phone ←BLE→ KeyMod ─USB→ Target + display',
-  },
   skuCompare: {
     eyebrow: 'Choose your port',
     title: 'Mini vs Plus',
+    stackLine: 'Same KeyCmd app. Different dongle for the port on your machine.',
     contrastLine: 'Mini for the C port in your pocket. Plus for the A port on the machine.',
+    connectivityTitle: 'How your phone connects',
+    bleRange: 'BLE range (both SKUs): best within ~5 m, up to ~10 m in open space.',
     mini: {
       name: 'KeyMod Mini',
       port: 'USB-C male → target',
       audience: 'Type-C-first · ultra-compact EDC',
+      connect: 'Phone link: BLE wireless only.',
       tagline: 'The Type-C-first pocket bridge',
     },
     plus: {
       name: 'KeyMod Plus',
       port: 'USB-A male → target',
       audience: 'Servers · legacy · rack ops',
+      connect: 'Phone link: BLE or USB wired to the dongle — USB is steadier and higher bandwidth (great for KM Pro).',
       tagline: 'The A port on the machine',
     },
   },
@@ -202,7 +193,7 @@ const en: KeymodLandingStrings = {
       },
       {
         title: 'IT walk-up',
-        body: 'Kiosk or mini PC with its own screen. Pocket dongle. Control from up to ~10 m (best within ~5 m).',
+        body: 'Kiosk or mini PC with its own screen. Pocket dongle. Control wirelessly from your phone — see range in Mini vs Plus.',
         imageLabel: 'Kiosk / walk-up scene',
       },
       {
@@ -217,19 +208,19 @@ const en: KeymodLandingStrings = {
     title: 'Modes that change the job',
     subtitle: 'KeyMod stays on the USB port. KeyCmd mode changes what you can do from your phone.',
     basic: {
-      badge: 'KeyCmd Basic · Launch',
+      badge: 'KM Basic · Launch',
       title: 'Wireless keyboard & trackpad',
       body: 'First-person POV — hands on phone, characters appear on the target screen. BIOS-capable HID.',
       mediaLabel: 'POV video loop — KM Basic (reshoot: 主页9)',
     },
     proTerminal: {
-      badge: 'KeyCmd Pro · Maturing',
+      badge: 'KM Pro · Maturing',
       title: 'Terminal control',
       body: 'SSH and shell workflows from your phone. Target monitor shows the terminal — not a text editor.',
       mediaLabel: 'Matrix zone — terminal on monitor (reshoot)',
     },
     composeSend: {
-      badge: 'KeyCmd Pro · Compose & Send',
+      badge: 'KM Pro · Compose & Send',
       title: 'Paste on phone. Tap Send. Target types.',
       body: 'License keys, long strings, compose buffers — send once, typed on the target automatically.',
       mediaLabel: 'Compose & Send demo (IG DZNZVbUBBxD)',
@@ -247,7 +238,7 @@ const en: KeymodLandingStrings = {
       eyebrow: 'Game Zone',
     },
     gamepad: {
-      badge: 'KeyCmd Gamepad · Preview',
+      badge: 'Gamepad mode · Preview',
       title: 'Phone as game controller',
       body: 'KeyCmd gamepad mode — immersive, high-motion demos. Same stack works with KeyMod hardware.',
       mediaLabel: 'Gamepad video — Minecraft (8d72edeb / IG)',
@@ -282,13 +273,13 @@ const en: KeymodLandingStrings = {
     atLaunchTitle: 'At launch',
     atLaunchItems: [
       'HID keyboard/mouse',
-      'KeyCmd Basic + maturing Pro/Macro/Voice',
+      'KM Basic + maturing KM Pro / Macro / Voice modes',
       'Mini + Plus ship together',
     ],
     comingLaterTitle: 'Coming later',
     comingLaterItems: [
       'Wireless terminal',
-      'KeyCmd on PC via Plus USB-C path',
+      'Plus backer perks on the firmware roadmap (exploring)',
       'Remote relay · CLI + MCP',
       'Gamepad / network / MIDI',
       'Programmable button scripts',
@@ -322,15 +313,19 @@ const en: KeymodLandingStrings = {
     items: [
       {
         q: 'Is this a Bluetooth keyboard app?',
-        a: 'No. KeyMod is USB HID on the target. BLE is phone ↔ KeyMod only.',
+        a: 'No. KeyMod is USB HID on the target. BLE (or Plus USB) is phone ↔ KeyMod only — not a Bluetooth keyboard emulating into the host OS.',
+      },
+      {
+        q: 'KeyMod Mini vs Plus?',
+        a: 'Mini plugs into USB-C on the target and links to your phone over BLE. Plus plugs into USB-A and adds a USB wired path to your phone — steadier and higher bandwidth than BLE alone.',
+      },
+      {
+        q: 'KM Basic vs KM Pro?',
+        a: 'Both are Keyboard & Mouse modes inside KeyCmd — not separate products. KM Basic covers everyday typing and trackpad. KM Pro adds richer layouts and power-user workflows (terminal-style control, Compose & Send, and more).',
       },
       {
         q: 'Does KeyMod capture video?',
         a: 'No. Use Mini-KVM or KVM-GO when you need the screen on your laptop.',
-      },
-      {
-        q: 'KeyMod Plus vs KeyCmd Pro?',
-        a: 'KeyMod Plus is the hardware SKU (USB-A). KeyCmd Pro is the software tier only.',
       },
       {
         q: 'Why did the story change?',
@@ -343,7 +338,7 @@ const en: KeymodLandingStrings = {
     ctaKeycmd: 'KeyCmd app',
     legal: `© ${new Date().getFullYear()} TechxArtisan · Openterface KeyMod Rebirth preview`,
   },
-  previewBanner: 'PREVIEW — /preview/keymod-rebirth/ · Phase 1 CTA · not indexed',
+  previewBanner: 'PREVIEW — /preview/keymod-rebirth/ · Phase 1 structure · not indexed',
 };
 
 const translations: Record<string, KeymodLandingStrings> = { en };
