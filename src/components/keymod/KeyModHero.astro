@@ -1,4 +1,5 @@
 ---
+import KeyModWordmark from './KeyModWordmark.astro';
 import { keymodLinks } from '../../i18n/keymodLanding';
 import { getKeymodAsset, getKeymodAssets, heroPropPositions } from '../../data/keymodAssets';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
@@ -35,7 +36,10 @@ const propsBySlot = Object.fromEntries(propAssets.map((a) => [a.slot, a]));
   </div>
 
   <div class="km-hero__content">
-    <h1 id="hero-title" class="km-hero__product-name">{copy.productName}</h1>
+    <h1 id="hero-title" class="km-hero__product-name">
+      <KeyModWordmark size="hero" />
+      <span class="sr-only">{copy.productName}</span>
+    </h1>
     <p class="km-hero__tagline">{copy.tagline}</p>
 
     <div class="km-hero__image-wrap">

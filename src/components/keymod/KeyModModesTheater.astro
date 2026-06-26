@@ -1,5 +1,6 @@
 ---
 import KeyModSection from './KeyModSection.astro';
+import KeyCmdWordmark from './KeyCmdWordmark.astro';
 import KeyModModeBlock from './KeyModModeBlock.astro';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
@@ -11,7 +12,11 @@ const { copy } = Astro.props;
 const m = copy;
 ---
 
-<KeyModSection id="modes-theater" eyebrow={copy.eyebrow} title={copy.title} subtitle={copy.subtitle} centered>
+<KeyModSection id="modes-theater" title={copy.title} subtitle={copy.subtitle} centered>
+  <div slot="eyebrow" class="km-eyebrow-lockup">
+    <KeyCmdWordmark size="section" />
+    <span class="km-eyebrow km-eyebrow-lockup__text">{copy.eyebrow.replace(/^KeyCmd\s*/i, '')}</span>
+  </div>
   <KeyModModeBlock
     badge={m.basic.badge}
     title={m.basic.title}

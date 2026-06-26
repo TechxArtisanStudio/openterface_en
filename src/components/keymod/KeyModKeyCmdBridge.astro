@@ -1,4 +1,5 @@
 ---
+import KeyCmdWordmark from './KeyCmdWordmark.astro';
 import KeyModSection from './KeyModSection.astro';
 import KeyModMediaPlaceholder from './KeyModMediaPlaceholder.astro';
 import { keymodLinks } from '../../i18n/keymodLanding';
@@ -11,11 +12,15 @@ interface Props {
 const { copy } = Astro.props;
 ---
 
-<KeyModSection id="keycmd" eyebrow={copy.eyebrow} title={copy.title} variant="elevated">
+<KeyModSection id="keycmd" title={copy.title} variant="elevated">
+  <div slot="eyebrow" class="km-eyebrow-lockup">
+    <KeyCmdWordmark size="section" />
+    <span class="km-eyebrow km-eyebrow-lockup__text">{copy.eyebrow.replace(/^KeyCmd\s*/i, '')}</span>
+  </div>
   <div class="km-split">
     <div>
       <p class="km-body">{copy.body}</p>
-      <a href={keymodLinks.keycmd} class="km-btn km-btn--primary" style="margin-top: 1.5rem;">
+      <a href={keymodLinks.keycmd} class="km-btn km-btn--primary km-keycmd-bridge__cta">
         {copy.cta} →
       </a>
     </div>
