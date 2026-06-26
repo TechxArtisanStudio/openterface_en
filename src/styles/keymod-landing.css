@@ -60,7 +60,8 @@
 
 .km-nav__logo,
 .km-nav__link,
-.km-nav__logo span,
+.km-nav__product,
+.km-nav__brand-logo,
 .km-btn {
   transition:
     color 380ms ease,
@@ -80,8 +81,12 @@
   color: var(--km-text);
 }
 
-.km-nav[data-km-nav-theme="default"] .km-nav__logo span {
+.km-nav[data-km-nav-theme="default"] .km-nav__product {
   color: var(--km-accent);
+}
+
+.km-nav[data-km-nav-theme="default"] .km-nav__brand-logo {
+  filter: none;
 }
 
 .km-nav[data-km-nav-theme="default"] .km-nav__link {
@@ -116,9 +121,14 @@
   color: var(--km-matrix-text);
 }
 
-.km-nav[data-km-nav-theme="geek"] .km-nav__logo span {
+.km-nav[data-km-nav-theme="geek"] .km-nav__product {
   color: var(--km-matrix-accent);
   font-family: var(--km-font-mono);
+}
+
+.km-nav[data-km-nav-theme="geek"] .km-nav__brand-logo {
+  filter: brightness(0) saturate(100%) invert(72%) sepia(98%) saturate(1200%) hue-rotate(88deg)
+    brightness(104%) contrast(101%);
 }
 
 .km-nav[data-km-nav-theme="geek"] .km-nav__link {
@@ -156,8 +166,13 @@
   color: var(--km-game-text);
 }
 
-.km-nav[data-km-nav-theme="game"] .km-nav__logo span {
+.km-nav[data-km-nav-theme="game"] .km-nav__product {
   color: var(--km-game-accent);
+}
+
+.km-nav[data-km-nav-theme="game"] .km-nav__brand-logo {
+  filter: brightness(0) saturate(100%) invert(76%) sepia(48%) saturate(1800%) hue-rotate(163deg)
+    brightness(103%) contrast(101%);
 }
 
 .km-nav[data-km-nav-theme="game"] .km-nav__link {
@@ -199,16 +214,41 @@
   letter-spacing: 0.02em;
   color: var(--km-text);
   text-decoration: none;
+  flex-shrink: 0;
 }
 
-.km-nav__logo span {
+.km-nav__product {
   color: var(--km-accent);
+}
+
+.km-nav__end {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.km-nav__brand {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.km-nav__brand-logo {
+  display: block;
+  height: 1.125rem;
+  width: auto;
+  max-width: 7.5rem;
+  transition: filter 380ms ease;
 }
 
 .km-nav__links {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .km-nav__link {
@@ -833,7 +873,8 @@
   .km-nav,
   .km-nav__logo,
   .km-nav__link,
-  .km-nav__logo span,
+  .km-nav__product,
+  .km-nav__brand-logo,
   .km-btn {
     transition: none !important;
   }
