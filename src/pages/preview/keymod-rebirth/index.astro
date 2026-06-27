@@ -4,7 +4,6 @@ import KeyModNav from '../../../components/keymod/KeyModNav.astro';
 import KeyModHero from '../../../components/keymod/KeyModHero.astro';
 import KeyModWhatItIs from '../../../components/keymod/KeyModWhatItIs.astro';
 import KeyModSkuCompare from '../../../components/keymod/KeyModSkuCompare.astro';
-import KeyModScenarios from '../../../components/keymod/KeyModScenarios.astro';
 import KeyModModesTheater from '../../../components/keymod/KeyModModesTheater.astro';
 import KeyModSocialProof from '../../../components/keymod/KeyModSocialProof.astro';
 import KeyModKeyCmdBridge from '../../../components/keymod/KeyModKeyCmdBridge.astro';
@@ -34,7 +33,7 @@ const canonicalPath = '/preview/keymod-rebirth/';
     <KeyModHero copy={copy.hero} />
     <KeyModWhatItIs copy={copy.whatItIs} />
     <KeyModSkuCompare copy={copy.skuCompare} />
-    <KeyModScenarios copy={copy.scenarios} />
+    {/* Scenarios hidden pending copy/visual rework */}
     <KeyModModesTheater copy={copy.modesTheater} />
     <KeyModSocialProof copy={copy.socialProof} />
     <KeyModKeyCmdBridge copy={copy.keycmdBridge} />

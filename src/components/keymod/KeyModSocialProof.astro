@@ -1,6 +1,7 @@
 ---
 import KeyModSection from './KeyModSection.astro';
-import { keymodSocialProof } from '../../data/keymodSocialProof';
+import KeyModCommunityCard from './KeyModCommunityCard.astro';
+import { getKeymodCommunityCards } from '../../data/keymodCommunityMedia';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
@@ -8,46 +9,20 @@ interface Props {
 }
 
 const { copy } = Astro.props;
+const cards = getKeymodCommunityCards();
 ---
 
 <KeyModSection id="social-proof" eyebrow={copy.eyebrow} title={copy.title} centered>
-  <div class="km-grid km-grid--3">
-    {
-      keymodSocialProof.map((post) => (
-        <article class="km-card km-social-card">
-          {
-            post.thumbnailSrc ? (
-              <figure class="km-social-card__thumb">
-                <img
-                  src={post.thumbnailSrc}
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                />
-              </figure>
-            ) : (
-              <div class="km-social-card__thumb km-social-card__thumb--empty">
-                <span>{post.handle}</span>
-              </div>
-            )
-          }
-          <p class="km-card__title" style="margin-top: 1rem;">{post.handle}</p>
-          {post.quote && <p class="km-card__body">&ldquo;{post.quote}&rdquo;</p>}
-          {post.scenarioTag && (
-            <p class="km-card__body" style="font-size: 0.8125rem; margin-top: 0.5rem;">
-              {post.scenarioTag}
-            </p>
-          )}
-          <a href={post.url} class="km-btn km-btn--ghost" style="margin-top: 1rem; width: 100%;" target="_blank" rel="noopener noreferrer">
-            {copy.viewOnIg} ↗
-          </a>
-        </article>
-      ))
-    }
+  <div class="km-community-grid">
+    {cards.map((card) => (
+      <KeyModCommunityCard card={card} />
+    ))}
   </div>
-  <p class="km-subtitle" style="margin-top: 2rem; text-align: center; max-width: none;">
+  <p class="km-subtitle km-community-grid__footer">
     <a href="https://www.instagram.com/techxartisan/" target="_blank" rel="noopener noreferrer">
       {copy.followIg} ↗
     </a>
+    {' · '}
+    <a href="/media/?product=keymod">{copy.viewAllMedia} →</a>
   </p>
 </KeyModSection>
