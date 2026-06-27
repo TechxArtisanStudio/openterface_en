@@ -114,7 +114,7 @@ export const keymodAssets: KeymodAssetSlot[] = [
     section: 'hero',
     slot: 'prop-t',
     src: '/keymod/rebirth/props/prop-t.webp',
-    alt: 'Lavalier microphone — Voice input mode',
+    alt: 'AI Chat mode — maturing',
     kind: 'image',
     status: 'ready',
   },

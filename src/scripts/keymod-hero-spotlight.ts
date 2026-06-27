@@ -1,27 +1,102 @@
-const CYCLE_MS = 2500;
-const DRAW_MS = 600;
+const CYCLE_MS = 3400;
+const DRAW_MS = 650;
+const INTRO_MS = 1400;
+const TEASE_MS = 480;
+const SCROLL_SETTLE_MS = 560;
+
+let disposeSpotlight: (() => void) | null = null;
 
 function prefersReducedMotion(): boolean {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
+function scrollStationToCenter(scrollEl: HTMLElement, station: HTMLElement): void {
+  const left = station.offsetLeft - (scrollEl.clientWidth - station.offsetWidth) / 2;
+  scrollEl.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+}
+
+function updateSpotlightPosition(rail: HTMLElement, station: HTMLElement): void {
+  const lineEl = rail.querySelector<HTMLElement>('.km-hero-rail__line');
+  const anchor =
+    station.querySelector<HTMLElement>('.km-hero-rail__icon-wrap') ?? station;
+  const lineRect = lineEl?.getBoundingClientRect();
+  const anchorRect = anchor.getBoundingClientRect();
+  if (!lineRect || lineRect.width <= 0) return;
+
+  const centerX = anchorRect.left + anchorRect.width / 2 - lineRect.left;
+  const pct = Math.max(0, Math.min(100, (centerX / lineRect.width) * 100));
+  rail.style.setProperty('--km-spotlight-pct', `${pct}%`);
+}
+
+function pulseDongle(): void {
+  const dongle = document.querySelector<HTMLElement>('[data-km-hero-dongle]');
+  if (!dongle) return;
+  dongle.classList.remove('km-hero__image-wrap--pulse');
+  void dongle.offsetWidth;
+  dongle.classList.add('km-hero__image-wrap--pulse');
+}
+
 export function initKeymodHeroSpotlight(): void {
+  disposeSpotlight?.();
+
   const rail = document.querySelector<HTMLElement>('[data-km-hero-rail]');
   if (!rail) return;
 
   const stations = [...rail.querySelectorAll<HTMLElement>('[data-km-rail-station]')];
   if (stations.length === 0) return;
 
+  const teaseEl = rail.querySelector<HTMLElement>('[data-km-rail-caption]');
+  const scrollEl = rail.querySelector<HTMLElement>('[data-km-rail-scroll]');
+  if (!scrollEl) return;
+
+  const abort = new AbortController();
+  const { signal } = abort;
+
   let activeIndex = 0;
   let cycleTimer: ReturnType<typeof setInterval> | null = null;
   let drawTimer: ReturnType<typeof setTimeout> | null = null;
+  let introTimer: ReturnType<typeof setTimeout> | null = null;
+  let scrollSyncTimer: ReturnType<typeof setTimeout> | null = null;
+  let scrollRaf = 0;
+  let firstPulse = true;
+  let pulseCounter = 0;
 
-  const setActive = (index: number): void => {
-    activeIndex = index % stations.length;
+  const updateTease = (text: string): void => {
+    if (!teaseEl || teaseEl.textContent === text) return;
+    teaseEl.dataset.changing = 'true';
+    window.setTimeout(() => {
+      if (signal.aborted) return;
+      teaseEl.textContent = text;
+      teaseEl.dataset.changing = 'false';
+    }, TEASE_MS / 2);
+  };
+
+  const setActive = (index: number, opts?: { pulse?: boolean; scroll?: boolean }): void => {
+    activeIndex = ((index % stations.length) + stations.length) % stations.length;
+    const station = stations[activeIndex];
+
     rail.dataset.activeIndex = String(activeIndex);
-    stations.forEach((station, i) => {
-      station.dataset.active = i === activeIndex ? 'true' : 'false';
+    stations.forEach((el, i) => {
+      el.dataset.active = i === activeIndex ? 'true' : 'false';
     });
+
+    if (station.dataset.kmTease) updateTease(station.dataset.kmTease);
+
+    if (opts?.scroll !== false) {
+      scrollStationToCenter(scrollEl, station);
+    }
+    updateSpotlightPosition(rail, station);
+
+    if (opts?.pulse !== false && !firstPulse) {
+      pulseCounter += 1;
+      if (pulseCounter % 2 === 0) pulseDongle();
+    }
+    firstPulse = false;
+  };
+
+  const syncSpotlight = (): void => {
+    const station = stations[activeIndex];
+    if (station) updateSpotlightPosition(rail, station);
   };
 
   const stopCycle = (): void => {
@@ -32,7 +107,7 @@ export function initKeymodHeroSpotlight(): void {
   };
 
   const startCycle = (): void => {
-    if (prefersReducedMotion() || cycleTimer !== null) return;
+    if (prefersReducedMotion() || cycleTimer !== null || rail.dataset.userPaused === 'true') return;
     cycleTimer = setInterval(() => {
       setActive(activeIndex + 1);
     }, CYCLE_MS);
@@ -43,38 +118,76 @@ export function initKeymodHeroSpotlight(): void {
     stopCycle();
   };
 
-  rail.addEventListener('pointerdown', onUserInteract, { passive: true });
-  rail.addEventListener('focusin', onUserInteract);
+  const onResize = (): void => {
+    const station = stations[activeIndex];
+    if (!station) return;
+    scrollStationToCenter(scrollEl, station);
+    updateSpotlightPosition(rail, station);
+  };
+
+  const onScroll = (): void => {
+    cancelAnimationFrame(scrollRaf);
+    scrollRaf = requestAnimationFrame(syncSpotlight);
+    if (scrollSyncTimer !== null) clearTimeout(scrollSyncTimer);
+    scrollSyncTimer = setTimeout(syncSpotlight, SCROLL_SETTLE_MS);
+  };
+
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const onMotionChange = (): void => {
+    if (!motionQuery.matches) return;
+    if (drawTimer !== null) clearTimeout(drawTimer);
+    if (introTimer !== null) clearTimeout(introTimer);
+    stopCycle();
+    rail.dataset.motion = 'reduced';
+    setActive(activeIndex, { pulse: false, scroll: false });
+  };
+
+  stations.forEach((station, index) => {
+    station.addEventListener(
+      'click',
+      () => {
+        onUserInteract();
+        setActive(index);
+      },
+      { signal },
+    );
+  });
+  window.addEventListener('resize', onResize, { passive: true, signal });
+  scrollEl.addEventListener('scroll', onScroll, { passive: true, signal });
+  motionQuery.addEventListener('change', onMotionChange, { signal });
+
+  disposeSpotlight = (): void => {
+    abort.abort();
+    stopCycle();
+    if (drawTimer !== null) clearTimeout(drawTimer);
+    if (introTimer !== null) clearTimeout(introTimer);
+    if (scrollSyncTimer !== null) clearTimeout(scrollSyncTimer);
+    cancelAnimationFrame(scrollRaf);
+    rail.dataset.userPaused = '';
+    rail.dataset.drawn = 'false';
+  };
 
   if (prefersReducedMotion()) {
     rail.dataset.motion = 'reduced';
-    setActive(0);
-    stations.forEach((station) => {
-      station.dataset.active = 'true';
-    });
+    setActive(0, { pulse: false, scroll: false });
+    rail.dataset.drawn = 'true';
     return;
   }
 
   rail.dataset.motion = 'full';
-  setActive(0);
+  rail.dataset.userPaused = '';
+  setActive(0, { pulse: false, scroll: false });
 
   drawTimer = setTimeout(() => {
+    if (signal.aborted) return;
     rail.dataset.drawn = 'true';
-    startCycle();
+    updateSpotlightPosition(rail, stations[0]);
+    introTimer = setTimeout(() => {
+      if (signal.aborted) return;
+      startCycle();
+    }, INTRO_MS);
   }, DRAW_MS);
-
-  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const onMotionChange = (): void => {
-    if (motionQuery.matches) {
-      if (drawTimer !== null) clearTimeout(drawTimer);
-      stopCycle();
-      rail.dataset.motion = 'reduced';
-      stations.forEach((station) => {
-        station.dataset.active = 'true';
-      });
-    }
-  };
-  motionQuery.addEventListener('change', onMotionChange);
 }
 
 document.addEventListener('astro:page-load', initKeymodHeroSpotlight);
+initKeymodHeroSpotlight();

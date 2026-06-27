@@ -22,7 +22,7 @@ const heroAsset = getKeymodAsset('hero', 'center');
     <p class="km-hero__tagline">{copy.tagline}</p>
 
     <div class="km-hero__stage">
-      <div class="km-hero__image-wrap">
+      <div class="km-hero__image-wrap" data-km-hero-dongle>
         {
           heroAsset?.src ? (
             <img
@@ -37,7 +37,13 @@ const heroAsset = getKeymodAsset('hero', 'center');
           ) : null
         }
       </div>
-      <KeyModHeroRail bridge={copy.railBridge} />
+
+      <div class="km-hero__equation" aria-hidden="true">
+        <span class="km-hero__equation-plus">{copy.equationPlus}</span>
+        <span class="km-hero__equation-eq" aria-hidden="true">{copy.equationEquals}</span>
+      </div>
+
+      <KeyModHeroRail />
     </div>
 
     <p class="km-hero__headline">{copy.headline}</p>
