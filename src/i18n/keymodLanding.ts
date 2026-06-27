@@ -22,7 +22,6 @@ export type KeymodLandingStrings = {
   nav: {
     docs: string;
     cta: string;
-    ctaMobile: string;
   };
   hero: {
     productName: string;
@@ -129,8 +128,7 @@ const en: KeymodLandingStrings = {
   },
   nav: {
     docs: 'Docs',
-    cta: 'Get updates',
-    ctaMobile: 'Updates',
+    cta: 'Subscribe',
   },
   hero: {
     productName: 'KeyMod',
@@ -341,7 +339,7 @@ const en: KeymodLandingStrings = {
     ],
   },
   footer: {
-    ctaPrimary: 'Get updates',
+    ctaPrimary: 'Subscribe',
     ctaKeycmd: 'KeyCmd app',
     legal: `© ${new Date().getFullYear()} TechxArtisan · Openterface KeyMod Rebirth preview`,
   },

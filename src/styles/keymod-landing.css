@@ -87,8 +87,8 @@
 
 .km-wordmark--openterface {
   aspect-ratio: 469.34 / 70;
-  -webkit-mask-image: url("/images/openterface.svg");
-  mask-image: url("/images/openterface.svg");
+  -webkit-mask-image: url("/keymod/logo/openterface-wordmark.svg");
+  mask-image: url("/keymod/logo/openterface-wordmark.svg");
 }
 
 .km-wordmark--nav {
@@ -200,6 +200,14 @@
   color: var(--km-muted);
 }
 
+.km-nav[data-km-nav-theme="default"] .km-nav__openterface-logo {
+  opacity: 0.72;
+}
+
+.km-nav[data-km-nav-theme="default"] .km-nav__brand-parent:hover .km-nav__openterface-logo {
+  opacity: 1;
+}
+
 .km-nav[data-km-nav-theme="default"] .km-nav__product-link {
   color: var(--km-accent);
 }
@@ -238,6 +246,15 @@
 
 .km-nav[data-km-nav-theme="geek"] .km-nav__brand-parent {
   color: rgba(232, 255, 232, 0.5);
+}
+
+.km-nav[data-km-nav-theme="geek"] .km-nav__openterface-logo {
+  filter: brightness(0) invert(1);
+  opacity: 0.5;
+}
+
+.km-nav[data-km-nav-theme="geek"] .km-nav__brand-parent:hover .km-nav__openterface-logo {
+  opacity: 0.75;
 }
 
 .km-nav[data-km-nav-theme="geek"] .km-nav__product-link {
@@ -281,6 +298,15 @@
 
 .km-nav[data-km-nav-theme="game"] .km-nav__brand-parent {
   color: rgba(236, 232, 255, 0.5);
+}
+
+.km-nav[data-km-nav-theme="game"] .km-nav__openterface-logo {
+  filter: brightness(0) invert(1);
+  opacity: 0.5;
+}
+
+.km-nav[data-km-nav-theme="game"] .km-nav__brand-parent:hover .km-nav__openterface-logo {
+  opacity: 0.75;
 }
 
 .km-nav[data-km-nav-theme="game"] .km-nav__product-link {
@@ -328,8 +354,17 @@
   display: flex;
   align-items: center;
   gap: 0.625rem;
-  flex-shrink: 0;
+  flex: 1 1 auto;
   min-width: 0;
+}
+
+.km-nav__openterface-logo {
+  display: block;
+  flex-shrink: 0;
+  height: 0.8125rem;
+  width: auto;
+  max-width: 7.5rem;
+  transition: opacity 380ms ease;
 }
 
 .km-nav__brand-parent,
@@ -360,18 +395,24 @@
   background: var(--km-border);
 }
 
-.km-nav__links {
+.km-nav__actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
   margin-left: auto;
 }
 
 .km-nav__link {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 0.375rem 0;
   font-size: 0.875rem;
   font-weight: 500;
+  line-height: 1.25;
+  white-space: nowrap;
   color: var(--km-muted);
   text-decoration: none;
 }
@@ -380,22 +421,45 @@
   color: var(--km-accent);
 }
 
-.km-nav__cta-label--mobile {
-  display: none;
+.km-nav__cta.km-btn--primary {
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25;
+  white-space: nowrap;
 }
 
 @media (max-width: 479px) {
-  .km-nav__cta-label--desktop {
-    display: none;
+  .km-nav__inner {
+    gap: 0.5rem;
+    padding: 0 0.75rem;
   }
 
-  .km-nav__cta-label--mobile {
-    display: inline;
+  .km-nav__brand-lockup {
+    gap: 0.375rem;
+  }
+
+  .km-nav__openterface-logo {
+    height: 0.6875rem;
+    max-width: 5.25rem;
+  }
+
+  .km-wordmark--nav {
+    height: 1rem;
+  }
+
+  .km-nav__actions {
+    gap: 0.5rem;
+  }
+
+  .km-nav__link {
+    font-size: 0.8125rem;
+    padding: 0.25rem 0;
   }
 
   .km-nav__cta.km-btn--primary {
-    padding: 0.625rem 0.875rem;
-    font-size: 0.875rem;
+    padding: 0.4375rem 0.625rem;
+    font-size: 0.8125rem;
   }
 }
 
@@ -726,42 +790,80 @@
 }
 
 @media (max-width: 767px) {
+  /*
+   * Mobile hero is a tall stack — 50% vertical center sits between product
+   * and headline, so desktop center-ring math pushes props into copy.
+   * Anchor bands to typical product placement instead.
+   */
   .km-hero {
-    --km-prop-ring-x: clamp(4.25rem, 22vw, 6.5rem);
-    --km-prop-ring-y-top: clamp(16.5rem, 36vh, 19rem);
-    --km-prop-ring-y-low: clamp(4.25rem, 9.5vh, 5.5rem);
+    --km-prop-ring-x: clamp(4.5rem, 24vw, 7rem);
+    --km-mobile-band-top: clamp(6.75rem, 16.5vh, 8.5rem);
+    --km-mobile-band-mid: clamp(14.5rem, 34vh, 17.5rem);
+    --km-mobile-band-low: clamp(20.5rem, 44vh, 23.5rem);
   }
 
-  .km-hero__prop--tier2 {
+  .km-hero__prop--tl {
+    top: var(--km-mobile-band-top);
+    left: calc(50% - var(--km-prop-ring-x));
+  }
+
+  .km-hero__prop--tr {
+    top: calc(var(--km-mobile-band-top) + 0.35rem);
+    right: calc(50% - var(--km-prop-ring-x));
+  }
+
+  .km-hero__prop--bl {
+    top: var(--km-mobile-band-low);
+    left: calc(50% - var(--km-prop-ring-x) + 0.5rem);
+  }
+
+  .km-hero__prop--br {
+    top: calc(var(--km-mobile-band-low) + 0.35rem);
+    right: calc(50% - var(--km-prop-ring-x));
+  }
+
+  .km-hero__prop--terminal {
+    top: var(--km-mobile-band-mid);
+    left: calc(50% - var(--km-prop-ring-x) - 0.75rem);
+  }
+
+  .km-hero__prop--l {
+    top: calc(var(--km-mobile-band-mid) - 0.25rem);
+    left: calc(50% - var(--km-prop-ring-x) - 1.35rem);
+  }
+
+  .km-hero__prop--r {
+    top: calc(var(--km-mobile-band-mid) - 0.25rem);
+    right: calc(50% - var(--km-prop-ring-x) - 1.1rem);
+  }
+
+  /* Keep top/b/arcade hidden — too crowded on narrow viewports */
+  .km-hero__prop--t,
+  .km-hero__prop--b,
+  .km-hero__prop--tr-arcade {
     display: none;
   }
 
   .km-hero__prop--tier1 {
-    --km-prop-base: clamp(2.85rem, 14vw, 4.35rem);
+    --km-prop-base: clamp(3.1rem, 15vw, 4.65rem);
+    --km-prop-mobile-factor: 1;
   }
 
-  .km-hero__prop--tl,
-  .km-hero__prop--tr {
-    --km-prop-mobile-factor: 0.9;
+  .km-hero__prop--tier2 {
+    --km-prop-base: clamp(2.35rem, 11vw, 3.35rem);
+    --km-prop-mobile-factor: 0.95;
   }
 
-  .km-hero__prop--bl,
-  .km-hero__prop--br {
-    --km-prop-mobile-factor: 0.86;
-    opacity: calc(var(--km-prop-opacity) * 0.9);
+  .km-hero__prop {
+    opacity: calc(var(--km-prop-opacity) * 1.18);
   }
 }
 
 @media (max-width: 767px) and (max-height: 740px) {
-  .km-hero__prop--bl,
-  .km-hero__prop--br {
-    display: none;
-  }
-}
-
-@media (max-width: 479px) {
-  .km-hero__prop--tr {
-    --km-prop-mobile-factor: 0.88;
+  .km-hero {
+    --km-mobile-band-top: clamp(6rem, 15vh, 7.75rem);
+    --km-mobile-band-mid: clamp(13.25rem, 31vh, 16rem);
+    --km-mobile-band-low: clamp(18.75rem, 40vh, 21rem);
   }
 }
 
@@ -1168,6 +1270,10 @@
   color: rgba(254, 243, 199, 0.95);
   background: rgba(120, 53, 15, 0.45);
   border-color: rgba(251, 191, 36, 0.45);
+}
+
+.km-zone-matrix + .km-zone-game {
+  margin-top: 0;
 }
 
 /* Game zone — full-bleed neon gaming band */
