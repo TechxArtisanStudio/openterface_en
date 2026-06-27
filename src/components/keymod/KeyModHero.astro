@@ -1,7 +1,8 @@
 ---
 import KeyModWordmark from './KeyModWordmark.astro';
+import KeyModHeroRail from './KeyModHeroRail.astro';
 import { keymodLinks } from '../../i18n/keymodLanding';
-import { getKeymodAsset, getKeymodAssets, heroPropLayout, heroPropPositions, heroPropTiers } from '../../data/keymodAssets';
+import { getKeymodAsset } from '../../data/keymodAssets';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
@@ -10,38 +11,9 @@ interface Props {
 
 const { copy } = Astro.props;
 const heroAsset = getKeymodAsset('hero', 'center');
-const propAssets = getKeymodAssets('hero', 'prop-');
-const propsBySlot = Object.fromEntries(propAssets.map((a) => [a.slot, a]));
 ---
 
 <section class="km-hero km-hero--light" id="hero" aria-labelledby="hero-title">
-  <div class="km-hero__props" aria-hidden="true">
-    {
-      heroPropPositions.map((slot) => {
-        const asset = propsBySlot[slot];
-        if (!asset?.src) return null;
-        const tier = heroPropTiers[slot];
-        const layout = heroPropLayout[slot];
-        const posClass = slot.slice(5);
-        return (
-          <img
-            class={`km-hero__prop km-hero__prop--${posClass} km-hero__prop--tier${tier}`}
-            src={asset.src}
-            alt=""
-            width="1024"
-            height="1024"
-            loading="lazy"
-            decoding="async"
-            style={{
-              '--km-prop-scale': String(layout.scale),
-              '--km-prop-opacity': String(layout.opacity),
-            }}
-          />
-        );
-      })
-    }
-  </div>
-
   <div class="km-hero__content">
     <h1 id="hero-title" class="km-hero__product-name">
       <KeyModWordmark size="hero" />
@@ -49,25 +21,27 @@ const propsBySlot = Object.fromEntries(propAssets.map((a) => [a.slot, a]));
     </h1>
     <p class="km-hero__tagline">{copy.tagline}</p>
 
-    <div class="km-hero__image-wrap">
-      {
-        heroAsset?.src ? (
-          <img
-            class="km-hero__image"
-            src={heroAsset.src}
-            alt={heroAsset.alt}
-            width="800"
-            height="800"
-            fetchpriority="high"
-            decoding="async"
-          />
-        ) : null
-      }
+    <div class="km-hero__stage">
+      <div class="km-hero__image-wrap">
+        {
+          heroAsset?.src ? (
+            <img
+              class="km-hero__image"
+              src={heroAsset.src}
+              alt={heroAsset.alt}
+              width="800"
+              height="800"
+              fetchpriority="high"
+              decoding="async"
+            />
+          ) : null
+        }
+      </div>
+      <KeyModHeroRail bridge={copy.railBridge} />
     </div>
 
     <p class="km-hero__headline">{copy.headline}</p>
-    <p class="km-hero__lead">{copy.subhead}</p>
-    <p class="km-hero__lead km-hero__lead--scenario">{copy.leadScenario}</p>
+    <p class="km-hero__lead">{copy.lead}</p>
 
     <div class="km-hero__actions">
       <a href={keymodLinks.docs} class="km-btn km-btn--ghost" target="_blank" rel="noopener noreferrer">

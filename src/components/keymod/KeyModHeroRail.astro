@@ -1,0 +1,64 @@
+---
+import { heroModeRailStations } from '../../data/heroModeRail';
+
+interface Props {
+  bridge: string;
+}
+
+const { bridge } = Astro.props;
+---
+
+<div class="km-hero-rail" data-km-hero-rail data-drawn="false" data-active-index="0">
+  <p class="km-hero-rail__bridge">{bridge}</p>
+
+  <div class="km-hero-rail__stage">
+    <div class="km-hero-rail__stem" aria-hidden="true"></div>
+
+    <div class="km-hero-rail__track-outer">
+      <div class="km-hero-rail__fade km-hero-rail__fade--left" aria-hidden="true"></div>
+      <div class="km-hero-rail__track-scroll">
+        <div class="km-hero-rail__track" role="list" aria-label="KeyCmd modes">
+          <div class="km-hero-rail__line" aria-hidden="true">
+            <span class="km-hero-rail__line-bar"></span>
+          </div>
+          {
+            heroModeRailStations.map((station, index) => (
+              <div
+                class:list={[
+                  'km-hero-rail__station',
+                  !station.mobilePriority && 'km-hero-rail__station--desktop-only',
+                ]}
+                role="listitem"
+                data-km-rail-station
+                data-km-rail-id={station.id}
+                data-active={index === 0 ? 'true' : 'false'}
+              >
+                <span class="km-hero-rail__dot" aria-hidden="true"></span>
+                <div class="km-hero-rail__icon-wrap">
+                  <img
+                    class="km-hero-rail__icon"
+                    src={station.iconSrc}
+                    alt=""
+                    width="128"
+                    height="128"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <span class="km-hero-rail__label">{station.label}</span>
+                <span class="sr-only">{station.iconAlt}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <div class="km-hero-rail__fade km-hero-rail__fade--right" aria-hidden="true"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { initKeymodHeroSpotlight } from '../../scripts/keymod-hero-spotlight';
+
+  initKeymodHeroSpotlight();
+</script>
