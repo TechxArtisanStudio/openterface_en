@@ -26,7 +26,8 @@ export type KeymodLandingStrings = {
   hero: {
     productName: string;
     tagline: string;
-    railBridge: string;
+    equationPlus: string;
+    equationEquals: string;
     headline: string;
     lead: string;
     docsCta: string;
@@ -133,10 +134,11 @@ const en: KeymodLandingStrings = {
   hero: {
     productName: 'KeyMod',
     tagline: 'Wireless USB Multi-tool',
-    railBridge: 'One dongle · KeyCmd modes',
+    equationPlus: '+ your phone',
+    equationEquals: '=',
     headline: 'Your phone. Every machine\'s wireless console.',
     lead:
-      'Plug into the target, open KeyCmd, control over BLE — zero-driver HID that works in BIOS. At the rack, kiosk, or bench.',
+      'Plug into the target, control over BLE — zero-driver HID that works in BIOS. At the rack, kiosk, or bench.',
     docsCta: 'Docs',
   },
   whatItIs: {
@@ -277,7 +279,7 @@ const en: KeymodLandingStrings = {
     atLaunchTitle: 'At launch',
     atLaunchItems: [
       'HID keyboard/mouse',
-      'KM Basic + maturing KM Pro / Macro / Voice modes',
+      'KM Basic + maturing KM Pro / Macro / AI Chat',
       'Mini + Plus ship together',
     ],
     comingLaterTitle: 'Coming later',

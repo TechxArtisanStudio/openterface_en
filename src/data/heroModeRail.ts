@@ -1,55 +1,61 @@
-/** Mode Rail — hero tool strip stations (One dongle → many KeyCmd modes). */
+/** Mode Rail — KeyMod + phone → wireless tools on the target. */
 
 export type HeroModeRailStation = {
   id: string;
   label: string;
+  tease: string;
   iconSrc: string;
   iconAlt: string;
-  /** Shown in mobile scroll-snap strip without hiding from DOM */
-  mobilePriority: boolean;
 };
 
 export const heroModeRailStations: HeroModeRailStation[] = [
   {
-    id: 'basic',
-    label: 'Basic',
+    id: 'keyboard',
+    label: 'Keyboard',
+    tease: 'Type on the target — BIOS-ready',
+    iconSrc: '/keymod/rebirth/modes/km-basic-keyboard.webp',
+    iconAlt: 'Wireless keyboard on the target',
+  },
+  {
+    id: 'mouse',
+    label: 'Mouse',
+    tease: 'Wireless trackpad on the target',
     iconSrc: '/keymod/rebirth/hero/rail/basic.webp',
-    iconAlt: 'Wireless keyboard and trackpad — KM Basic',
-    mobilePriority: true,
+    iconAlt: 'Wireless mouse and trackpad',
   },
   {
-    id: 'ops',
-    label: 'Ops',
+    id: 'terminal',
+    label: 'Terminal',
+    tease: 'Shell on the rack monitor',
     iconSrc: '/keymod/rebirth/hero/rail/ops.webp',
-    iconAlt: 'Terminal monitor — KM Pro',
-    mobilePriority: true,
+    iconAlt: 'Terminal on the target monitor',
   },
   {
-    id: 'play',
-    label: 'Play',
+    id: 'gamepad',
+    label: 'Gamepad',
+    tease: 'Phone as a game controller',
     iconSrc: '/keymod/rebirth/hero/rail/play.webp',
-    iconAlt: 'Game controller — Gamepad mode',
-    mobilePriority: true,
-  },
-  {
-    id: 'voice',
-    label: 'Voice',
-    iconSrc: '/keymod/rebirth/hero/rail/voice.webp',
-    iconAlt: 'Microphone — Voice input',
-    mobilePriority: true,
+    iconAlt: 'Game controller mode',
   },
   {
     id: 'macro',
     label: 'Macro',
+    tease: 'One tap runs the whole script',
     iconSrc: '/keymod/rebirth/hero/rail/macro.webp',
-    iconAlt: 'Macro keypad — Shortcut Hub',
-    mobilePriority: false,
+    iconAlt: 'Macro and shortcut keypad',
   },
   {
     id: 'slides',
     label: 'Slides',
+    tease: 'Deck control from your pocket',
     iconSrc: '/keymod/rebirth/hero/rail/slides.webp',
     iconAlt: 'Presentation remote',
-    mobilePriority: false,
+  },
+  {
+    id: 'ai-chat',
+    label: 'AI Chat',
+    tease: 'Chat on phone — actions on the target',
+    iconSrc: '/keymod/rebirth/hero/rail/ai-chat.webp',
+    iconAlt: 'AI Chat — maturing mode',
   },
 ];
