@@ -26,7 +26,7 @@ export const heroModeRailStations: HeroModeRailStation[] = [
   {
     id: 'terminal',
     label: 'Terminal',
-    tease: 'Shell on the rack monitor',
+    tease: 'Terminal over BLE / USB cable',
     iconSrc: '/keymod/rebirth/hero/rail/ops.webp',
     iconAlt: 'Terminal on the target monitor',
   },
@@ -47,15 +47,15 @@ export const heroModeRailStations: HeroModeRailStation[] = [
   {
     id: 'slides',
     label: 'Slides',
-    tease: 'Deck control from your pocket',
+    tease: 'Phone as your presentation remote',
     iconSrc: '/keymod/rebirth/hero/rail/slides.webp',
     iconAlt: 'Presentation remote',
   },
   {
     id: 'ai-chat',
     label: 'AI Chat',
-    tease: 'Chat on phone — actions on the target',
+    tease: 'Chat on phone — actions on the target (on the roadmap)',
     iconSrc: '/keymod/rebirth/hero/rail/ai-chat.webp',
-    iconAlt: 'AI Chat — maturing mode',
+    iconAlt: 'AI Chat — on the KeyCmd roadmap',
   },
 ];
