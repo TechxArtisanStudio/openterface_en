@@ -70,8 +70,8 @@ export type KeymodLandingStrings = {
   socialProof: {
     eyebrow: string;
     title: string;
-    viewOnIg: string;
     followIg: string;
+    viewAllMedia: string;
   };
   keycmdBridge: {
     eyebrow: string;
@@ -263,8 +263,8 @@ const en: KeymodLandingStrings = {
   socialProof: {
     eyebrow: 'Real users',
     title: 'Real users, real setups',
-    viewOnIg: 'View on Instagram',
     followIg: 'More demos on @techxartisan',
+    viewAllMedia: 'All KeyMod media',
   },
   keycmdBridge: {
     eyebrow: 'Software companion',
