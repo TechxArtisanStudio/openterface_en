@@ -1,5 +1,6 @@
 ---
 import KeyModWordmark from './KeyModWordmark.astro';
+import Logo from '../Logo.astro';
 import { keymodLinks } from '../../i18n/keymodLanding';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
@@ -14,8 +15,7 @@ const { copy } = Astro.props;
   <div class="km-nav__inner">
     <div class="km-nav__brand-lockup">
       <a href="/" class="km-nav__brand-parent" aria-label="Openterface home">
-        <span class="km-wordmark km-wordmark--openterface km-wordmark--nav-parent" role="img" aria-label="Openterface"
-        ></span>
+        <Logo variant="nav" />
       </a>
       <span class="km-nav__brand-sep" aria-hidden="true"></span>
       <a href="/keymod/" class="km-nav__product-link" aria-label="KeyMod">
@@ -23,13 +23,12 @@ const { copy } = Astro.props;
       </a>
     </div>
 
-    <nav class="km-nav__links" aria-label="KeyMod landing">
+    <nav class="km-nav__actions" aria-label="KeyMod landing">
       <a href={keymodLinks.docs} class="km-nav__link" target="_blank" rel="noopener noreferrer">
         {copy.docs}
       </a>
       <a href="#updates" class="km-btn km-btn--primary km-nav__cta">
-        <span class="km-nav__cta-label km-nav__cta-label--desktop">{copy.cta}</span>
-        <span class="km-nav__cta-label km-nav__cta-label--mobile">{copy.ctaMobile}</span>
+        {copy.cta}
       </a>
     </nav>
   </div>
