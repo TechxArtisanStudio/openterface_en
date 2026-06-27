@@ -60,7 +60,7 @@ export type KeymodLandingStrings = {
     proTerminal: { badge: string; title: string; body: string; mediaLabel: string };
     composeSend: { badge: string; title: string; body: string; mediaLabel: string };
     terminalBle: { badge: string; title: string; body: string; mediaLabel: string; notice: string };
-    geekZone: { eyebrow: string };
+    opsZone: { eyebrow: string };
     gameZone: { eyebrow: string; kvmGoNote: string; kvmGoCta: string };
     gamepad: { badge: string; title: string; body: string; mediaLabel: string };
     presentation: { badge: string; title: string; body: string; mediaLabel: string };
@@ -232,8 +232,8 @@ const en: KeymodLandingStrings = {
       notice:
         'BLE serial is not in the launch build. KM Pro terminal over USB HID is maturing now; wireless serial is a future firmware target.',
     },
-    geekZone: {
-      eyebrow: 'Geek zone',
+    opsZone: {
+      eyebrow: 'Ops Zone',
     },
     gameZone: {
       eyebrow: 'Game Zone',

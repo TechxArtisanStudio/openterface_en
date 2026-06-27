@@ -1,4 +1,4 @@
-type KmNavTheme = 'default' | 'geek' | 'game';
+type KmNavTheme = 'default' | 'ops' | 'game';
 
 let navEl: HTMLElement | null = null;
 let zoneEls: HTMLElement[] = [];
@@ -27,7 +27,7 @@ function resolveActiveTheme(): KmNavTheme {
 
   for (const zone of zoneEls) {
     const name = zone.getAttribute('data-km-zone');
-    if (name !== 'geek' && name !== 'game') continue;
+    if (name !== 'ops' && name !== 'game') continue;
 
     const { top, bottom } = zone.getBoundingClientRect();
     if (top <= activationY && bottom > activationY) {
