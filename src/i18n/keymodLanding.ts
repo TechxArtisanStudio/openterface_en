@@ -26,9 +26,9 @@ export type KeymodLandingStrings = {
   hero: {
     productName: string;
     tagline: string;
+    railBridge: string;
     headline: string;
-    subhead: string;
-    leadScenario: string;
+    lead: string;
     docsCta: string;
   };
   whatItIs: {
@@ -133,11 +133,10 @@ const en: KeymodLandingStrings = {
   hero: {
     productName: 'KeyMod',
     tagline: 'Wireless USB Multi-tool',
+    railBridge: 'One dongle · KeyCmd modes',
     headline: 'Your phone. Every machine\'s wireless console.',
-    subhead:
-      'KeyMod is a pocket Wireless USB Multi-tool. Plug into the target, open KeyCmd, control keyboard and mouse over BLE. Zero-driver. Works in BIOS.',
-    leadScenario:
-      'At the rack, the kiosk, or the bench — watch the machine\'s screen, control input from your phone.',
+    lead:
+      'Plug into the target, open KeyCmd, control over BLE — zero-driver HID that works in BIOS. At the rack, kiosk, or bench.',
     docsCta: 'Docs',
   },
   whatItIs: {
