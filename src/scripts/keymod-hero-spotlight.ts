@@ -1,4 +1,5 @@
-const CYCLE_MS = 3400;
+import { createModeCycle, type ModeCycleController } from './keymod-mode-cycle';
+
 const DRAW_MS = 650;
 const INTRO_MS = 1400;
 const TEASE_MS = 480;
@@ -45,11 +46,15 @@ export function initKeymodHeroSpotlight(): void {
   const { signal } = abort;
 
   let activeIndex = 0;
-  let cycleTimer: ReturnType<typeof setInterval> | null = null;
+  let cycle: ModeCycleController | null = null;
   let drawTimer: ReturnType<typeof setTimeout> | null = null;
   let introTimer: ReturnType<typeof setTimeout> | null = null;
   let scrollSyncTimer: ReturnType<typeof setTimeout> | null = null;
   let scrollRaf = 0;
+
+  const syncUserPausedFlag = (): void => {
+    rail.dataset.userPaused = cycle?.isPausedForUser() ? 'true' : '';
+  };
 
   const updateTease = (text: string): void => {
     if (!teaseEl || teaseEl.textContent === text) return;
@@ -83,23 +88,14 @@ export function initKeymodHeroSpotlight(): void {
     if (station) updateSpotlightPosition(rail, station);
   };
 
-  const stopCycle = (): void => {
-    if (cycleTimer !== null) {
-      clearInterval(cycleTimer);
-      cycleTimer = null;
-    }
-  };
-
-  const startCycle = (): void => {
-    if (prefersReducedMotion() || cycleTimer !== null || rail.dataset.userPaused === 'true') return;
-    cycleTimer = setInterval(() => {
-      setActive(activeIndex + 1);
-    }, CYCLE_MS);
-  };
+  cycle = createModeCycle({
+    onAdvance: () => setActive(activeIndex + 1),
+  });
 
   const onUserInteract = (): void => {
-    rail.dataset.userPaused = 'true';
-    stopCycle();
+    cycle?.pauseForUser();
+    syncUserPausedFlag();
+    window.setTimeout(syncUserPausedFlag, 50);
   };
 
   const onResize = (): void => {
@@ -121,7 +117,8 @@ export function initKeymodHeroSpotlight(): void {
     if (!motionQuery.matches) return;
     if (drawTimer !== null) clearTimeout(drawTimer);
     if (introTimer !== null) clearTimeout(introTimer);
-    stopCycle();
+    cycle?.destroy();
+    cycle = null;
     rail.dataset.motion = 'reduced';
     setActive(activeIndex, { scroll: false });
   };
@@ -142,7 +139,8 @@ export function initKeymodHeroSpotlight(): void {
 
   disposeSpotlight = (): void => {
     abort.abort();
-    stopCycle();
+    cycle?.destroy();
+    cycle = null;
     if (drawTimer !== null) clearTimeout(drawTimer);
     if (introTimer !== null) clearTimeout(introTimer);
     if (scrollSyncTimer !== null) clearTimeout(scrollSyncTimer);
@@ -168,7 +166,8 @@ export function initKeymodHeroSpotlight(): void {
     updateSpotlightPosition(rail, stations[0]);
     introTimer = setTimeout(() => {
       if (signal.aborted) return;
-      startCycle();
+      cycle?.start();
+      syncUserPausedFlag();
     }, INTRO_MS);
   }, DRAW_MS);
 }

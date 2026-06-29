@@ -1,0 +1,71 @@
+---
+import KeyModPovComposite from './KeyModPovComposite.astro';
+import { keymodPovVisibleTabScenes, type KeymodPovSceneId } from '../../data/keymodPovScenes';
+
+export type PovStageSceneCopy = {
+  id: KeymodPovSceneId;
+  status: string;
+  title: string;
+  lead: string;
+};
+
+interface Props {
+  scenes: PovStageSceneCopy[];
+  defaultSceneId?: KeymodPovSceneId;
+}
+
+const { scenes, defaultSceneId = 'keyboard' } = Astro.props;
+const defaultScene = scenes.find((s) => s.id === defaultSceneId) ?? scenes[0];
+---
+
+<div class="km-pov-stage" id="km-pov-stage" data-km-pov-stage data-active-scene={defaultSceneId}>
+  <div class="km-pov-stage__tabs" role="tablist" aria-label="KeyCmd mode demo">
+    {
+      keymodPovVisibleTabScenes.map((scene) => (
+        <button
+          type="button"
+          class:list={['km-pov-stage__tab', scene.id === defaultSceneId && 'km-pov-stage__tab--active']}
+          role="tab"
+          id={`pov-tab-${scene.id}`}
+          aria-selected={scene.id === defaultSceneId ? 'true' : 'false'}
+          aria-controls="km-pov-stage-panel"
+          data-pov-tab={scene.id}
+        >
+          {scene.tabLabel}
+        </button>
+      ))
+    }
+  </div>
+
+  <div
+    class="km-pov-stage__panel"
+    id="km-pov-stage-panel"
+    role="tabpanel"
+    aria-labelledby={`pov-tab-${defaultSceneId}`}
+  >
+    <KeyModPovComposite activeSceneId={defaultSceneId} />
+  </div>
+
+  <div class="km-pov-stage__summary" data-km-pov-summary aria-live="polite">
+    {
+      scenes.map((scene) => (
+        <div
+          class:list={[
+            'km-pov-stage__summary-pane',
+            scene.id === defaultSceneId && 'km-pov-stage__summary-pane--active',
+          ]}
+          data-pov-summary={scene.id}
+          aria-hidden={scene.id !== defaultSceneId ? 'true' : 'false'}
+        >
+          <span class="km-pov-stage__status">{scene.status}</span>
+          <h3 class="km-title km-pov-stage__title">{scene.title}</h3>
+          <p class="km-body km-pov-stage__lead">{scene.lead}</p>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  import '../../scripts/keymod-pov-stage';
+</script>

@@ -13,7 +13,7 @@ export const heroModeRailStations: HeroModeRailStation[] = [
     id: 'keyboard',
     label: 'Keyboard',
     tease: 'Type on the target — BIOS-ready',
-    iconSrc: '/keymod/rebirth/modes/km-basic-keyboard.webp',
+    iconSrc: '/keymod/rebirth/hero/rail/keyboard.webp',
     iconAlt: 'Wireless keyboard on the target',
   },
   {
@@ -22,13 +22,6 @@ export const heroModeRailStations: HeroModeRailStation[] = [
     tease: 'Wireless trackpad on the target',
     iconSrc: '/keymod/rebirth/hero/rail/basic.webp',
     iconAlt: 'Wireless mouse and trackpad',
-  },
-  {
-    id: 'terminal',
-    label: 'Terminal',
-    tease: 'Terminal over BLE / USB cable',
-    iconSrc: '/keymod/rebirth/hero/rail/ops.webp',
-    iconAlt: 'Terminal on the target monitor',
   },
   {
     id: 'gamepad',
@@ -45,6 +38,13 @@ export const heroModeRailStations: HeroModeRailStation[] = [
     iconAlt: 'Macro and shortcut keypad',
   },
   {
+    id: 'terminal',
+    label: 'Terminal',
+    tease: 'Terminal over BLE / USB cable',
+    iconSrc: '/keymod/rebirth/hero/rail/ops.webp',
+    iconAlt: 'Terminal on the target monitor',
+  },
+  {
     id: 'slides',
     label: 'Slides',
     tease: 'Phone as your presentation remote',
@@ -52,10 +52,24 @@ export const heroModeRailStations: HeroModeRailStation[] = [
     iconAlt: 'Presentation remote',
   },
   {
+    id: 'network',
+    label: 'Network',
+    tease: 'Network bridge from your phone (on the roadmap)',
+    iconSrc: '/keymod/rebirth/hero/rail/network.webp',
+    iconAlt: 'USB–Ethernet cable — network bridge',
+  },
+  {
     id: 'ai-chat',
     label: 'AI Chat',
     tease: 'Chat on phone — actions on the target (on the roadmap)',
     iconSrc: '/keymod/rebirth/hero/rail/ai-chat.webp',
-    iconAlt: 'AI Chat — on the KeyCmd roadmap',
+    iconAlt: 'Gibby — AI Chat mascot on the KeyCmd roadmap',
+  },
+  {
+    id: 'and-more',
+    label: 'And More',
+    tease: 'MIDI, audio, CLI + MCP — on the firmware roadmap',
+    iconSrc: '/keymod/rebirth/hero/rail/and-more.webp',
+    iconAlt: 'More modes on the KeyMod roadmap',
   },
 ];
