@@ -57,14 +57,16 @@ export type KeymodLandingStrings = {
     eyebrow: string;
     title: string;
     subtitle: string;
-    basic: { badge: string; title: string; body: string; mediaLabel: string };
-    proTerminal: { badge: string; title: string; body: string; mediaLabel: string };
-    composeSend: { badge: string; title: string; body: string; mediaLabel: string };
+    basic: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
+    touchpad: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
+    proTerminal: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
+    composeSend: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
     terminalBle: { badge: string; title: string; body: string; mediaLabel: string; notice: string };
     opsZone: { eyebrow: string };
     gameZone: { eyebrow: string; kvmGoNote: string; kvmGoCta: string };
-    gamepad: { badge: string; title: string; body: string; mediaLabel: string };
-    presentation: { badge: string; title: string; body: string; mediaLabel: string };
+    gamepad: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
+    presentation: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
+    aiChat: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
     future: { title: string; chips: string[] };
   };
   socialProof: {
@@ -79,15 +81,6 @@ export type KeymodLandingStrings = {
     body: string;
     cta: string;
     mediaLabel: string;
-  };
-  launchStrip: {
-    eyebrow: string;
-    title: string;
-    subtitle: string;
-    atLaunchTitle: string;
-    atLaunchItems: string[];
-    comingLaterTitle: string;
-    comingLaterItems: string[];
   };
   productLine: {
     eyebrow: string;
@@ -146,11 +139,11 @@ const en: KeymodLandingStrings = {
     subtitle: 'Target → KeyMod → Phone → KeyCmd',
     cards: [
       {
-        title: 'Plug in KeyMod',
+        title: 'Plug in KeyMod (Mini / Plus)',
         body: 'Into the target device. Zero driver. BIOS-ready.',
       },
       {
-        title: 'Open KeyCmd on your phone',
+        title: 'Open KeyCmd on your phone (Andorid / iOS)',
         body: 'Pick a mode: KM Basic, KM Pro, gamepad, macros, and more.',
       },
     ],
@@ -199,24 +192,34 @@ const en: KeymodLandingStrings = {
     ],
   },
   modesTheater: {
-    eyebrow: 'KeyCmd in action',
+    eyebrow: 'In action',
     title: 'Modes that change the job',
     subtitle: 'KeyMod stays on the USB port. KeyCmd mode changes what you can do from your phone.',
     basic: {
       badge: 'KM Basic · Launch',
-      title: 'Wireless keyboard & trackpad',
+      title: 'Wireless keyboard',
+      lead: 'Type on your phone — characters appear on the target screen. BIOS-capable HID.',
       body: 'First-person POV — hands on phone, characters appear on the target screen. BIOS-capable HID.',
       mediaLabel: 'POV video loop — KM Basic (reshoot: 主页9)',
+    },
+    touchpad: {
+      badge: 'KM Basic · Launch',
+      title: 'Wireless touchpad',
+      lead: 'Point, click, and scroll on the target from your phone.',
+      body: 'Use your phone as a wireless trackpad — cursor control without a physical mouse at the machine.',
+      mediaLabel: 'POV — touchpad mode (placeholder)',
     },
     proTerminal: {
       badge: 'KM Pro · Maturing',
       title: 'Terminal control',
+      lead: 'SSH and shell workflows from your phone. Target monitor shows the terminal.',
       body: 'SSH and shell workflows from your phone. Target monitor shows the terminal — not a text editor.',
       mediaLabel: 'Matrix zone — terminal on monitor (reshoot)',
     },
     composeSend: {
       badge: 'KM Pro · Compose & Send',
       title: 'Paste on phone. Tap Send. Target types.',
+      lead: 'Compose long strings on your phone, then send them to the target in one tap.',
       body: 'License keys, long strings, compose buffers — send once, typed on the target automatically.',
       mediaLabel: 'Compose & Send demo (IG DZNZVbUBBxD)',
     },
@@ -240,14 +243,23 @@ const en: KeymodLandingStrings = {
     gamepad: {
       badge: 'Gamepad mode · Preview',
       title: 'Phone as game controller',
+      lead: 'KeyCmd gamepad mode — immersive, high-motion control from your phone.',
       body: 'KeyCmd gamepad mode — immersive, high-motion demos. Same stack works with KeyMod hardware.',
       mediaLabel: 'Gamepad video — Minecraft (8d72edeb / IG)',
     },
     presentation: {
       badge: 'Presentation',
       title: 'Slide remote',
+      lead: 'Control Keynote, Google Slides, and decks from your phone.',
       body: 'Keynote, Google Slides, and deck control from your phone — secondary scenario.',
       mediaLabel: 'Presentation remote scene',
+    },
+    aiChat: {
+      badge: 'AI Chat · Preview',
+      title: 'Gibby on your phone',
+      lead: 'Chat with Gibby on KeyCmd — agent actions on the target are on the roadmap.',
+      body: 'Gibby AI Chat pairs with KeyMod for conversational control — preview on the KeyCmd roadmap.',
+      mediaLabel: 'Gibby AI Chat — mascot + phone UI',
     },
     future: {
       title: 'On the firmware roadmap',
@@ -263,28 +275,10 @@ const en: KeymodLandingStrings = {
   keycmdBridge: {
     eyebrow: 'Software companion',
     title: 'Controlled from KeyCmd on your phone',
-    body: 'KeyMod is the USB bridge on the machine. KeyCmd is the Wireless Console — not a Bluetooth keyboard app.',
+    body:
+      'KeyCmd is the multi-mode console that powers KeyMod, a pocket USB bridge on the machine. Tiny dongle, full control. Built for rack ops, walk-ups, and everyday IT work.',
     cta: 'Meet KeyCmd',
-    mediaLabel: 'KeyCmd UI + dongle inset',
-  },
-  launchStrip: {
-    eyebrow: 'Honest depth',
-    title: 'At launch vs coming later',
-    subtitle: 'What ships with the first KeyMod units — and what we are still building in firmware and KeyCmd.',
-    atLaunchTitle: 'At launch',
-    atLaunchItems: [
-      'HID keyboard/mouse',
-      'KM Basic + maturing KM Pro / Macro / AI Chat',
-      'Mini + Plus ship together',
-    ],
-    comingLaterTitle: 'Coming later',
-    comingLaterItems: [
-      'Wireless terminal',
-      'Plus backer perks on the firmware roadmap (exploring)',
-      'Remote relay · CLI + MCP',
-      'Gamepad / network / MIDI',
-      'Programmable button scripts',
-    ],
+    mediaLabel: 'KeyCmd welcome screen — pick a control mode',
   },
   productLine: {
     eyebrow: 'Openterface family',

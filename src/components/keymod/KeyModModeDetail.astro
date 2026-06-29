@@ -1,0 +1,41 @@
+---
+import type { KeymodPovSceneId } from '../../data/keymodPovScenes';
+
+interface Props {
+  id: string;
+  status: string;
+  title?: string;
+  body: string;
+  sceneId?: KeymodPovSceneId;
+  compact?: boolean;
+  roadmap?: boolean;
+  notice?: string;
+}
+
+const { id, status, title, body, sceneId, compact = false, roadmap = false, notice } = Astro.props;
+---
+
+<article
+  {id}
+  class:list={[
+    'km-theater-detail',
+    roadmap && 'km-theater-detail--roadmap',
+    sceneId && 'km-theater-detail--linked',
+    compact && 'km-theater-detail--compact',
+  ]}
+  data-theater-scene={sceneId}
+>
+  <span class:list={['km-theater-detail__status', roadmap && 'km-theater-detail__status--roadmap']}>
+    {status}
+  </span>
+  {title && !compact ? <h3 class="km-title km-theater-detail__title">{title}</h3> : null}
+  <p class="km-body km-theater-detail__body">{body}</p>
+  {notice ? <p class="km-theater-detail__notice">{notice}</p> : null}
+  {
+    sceneId ? (
+      <button type="button" class="km-theater-detail__jump" data-theater-jump={sceneId}>
+        View demo ↑
+      </button>
+    ) : null
+  }
+</article>

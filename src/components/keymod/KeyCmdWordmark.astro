@@ -1,4 +1,6 @@
 ---
+import { keymodWordmarkInlineStyle } from '../../data/keymodBrand';
+
 type WordmarkSize = 'nav' | 'hero' | 'section' | 'inline' | 'footer';
 
 interface Props {
@@ -8,11 +10,13 @@ interface Props {
 }
 
 const { class: className = '', size = 'inline', decorative = false } = Astro.props;
-const sizeClass = size === 'inline' ? '' : `km-wordmark--${size}`;
+const sizeClass = size === 'inline' ? 'km-wordmark--inline' : `km-wordmark--${size}`;
+const inlineStyle = size === 'inline' ? keymodWordmarkInlineStyle('keycmd') : undefined;
 ---
 
 <span
   class:list={['km-wordmark km-wordmark--keycmd', sizeClass, className]}
+  style={inlineStyle}
   role={decorative ? 'presentation' : 'img'}
   aria-label={decorative ? undefined : 'KeyCmd'}
 ></span>

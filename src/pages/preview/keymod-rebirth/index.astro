@@ -7,7 +7,6 @@ import KeyModSkuCompare from '../../../components/keymod/KeyModSkuCompare.astro'
 import KeyModModesTheater from '../../../components/keymod/KeyModModesTheater.astro';
 import KeyModSocialProof from '../../../components/keymod/KeyModSocialProof.astro';
 import KeyModKeyCmdBridge from '../../../components/keymod/KeyModKeyCmdBridge.astro';
-import KeyModLaunchStrip from '../../../components/keymod/KeyModLaunchStrip.astro';
 import KeyModProductLine from '../../../components/keymod/KeyModProductLine.astro';
 import KeyModLaunchCta from '../../../components/keymod/KeyModLaunchCta.astro';
 import KeyModFaq from '../../../components/keymod/KeyModFaq.astro';
@@ -32,15 +31,14 @@ const canonicalPath = '/preview/keymod-rebirth/';
   <main>
     <KeyModHero copy={copy.hero} />
     <KeyModWhatItIs copy={copy.whatItIs} />
-    <KeyModSkuCompare copy={copy.skuCompare} />
     {/* Scenarios hidden pending copy/visual rework */}
     <KeyModModesTheater copy={copy.modesTheater} />
     <KeyModSocialProof copy={copy.socialProof} />
     <KeyModKeyCmdBridge copy={copy.keycmdBridge} />
-    <KeyModLaunchStrip copy={copy.launchStrip} />
-    <KeyModProductLine copy={copy.productLine} />
+    <KeyModSkuCompare copy={copy.skuCompare} />
     <KeyModLaunchCta copy={copy.subscribe} />
     <KeyModFaq copy={copy.faq} />
+    <KeyModProductLine copy={copy.productLine} />
   </main>
   <KeyModFooter copy={copy.footer} />
 </KeyModLayout>

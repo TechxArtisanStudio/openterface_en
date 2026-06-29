@@ -1,7 +1,7 @@
 ---
 import KeyModSection from './KeyModSection.astro';
-import KeyCmdWordmark from './KeyCmdWordmark.astro';
-import KeyModModeBlock from './KeyModModeBlock.astro';
+import KeyModPovStage from './KeyModPovStage.astro';
+import KeyModModeDetail from './KeyModModeDetail.astro';
 import { keymodLinks } from '../../i18n/keymodLanding';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
@@ -11,90 +11,111 @@ interface Props {
 
 const { copy } = Astro.props;
 const m = copy;
+
+const povStageScenes = [
+  { id: 'keyboard' as const, status: m.basic.badge, title: m.basic.title, lead: m.basic.lead },
+  { id: 'touchpad' as const, status: m.touchpad.badge, title: m.touchpad.title, lead: m.touchpad.lead },
+  {
+    id: 'compose-send' as const,
+    status: m.composeSend.badge,
+    title: m.composeSend.title,
+    lead: m.composeSend.lead,
+  },
+  { id: 'gamepad' as const, status: m.gamepad.badge, title: m.gamepad.title, lead: m.gamepad.lead },
+  {
+    id: 'presentation' as const,
+    status: m.presentation.badge,
+    title: m.presentation.title,
+    lead: m.presentation.lead,
+  },
+  {
+    id: 'terminal' as const,
+    status: m.proTerminal.badge,
+    title: m.proTerminal.title,
+    lead: m.proTerminal.lead,
+  },
+  { id: 'ai-chat' as const, status: m.aiChat.badge, title: m.aiChat.title, lead: m.aiChat.lead },
+];
 ---
 
 <KeyModSection id="modes-theater" title={copy.title} subtitle={copy.subtitle} centered>
   <div slot="eyebrow" class="km-eyebrow-lockup">
-    <KeyCmdWordmark size="section" />
-    <span class="km-eyebrow km-eyebrow-lockup__text">{copy.eyebrow.replace(/^KeyCmd\s*/i, '')}</span>
+    <span class="km-eyebrow km-eyebrow-lockup__text">{copy.eyebrow}</span>
   </div>
-  <KeyModModeBlock
-    badge={m.basic.badge}
-    title={m.basic.title}
-    body={m.basic.body}
-    mediaLabel={m.basic.mediaLabel}
-    assetSection="modes"
-    assetSlot="basic-video"
-  />
 
-  <div class="km-zone-matrix" data-km-zone="ops">
-    <div class="km-zone-matrix__inner">
-      <p class="km-eyebrow">{m.opsZone.eyebrow}</p>
-      <KeyModModeBlock
-        badge={m.proTerminal.badge}
-        title={m.proTerminal.title}
-        body={m.proTerminal.body}
-        mediaLabel={m.proTerminal.mediaLabel}
-        assetSection="modes"
-        assetSlot="pro-terminal"
-      />
-      <KeyModModeBlock
-        badge={m.composeSend.badge}
-        title={m.composeSend.title}
-        body={m.composeSend.body}
-        mediaLabel={m.composeSend.mediaLabel}
-        assetSection="modes"
-        assetSlot="compose-send"
-      />
-      <KeyModModeBlock
-        badge={m.terminalBle.badge}
-        title={m.terminalBle.title}
-        body={m.terminalBle.body}
-        mediaLabel={m.terminalBle.mediaLabel}
-        notice={m.terminalBle.notice}
-        assetSection="modes"
-        assetSlot="terminal-monitor"
-        roadmap
-      />
+  <KeyModPovStage scenes={povStageScenes} defaultSceneId="keyboard" />
+
+  <div class="km-theater-scroll">
+    <div class="km-theater-zone km-theater-zone--ops km-zone-matrix" data-km-zone="ops">
+      <div class="km-theater-zone__inner km-zone-matrix__inner">
+        <p class="km-theater-zone__eyebrow km-eyebrow">{m.opsZone.eyebrow}</p>
+        <KeyModModeDetail
+          id="mode-terminal"
+          status={m.proTerminal.badge}
+          body={m.proTerminal.body}
+          sceneId="terminal"
+          compact
+        />
+        <KeyModModeDetail
+          id="mode-compose"
+          status={m.composeSend.badge}
+          title={m.composeSend.title}
+          body={m.composeSend.body}
+          sceneId="compose-send"
+        />
+        <KeyModModeDetail
+          id="mode-ble"
+          status={m.terminalBle.badge}
+          title={m.terminalBle.title}
+          body={m.terminalBle.body}
+          notice={m.terminalBle.notice}
+          roadmap
+        />
+      </div>
     </div>
-  </div>
 
-  <div class="km-zone-game" data-km-zone="game">
-    <div class="km-zone-game__inner">
-      <p class="km-eyebrow">{m.gameZone.eyebrow}</p>
-      <KeyModModeBlock
-        badge={m.gamepad.badge}
-        title={m.gamepad.title}
-        body={m.gamepad.body}
-        mediaLabel={m.gamepad.mediaLabel}
-        assetSection="modes"
-        assetSlot="gamepad"
-      />
-      <p class="km-game-kvmgo">
-        {m.gameZone.kvmGoNote}
-        {' '}
-        <a href={keymodLinks.kvmgo}>{m.gameZone.kvmGoCta} →</a>
-      </p>
+    <div class="km-theater-zone km-theater-zone--game km-zone-game" data-km-zone="game">
+      <div class="km-theater-zone__inner km-zone-game__inner">
+        <p class="km-theater-zone__eyebrow km-eyebrow">{m.gameZone.eyebrow}</p>
+        <KeyModModeDetail
+          id="mode-gamepad"
+          status={m.gamepad.badge}
+          body={m.gamepad.body}
+          sceneId="gamepad"
+          compact
+        />
+        <p class="km-game-kvmgo">
+          {m.gameZone.kvmGoNote}
+          {' '}
+          <a href={keymodLinks.kvmgo}>{m.gameZone.kvmGoCta} →</a>
+        </p>
+      </div>
     </div>
-  </div>
 
-  <div class="km-split" style="margin-top: 2rem;">
-    <KeyModModeBlock
-      badge={m.presentation.badge}
-      title={m.presentation.title}
-      body={m.presentation.body}
-      mediaLabel={m.presentation.mediaLabel}
-      assetSection="modes"
-      assetSlot="presentation"
-    />
-    <div class="km-card">
-      <h3 class="km-card__title">{m.future.title}</h3>
-      <div class="km-future-chips">
-        {
-          m.future.chips.map((chip) => (
-            <span class="km-future-chip">{chip}</span>
-          ))
-        }
+    <div class="km-theater-split km-split">
+      <KeyModModeDetail
+        id="mode-presentation"
+        status={m.presentation.badge}
+        title={m.presentation.title}
+        body={m.presentation.body}
+        sceneId="presentation"
+      />
+      <div class="km-card km-theater-future">
+        <h3 class="km-card__title">{m.future.title}</h3>
+        <KeyModModeDetail
+          id="mode-ai-chat"
+          status={m.aiChat.badge}
+          body={m.aiChat.body}
+          sceneId="ai-chat"
+          compact
+        />
+        <div class="km-future-chips">
+          {
+            m.future.chips.map((chip) => (
+              <span class="km-future-chip">{chip}</span>
+            ))
+          }
+        </div>
       </div>
     </div>
   </div>
@@ -115,6 +136,13 @@ const m = copy;
     border-radius: 999px;
     border: 1px solid var(--km-border);
     color: var(--km-muted);
+  }
+
+  .km-theater-future .km-theater-detail {
+    margin-top: 0.75rem;
+    padding: 0;
+    background: transparent;
+    border: none;
   }
 
   .km-game-kvmgo {
