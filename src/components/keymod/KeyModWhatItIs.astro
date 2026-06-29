@@ -28,15 +28,20 @@ const welcomeAsset = getKeymodAsset('whatItIs', 'welcome-screen');
         </figure>
       ) : null
     }
-    <div class="km-grid km-grid--3 km-whatitis__cards">
+    <ol class="km-whatitis__steps">
       {
-        copy.cards.map((card) => (
-          <article class="km-card">
-            <h3 class="km-card__title">{card.title}</h3>
-            <p class="km-card__body">{card.body}</p>
-          </article>
+        copy.cards.map((card, index) => (
+          <li class="km-whatitis-step">
+            <span class="km-whatitis-step__num" aria-hidden="true">
+              {index + 1}
+            </span>
+            <article class="km-card km-whatitis-step__card">
+              <h3 class="km-card__title">{card.title}</h3>
+              <p class="km-card__body">{card.body}</p>
+            </article>
+          </li>
         ))
       }
-    </div>
+    </ol>
   </div>
 </KeyModSection>
