@@ -15,14 +15,16 @@ const heroAsset = getKeymodAsset('hero', 'center');
 
 <section class="km-hero km-hero--light" id="hero" aria-labelledby="hero-title">
   <div class="km-hero__content">
-    <h1 id="hero-title" class="km-hero__product-name">
-      <KeyModWordmark size="hero" />
-      <span class="sr-only">{copy.productName}</span>
-    </h1>
-    <p class="km-hero__tagline">{copy.tagline}</p>
+    <div class="km-hero__brand">
+      <h1 id="hero-title" class="km-hero__product-name">
+        <KeyModWordmark size="hero" />
+        <span class="sr-only">{copy.productName}</span>
+      </h1>
+      <p class="km-hero__tagline">{copy.tagline}</p>
+    </div>
 
     <div class="km-hero__stage">
-      <div class="km-hero__image-wrap" data-km-hero-dongle>
+      <div class="km-hero__image-wrap">
         {
           heroAsset?.src ? (
             <img
@@ -46,7 +48,7 @@ const heroAsset = getKeymodAsset('hero', 'center');
       <KeyModHeroRail />
     </div>
 
-    <p class="km-hero__headline">{copy.headline}</p>
+    {copy.headline ? <p class="km-hero__headline">{copy.headline}</p> : null}
     <p class="km-hero__lead">{copy.lead}</p>
 
     <div class="km-hero__actions">

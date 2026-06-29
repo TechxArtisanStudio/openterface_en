@@ -28,14 +28,6 @@ function updateSpotlightPosition(rail: HTMLElement, station: HTMLElement): void 
   rail.style.setProperty('--km-spotlight-pct', `${pct}%`);
 }
 
-function pulseDongle(): void {
-  const dongle = document.querySelector<HTMLElement>('[data-km-hero-dongle]');
-  if (!dongle) return;
-  dongle.classList.remove('km-hero__image-wrap--pulse');
-  void dongle.offsetWidth;
-  dongle.classList.add('km-hero__image-wrap--pulse');
-}
-
 export function initKeymodHeroSpotlight(): void {
   disposeSpotlight?.();
 
@@ -58,8 +50,6 @@ export function initKeymodHeroSpotlight(): void {
   let introTimer: ReturnType<typeof setTimeout> | null = null;
   let scrollSyncTimer: ReturnType<typeof setTimeout> | null = null;
   let scrollRaf = 0;
-  let firstPulse = true;
-  let pulseCounter = 0;
 
   const updateTease = (text: string): void => {
     if (!teaseEl || teaseEl.textContent === text) return;
@@ -71,7 +61,7 @@ export function initKeymodHeroSpotlight(): void {
     }, TEASE_MS / 2);
   };
 
-  const setActive = (index: number, opts?: { pulse?: boolean; scroll?: boolean }): void => {
+  const setActive = (index: number, opts?: { scroll?: boolean }): void => {
     activeIndex = ((index % stations.length) + stations.length) % stations.length;
     const station = stations[activeIndex];
 
@@ -86,12 +76,6 @@ export function initKeymodHeroSpotlight(): void {
       scrollStationToCenter(scrollEl, station);
     }
     updateSpotlightPosition(rail, station);
-
-    if (opts?.pulse !== false && !firstPulse) {
-      pulseCounter += 1;
-      if (pulseCounter % 2 === 0) pulseDongle();
-    }
-    firstPulse = false;
   };
 
   const syncSpotlight = (): void => {
@@ -139,7 +123,7 @@ export function initKeymodHeroSpotlight(): void {
     if (introTimer !== null) clearTimeout(introTimer);
     stopCycle();
     rail.dataset.motion = 'reduced';
-    setActive(activeIndex, { pulse: false, scroll: false });
+    setActive(activeIndex, { scroll: false });
   };
 
   stations.forEach((station, index) => {
@@ -169,14 +153,14 @@ export function initKeymodHeroSpotlight(): void {
 
   if (prefersReducedMotion()) {
     rail.dataset.motion = 'reduced';
-    setActive(0, { pulse: false, scroll: false });
+    setActive(0, { scroll: false });
     rail.dataset.drawn = 'true';
     return;
   }
 
   rail.dataset.motion = 'full';
   rail.dataset.userPaused = '';
-  setActive(0, { pulse: false, scroll: false });
+  setActive(0, { scroll: false });
 
   drawTimer = setTimeout(() => {
     if (signal.aborted) return;

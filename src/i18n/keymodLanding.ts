@@ -28,7 +28,7 @@ export type KeymodLandingStrings = {
     tagline: string;
     equationPlus: string;
     equationEquals: string;
-    headline: string;
+    headline?: string;
     lead: string;
     docsCta: string;
   };
@@ -123,7 +123,7 @@ const en: KeymodLandingStrings = {
   meta: {
     title: 'KeyMod — Wireless USB Multi-tool | Openterface',
     description:
-      'Pocket Wireless USB Multi-tool. Plug into any machine, control from KeyCmd on your phone. BIOS-capable HID. Mini for Type-C. Plus for USB-A servers.',
+      'Pocket USB multi-tool bridge. Plug into the target device, control from KeyCmd on your phone. BIOS-capable HID. Mini for Type-C. Plus for USB-A servers.',
     keywords:
       'KeyMod, Wireless USB Multi-tool, KeyCmd, wireless HID, BIOS keyboard, homelab, sysadmin, USB-C, USB-A',
   },
@@ -133,30 +133,25 @@ const en: KeymodLandingStrings = {
   },
   hero: {
     productName: 'KeyMod',
-    tagline: 'Wireless USB Multi-tool',
+    tagline: 'Pocket USB multi-tool bridge.',
     equationPlus: '+ your phone',
     equationEquals: '=',
-    headline: 'Your phone. Every machine\'s wireless console.',
     lead:
-      'Plug into the target, control over BLE — zero-driver HID that works in BIOS. At the rack, kiosk, or bench.',
+      'Plug into the target device. BLE control, zero driver, BIOS-ready. Server, PC, or console. Any USB port.',
     docsCta: 'Docs',
   },
   whatItIs: {
     eyebrow: 'What it is',
     title: 'Hardware plugs in. Software takes control.',
-    subtitle: 'Phone ↔ KeyMod · KeyMod → target over USB HID.',
+    subtitle: 'Target → KeyMod → Phone → KeyCmd',
     cards: [
       {
         title: 'Plug in KeyMod',
-        body: 'USB HID on the target. BIOS-capable. No install on the host.',
+        body: 'Into the target device. Zero driver. BIOS-ready.',
       },
       {
-        title: 'Open KeyCmd',
-        body: 'Pick a mode — KM Basic, KM Pro, gamepad, macros, and more.',
-      },
-      {
-        title: 'Mini or Plus',
-        body: 'Match the port on the machine you control.',
+        title: 'Open KeyCmd on your phone',
+        body: 'Pick a mode: KM Basic, KM Pro, gamepad, macros, and more.',
       },
     ],
   },
