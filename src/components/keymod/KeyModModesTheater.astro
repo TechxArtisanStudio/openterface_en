@@ -70,7 +70,11 @@ const visiblePovIds = new Set(keymodPovVisibleTabScenes.map((s) => s.id));
 const povStageScenes = povStageSceneDefs.filter((s) => visiblePovIds.has(s.id));
 ---
 
-<KeyModSection id="modes-theater" title={copy.title} subtitle={copy.subtitle} centered>
+<KeyModSection id="modes-theater" title={copy.title} centered>
+  <div slot="subtitle" class="km-subtitle-stack">
+    <p class="km-subtitle">{copy.subtitleLines[0]}</p>
+    <p class="km-subtitle">{copy.subtitleLines[1]}</p>
+  </div>
   <div slot="eyebrow" class="km-eyebrow-lockup">
     <span class="km-eyebrow km-eyebrow-lockup__text">{copy.eyebrow}</span>
   </div>

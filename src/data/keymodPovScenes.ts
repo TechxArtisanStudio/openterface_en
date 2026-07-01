@@ -17,6 +17,8 @@ export type KeymodPovSceneId =
 export type KeymodPovScene = {
   id: KeymodPovSceneId;
   tabLabel: string;
+  /** Flask icon — experimental / preview feature. */
+  experimental?: boolean;
   /** When true, tab is omitted from POV stage (scroll-spy may still use the scene). */
   povTabHidden?: boolean;
   /** Monitor bezel + screen content (pre-composited). */
@@ -93,6 +95,7 @@ export const keymodPovScenes: KeymodPovScene[] = [
   {
     id: 'terminal',
     tabLabel: 'Terminal',
+    experimental: true,
     monitorSrc: '/keymod/rebirth/modes/pov/terminal-monitor.webp',
     phoneSrc: '/keymod/rebirth/modes/pov/terminal-phone.webp',
     phoneLayout: 'portrait',
@@ -100,6 +103,7 @@ export const keymodPovScenes: KeymodPovScene[] = [
   {
     id: 'ai-chat',
     tabLabel: 'Agent(AI)',
+    experimental: true,
     monitorSrc: '/keymod/rebirth/modes/pov/ai-chat-monitor.webp',
     phoneSrc: '/keymod/rebirth/modes/pov/ai-chat-phone.webp',
     phoneLayout: 'portrait',
