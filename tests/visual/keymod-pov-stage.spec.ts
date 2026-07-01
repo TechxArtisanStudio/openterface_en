@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { KEYMOD_POV_USER_RESUME_MS } from '../../src/scripts/keymod-mode-cycle';
 
 test.describe('KeyMod POV Stage', () => {
   test('renders tabs, switches scene, no mobile overflow', async ({ page }) => {
@@ -63,7 +64,7 @@ test.describe('KeyMod POV Stage', () => {
     await expect(stage).toHaveAttribute('data-active-scene', 'ai-chat', { timeout: 5000 });
 
     await stage.locator('[data-pov-tab="keyboard"]').click();
-    await page.waitForTimeout(11_000);
+    await page.waitForTimeout(KEYMOD_POV_USER_RESUME_MS + 500);
 
     const order = await stage.evaluate(() =>
       [...document.querySelectorAll<HTMLButtonElement>('[data-pov-tab]')].map((tab) => tab.dataset.povTab),

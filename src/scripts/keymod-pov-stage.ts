@@ -3,9 +3,7 @@ import {
   keymodPovAutoplaySceneIds,
   type KeymodPovSceneId,
 } from '../data/keymodPovScenes';
-import { createModeCycle, type ModeCycleController } from './keymod-mode-cycle';
-
-const SCROLL_SPY_LOCK_MS = 900;
+import { createModeCycle, KEYMOD_POV_USER_RESUME_MS, type ModeCycleController } from './keymod-mode-cycle';
 
 let stageEl: HTMLElement | null = null;
 let cycle: ModeCycleController | null = null;
@@ -47,7 +45,7 @@ function setActiveScene(
   const { fromUser = false, fromScrollSpy = false } = opts;
 
   if (fromUser) {
-    scrollSpyLockedUntil = Date.now() + SCROLL_SPY_LOCK_MS;
+    scrollSpyLockedUntil = Date.now() + KEYMOD_POV_USER_RESUME_MS;
     cycle?.pauseForUser();
   } else if (fromScrollSpy) {
     cycle?.pauseForUser();
@@ -184,6 +182,7 @@ export function initKeymodPovStage(): void {
   cycle = createModeCycle({
     onAdvance: advanceScene,
     isEnabled: () => stageVisible,
+    userResumeMs: KEYMOD_POV_USER_RESUME_MS,
   });
 
   stage.addEventListener('click', boundTabClick);

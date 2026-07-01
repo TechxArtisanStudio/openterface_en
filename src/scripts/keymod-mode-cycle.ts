@@ -1,5 +1,7 @@
 export const KEYMOD_MODE_CYCLE_MS = 3400;
 export const KEYMOD_CYCLE_RESUME_MS = 10_000;
+/** POV In action — longer idle after a tab click before autoplay resumes. */
+export const KEYMOD_POV_USER_RESUME_MS = 30_000;
 
 export type ModeCycleController = {
   start: () => void;
@@ -7,6 +9,7 @@ export type ModeCycleController = {
   pauseForUser: () => void;
   destroy: () => void;
   isPausedForUser: () => boolean;
+  userResumeMs: number;
 };
 
 function prefersReducedMotion(): boolean {
@@ -16,7 +19,9 @@ function prefersReducedMotion(): boolean {
 export function createModeCycle(options: {
   onAdvance: () => void;
   isEnabled?: () => boolean;
+  userResumeMs?: number;
 }): ModeCycleController {
+  const userResumeMs = options.userResumeMs ?? KEYMOD_CYCLE_RESUME_MS;
   let intervalId: ReturnType<typeof setInterval> | null = null;
   let resumeId: ReturnType<typeof setTimeout> | null = null;
 
@@ -48,7 +53,7 @@ export function createModeCycle(options: {
     resumeId = setTimeout(() => {
       resumeId = null;
       start();
-    }, KEYMOD_CYCLE_RESUME_MS);
+    }, userResumeMs);
   };
 
   const destroy = (): void => {
@@ -62,5 +67,6 @@ export function createModeCycle(options: {
     pauseForUser,
     destroy,
     isPausedForUser: () => resumeId !== null,
+    userResumeMs,
   };
 }
