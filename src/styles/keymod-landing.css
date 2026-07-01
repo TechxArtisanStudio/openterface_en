@@ -4532,31 +4532,31 @@
   box-shadow: 0 2px 12px rgba(0, 255, 65, 0.1);
 }
 
-.keymod-landing[data-km-active-zone="ops"] .km-back-to-top:hover {
+.km-back-to-top[data-km-zone-theme="ops"]:hover {
   color: var(--km-matrix-accent);
   border-color: var(--km-matrix-accent);
   box-shadow: 0 0 16px rgba(0, 255, 65, 0.2);
 }
 
-.keymod-landing[data-km-active-zone="ops"] .km-back-to-top:focus-visible {
+.km-back-to-top[data-km-zone-theme="ops"]:focus-visible {
   outline-color: var(--km-matrix-accent);
 }
 
 /* Back to top theme: game (neon purple/cyan) */
-.keymod-landing[data-km-active-zone="game"] .km-back-to-top {
+.km-back-to-top[data-km-zone-theme="game"] {
   background: rgba(13, 10, 22, 0.94);
   border-color: rgba(0, 212, 255, 0.35);
   color: rgba(236, 232, 255, 0.65);
   box-shadow: 0 2px 12px rgba(255, 61, 154, 0.12);
 }
 
-.keymod-landing[data-km-active-zone="game"] .km-back-to-top:hover {
+.km-back-to-top[data-km-zone-theme="game"]:hover {
   color: var(--km-game-accent);
   border-color: var(--km-game-accent);
   box-shadow: 0 0 16px rgba(0, 212, 255, 0.22);
 }
 
-.keymod-landing[data-km-active-zone="game"] .km-back-to-top:focus-visible {
+.km-back-to-top[data-km-zone-theme="game"]:focus-visible {
   outline-color: var(--km-game-accent);
 }
 
