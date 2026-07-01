@@ -47,7 +47,11 @@ const headerClass = centered ? 'km-section__header km-section__header--center' :
               {title}
             </h2>
           )}
-          {subtitle && <p class="km-subtitle">{subtitle}</p>}
+          {Astro.slots.has('subtitle') ? (
+            <slot name="subtitle" />
+          ) : (
+            subtitle && <p class="km-subtitle">{subtitle}</p>
+          )}
         </header>
       )
     }
