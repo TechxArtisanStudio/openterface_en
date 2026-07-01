@@ -13,7 +13,6 @@ const imageHeight = 1080;
 
 /** P0 assets land under public/keymod/rebirth/ops/ — show placeholder until files exist. */
 const p0Assets = new Set([
-  '/keymod/rebirth/ops/ops-compose-saved-texts.webp',
   '/keymod/rebirth/ops/ops-terminal-usb.webp',
   '/keymod/rebirth/ops/ops-terminal-ble.webp',
 ]);
@@ -50,28 +49,6 @@ function isP0Placeholder(src: string): boolean {
     <button type="button" class="km-theater-detail__jump" data-theater-jump="compose-send">
       View demo ↑
     </button>
-  </section>
-
-  <section class="km-ops-showcase__block" aria-labelledby="ops-saved-texts-title">
-    <h3 id="ops-saved-texts-title" class="km-ops-showcase__title">{opsZone.savedTexts.title}</h3>
-    <p class="km-ops-showcase__body">{opsZone.savedTexts.body}</p>
-    {
-      isP0Placeholder(opsZone.savedTexts.imageSrc) ? (
-        <KeyModMediaPlaceholder label={opsZone.savedTexts.mediaLabel} />
-      ) : (
-        <figure class="km-media km-ops-showcase__figure">
-          <img
-            class="km-media__img"
-            src={opsZone.savedTexts.imageSrc}
-            alt={opsZone.savedTexts.imageAlt}
-            width={imageWidth}
-            height={imageHeight}
-            loading="lazy"
-            decoding="async"
-          />
-        </figure>
-      )
-    }
   </section>
 
   <section class="km-ops-showcase__block" aria-labelledby="ops-terminal-title">
