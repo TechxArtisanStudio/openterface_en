@@ -4474,7 +4474,7 @@
   color: var(--km-accent-on-light);
 }
 
-/* Back to top — subtle floating control (theme follows body[data-km-active-zone] via zone nav) */
+/* Back to top — subtle floating control (theme via data-km-zone-theme on the button) */
 .km-back-to-top {
   position: fixed;
   right: 1.25rem;
@@ -4525,7 +4525,7 @@
 }
 
 /* Back to top theme: ops (Matrix green) */
-.keymod-landing[data-km-active-zone="ops"] .km-back-to-top {
+.km-back-to-top[data-km-zone-theme="ops"] {
   background: rgba(10, 10, 10, 0.94);
   border-color: rgba(0, 255, 65, 0.35);
   color: rgba(232, 255, 232, 0.65);

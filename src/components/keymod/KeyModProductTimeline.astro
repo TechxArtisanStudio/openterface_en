@@ -1,0 +1,108 @@
+---
+import type { KeymodProductJourney } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: Pick<KeymodProductJourney, 'nowLabel' | 'nowSublabel' | 'milestones'>;
+}
+
+const { copy } = Astro.props;
+
+const pastEndIndex = copy.milestones.findLastIndex(
+  (m) => m.status === 'done' || m.status === 'pivot',
+);
+const pastMilestones = pastEndIndex >= 0 ? copy.milestones.slice(0, pastEndIndex + 1) : [];
+const upcomingMilestones = pastEndIndex >= 0 ? copy.milestones.slice(pastEndIndex + 1) : copy.milestones;
+
+function isExternalHref(href: string) {
+  return href.startsWith('http://') || href.startsWith('https://');
+}
+---
+
+<section class="km-product-timeline" aria-label="KeyMod product journey timeline">
+
+  <ol class="km-timeline" aria-label="KeyMod product journey">
+    {
+      pastMilestones.map((milestone) => (
+        <li
+          class:list={[
+            'km-timeline__item',
+            milestone.status === 'done' && 'km-timeline__item--done',
+            milestone.status === 'pivot' && 'km-timeline__item--pivot',
+          ]}
+        >
+          <span class="km-timeline__node" aria-hidden="true">
+            <span class="km-timeline__check">✓</span>
+          </span>
+          <div class="km-timeline__content">
+            {
+              milestone.href ? (
+                <a
+                  class="km-timeline__title-link"
+                  href={milestone.href}
+                  {...(isExternalHref(milestone.href)
+                    ? { target: '_blank', rel: 'noopener noreferrer' }
+                    : {})}
+                >
+                  {milestone.title}
+                  {isExternalHref(milestone.href) ? ' ↗' : null}
+                </a>
+              ) : (
+                <p class="km-timeline__heading">{milestone.title}</p>
+              )
+            }
+            {milestone.lead ? <p class="km-timeline__lead">{milestone.lead}</p> : null}
+          </div>
+        </li>
+      ))
+    }
+
+    <li class="km-timeline-now" role="status">
+      <span class="km-timeline-now__node" aria-hidden="true" />
+      <div class="km-timeline-now__content">
+        <p class="km-timeline-now__label">{copy.nowLabel}</p>
+        <p class="km-timeline-now__sublabel">{copy.nowSublabel}</p>
+      </div>
+    </li>
+
+    {
+      upcomingMilestones.map((milestone) => (
+        <li
+          class:list={[
+            'km-timeline__item',
+            'km-timeline__item--upcoming',
+            milestone.variant === 'beta' && 'km-timeline__item--beta',
+          ]}
+        >
+          <span class="km-timeline__node km-timeline__node--upcoming" aria-hidden="true" />
+          <div class="km-timeline__content">
+            <div class="km-timeline__heading-row">
+              {
+                milestone.href ? (
+                  <a
+                    class="km-timeline__title-link km-timeline__title-link--upcoming"
+                    href={milestone.href}
+                    {...(isExternalHref(milestone.href)
+                      ? { target: '_blank', rel: 'noopener noreferrer' }
+                      : {})}
+                  >
+                    {milestone.title}
+                    {isExternalHref(milestone.href) ? ' ↗' : null}
+                  </a>
+                ) : (
+                  <p class="km-timeline__heading km-timeline__heading--upcoming">{milestone.title}</p>
+                )
+              }
+              {milestone.badge ? <span class="km-timeline__badge">{milestone.badge}</span> : null}
+              {
+                milestone.timingLabel ? (
+                  <span class="km-timeline__timing">{milestone.timingLabel}</span>
+                ) : null
+              }
+            </div>
+            {milestone.lead ? <p class="km-timeline__lead km-timeline__lead--upcoming">{milestone.lead}</p> : null}
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</section>

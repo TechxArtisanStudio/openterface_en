@@ -12,6 +12,8 @@ export const keymodLinks = {
   docs:
     'https://docs.openterface.com/products/keymod/?utm_source=openterface&utm_medium=landing&utm_campaign=keymod-landing-v2',
   discord: 'https://discord.gg/sFTU7O8Xe3',
+  forum:
+    'https://forum.openterface.com?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-firmware-roadmap',
   minikvm: '/minikvm/',
   kvmgo: '/kvmgo/',
   gamepadTutorial:
@@ -28,6 +30,41 @@ export const keymodLinks = {
 } as const;
 
 export type KeymodDemoLink = { label: string; href: string; description?: string };
+
+export type KeymodTimelineStatus = 'done' | 'pivot' | 'upcoming';
+
+export type KeymodTimelineMilestone = {
+  id: string;
+  status: KeymodTimelineStatus;
+  title: string;
+  lead?: string;
+  timingLabel?: string;
+  href?: string;
+  badge?: string;
+  variant?: 'beta';
+};
+
+export type KeymodProductJourney = {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  nowLabel: string;
+  nowSublabel: string;
+  milestones: KeymodTimelineMilestone[];
+};
+
+export type KeymodFirmwareRoadmap = {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  aiChat: { badge: string; body: string };
+  chips: string[];
+  forumPrompt: string;
+  forumCta: string;
+};
+
+/** @deprecated Use KeymodProductJourney */
+export type KeymodProductTimeline = KeymodProductJourney;
 
 export type KeymodLandingStrings = {
   meta: {
@@ -134,8 +171,25 @@ export type KeymodLandingStrings = {
         badge: string;
         title: string;
         body: string;
-        usb: { label: string; body: string; imageSrc: string; imageAlt: string; mediaLabel: string };
-        ble: { label: string; body: string; imageSrc: string; imageAlt: string; mediaLabel: string };
+        experimentalHint: string;
+        demo: {
+          interactiveDemoLabel: string;
+          title: string;
+          summary: string;
+          statusDisconnected: string;
+          statusConnecting: string;
+          statusConnected: string;
+          demoBleLabel: string;
+          demoUsbLabel: string;
+          connectLabel: string;
+          transportBle: string;
+          transportUsb: string;
+          ctrlLabel: string;
+          escLabel: string;
+          tabLabel: string;
+        };
+        usb: { label: string; body: string };
+        ble: { label: string; body: string };
         notice: string;
       };
     };
@@ -166,8 +220,9 @@ export type KeymodLandingStrings = {
       demoLinks?: KeymodDemoLink[];
     };
     aiChat: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
-    future: { title: string; chips: string[] };
   };
+  firmwareRoadmap: KeymodFirmwareRoadmap;
+  productJourney: KeymodProductJourney;
   socialProof: {
     eyebrow: string;
     title: string;
@@ -447,19 +502,30 @@ curl -sf http://127.0.0.1:9090/-/ready'`,
         badge: 'Terminal · Preview',
         title: 'SSH from your phone',
         body: 'Dedicated Terminal mode runs SSH through the KeyMod bridge. Pick USB for speed at the machine or Bluetooth when you are across the room.',
+        experimentalHint: 'Preview feature — live SSH through KeyMod hardware follows firmware Phase 2',
+        demo: {
+          interactiveDemoLabel: 'Interactive demo',
+          title: 'Terminal Preview',
+          summary: 'Try the canned SSH session replay — no hardware required.',
+          statusDisconnected: 'Disconnected',
+          statusConnecting: 'Connecting…',
+          statusConnected: 'Connected',
+          demoBleLabel: 'Preview demo (Bluetooth)',
+          demoUsbLabel: 'Preview demo (USB)',
+          connectLabel: 'Connect',
+          transportBle: 'Bluetooth',
+          transportUsb: 'USB',
+          ctrlLabel: 'Ctrl',
+          escLabel: 'Esc',
+          tabLabel: 'Tab',
+        },
         usb: {
           label: 'USB ECM · KeyMod Plus',
           body: 'Wired path when Plus is tethered to your phone. Low latency and high throughput for full-size sessions at the rack.',
-          imageSrc: '/keymod/rebirth/ops/ops-terminal-usb.webp',
-          imageAlt: 'KeyCmd Terminal connected over USB ECM with htop on screen',
-          mediaLabel: 'Terminal Preview demo (USB transport badge, P0 reshoot)',
         },
         ble: {
           label: 'BLE-Eth · KeyMod Mini',
           body: 'Wireless SSH when Mini is on the target. Compact terminal geometry recommended. Preview demo available in KeyCmd today.',
-          imageSrc: '/keymod/rebirth/ops/ops-terminal-ble.webp',
-          imageAlt: 'KeyCmd Terminal connected over Bluetooth transport',
-          mediaLabel: 'Terminal Preview demo (Bluetooth transport badge, P0 reshoot)',
         },
         notice:
           'KeyCmd ships Terminal UI and transport stack today with Preview demos (USB and Bluetooth). Live SSH through KeyMod hardware follows firmware Phase 2 sign-off.',
@@ -566,10 +632,112 @@ curl -sf http://127.0.0.1:9090/-/ready'`,
       body: 'Gibby AI Chat pairs with KeyMod for conversational control. Preview builds are on the KeyCmd roadmap.',
       mediaLabel: 'Gibby AI Chat mascot and phone UI',
     },
-    future: {
-      title: 'On the firmware roadmap',
-      chips: ['Network bridge', 'Audio bridge', 'MIDI', 'CLI + MCP automation', 'Remote relay'],
+  },
+  firmwareRoadmap: {
+    eyebrow: 'Firmware roadmap',
+    title: 'What we are building next',
+    subtitle:
+      'Modes and bridges ship through KeyCmd first — then land on KeyMod firmware. Here is what is queued up today.',
+    aiChat: {
+      badge: 'AI Chat · Preview',
+      body: 'Gibby AI Chat pairs with KeyMod for conversational control. Preview builds are on the KeyCmd roadmap.',
     },
+    chips: ['Network bridge', 'Audio bridge', 'MIDI', 'CLI + MCP automation', 'Remote relay'],
+    forumPrompt:
+      'Have a mode, bridge, or workflow we should prioritize? Post on the Openterface forum — swap ideas with our dev team and other builders.',
+    forumCta: 'Discuss on the forum ↗',
+  },
+  productJourney: {
+    eyebrow: 'Product journey',
+    title: 'Where KeyMod is today',
+    subtitle: 'From HID emulator concept to pocket USB multi-tool bridge — and what comes next.',
+    nowLabel: 'You are here',
+      nowSublabel: 'Pre-launch · final validation before crowdfunding',
+      milestones: [
+        {
+          id: 'concept',
+          status: 'done',
+          title: 'From Mini-KVM to HID emulator',
+          lead: 'Product concept: a pocket HID bridge evolved from our Mini-KVM stack.',
+        },
+        {
+          id: 'hw-prototype',
+          status: 'done',
+          title: 'Hardware designed & prototyped',
+          lead: 'KeyMod Mini and Plus boards designed, laid out, and first articles built.',
+        },
+        {
+          id: 'cs-prelaunch',
+          status: 'done',
+          title: 'Crowd Supply pre-launch live',
+          lead: 'Campaign page is up — follow for launch day.',
+          href: keymodLinks.crowdSupply,
+        },
+        {
+          id: 'trial-batch-1',
+          status: 'done',
+          title: 'First small-batch trial run',
+          lead: 'First factory trial build to validate assembly and BOM.',
+        },
+        {
+          id: 'beta-1',
+          status: 'done',
+          title: 'Beta invites & early feedback',
+          lead: 'Closed beta with real setups — feedback shaped KeyCmd and firmware priorities.',
+        },
+        {
+          id: 'firmware-pivot',
+          status: 'pivot',
+          title: 'Firmware breakthrough — concept pivot',
+          lead: 'Reshaped as a Pocket USB multi-tool bridge — one dongle, many control modes.',
+        },
+        {
+          id: 'trial-batches',
+          status: 'done',
+          title: 'Multiple trial production runs',
+          lead: 'Iterated small batches to harden hardware before mass production.',
+        },
+        {
+          id: 'beta-2',
+          status: 'upcoming',
+          variant: 'beta',
+          badge: 'Beta · Round 2',
+          title: 'Next beta round — tester invites',
+          lead: 'Wider closed beta on refreshed firmware and hardware — help stress-test real setups before crowdfunding.',
+          timingLabel: 'Before launch',
+          href: '#updates',
+        },
+        {
+          id: 'crowdfunding',
+          status: 'upcoming',
+          title: 'Crowdfunding opens',
+          timingLabel: '~Mid-July 2026',
+        },
+        {
+          id: 'campaign',
+          status: 'upcoming',
+          title: 'Campaign live',
+          timingLabel: '~1.5 months',
+        },
+        {
+          id: 'mass-production',
+          status: 'upcoming',
+          title: 'Mass production',
+          timingLabel: '~3 months',
+        },
+        {
+          id: 'sea-freight',
+          status: 'upcoming',
+          title: 'Sea freight to US fulfillment',
+          timingLabel: '~1.5 months',
+        },
+        {
+          id: 'backer-delivery',
+          status: 'upcoming',
+          title: 'Units reach backers',
+          timingLabel: '~2–3 weeks',
+        },
+      ],
   },
   socialProof: {
     eyebrow: 'Real users',

@@ -33,8 +33,9 @@ function previewLine(content: string, maxLen = 72): string {
   <p class="km-compose-flow__demo-label">{compose.interactiveDemoLabel}</p>
 
   <div class="km-compose-flow__stage">
-    <div class="km-compose-flow__phone">
-      <div class="km-compose-flow__phone-bezel">
+    <div class="km-compose-flow__phone-col">
+      <div class="km-compose-flow__phone">
+        <div class="km-compose-flow__phone-bezel">
         <div class="km-compose-flow__phone-notch" aria-hidden="true"></div>
         <div class="km-compose-flow__phone-screen">
           <div class="km-compose-flow__status-bar" aria-hidden="true"></div>
@@ -101,7 +102,6 @@ function previewLine(content: string, maxLen = 72): string {
                     aria-label={compose.openLibraryLabel}
                   >
                     <img src="/keymod/icons/compose/ic-saved-texts.svg" alt="" width="20" height="20" />
-                    <span class="km-compose-flow__library-hint" data-km-compose-library-hint>{compose.libraryHint}</span>
                   </button>
                   <button
                     type="button"
@@ -197,6 +197,7 @@ function previewLine(content: string, maxLen = 72): string {
           </div>
         </div>
       </div>
+      <p class="km-compose-flow__library-hint" data-km-compose-library-hint>{compose.libraryHint}</p>
     </div>
 
     <div class="km-compose-flow__bridge" aria-hidden="true">

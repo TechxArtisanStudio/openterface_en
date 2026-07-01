@@ -1,7 +1,6 @@
 ---
 import KeyModSection from './KeyModSection.astro';
 import KeyModPovStage from './KeyModPovStage.astro';
-import KeyModModeDetail from './KeyModModeDetail.astro';
 import KeyModGameZoneShowcase from './KeyModGameZoneShowcase.astro';
 import KeyModOpsZoneShowcase from './KeyModOpsZoneShowcase.astro';
 import KeyModCrowdSupplyCta from './KeyModCrowdSupplyCta.astro';
@@ -100,50 +99,5 @@ const povStageScenes = povStageSceneDefs.filter((s) => visiblePovIds.has(s.id));
         <KeyModGameZoneShowcase gameZone={m.gameZone} gamepad={m.gamepad} />
       </div>
     </div>
-
-    <div class="km-theater-future-wrap">
-      <div class="km-card km-theater-future">
-        <h3 class="km-card__title">{m.future.title}</h3>
-        <KeyModModeDetail
-          id="mode-ai-chat"
-          status={m.aiChat.badge}
-          body={m.aiChat.body}
-          compact
-        />
-        <div class="km-future-chips">
-          {
-            m.future.chips.map((chip) => (
-              <span class="km-future-chip">{chip}</span>
-            ))
-          }
-        </div>
-      </div>
-    </div>
   </div>
 </KeyModSection>
-
-<style>
-  .km-future-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
-  }
-
-  .km-future-chip {
-    font-family: var(--km-font-mono);
-    font-size: 0.75rem;
-    padding: 0.35rem 0.65rem;
-    border-radius: 999px;
-    border: 1px solid var(--km-border);
-    color: var(--km-muted);
-  }
-
-  .km-theater-future .km-theater-detail {
-    margin-top: 0.75rem;
-    padding: 0;
-    background: transparent;
-    border: none;
-  }
-
-</style>

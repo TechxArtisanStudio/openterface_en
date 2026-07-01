@@ -5,11 +5,13 @@ import KeyModHero from '../../../components/keymod/KeyModHero.astro';
 import KeyModWhatItIs from '../../../components/keymod/KeyModWhatItIs.astro';
 import KeyModSkuCompare from '../../../components/keymod/KeyModSkuCompare.astro';
 import KeyModModesTheater from '../../../components/keymod/KeyModModesTheater.astro';
+import KeyModFirmwareRoadmap from '../../../components/keymod/KeyModFirmwareRoadmap.astro';
 import KeyModSocialProof from '../../../components/keymod/KeyModSocialProof.astro';
 import KeyModProductLine from '../../../components/keymod/KeyModProductLine.astro';
 import KeyModCrowdSupplyBlock from '../../../components/keymod/KeyModCrowdSupplyBlock.astro';
 import KeyModLaunchCta from '../../../components/keymod/KeyModLaunchCta.astro';
 import KeyModFaq from '../../../components/keymod/KeyModFaq.astro';
+import KeyModProductJourney from '../../../components/keymod/KeyModProductJourney.astro';
 import KeyModFooter from '../../../components/keymod/KeyModFooter.astro';
 import KeyModBackToTop from '../../../components/keymod/KeyModBackToTop.astro';
 import { getKeymodLanding } from '../../../i18n/keymodLanding';
@@ -34,11 +36,13 @@ const canonicalPath = '/preview/keymod-rebirth/';
     <KeyModWhatItIs copy={copy.whatItIs} />
     {/* Scenarios hidden pending copy/visual rework */}
     <KeyModModesTheater copy={copy.modesTheater} crowdSupplyCampaign={copy.crowdSupplyCampaign} />
+    <KeyModFirmwareRoadmap copy={copy.firmwareRoadmap} />
     <KeyModSocialProof copy={copy.socialProof} />
     <KeyModSkuCompare copy={copy.skuCompare} />
     <KeyModCrowdSupplyBlock variant="opensource" copy={copy.crowdSupplyOpensource} />
     <KeyModLaunchCta copy={copy.subscribe} />
     <KeyModFaq copy={copy.faq} />
+    <KeyModProductJourney copy={copy.productJourney} />
     <KeyModProductLine copy={copy.productLine} />
   </main>
   <KeyModFooter copy={copy.footer} />

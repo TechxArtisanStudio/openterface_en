@@ -1,0 +1,41 @@
+---
+import KeyModSection from './KeyModSection.astro';
+import KeyModModeDetail from './KeyModModeDetail.astro';
+import { keymodLinks } from '../../i18n/keymodLanding';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['firmwareRoadmap'];
+}
+
+const { copy } = Astro.props;
+---
+
+<KeyModSection id="firmware-roadmap" eyebrow={copy.eyebrow} title={copy.title} subtitle={copy.subtitle} centered narrow>
+  <div class="km-firmware-roadmap">
+    <KeyModModeDetail
+      id="mode-ai-chat-roadmap"
+      status={copy.aiChat.badge}
+      body={copy.aiChat.body}
+      compact
+      roadmap
+    />
+
+    <ul class="km-firmware-roadmap__chips" aria-label="Planned firmware features">
+      {
+        copy.chips.map((chip) => (
+          <li>
+            <span class="km-firmware-roadmap__chip">{chip}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <aside class="km-firmware-roadmap__forum">
+      <p class="km-firmware-roadmap__forum-text">{copy.forumPrompt}</p>
+      <a class="km-btn km-btn--ghost km-firmware-roadmap__forum-cta" href={keymodLinks.forum} target="_blank" rel="noopener noreferrer">
+        {copy.forumCta}
+      </a>
+    </aside>
+  </div>
+</KeyModSection>
