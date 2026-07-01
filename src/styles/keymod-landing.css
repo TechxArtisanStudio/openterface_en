@@ -2329,6 +2329,21 @@
 /* Preset layouts — crossfade rotator + compact thumbnails */
 .km-preset-rotator {
   margin-top: 0.25rem;
+  width: 100%;
+  max-width: min(100%, 36rem);
+  margin-inline: auto;
+}
+
+@media (min-width: 640px) {
+  .km-preset-rotator {
+    max-width: min(100%, 42rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .km-preset-rotator {
+    max-width: min(100%, 44rem);
+  }
 }
 
 .km-preset-rotator:focus {
