@@ -113,13 +113,19 @@ export type KeymodLandingStrings = {
         autoSendHint: string;
         interactiveDemoLabel: string;
         progressRemainingLabel: string;
-      };
-      savedTexts: {
-        title: string;
-        body: string;
-        imageSrc: string;
-        imageAlt: string;
-        mediaLabel: string;
+        savedTextsTitle: string;
+        loadLabel: string;
+        sendSelectedLabel: string;
+        backLabel: string;
+        openLibraryLabel: string;
+        selectFirstHint: string;
+        templates: {
+          id: string;
+          title: string;
+          pinned: boolean;
+          meta: string;
+          content: string;
+        }[];
       };
       terminal: {
         badge: string;
@@ -357,7 +363,7 @@ const en: KeymodLandingStrings = {
       compose: {
         badge: 'KM Pro · Compose & Send',
         title: 'Paste on phone. Tap Send. Target types.',
-        body: 'Write multi-line commands on your phone, preview, then Send. KeyCmd types on the target over USB or Bluetooth HID. Cancel mid-send on long pastes.',
+        body: 'Write multi-line commands on your phone, preview, then Send. KeyCmd types on the target over USB or Bluetooth HID. Cancel mid-send on long pastes. Your personal runbook: pin, rename, load, or send snippets in one tap (up to 60 items).',
         demoLinks: [{ label: 'Compose & Send demo (IG)', href: keymodLinks.composeSendDemo }],
         demoText: `ssh deploy@192.168.11.10 'cd /opt/stacks/monitoring && \\
 docker compose pull prometheus grafana node-exporter && \\
@@ -370,13 +376,49 @@ curl -sf http://127.0.0.1:9090/-/ready'`,
         autoSendHint: 'Tap Send',
         interactiveDemoLabel: 'Interactive demo',
         progressRemainingLabel: 'left',
-      },
-      savedTexts: {
-        title: 'Saved texts',
-        body: 'Your personal runbook: pin, rename, load, or send snippets in one tap. Store deploy scripts, long passwords, and repeat one-liners (up to 60 items).',
-        imageSrc: '/keymod/rebirth/ops/ops-compose-saved-texts.webp',
-        imageAlt: 'KeyCmd Saved texts library with pinned deploy script and password templates',
-        mediaLabel: 'Saved texts sheet: pin prod-deploy, rotate-root-pass, docker compose (P0 reshoot)',
+        savedTextsTitle: 'Saved texts',
+        loadLabel: 'Load',
+        sendSelectedLabel: 'Send selected',
+        backLabel: 'Back to compose',
+        openLibraryLabel: 'Open saved texts',
+        selectFirstHint: 'Select a saved text first',
+        templates: [
+          {
+            id: 'prod-deploy',
+            title: 'prod-deploy',
+            pinned: true,
+            meta: '2d ago',
+            content: `cd /opt/app && git pull origin main && \\
+npm ci --omit=dev && \\
+npm run build && \\
+pm2 reload ecosystem.config.js --env production`,
+          },
+          {
+            id: 'rotate-root-pass',
+            title: 'rotate-root-pass',
+            pinned: true,
+            meta: '1w ago',
+            content: 'Open1face-Demo-2026-Rotate-Me-Not-Real',
+          },
+          {
+            id: 'docker-prune-safe',
+            title: 'docker-prune-safe',
+            pinned: false,
+            meta: '3d ago',
+            content: 'docker system prune -af --filter "until=168h" && docker volume ls',
+          },
+          {
+            id: 'homelab-monitoring',
+            title: 'homelab-monitoring',
+            pinned: false,
+            meta: '5h ago',
+            content: `ssh deploy@192.168.11.10 'cd /opt/stacks/monitoring && \\
+docker compose pull prometheus grafana node-exporter && \\
+docker compose up -d && \\
+docker compose ps && \\
+curl -sf http://127.0.0.1:9090/-/ready'`,
+          },
+        ],
       },
       terminal: {
         badge: 'Terminal · Preview',
