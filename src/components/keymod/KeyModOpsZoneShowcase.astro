@@ -38,17 +38,17 @@ function isP0Placeholder(src: string): boolean {
         <p class="km-ops-showcase__demos">
           {
             opsZone.compose.demoLinks.map((link) => (
-              <a class="km-ops-showcase__demo-link" href={link.href} target="_blank" rel="noopener noreferrer">
-                {link.label} ↗
-              </a>
+              <span class="km-ops-showcase__demo-item">
+                <a class="km-ops-showcase__demo-link" href={link.href} target="_blank" rel="noopener noreferrer">
+                  {link.label} ↗
+                </a>
+                {link.description ? <span class="km-ops-showcase__demo-desc">{link.description}</span> : null}
+              </span>
             ))
           }
         </p>
       ) : null
     }
-    <button type="button" class="km-theater-detail__jump" data-theater-jump="compose-send">
-      View demo ↑
-    </button>
   </section>
 
   <section class="km-ops-showcase__block" aria-labelledby="ops-terminal-title">

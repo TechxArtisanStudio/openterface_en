@@ -21,11 +21,13 @@ export const keymodLinks = {
   keymodIntroReel: 'https://www.instagram.com/reel/DUH77BoiarV/',
   homelabKeyboardDemo: 'https://www.instagram.com/p/DZGUTGAM45Z/',
   composeSendDemo: 'https://www.instagram.com/p/DZNZVbUBBxD/',
+  composeSendCodeReel: 'https://www.instagram.com/techxartisan/reel/DYXUmH2zSzD/',
+  composeSendBatchRenameDemo: 'https://x.com/TechxArtisan/status/2057121671400554849',
   presentationTutorial:
     'https://docs.openterface.com/tutorial/keymod/10-presentation/?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-pov-demo',
 } as const;
 
-export type KeymodDemoLink = { label: string; href: string };
+export type KeymodDemoLink = { label: string; href: string; description?: string };
 
 export type KeymodLandingStrings = {
   meta: {
@@ -364,7 +366,26 @@ const en: KeymodLandingStrings = {
         badge: 'KM Pro · Compose & Send',
         title: 'Paste on phone. Tap Send. Target types.',
         body: 'Write multi-line commands on your phone, preview, then Send. KeyCmd types on the target over USB or Bluetooth HID. Cancel mid-send on long pastes. Your personal runbook: pin, rename, load, or send snippets in one tap (up to 60 items).',
-        demoLinks: [{ label: 'Compose & Send demo (IG)', href: keymodLinks.composeSendDemo }],
+        demoLinks: [
+          {
+            label: 'Long API string send (IG)',
+            description:
+              'Real screen capture — paste a multi-line API call on your phone, tap Send, and watch KeyCmd type it on the target.',
+            href: keymodLinks.composeSendDemo,
+          },
+          {
+            label: 'Long code block send (IG Reel)',
+            description:
+              'Real demo — compose a long script on the phone and send it character-by-character to a locked-down host.',
+            href: keymodLinks.composeSendCodeReel,
+          },
+          {
+            label: 'Windows CMD: batch-rename images (X)',
+            description:
+              'Real screen capture — paste a batch-rename script on your phone, send it into Windows CMD, and let KeyMod type through dozens of filenames for you.',
+            href: keymodLinks.composeSendBatchRenameDemo,
+          },
+        ],
         demoText: `ssh deploy@192.168.11.10 'cd /opt/stacks/monitoring && \\
 docker compose pull prometheus grafana node-exporter && \\
 docker compose up -d && \\

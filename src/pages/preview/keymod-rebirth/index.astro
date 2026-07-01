@@ -11,6 +11,7 @@ import KeyModCrowdSupplyBlock from '../../../components/keymod/KeyModCrowdSupply
 import KeyModLaunchCta from '../../../components/keymod/KeyModLaunchCta.astro';
 import KeyModFaq from '../../../components/keymod/KeyModFaq.astro';
 import KeyModFooter from '../../../components/keymod/KeyModFooter.astro';
+import KeyModBackToTop from '../../../components/keymod/KeyModBackToTop.astro';
 import { getKeymodLanding } from '../../../i18n/keymodLanding';
 
 /** Phase 0 skeleton — full scroll story at /preview/keymod-rebirth/ */
@@ -41,4 +42,5 @@ const canonicalPath = '/preview/keymod-rebirth/';
     <KeyModProductLine copy={copy.productLine} />
   </main>
   <KeyModFooter copy={copy.footer} />
+  <KeyModBackToTop />
 </KeyModLayout>
