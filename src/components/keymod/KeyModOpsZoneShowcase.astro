@@ -1,5 +1,6 @@
 ---
 import KeyModMediaPlaceholder from './KeyModMediaPlaceholder.astro';
+import KeyModComposeSendFlow from './KeyModComposeSendFlow.astro';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
@@ -32,17 +33,7 @@ function isP0Placeholder(src: string): boolean {
     <span class="km-ops-showcase__badge">{opsZone.compose.badge}</span>
     <h3 id="ops-compose-title" class="km-ops-showcase__title">{opsZone.compose.title}</h3>
     <p class="km-ops-showcase__body">{opsZone.compose.body}</p>
-    <figure class="km-media km-ops-showcase__figure">
-      <img
-        class="km-media__img"
-        src={opsZone.compose.imageSrc}
-        alt={opsZone.compose.imageAlt}
-        width={imageWidth}
-        height={imageHeight}
-        loading="lazy"
-        decoding="async"
-      />
-    </figure>
+    <KeyModComposeSendFlow compose={opsZone.compose} />
     {
       opsZone.compose.demoLinks && opsZone.compose.demoLinks.length > 0 ? (
         <p class="km-ops-showcase__demos">

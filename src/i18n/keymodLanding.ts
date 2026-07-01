@@ -106,9 +106,13 @@ export type KeymodLandingStrings = {
         title: string;
         body: string;
         demoLinks?: KeymodDemoLink[];
-        imageSrc: string;
-        imageAlt: string;
-        mediaLabel: string;
+        demoText: string;
+        terminalPrompt: string;
+        sendLabel: string;
+        stopLabel: string;
+        autoSendHint: string;
+        interactiveDemoLabel: string;
+        progressRemainingLabel: string;
       };
       savedTexts: {
         title: string;
@@ -355,9 +359,17 @@ const en: KeymodLandingStrings = {
         title: 'Paste on phone. Tap Send. Target types.',
         body: 'Write multi-line commands on your phone, preview, then Send. KeyCmd types on the target over USB or Bluetooth HID. Cancel mid-send on long pastes.',
         demoLinks: [{ label: 'Compose & Send demo (IG)', href: keymodLinks.composeSendDemo }],
-        imageSrc: '/keymod/rebirth/modes/km-compose-send.webp',
-        imageAlt: 'KeyCmd Compose and Send buffer with Send action on phone',
-        mediaLabel: 'Compose & Send long command buffer (reshoot optional)',
+        demoText: `ssh deploy@192.168.11.10 'cd /opt/stacks/monitoring && \\
+docker compose pull prometheus grafana node-exporter && \\
+docker compose up -d && \\
+docker compose ps && \\
+curl -sf http://127.0.0.1:9090/-/ready'`,
+        terminalPrompt: 'deploy@homelab:~$',
+        sendLabel: 'Send',
+        stopLabel: 'Stop',
+        autoSendHint: 'Tap Send',
+        interactiveDemoLabel: 'Interactive demo',
+        progressRemainingLabel: 'left',
       },
       savedTexts: {
         title: 'Saved texts',
@@ -559,7 +571,7 @@ const en: KeymodLandingStrings = {
     items: [
       {
         q: 'Is this a Bluetooth keyboard app?',
-        a: 'No. KeyMod is USB HID on the target. BLE (or Plus USB) is phone ↔ KeyMod only, not a Bluetooth keyboard emulating into the host OS.',
+        a: 'No. KeyMod is USB HID on the target. BLE (or Plus USB) is phone ↔ KeyMod only—not a Bluetooth keyboard emulating into the host OS. Your PC never pairs with your phone over Bluetooth.',
       },
       {
         q: 'KeyMod Mini vs Plus?',
@@ -567,11 +579,19 @@ const en: KeymodLandingStrings = {
       },
       {
         q: 'KM Basic vs KM Pro?',
-        a: 'Both are Keyboard & Mouse modes inside KeyCmd, not separate products. KM Basic covers everyday typing and trackpad. KM Pro adds richer layouts and power-user workflows (terminal-style control, Compose & Send, and more).',
+        a: 'Both are Keyboard & Mouse modes inside KeyCmd—not separate products. KM Basic is keyboard, numpad, and touchpad only: simple, physical-style controls with nothing to learn. KM Pro adds strip shortcuts, Compose & Send, Saved texts, and Shortcut Hub for power-user workflows. Terminal is a separate KeyCmd mode (Preview today).',
+      },
+      {
+        q: 'Does the target need software or drivers?',
+        a: 'No. KeyMod emulates a standard USB keyboard and mouse. The target sees plug-and-play HID hardware—BIOS-capable, zero install on the host.',
       },
       {
         q: 'Does KeyMod capture video?',
         a: 'No. Use Mini-KVM or KVM-GO when you need the screen on your laptop.',
+      },
+      {
+        q: 'Does Gamepad mode make the PC see an Xbox or PlayStation controller?',
+        a: 'No. KeyCmd maps sticks and buttons to keyboard and mouse actions—the target sees standard keyboard + mouse HID, not native gamepad HID.',
       },
       {
         q: 'Why did the story change?',
