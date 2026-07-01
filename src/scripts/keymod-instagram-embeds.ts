@@ -16,19 +16,42 @@ function embedIframesReady(root: HTMLElement): boolean {
   return root.querySelectorAll('.instagram-media iframe').length > 0;
 }
 
+function showInstagramEmbeds(root: HTMLElement): void {
+  const fallback = root.querySelector<HTMLElement>('[data-km-social-fallback]');
+  const embeds = root.querySelector<HTMLElement>('[data-km-social-embeds]');
+  const loading = root.querySelector<HTMLElement>('[data-km-social-loading]');
+  if (!embeds) return;
+
+  root.classList.remove('km-social-proof--fallback-only');
+  root.classList.add('km-social-proof--embeds-ready');
+  embeds.hidden = false;
+  if (fallback) fallback.hidden = true;
+  if (loading) {
+    loading.hidden = true;
+    loading.setAttribute('aria-busy', 'false');
+  }
+  window.instgrm?.Embeds?.process();
+}
+
 function showTextFallback(root: HTMLElement): void {
   const fallback = root.querySelector<HTMLElement>('[data-km-social-fallback]');
   const embeds = root.querySelector<HTMLElement>('[data-km-social-embeds]');
+  const loading = root.querySelector<HTMLElement>('[data-km-social-loading]');
   if (!fallback || !embeds) return;
 
+  root.classList.remove('km-social-proof--embeds-ready');
   root.classList.add('km-social-proof--fallback-only');
   fallback.hidden = false;
   embeds.hidden = true;
+  if (loading) {
+    loading.hidden = true;
+    loading.setAttribute('aria-busy', 'false');
+  }
 }
 
 function waitForEmbedIframes(root: HTMLElement, deadline: number): void {
   if (embedIframesReady(root)) {
-    window.instgrm?.Embeds?.process();
+    showInstagramEmbeds(root);
     return;
   }
 
@@ -64,7 +87,9 @@ function loadInstagramEmbedScript(): Promise<void> {
 
 export function initKeymodInstagramEmbeds(): void {
   const root = getSocialProofRoot();
-  if (!root || root.classList.contains('km-social-proof--fallback-only')) return;
+  if (!root) return;
+  if (root.classList.contains('km-social-proof--embeds-ready')) return;
+  if (root.classList.contains('km-social-proof--fallback-only')) return;
 
   loadInstagramEmbedScript()
     .then(() => {

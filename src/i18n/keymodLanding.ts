@@ -104,7 +104,7 @@ export type KeymodLandingStrings = {
       eyebrow: string;
       kvmGoNote: string;
       kvmGoCta: string;
-      presets: { title: string; body: string; imageSrc: string; imageAlt: string };
+      presets: { title: string; body: string; layouts: { label: string; imageSrc: string; imageAlt: string }[] };
       editor: {
         title: string;
         body: string;
@@ -138,6 +138,8 @@ export type KeymodLandingStrings = {
     viewAllMedia: string;
     fallbackNote: string;
     viewOnInstagram: string;
+    viewProfile: string;
+    viewPostOnInstagram: string;
   };
   keycmdBridge: {
     eyebrow: string;
@@ -195,7 +197,7 @@ export type KeymodLandingStrings = {
 
 const en: KeymodLandingStrings = {
   meta: {
-    title: 'KeyMod — Wireless USB Multi-tool | Openterface',
+    title: 'KeyMod | Wireless USB Multi-tool | Openterface',
     description:
       'Pocket USB multi-tool bridge. Plug into the target device, control from KeyCmd on your phone. BIOS-capable HID. Mini for Type-C. Plus for USB-A servers.',
     keywords:
@@ -248,22 +250,22 @@ const en: KeymodLandingStrings = {
       name: 'KeyMod Plus',
       port: 'USB-A male → target',
       audience: 'Servers · legacy · rack ops',
-      connect: 'Phone link: BLE or USB wired to the dongle — USB is steadier and higher bandwidth (great for KM Pro).',
+      connect: 'Phone link: BLE or USB wired to the dongle. USB wired is steadier and has more bandwidth (ideal for KM Pro).',
       tagline: 'The A port on the machine',
     },
   },
   scenarios: {
     eyebrow: 'Built for your workflow',
-    title: 'Scenario-first — not a mode checklist',
+    title: 'Scenario-first, not a mode checklist',
     items: [
       {
         title: 'Rack / server',
-        body: 'Bad posture at the rack. Machine has a display. Plug KeyMod Plus or Mini. Wireless input from KeyCmd — not video capture.',
-        imageLabel: 'Rack shot — monitor visible (reshoot)',
+        body: 'Bad posture at the rack. Machine has a display. Plug KeyMod Plus or Mini. Wireless input from KeyCmd, not video capture.',
+        imageLabel: 'Rack shot, monitor visible (reshoot)',
       },
       {
         title: 'IT walk-up',
-        body: 'Kiosk or mini PC with its own screen. Pocket dongle. Control wirelessly from your phone — see range in Mini vs Plus.',
+        body: 'Kiosk or mini PC with its own screen. Pocket dongle. Control wirelessly from your phone. See range in Mini vs Plus.',
         imageLabel: 'Kiosk / walk-up scene',
       },
       {
@@ -283,46 +285,46 @@ const en: KeymodLandingStrings = {
     basic: {
       badge: 'KM Basic · Launch',
       title: 'Wireless keyboard',
-      lead: 'Type on your phone — characters appear on the target screen. BIOS-capable HID.',
-      body: 'First-person POV — hands on phone, characters appear on the target screen. BIOS-capable HID.',
-      mediaLabel: 'POV video loop — KM Basic (reshoot: 主页9)',
+      lead: 'Type on your phone; characters appear on the target screen. BIOS-capable HID.',
+      body: 'First-person POV: hands on phone, characters on the target screen. BIOS-capable HID.',
+      mediaLabel: 'POV video loop, KM Basic (reshoot)',
       demoLinks: [{ label: 'KeyMod intro (IG)', href: keymodLinks.keymodIntroReel }],
     },
     touchpad: {
       badge: 'KM Basic · Launch',
       title: 'Wireless touchpad',
       lead: 'Point, click, and scroll on the target from your phone.',
-      body: 'Use your phone as a wireless trackpad — cursor control without a physical mouse at the machine.',
-      mediaLabel: 'POV — touchpad mode (placeholder)',
+      body: 'Use your phone as a wireless trackpad for cursor control without a mouse at the machine.',
+      mediaLabel: 'POV touchpad mode (placeholder)',
       demoLinks: [{ label: 'Keyboard + touchpad demo (IG)', href: keymodLinks.homelabKeyboardDemo }],
     },
     kmPro: {
       badge: 'KM Pro · Keyboard & Mouse',
       title: 'Hybrid keyboard + mouse layout',
-      lead: 'KeyCmd Pro mode — type and point from one phone screen. Hybrid HID layout for power users.',
-      body: 'Keyboard and Mouse Pro in KeyCmd: combined keyboard, trackpad, and shortcuts on one layout — richer than Basic, still BIOS-capable HID on the target.',
-      mediaLabel: 'POV — KM Pro hybrid layout (placeholder)',
+      lead: 'KeyCmd Pro mode: type and point from one phone screen. Hybrid HID layout for power users.',
+      body: 'Keyboard and Mouse Pro in KeyCmd puts keyboard, trackpad, and shortcuts on one layout. Richer than Basic, still BIOS-capable HID on the target.',
+      mediaLabel: 'POV KM Pro hybrid layout (placeholder)',
     },
     proTerminal: {
       badge: 'KM Pro · Maturing',
       title: 'Terminal control',
       lead: 'SSH and shell workflows from your phone. Target monitor shows the terminal.',
-      body: 'SSH and shell workflows from your phone. Target monitor shows the terminal — not a text editor.',
-      mediaLabel: 'Matrix zone — terminal on monitor (reshoot)',
+      body: 'SSH and shell workflows from your phone. The target monitor shows the terminal, not a text editor.',
+      mediaLabel: 'Matrix zone terminal on monitor (reshoot)',
     },
     composeSend: {
       badge: 'KM Pro · Compose & Send',
       title: 'Paste on phone. Tap Send. Target types.',
       lead: 'Compose long strings on your phone, then send them to the target in one tap.',
-      body: 'License keys, long strings, compose buffers — send once, typed on the target automatically.',
+      body: 'License keys, long strings, compose buffers: send once and they type on the target automatically.',
       mediaLabel: 'Compose & Send demo (IG DZNZVbUBBxD)',
       demoLinks: [{ label: 'Compose & Send demo (IG)', href: keymodLinks.composeSendDemo }],
     },
     terminalBle: {
       badge: 'Coming later',
       title: 'Terminal over Bluetooth',
-      body: 'Wireless serial terminal without a laptop at the rack. On the roadmap — honest depth, no dates yet.',
-      mediaLabel: 'Terminal over BLE — concept',
+      body: 'Wireless serial terminal without a laptop at the rack. On the roadmap; no dates yet.',
+      mediaLabel: 'Terminal over BLE concept',
       notice:
         'BLE serial is not in the launch build. KM Pro terminal over USB HID is maturing now; wireless serial is a future firmware target.',
     },
@@ -332,13 +334,38 @@ const en: KeymodLandingStrings = {
     gameZone: {
       eyebrow: 'Game Zone',
       kvmGoNote:
-        'Same KeyCmd gamepad mode powers our KVM-GO Minecraft demos — swap the USB bridge for KeyMod when the target already has a screen.',
+        'Same KeyCmd gamepad mode powers our KVM-GO Minecraft demos. Use KeyMod instead when the target already has a screen.',
       kvmGoCta: 'See KVM-GO gamepad demos',
       presets: {
         title: 'Preset layouts',
-        body: 'Tap the Preset chip to cycle saved controller layouts — bundled emu-6 starter, import/export JSON presets (schema v7).',
-        imageSrc: '/keymod/rebirth/gamepad/gamepad-preset-layout.webp',
-        imageAlt: 'KeyCmd gamepad preset picker — cycle layouts from the toolbar chip',
+        body: 'Tap the Preset chip to cycle saved controller layouts: bundled emu-6 starter, import/export JSON presets (schema v7).',
+        layouts: [
+          {
+            label: 'Default',
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-preset-default.webp',
+            imageAlt: 'KeyCmd gamepad Default preset, WASD D-pad with A and B face buttons',
+          },
+          {
+            label: 'Emu 6',
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-preset-emu6.webp',
+            imageAlt: 'KeyCmd Emu 6 preset, six-button arcade-style layout on dark grid',
+          },
+          {
+            label: 'Minecraft Java',
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-preset-minecraft.webp',
+            imageAlt: 'KeyCmd Minecraft Java preset, hotbar, look zone, and movement controls',
+          },
+          {
+            label: 'XYAB',
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-preset-xyab.webp',
+            imageAlt: 'KeyCmd XYAB preset, Nintendo-style face buttons with WASD D-pad',
+          },
+          {
+            label: 'Preset chip',
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-preset-layout.webp',
+            imageAlt: 'KeyCmd gamepad preset picker, cycle layouts from the toolbar chip',
+          },
+        ],
       },
       editor: {
         title: 'Build your layout',
@@ -346,47 +373,47 @@ const en: KeymodLandingStrings = {
         panels: [
           {
             imageSrc: '/keymod/rebirth/gamepad/gamepad-edit-mode.webp',
-            imageAlt: 'Gamepad module editor — configure stick, button, and touchpad modules',
+            imageAlt: 'Gamepad module editor, configure stick, button, and touchpad modules',
             caption: 'Configure modules',
           },
           {
             imageSrc: '/keymod/rebirth/gamepad/gamepad-add-mode.webp',
-            imageAlt: 'Add modules to a gamepad preset — D-pad, stick, touchpad, buttons',
+            imageAlt: 'Add modules to a gamepad preset: D-pad, stick, touchpad, buttons',
             caption: 'Add modules',
           },
           {
             imageSrc: '/keymod/rebirth/gamepad/gamepad-editor-hold-lock-turbo.webp',
-            imageAlt: 'Diagonal swipe actions — hold lock and turbo per direction on mouse buttons',
+            imageAlt: 'Diagonal swipe actions: hold lock and turbo per direction on mouse buttons',
             caption: 'Hold lock & turbo',
           },
           {
             imageSrc: '/keymod/rebirth/gamepad/gamepad-editor-mouse-button.webp',
-            imageAlt: 'Fine-tune mouse buttons — press timing and turbo interval',
+            imageAlt: 'Fine-tune mouse buttons: press timing and turbo interval',
             caption: 'Mouse button timing',
           },
           {
             imageSrc: '/keymod/rebirth/gamepad/gamepad-editor-dpad-keys.webp',
-            imageAlt: 'Map direction keys — D-pad cross vs split segments',
+            imageAlt: 'Map direction keys: D-pad cross vs split segments',
             caption: 'Map direction keys',
           },
           {
             imageSrc: '/keymod/rebirth/gamepad/gamepad-editor-scroll-strip.webp',
-            imageAlt: 'Tune scroll strip — height and wheel sensitivity',
+            imageAlt: 'Tune scroll strip: height and wheel sensitivity',
             caption: 'Scroll strip settings',
           },
         ],
       },
       share: {
         title: 'Share presets',
-        body: 'Export layouts as JSON and share with your team — background art embeds in the file. Same gamepad mode on KeyMod and KVM-GO.',
+        body: 'Export layouts as JSON and share with your team. Background art embeds in the file. Same gamepad mode on KeyMod and KVM-GO.',
       },
     },
     gamepad: {
       badge: 'Gamepad mode · Preview',
       title: 'Phone as game controller',
-      lead: 'KeyCmd gamepad mode — immersive, high-motion control from your phone.',
-      body: 'KeyCmd gamepad mode — immersive, high-motion demos. Same stack works with KeyMod hardware.',
-      mediaLabel: 'Gamepad video — Minecraft (8d72edeb / IG)',
+      lead: 'KeyCmd gamepad mode: immersive, high-motion control from your phone.',
+      body: 'High-motion gamepad demos from KeyCmd. Same stack works with KeyMod hardware.',
+      mediaLabel: 'Gamepad video, Minecraft (IG)',
       demoLinks: [
         { label: 'Gamepad tutorial', href: keymodLinks.gamepadTutorial },
         { label: 'Minecraft demo (IG)', href: keymodLinks.gamepadDemo },
@@ -397,16 +424,16 @@ const en: KeymodLandingStrings = {
       badge: 'Presentation',
       title: 'Slide remote',
       lead: 'Control Keynote, Google Slides, and decks from your phone.',
-      body: 'Keynote, Google Slides, and deck control from your phone — secondary scenario.',
+      body: 'Keynote, Google Slides, and deck control from your phone. Handy when you already have the dongle in your bag.',
       mediaLabel: 'Presentation remote scene',
       demoLinks: [{ label: 'Presentation tutorial', href: keymodLinks.presentationTutorial }],
     },
     aiChat: {
       badge: 'AI Chat · Preview',
       title: 'Gibby on your phone',
-      lead: 'Chat with Gibby on KeyCmd — agent actions on the target are on the roadmap.',
-      body: 'Gibby AI Chat pairs with KeyMod for conversational control — preview on the KeyCmd roadmap.',
-      mediaLabel: 'Gibby AI Chat — mascot + phone UI',
+      lead: 'Chat with Gibby on KeyCmd. Agent actions on the target are still on the roadmap.',
+      body: 'Gibby AI Chat pairs with KeyMod for conversational control. Preview builds are on the KeyCmd roadmap.',
+      mediaLabel: 'Gibby AI Chat mascot and phone UI',
     },
     future: {
       title: 'On the firmware roadmap',
@@ -418,8 +445,10 @@ const en: KeymodLandingStrings = {
     title: 'Real users, real setups',
     followIg: 'More demos on @techxartisan',
     viewAllMedia: 'All KeyMod media',
-    fallbackNote: 'Instagram previews unavailable — open posts directly:',
+    fallbackNote: 'Instagram previews unavailable. Open posts directly:',
     viewOnInstagram: 'View on Instagram ↗',
+    viewProfile: 'View profile',
+    viewPostOnInstagram: 'View on Instagram',
   },
   keycmdBridge: {
     eyebrow: 'Software companion',
@@ -427,23 +456,23 @@ const en: KeymodLandingStrings = {
     body:
       'KeyCmd is the multi-mode console that powers KeyMod, a pocket USB bridge on the machine. Tiny dongle, full control. Built for rack ops, walk-ups, and everyday IT work.',
     cta: 'Meet KeyCmd',
-    mediaLabel: 'KeyCmd welcome screen — pick a control mode',
+    mediaLabel: 'KeyCmd welcome screen, pick a control mode',
   },
   crowdSupplyCampaign: {
     eyebrow: 'Crowd Supply',
     title: 'Pre-launch on Crowd Supply',
     body:
-      'Back KeyMod Mini and Plus on Crowd Supply — pocket USB bridges that turn your phone into a wireless console. BIOS-capable HID, zero driver on the target.',
+      'Back KeyMod Mini and Plus on Crowd Supply: pocket USB bridges that turn your phone into a wireless console. BIOS-capable HID, zero driver on the target.',
     cta: 'Pre-launch',
   },
   crowdSupplyOpensource: {
     eyebrow: 'Open by design',
     title: 'Open-source hardware & software',
     body:
-      'KeyCmd, firmware, and hardware docs publish as the project matures — the same open stack philosophy as Openterface Mini-KVM and KVM-GO.',
+      'KeyCmd, firmware, and hardware docs publish as the project matures, following the same open stack approach as Openterface Mini-KVM and KVM-GO.',
     cta: 'Pre-launch',
     badgesLabel: 'Open-source hardware and software',
-    osiAlt: 'Open Source Initiative — approved open-source license',
+    osiAlt: 'Open Source Initiative approved open-source license',
     oshAlt: 'Open Source Hardware Association',
   },
   productLine: {
@@ -457,7 +486,7 @@ const en: KeymodLandingStrings = {
     eyebrow: 'Stay in the loop',
     title: 'Get KeyMod launch updates',
     description:
-      'Product launches, firmware releases, and setup guides — at most one email per month. No spam.',
+      'Product launches, firmware releases, and setup guides. At most one email per month. No spam.',
     benefits: [
       'Early access to crowdfunding and pre-order windows',
       'Setup guides and KeyCmd release notes',
@@ -476,15 +505,15 @@ const en: KeymodLandingStrings = {
     items: [
       {
         q: 'Is this a Bluetooth keyboard app?',
-        a: 'No. KeyMod is USB HID on the target. BLE (or Plus USB) is phone ↔ KeyMod only — not a Bluetooth keyboard emulating into the host OS.',
+        a: 'No. KeyMod is USB HID on the target. BLE (or Plus USB) is phone ↔ KeyMod only, not a Bluetooth keyboard emulating into the host OS.',
       },
       {
         q: 'KeyMod Mini vs Plus?',
-        a: 'Mini plugs into USB-C on the target and links to your phone over BLE. Plus plugs into USB-A and adds a USB wired path to your phone — steadier and higher bandwidth than BLE alone.',
+        a: 'Mini plugs into USB-C on the target and links to your phone over BLE. Plus plugs into USB-A and adds a USB wired path to your phone, which is steadier and has more bandwidth than BLE alone.',
       },
       {
         q: 'KM Basic vs KM Pro?',
-        a: 'Both are Keyboard & Mouse modes inside KeyCmd — not separate products. KM Basic covers everyday typing and trackpad. KM Pro adds richer layouts and power-user workflows (terminal-style control, Compose & Send, and more).',
+        a: 'Both are Keyboard & Mouse modes inside KeyCmd, not separate products. KM Basic covers everyday typing and trackpad. KM Pro adds richer layouts and power-user workflows (terminal-style control, Compose & Send, and more).',
       },
       {
         q: 'Does KeyMod capture video?',
@@ -492,7 +521,7 @@ const en: KeymodLandingStrings = {
       },
       {
         q: 'Why did the story change?',
-        a: 'CH32 platform evolved KeyMod into a Wireless USB Multi-tool — scenario-first at launch.',
+        a: 'CH32 platform work pushed KeyMod toward a Wireless USB Multi-tool with a scenario-first launch story.',
       },
     ],
   },
@@ -501,7 +530,7 @@ const en: KeymodLandingStrings = {
     ctaKeycmd: 'KeyCmd app',
     legal: `© ${new Date().getFullYear()} TechxArtisan · Openterface KeyMod Rebirth preview`,
   },
-  previewBanner: 'PREVIEW — /preview/keymod-rebirth/ · Phase 1 structure · not indexed',
+  previewBanner: 'PREVIEW · /preview/keymod-rebirth/ · Phase 1 structure · not indexed',
 };
 
 const translations: Record<string, KeymodLandingStrings> = { en };
