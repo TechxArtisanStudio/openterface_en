@@ -102,8 +102,6 @@ export type KeymodLandingStrings = {
     opsZone: { eyebrow: string };
     gameZone: {
       eyebrow: string;
-      kvmGoNote: string;
-      kvmGoCta: string;
       presets: { title: string; body: string; layouts: { label: string; imageSrc: string; imageAlt: string }[] };
       editor: {
         title: string;
@@ -333,9 +331,6 @@ const en: KeymodLandingStrings = {
     },
     gameZone: {
       eyebrow: 'Game Zone',
-      kvmGoNote:
-        'Same KeyCmd gamepad mode powers our KVM-GO Minecraft demos. Use KeyMod instead when the target already has a screen.',
-      kvmGoCta: 'See KVM-GO gamepad demos',
       presets: {
         title: 'Preset layouts',
         body: 'Tap the Preset chip to cycle saved controller layouts: bundled emu-6 starter, import/export JSON presets (schema v7).',
