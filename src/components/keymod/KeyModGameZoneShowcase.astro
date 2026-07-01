@@ -1,5 +1,6 @@
 ---
 import KeyModModeDetail from './KeyModModeDetail.astro';
+import KeyModGameEditorCarousel from './KeyModGameEditorCarousel.astro';
 import { keymodLinks } from '../../i18n/keymodLanding';
 import { getKeymodAsset } from '../../data/keymodAssets';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
@@ -65,24 +66,7 @@ const imageHeight = 1080;
   <section class="km-game-showcase__block" aria-labelledby="game-editor-title">
     <h3 id="game-editor-title" class="km-game-showcase__title">{gameZone.editor.title}</h3>
     <p class="km-game-showcase__body">{gameZone.editor.body}</p>
-    <div class="km-game-showcase__duo">
-      {
-        gameZone.editor.panels.map((panel) => (
-          <figure class="km-media km-game-showcase__figure km-game-showcase__figure--duo">
-            <img
-              class="km-media__img"
-              src={panel.imageSrc}
-              alt={panel.imageAlt}
-              width={imageWidth}
-              height={imageHeight}
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption class="km-game-showcase__caption">{panel.caption}</figcaption>
-          </figure>
-        ))
-      }
-    </div>
+    <KeyModGameEditorCarousel panels={gameZone.editor.panels} />
   </section>
 
   <section class="km-game-showcase__share" aria-labelledby="game-share-title">

@@ -352,6 +352,26 @@ const en: KeymodLandingStrings = {
             imageAlt: 'Add modules to a gamepad preset — D-pad, stick, touchpad, buttons',
             caption: 'Add modules',
           },
+          {
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-editor-hold-lock-turbo.webp',
+            imageAlt: 'Diagonal swipe actions — hold lock and turbo per direction on mouse buttons',
+            caption: 'Hold lock & turbo',
+          },
+          {
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-editor-dpad-keys.webp',
+            imageAlt: 'Map direction keys — D-pad cross vs split segments',
+            caption: 'Map direction keys',
+          },
+          {
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-editor-mouse-button.webp',
+            imageAlt: 'Fine-tune mouse buttons — press timing and turbo interval',
+            caption: 'Mouse button timing',
+          },
+          {
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-editor-scroll-strip.webp',
+            imageAlt: 'Tune scroll strip — height and wheel sensitivity',
+            caption: 'Scroll strip settings',
+          },
         ],
       },
       share: {
