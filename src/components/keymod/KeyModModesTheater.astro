@@ -3,6 +3,7 @@ import KeyModSection from './KeyModSection.astro';
 import KeyModPovStage from './KeyModPovStage.astro';
 import KeyModModeDetail from './KeyModModeDetail.astro';
 import KeyModGameZoneShowcase from './KeyModGameZoneShowcase.astro';
+import KeyModOpsZoneShowcase from './KeyModOpsZoneShowcase.astro';
 import KeyModCrowdSupplyCta from './KeyModCrowdSupplyCta.astro';
 import { keymodPovVisibleTabScenes } from '../../data/keymodPovScenes';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
@@ -89,37 +90,7 @@ const povStageScenes = povStageSceneDefs.filter((s) => visiblePovIds.has(s.id));
     <div class="km-theater-zone km-theater-zone--ops km-zone-matrix" data-km-zone="ops">
       <div class="km-theater-zone__inner km-zone-matrix__inner">
         <p class="km-theater-zone__eyebrow km-eyebrow">{m.opsZone.eyebrow}</p>
-        <KeyModModeDetail
-          id="mode-terminal"
-          status={m.proTerminal.badge}
-          body={m.proTerminal.body}
-          sceneId="terminal"
-          compact
-          assetSection="modes"
-          assetSlot="pro-terminal"
-          mediaLabel={m.proTerminal.mediaLabel}
-        />
-        <KeyModModeDetail
-          id="mode-compose"
-          status={m.composeSend.badge}
-          title={m.composeSend.title}
-          body={m.composeSend.body}
-          sceneId="compose-send"
-          assetSection="modes"
-          assetSlot="compose-send"
-          mediaLabel={m.composeSend.mediaLabel}
-        />
-        <KeyModModeDetail
-          id="mode-ble"
-          status={m.terminalBle.badge}
-          title={m.terminalBle.title}
-          body={m.terminalBle.body}
-          notice={m.terminalBle.notice}
-          roadmap
-          assetSection="modes"
-          assetSlot="terminal-monitor"
-          mediaLabel={m.terminalBle.mediaLabel}
-        />
+        <KeyModOpsZoneShowcase opsZone={m.opsZone} />
       </div>
     </div>
 
