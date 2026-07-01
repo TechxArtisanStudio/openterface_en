@@ -25,6 +25,7 @@ function previewLine(content: string, maxLen = 72): string {
   data-load-label={compose.loadLabel}
   data-send-selected-label={compose.sendSelectedLabel}
   data-select-first-hint={compose.selectFirstHint}
+  data-library-hint={compose.libraryHint}
   data-templates={JSON.stringify(compose.templates)}
   role="region"
   aria-label="Compose and Send interactive demo"
@@ -100,6 +101,7 @@ function previewLine(content: string, maxLen = 72): string {
                     aria-label={compose.openLibraryLabel}
                   >
                     <img src="/keymod/icons/compose/ic-saved-texts.svg" alt="" width="20" height="20" />
+                    <span class="km-compose-flow__library-hint" data-km-compose-library-hint>{compose.libraryHint}</span>
                   </button>
                   <button
                     type="button"

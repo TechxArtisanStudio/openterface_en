@@ -2609,6 +2609,49 @@
   border-color: var(--km-compose-accent);
 }
 
+.km-compose-flow__action--library {
+  position: relative;
+}
+
+@keyframes km-compose-library-pulse {
+  0%,
+  100% {
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+  }
+
+  50% {
+    border-color: var(--km-compose-accent, #f57c00);
+    box-shadow: 0 0 0 1px rgba(245, 124, 0, 0.35);
+  }
+}
+
+.km-compose-flow__action--library-pulse {
+  animation: km-compose-library-pulse 2s ease-in-out infinite;
+}
+
+.km-compose-flow__library-hint {
+  position: absolute;
+  bottom: calc(100% + 0.35rem);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.2rem 0.45rem;
+  border-radius: 0.25rem;
+  font-family: var(--km-font-mono);
+  font-size: 0.5625rem;
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
+  color: var(--km-compose-muted);
+  background: rgba(0, 0, 0, 0.85);
+  pointer-events: none;
+}
+
+.km-compose-flow--library-hint-hidden .km-compose-flow__library-hint,
+.km-compose-flow__library-hint[hidden] {
+  display: none;
+}
+
 .km-compose-flow__library-header {
   display: flex;
   align-items: center;

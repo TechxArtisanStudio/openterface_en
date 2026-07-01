@@ -120,6 +120,7 @@ export type KeymodLandingStrings = {
         sendSelectedLabel: string;
         backLabel: string;
         openLibraryLabel: string;
+        libraryHint: string;
         selectFirstHint: string;
         templates: {
           id: string;
@@ -402,6 +403,7 @@ curl -sf http://127.0.0.1:9090/-/ready'`,
         sendSelectedLabel: 'Send selected',
         backLabel: 'Back to compose',
         openLibraryLabel: 'Open saved texts',
+        libraryHint: 'Saved texts · tap to browse your runbook',
         selectFirstHint: 'Select a saved text first',
         templates: [
           {
