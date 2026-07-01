@@ -1,6 +1,7 @@
 ---
-import KeyModMediaPlaceholder from './KeyModMediaPlaceholder.astro';
+import KeyModExperimentalIcon from './KeyModExperimentalIcon.astro';
 import KeyModComposeSendFlow from './KeyModComposeSendFlow.astro';
+import KeyModTerminalPreviewFlow from './KeyModTerminalPreviewFlow.astro';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
@@ -8,18 +9,6 @@ interface Props {
 }
 
 const { opsZone } = Astro.props;
-const imageWidth = 2400;
-const imageHeight = 1080;
-
-/** P0 assets land under public/keymod/rebirth/ops/ — show placeholder until files exist. */
-const p0Assets = new Set([
-  '/keymod/rebirth/ops/ops-terminal-usb.webp',
-  '/keymod/rebirth/ops/ops-terminal-ble.webp',
-]);
-
-function isP0Placeholder(src: string): boolean {
-  return p0Assets.has(src);
-}
 ---
 
 <div class="km-ops-showcase">
@@ -52,59 +41,29 @@ function isP0Placeholder(src: string): boolean {
   </section>
 
   <section class="km-ops-showcase__block" aria-labelledby="ops-terminal-title">
-    <span class="km-ops-showcase__badge">{opsZone.terminal.badge}</span>
+    <span class="km-ops-showcase__badge km-ops-showcase__badge-lockup">
+      {opsZone.terminal.badge}
+      <KeyModExperimentalIcon
+        class="km-ops-showcase__badge-icon km-ops-showcase__badge-icon--experimental"
+        title={opsZone.terminal.experimentalHint}
+      />
+    </span>
     <h3 id="ops-terminal-title" class="km-ops-showcase__title">{opsZone.terminal.title}</h3>
     <p class="km-ops-showcase__body">{opsZone.terminal.body}</p>
 
-    <div class="km-ops-showcase__transports">
-      <article class="km-ops-showcase__transport">
-        <h4 class="km-ops-showcase__transport-label">{opsZone.terminal.usb.label}</h4>
-        <p class="km-ops-showcase__transport-body">{opsZone.terminal.usb.body}</p>
-        {
-          isP0Placeholder(opsZone.terminal.usb.imageSrc) ? (
-            <KeyModMediaPlaceholder label={opsZone.terminal.usb.mediaLabel} />
-          ) : (
-            <figure class="km-media km-ops-showcase__figure">
-              <img
-                class="km-media__img"
-                src={opsZone.terminal.usb.imageSrc}
-                alt={opsZone.terminal.usb.imageAlt}
-                width={imageWidth}
-                height={imageHeight}
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-          )
-        }
-      </article>
+    <KeyModTerminalPreviewFlow terminal={opsZone.terminal} />
 
-      <article class="km-ops-showcase__transport">
-        <h4 class="km-ops-showcase__transport-label">{opsZone.terminal.ble.label}</h4>
-        <p class="km-ops-showcase__transport-body">{opsZone.terminal.ble.body}</p>
-        {
-          isP0Placeholder(opsZone.terminal.ble.imageSrc) ? (
-            <KeyModMediaPlaceholder label={opsZone.terminal.ble.mediaLabel} />
-          ) : (
-            <figure class="km-media km-ops-showcase__figure">
-              <img
-                class="km-media__img"
-                src={opsZone.terminal.ble.imageSrc}
-                alt={opsZone.terminal.ble.imageAlt}
-                width={imageWidth}
-                height={imageHeight}
-                loading="lazy"
-                decoding="async"
-              />
-            </figure>
-          )
-        }
-      </article>
-    </div>
+    <ul class="km-ops-showcase__bullets">
+      <li class="km-ops-showcase__bullet">
+        <strong class="km-ops-showcase__bullet-label">{opsZone.terminal.usb.label}</strong>
+        <span class="km-ops-showcase__bullet-body">{opsZone.terminal.usb.body}</span>
+      </li>
+      <li class="km-ops-showcase__bullet">
+        <strong class="km-ops-showcase__bullet-label">{opsZone.terminal.ble.label}</strong>
+        <span class="km-ops-showcase__bullet-body">{opsZone.terminal.ble.body}</span>
+      </li>
+    </ul>
 
     <p class="km-ops-showcase__notice">{opsZone.terminal.notice}</p>
-    <button type="button" class="km-theater-detail__jump" data-theater-jump="terminal">
-      View demo ↑
-    </button>
   </section>
 </div>
