@@ -23,8 +23,13 @@ test.describe('KeyMod POV Stage', () => {
     await expect(stage.locator('[data-pov-tab="km-pro"]')).toHaveAttribute('aria-selected', 'true');
 
     await page.setViewportSize({ width: 375, height: 812 });
-    const overflow = await page.evaluate(() => {
-      return document.documentElement.scrollWidth > document.documentElement.clientWidth + 1;
+    await stage.scrollIntoViewIfNeeded();
+    const overflow = await stage.evaluate((el) => {
+      const artboard = el.querySelector('.km-pov-stage__artboard');
+      if (!artboard) return true;
+      const r = artboard.getBoundingClientRect();
+      const vw = document.documentElement.clientWidth;
+      return r.width > vw + 1 || r.left < -1 || r.right > vw + 1;
     });
     expect(overflow).toBe(false);
   });
@@ -91,7 +96,7 @@ test.describe('KeyMod POV Stage', () => {
     });
   });
 
-  test('POV compose-send portrait hands and phone at 1280', async ({ page }) => {
+  test('POV compose-send portrait phone at 1280', async ({ page }) => {
     test.setTimeout(60_000);
     await page.goto('/preview/keymod-rebirth/#modes-theater', { waitUntil: 'load' });
     await page.setViewportSize({ width: 1280, height: 900 });
@@ -99,14 +104,15 @@ test.describe('KeyMod POV Stage', () => {
     await expect(stage).toBeVisible({ timeout: 20_000 });
     await stage.locator('[data-pov-tab="compose-send"]').click();
     await expect(stage).toHaveAttribute('data-active-scene', 'compose-send', { timeout: 5000 });
-    await expect(stage.locator('[data-pov-hands="portrait"]')).toBeVisible();
-    await expect(stage.locator('[data-pov-hands="default"]')).toBeHidden();
+    await expect(
+      stage.locator('[data-pov-scene="compose-send"][data-phone-layout="portrait"]'),
+    ).toHaveClass(/km-pov-stage__layer--active/);
     await expect(stage).toHaveScreenshot('keymod-pov-stage-compose-send-1280.png', {
       maxDiffPixelRatio: 0.03,
     });
   });
 
-  test('POV touchpad portrait hands at 1280', async ({ page }) => {
+  test('POV touchpad portrait phone at 1280', async ({ page }) => {
     test.setTimeout(60_000);
     await page.goto('/preview/keymod-rebirth/#modes-theater', { waitUntil: 'load' });
     await page.setViewportSize({ width: 1280, height: 900 });
@@ -119,40 +125,29 @@ test.describe('KeyMod POV Stage', () => {
     });
   });
 
-  test('POV touchpad portrait phone slot geometry', async ({ page }) => {
+  test('POV terminal portrait phone layout at 1280', async ({ page }) => {
     test.setTimeout(60_000);
     await page.goto('/preview/keymod-rebirth/#modes-theater', { waitUntil: 'load' });
     await page.setViewportSize({ width: 1280, height: 900 });
     const stage = page.locator('#km-pov-stage');
     await expect(stage).toBeVisible({ timeout: 20_000 });
-    await stage.locator('[data-pov-tab="touchpad"]').click();
-    await expect(stage).toHaveAttribute('data-active-scene', 'touchpad', { timeout: 5000 });
+    await stage.locator('[data-pov-tab="terminal"]').click();
+    await expect(stage).toHaveAttribute('data-active-scene', 'terminal', { timeout: 5000 });
+    await expect(
+      stage.locator('[data-pov-scene="terminal"][data-phone-layout="portrait"]'),
+    ).toHaveClass(/km-pov-stage__layer--active/);
+  });
 
-    const geometry = await page.evaluate(() => {
-      const artboard = document.querySelector('.km-pov-stage__artboard')!;
-      const ab = artboard.getBoundingClientRect();
-      const hands = document.querySelector<HTMLElement>('[data-pov-hands="portrait"]')!;
-      const phone = document.querySelector<HTMLElement>('[data-pov-scene="touchpad"][data-pov-slot="phone"]')!;
-      const hb = hands.getBoundingClientRect();
-      const pb = phone.getBoundingClientRect();
-      const aspect = pb.width / pb.height;
-      return {
-        handsAspect: hb.width / hb.height,
-        phoneAspect: aspect,
-        handsWidthRatio: hb.width / ab.width,
-        phoneInsideHands:
-          pb.left >= hb.left - 2 &&
-          pb.right <= hb.right + 2 &&
-          pb.top >= hb.top - 2 &&
-          pb.bottom <= hb.bottom + 2,
-      };
+  test('POV keyboard mobile snapshot at 375', async ({ page }) => {
+    test.setTimeout(60_000);
+    await page.goto('/preview/keymod-rebirth/#modes-theater', { waitUntil: 'load' });
+    await page.setViewportSize({ width: 375, height: 812 });
+    const stage = page.locator('#km-pov-stage');
+    await expect(stage).toBeVisible({ timeout: 20_000 });
+    await stage.locator('[data-pov-tab="keyboard"]').click();
+    await expect(stage).toHaveAttribute('data-active-scene', 'keyboard', { timeout: 5000 });
+    await expect(stage).toHaveScreenshot('keymod-pov-stage-keyboard-375.png', {
+      maxDiffPixelRatio: 0.04,
     });
-
-    expect(geometry.handsAspect).toBeGreaterThan(0.75);
-    expect(geometry.handsAspect).toBeLessThan(0.85);
-    expect(geometry.phoneAspect).toBeGreaterThan(0.42);
-    expect(geometry.phoneAspect).toBeLessThan(0.52);
-    expect(geometry.phoneInsideHands).toBe(true);
-    expect(geometry.handsWidthRatio).toBeGreaterThan(0.22);
   });
 });

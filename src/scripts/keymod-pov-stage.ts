@@ -1,5 +1,4 @@
 import {
-  KEYMOD_POV_PORTRAIT_HANDS_SCENE_IDS,
   isKeymodPovAutoplayScene,
   keymodPovAutoplaySceneIds,
   type KeymodPovSceneId,
@@ -56,12 +55,6 @@ function setActiveScene(
 
   stage.dataset.activeScene = sceneId;
 
-  const portraitHands = KEYMOD_POV_PORTRAIT_HANDS_SCENE_IDS.includes(sceneId);
-  stage.querySelectorAll<HTMLElement>('[data-pov-hands]').forEach((el) => {
-    const show = el.dataset.povHands === (portraitHands ? 'portrait' : 'default');
-    el.hidden = !show;
-  });
-
   stage.querySelectorAll<HTMLButtonElement>('[data-pov-tab]').forEach((tab) => {
     const active = tab.dataset.povTab === sceneId;
     tab.classList.toggle('km-pov-stage__tab--active', active);
@@ -71,8 +64,8 @@ function setActiveScene(
     }
   });
 
-  stage.querySelectorAll<HTMLElement>('[data-pov-scene]').forEach((slot) => {
-    slot.classList.toggle('km-pov-stage__slot--active', slot.dataset.povScene === sceneId);
+  stage.querySelectorAll<HTMLElement>('[data-pov-scene]').forEach((layer) => {
+    layer.classList.toggle('km-pov-stage__layer--active', layer.dataset.povScene === sceneId);
   });
 
   stage.querySelectorAll<HTMLElement>('[data-pov-summary]').forEach((pane) => {
@@ -137,7 +130,7 @@ function onScroll(): void {
 
 function preloadSceneImages(): void {
   const urls = new Set<string>();
-  document.querySelectorAll<HTMLImageElement>('.km-pov-stage__slot-img').forEach((img) => {
+  document.querySelectorAll<HTMLImageElement>('.km-pov-stage__layer-img').forEach((img) => {
     if (img.src) urls.add(img.src);
   });
   urls.forEach((src) => {
