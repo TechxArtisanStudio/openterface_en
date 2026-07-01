@@ -136,6 +136,8 @@ export type KeymodLandingStrings = {
     title: string;
     followIg: string;
     viewAllMedia: string;
+    fallbackNote: string;
+    viewOnInstagram: string;
   };
   keycmdBridge: {
     eyebrow: string;
@@ -416,6 +418,8 @@ const en: KeymodLandingStrings = {
     title: 'Real users, real setups',
     followIg: 'More demos on @techxartisan',
     viewAllMedia: 'All KeyMod media',
+    fallbackNote: 'Instagram previews unavailable — open posts directly:',
+    viewOnInstagram: 'View on Instagram ↗',
   },
   keycmdBridge: {
     eyebrow: 'Software companion',
