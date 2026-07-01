@@ -30,19 +30,14 @@ const demo = terminal.demo;
         <div class="km-terminal-flow__phone-notch" aria-hidden="true"></div>
         <div class="km-terminal-flow__phone-screen">
           <header class="km-terminal-flow__toolbar">
-            <div class="km-terminal-flow__toolbar-main">
+            <div class="km-terminal-flow__toolbar-row">
               <span class="km-terminal-flow__status" data-km-terminal-status>{demo.statusDisconnected}</span>
-              <span class="km-terminal-flow__host" data-km-terminal-host hidden>{TERMINAL_DEMO_HOST}</span>
-            </div>
-            <div class="km-terminal-flow__toolbar-actions">
               <span class="km-terminal-flow__transport-badge" data-km-terminal-badge hidden>
                 <img class="km-terminal-flow__transport-icon" data-km-terminal-badge-icon alt="" width="14" height="14" />
                 <span data-km-terminal-badge-label></span>
               </span>
-              <button type="button" class="km-terminal-flow__connect" disabled aria-hidden="true" tabindex="-1">
-                {demo.connectLabel}
-              </button>
             </div>
+            <span class="km-terminal-flow__host" data-km-terminal-host hidden>{TERMINAL_DEMO_HOST}</span>
           </header>
 
           <div class="km-terminal-flow__screen-stack">
@@ -80,6 +75,8 @@ const demo = terminal.demo;
       </div>
     </div>
   </div>
+
+  <p class="km-terminal-flow__fidelity-note">{demo.uiFidelityNote}</p>
 
   <p class="km-terminal-flow__sr" data-km-terminal-live aria-live="polite"></p>
 </div>

@@ -57,8 +57,9 @@ export type KeymodFirmwareRoadmap = {
   eyebrow: string;
   title: string;
   subtitle: string;
-  aiChat: { badge: string; body: string };
+  chipsLabel: string;
   chips: string[];
+  aiChat: { badge: string; body: string };
   forumPrompt: string;
   forumCta: string;
 };
@@ -181,9 +182,9 @@ export type KeymodLandingStrings = {
           statusConnected: string;
           demoBleLabel: string;
           demoUsbLabel: string;
-          connectLabel: string;
           transportBle: string;
           transportUsb: string;
+          uiFidelityNote: string;
           ctrlLabel: string;
           escLabel: string;
           tabLabel: string;
@@ -512,9 +513,9 @@ curl -sf http://127.0.0.1:9090/-/ready'`,
           statusConnected: 'Connected',
           demoBleLabel: 'Preview demo (Bluetooth)',
           demoUsbLabel: 'Preview demo (USB)',
-          connectLabel: 'Connect',
-          transportBle: 'Bluetooth',
+          transportBle: 'BLE',
           transportUsb: 'USB',
+          uiFidelityNote: 'Approximate UI — refer to KeyCmd on your phone for the live app.',
           ctrlLabel: 'Ctrl',
           escLabel: 'Esc',
           tabLabel: 'Tab',
@@ -638,11 +639,12 @@ curl -sf http://127.0.0.1:9090/-/ready'`,
     title: 'What we are building next',
     subtitle:
       'Modes and bridges ship through KeyCmd first — then land on KeyMod firmware. Here is what is queued up today.',
+    chipsLabel: 'Queued for firmware',
+    chips: ['Network bridge', 'Audio bridge', 'MIDI', 'CLI + MCP automation', 'Remote relay'],
     aiChat: {
       badge: 'AI Chat · Preview',
       body: 'Gibby AI Chat pairs with KeyMod for conversational control. Preview builds are on the KeyCmd roadmap.',
     },
-    chips: ['Network bridge', 'Audio bridge', 'MIDI', 'CLI + MCP automation', 'Remote relay'],
     forumPrompt:
       'Have a mode, bridge, or workflow we should prioritize? Post on the Openterface forum — swap ideas with our dev team and other builders.',
     forumCta: 'Discuss on the forum ↗',
