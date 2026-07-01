@@ -1,5 +1,7 @@
 ---
 import KeyModSection from './KeyModSection.astro';
+import { appDocsLinks } from '../../data/apps';
+import { docsPath } from '../../config/site';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
@@ -7,6 +9,7 @@ interface Props {
 }
 
 const { copy } = Astro.props;
+const keymodProductFaq = docsPath('/products/keymod/faq/');
 ---
 
 <KeyModSection id="faq" eyebrow={copy.eyebrow} title={copy.title} narrow>
@@ -20,4 +23,9 @@ const { copy } = Astro.props;
       ))
     }
   </div>
+  <p class="km-faq__footer">
+    <a href={appDocsLinks.keycmdFaq} target="_blank" rel="noopener">KeyCmd app FAQ →</a>
+    {' · '}
+    <a href={keymodProductFaq} target="_blank" rel="noopener">KeyMod product FAQ →</a>
+  </p>
 </KeyModSection>
