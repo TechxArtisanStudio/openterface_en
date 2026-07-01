@@ -1997,6 +1997,16 @@
     text-align: center;
   }
 
+  .km-ops-showcase__block > .km-ops-showcase__title {
+    max-width: 44rem;
+    margin-inline: auto;
+  }
+
+  .km-ops-showcase__block .km-compose-flow,
+  .km-ops-showcase__block .km-terminal-flow {
+    width: 100%;
+  }
+
   .km-ops-showcase__demos {
     align-items: center;
   }
@@ -2012,6 +2022,14 @@
 
   .km-game-showcase__block > .km-game-showcase__title {
     text-align: center;
+    max-width: 44rem;
+    margin-inline: auto;
+  }
+
+  .km-game-showcase__share > .km-game-showcase__title {
+    text-align: center;
+    max-width: 44rem;
+    margin-inline: auto;
   }
 
   .km-game-showcase__intro .km-theater-detail__demos {
@@ -2227,6 +2245,12 @@
   font-size: 1.125rem;
   font-weight: 700;
   color: var(--km-matrix-accent);
+}
+
+.km-ops-showcase__block > .km-ops-showcase__title {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
 .km-ops-showcase__body {
@@ -3264,36 +3288,37 @@
 /* Terminal Preview — phone-only interactive demo */
 .km-terminal-flow {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   margin-top: 0.5rem;
   margin-inline: auto;
-  max-width: min(100%, 24rem);
+  max-width: min(100%, 56rem);
 }
 
 .km-terminal-flow__demo-label {
   margin: 0 0 0.75rem;
+  width: 100%;
   font-family: var(--km-font-mono);
   font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  text-align: center;
   color: rgba(232, 255, 232, 0.55);
-}
-
-@media (min-width: 768px) {
-  .km-terminal-flow__demo-label {
-    text-align: center;
-  }
 }
 
 .km-terminal-flow__stage {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .km-terminal-flow__phone {
   width: 100%;
   max-width: 20.5rem;
-  margin-inline: 0;
+  margin-inline: auto;
 }
 
 .km-terminal-flow__phone-bezel {
@@ -3768,6 +3793,13 @@
   font-size: 1.125rem;
   font-weight: 700;
   color: #ffffff;
+}
+
+.km-game-showcase__block > .km-game-showcase__title,
+.km-game-showcase__share > .km-game-showcase__title {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
 .km-game-showcase__body {
