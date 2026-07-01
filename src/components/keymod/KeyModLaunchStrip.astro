@@ -1,0 +1,27 @@
+---
+import KeyModSection from './KeyModSection.astro';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['launchStrip'];
+}
+
+const { copy } = Astro.props;
+---
+
+<KeyModSection id="launch-depth" eyebrow={copy.eyebrow} title={copy.title} subtitle={copy.subtitle} centered>
+  <div class="km-grid km-grid--2 km-launch-strip">
+    <article class="km-card km-launch-strip__col">
+      <h3 class="km-card__title">{copy.atLaunchTitle}</h3>
+      <ul class="km-launch-strip__list">
+        {copy.atLaunchItems.map((item) => <li>{item}</li>)}
+      </ul>
+    </article>
+    <article class="km-card km-launch-strip__col">
+      <h3 class="km-card__title">{copy.comingLaterTitle}</h3>
+      <ul class="km-launch-strip__list">
+        {copy.comingLaterItems.map((item) => <li>{item}</li>)}
+      </ul>
+    </article>
+  </div>
+</KeyModSection>

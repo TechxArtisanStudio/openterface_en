@@ -5,6 +5,8 @@ export const keymodLinks = {
   crowdSupply:
     'https://www.crowdsupply.com/techxartisan/keymod?utm_source=openterface&utm_medium=landing&utm_campaign=keymod-landing-v2',
   crowdSupplyIcon: 'https://www.crowdsupply.com/_marvin/images/crowd-supply-icon.svg',
+  openSourceInitiative: '/keymod/badges/open-source-initiative.svg',
+  openSourceHardware: '/keymod/badges/open-source-hardware.svg',
   keycmd:
     'https://openterface.com/keycmd/?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-to-keycmd',
   docs:
@@ -141,6 +143,30 @@ export type KeymodLandingStrings = {
     body: string;
     cta: string;
     mediaLabel: string;
+  };
+  launchStrip: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    atLaunchTitle: string;
+    atLaunchItems: string[];
+    comingLaterTitle: string;
+    comingLaterItems: string[];
+  };
+  crowdSupplyCampaign: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    cta: string;
+  };
+  crowdSupplyOpensource: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    cta: string;
+    badgesLabel: string;
+    osiAlt: string;
+    oshAlt: string;
   };
   productLine: {
     eyebrow: string;
@@ -384,6 +410,42 @@ const en: KeymodLandingStrings = {
       'KeyCmd is the multi-mode console that powers KeyMod, a pocket USB bridge on the machine. Tiny dongle, full control. Built for rack ops, walk-ups, and everyday IT work.',
     cta: 'Meet KeyCmd',
     mediaLabel: 'KeyCmd welcome screen — pick a control mode',
+  },
+  launchStrip: {
+    eyebrow: 'Honest depth',
+    title: 'At launch vs coming later',
+    subtitle:
+      'What ships with the first KeyMod units — and what we are still building in firmware and KeyCmd.',
+    atLaunchTitle: 'At launch',
+    atLaunchItems: [
+      'HID keyboard, mouse, and touchpad (KM Basic)',
+      'KM Pro, gamepad, macro layouts — maturing in KeyCmd',
+      'KeyMod Mini + Plus ship together',
+    ],
+    comingLaterTitle: 'Coming later',
+    comingLaterItems: [
+      'Wireless terminal (BLE PTY)',
+      'Presentation polish and AI Chat on the firmware roadmap',
+      'Network, audio, and MIDI bridges',
+      'Remote relay · CLI + MCP automation',
+    ],
+  },
+  crowdSupplyCampaign: {
+    eyebrow: 'Crowd Supply',
+    title: 'Pre-launch on Crowd Supply',
+    body:
+      'Back KeyMod Mini and Plus on Crowd Supply — pocket USB bridges that turn your phone into a wireless console. BIOS-capable HID, zero driver on the target.',
+    cta: 'Pre-launch',
+  },
+  crowdSupplyOpensource: {
+    eyebrow: 'Open by design',
+    title: 'Open-source hardware & software',
+    body:
+      'KeyCmd, firmware, and hardware docs publish as the project matures — the same open stack philosophy as Openterface Mini-KVM and KVM-GO.',
+    cta: 'Pre-launch',
+    badgesLabel: 'Open-source hardware and software',
+    osiAlt: 'Open Source Initiative — approved open-source license',
+    oshAlt: 'Open Source Hardware Association',
   },
   productLine: {
     eyebrow: 'Openterface family',

@@ -3,14 +3,16 @@ import KeyModSection from './KeyModSection.astro';
 import KeyModPovStage from './KeyModPovStage.astro';
 import KeyModModeDetail from './KeyModModeDetail.astro';
 import KeyModGameZoneShowcase from './KeyModGameZoneShowcase.astro';
+import KeyModCrowdSupplyCta from './KeyModCrowdSupplyCta.astro';
 import { keymodPovVisibleTabScenes } from '../../data/keymodPovScenes';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
   copy: KeymodLandingStrings['modesTheater'];
+  crowdSupplyCampaign: KeymodLandingStrings['crowdSupplyCampaign'];
 }
 
-const { copy } = Astro.props;
+const { copy, crowdSupplyCampaign } = Astro.props;
 const m = copy;
 
 const povStageSceneDefs = [
@@ -74,6 +76,10 @@ const povStageScenes = povStageSceneDefs.filter((s) => visiblePovIds.has(s.id));
   </div>
 
   <KeyModPovStage scenes={povStageScenes} defaultSceneId="keyboard" />
+
+  <div class="km-theater-crowd-cta">
+    <KeyModCrowdSupplyCta variant="campaign" copy={crowdSupplyCampaign} />
+  </div>
 
   <div class="km-theater-scroll">
     <div class="km-theater-zone km-theater-zone--ops km-zone-matrix" data-km-zone="ops">

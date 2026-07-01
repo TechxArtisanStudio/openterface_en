@@ -1,0 +1,25 @@
+---
+import KeyModCrowdSupplyCta from './KeyModCrowdSupplyCta.astro';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  variant: 'campaign' | 'opensource';
+  copy: KeymodLandingStrings['crowdSupplyCampaign'] | KeymodLandingStrings['crowdSupplyOpensource'];
+  id?: string;
+  elevated?: boolean;
+}
+
+const { variant, copy, id, elevated = true } = Astro.props;
+const sectionId = id ?? (variant === 'campaign' ? 'crowd-supply' : 'open-source');
+const ariaLabel = variant === 'campaign' ? 'Crowd Supply pre-launch' : 'Open-source hardware and software';
+---
+
+<section
+  class:list={['km-section', 'km-crowd-cta-section', elevated && 'km-section--elevated']}
+  id={sectionId}
+  aria-label={ariaLabel}
+>
+  <div class="km-section__inner km-section__inner--narrow">
+    <KeyModCrowdSupplyCta variant={variant} copy={copy} />
+  </div>
+</section>

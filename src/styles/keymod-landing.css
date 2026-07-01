@@ -2555,6 +2555,108 @@
   border: none;
 }
 
+/* Launch depth — at launch vs coming later */
+.km-launch-strip__list {
+  margin: 1rem 0 0;
+  padding-left: 1.25rem;
+  color: var(--km-muted);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.km-launch-strip__list li {
+  margin-bottom: 0.5rem;
+}
+
+.km-launch-strip__list li:last-child {
+  margin-bottom: 0;
+}
+
+/* Crowd Supply + open-source CTA pair */
+.km-crowd-cta-section {
+  scroll-margin-top: var(--km-nav-height);
+}
+
+.km-theater-crowd-cta {
+  max-width: 56rem;
+  margin: 2.5rem auto 0;
+  padding-inline: 1.25rem;
+}
+
+.km-crowd-cta-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.km-crowd-cta {
+  margin: 0;
+}
+
+.km-crowd-cta__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: clamp(1.5rem, 4vw, 2rem);
+  border-radius: 0.75rem;
+  border: 1px solid var(--km-border);
+  background: var(--km-surface-elevated);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.km-crowd-cta__title {
+  margin: 0.35rem 0 0;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--km-text);
+}
+
+.km-crowd-cta__body {
+  margin: 0.75rem 0 0;
+  max-width: 40rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--km-muted);
+}
+
+.km-crowd-cta__badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.km-crowd-cta__badge {
+  display: block;
+  width: auto;
+  height: 3.75rem;
+  object-fit: contain;
+}
+
+.km-crowd-cta__btn {
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.km-crowd-cta--opensource .km-crowd-cta__inner {
+  background: linear-gradient(135deg, #ffffff 0%, var(--km-brand-light) 100%);
+}
+
+@media (min-width: 768px) {
+  .km-crowd-cta__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .km-crowd-cta__btn {
+    align-self: center;
+  }
+}
+
 /* Launch updates — subscribe + Crowd Supply secondary */
 .km-launch-cta {
   display: grid;

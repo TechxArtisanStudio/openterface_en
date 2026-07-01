@@ -7,7 +7,9 @@ import KeyModSkuCompare from '../../../components/keymod/KeyModSkuCompare.astro'
 import KeyModModesTheater from '../../../components/keymod/KeyModModesTheater.astro';
 import KeyModSocialProof from '../../../components/keymod/KeyModSocialProof.astro';
 import KeyModKeyCmdBridge from '../../../components/keymod/KeyModKeyCmdBridge.astro';
+import KeyModLaunchStrip from '../../../components/keymod/KeyModLaunchStrip.astro';
 import KeyModProductLine from '../../../components/keymod/KeyModProductLine.astro';
+import KeyModCrowdSupplyBlock from '../../../components/keymod/KeyModCrowdSupplyBlock.astro';
 import KeyModLaunchCta from '../../../components/keymod/KeyModLaunchCta.astro';
 import KeyModFaq from '../../../components/keymod/KeyModFaq.astro';
 import KeyModFooter from '../../../components/keymod/KeyModFooter.astro';
@@ -32,10 +34,12 @@ const canonicalPath = '/preview/keymod-rebirth/';
     <KeyModHero copy={copy.hero} />
     <KeyModWhatItIs copy={copy.whatItIs} />
     {/* Scenarios hidden pending copy/visual rework */}
-    <KeyModModesTheater copy={copy.modesTheater} />
+    <KeyModModesTheater copy={copy.modesTheater} crowdSupplyCampaign={copy.crowdSupplyCampaign} />
     <KeyModSocialProof copy={copy.socialProof} />
     <KeyModKeyCmdBridge copy={copy.keycmdBridge} />
+    <KeyModLaunchStrip copy={copy.launchStrip} />
     <KeyModSkuCompare copy={copy.skuCompare} />
+    <KeyModCrowdSupplyBlock variant="opensource" copy={copy.crowdSupplyOpensource} />
     <KeyModLaunchCta copy={copy.subscribe} />
     <KeyModFaq copy={copy.faq} />
     <KeyModProductLine copy={copy.productLine} />
