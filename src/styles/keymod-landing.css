@@ -2722,15 +2722,6 @@
   margin-top: 2.5rem;
 }
 
-.km-game-kvmgo {
-  margin-top: 2rem;
-  max-width: 42rem;
-  font-size: 0.9375rem;
-  line-height: 1.55;
-  color: rgba(236, 232, 255, 0.78);
-}
-
-
 /* Real users — IG embeds after load; skeleton while waiting; text links when blocked */
 .km-social-proof__embeds {
   display: none;

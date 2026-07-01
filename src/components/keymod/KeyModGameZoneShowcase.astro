@@ -2,7 +2,6 @@
 import KeyModModeDetail from './KeyModModeDetail.astro';
 import KeyModGameEditorCarousel from './KeyModGameEditorCarousel.astro';
 import KeyModGamepadPresetRotator from './KeyModGamepadPresetRotator.astro';
-import { keymodLinks } from '../../i18n/keymodLanding';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
@@ -41,10 +40,4 @@ const { gameZone, gamepad } = Astro.props;
     <h3 id="game-share-title" class="km-game-showcase__title">{gameZone.share.title}</h3>
     <p class="km-game-showcase__body">{gameZone.share.body}</p>
   </section>
-
-  <p class="km-game-kvmgo">
-    {gameZone.kvmGoNote}
-    {' '}
-    <a href={keymodLinks.kvmgo}>{gameZone.kvmGoCta} →</a>
-  </p>
 </div>
