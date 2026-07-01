@@ -2310,6 +2310,276 @@
   color: rgba(236, 232, 255, 0.65);
 }
 
+/* Build your layout — theater filmstrip carousel (2-up + side peeks) */
+.km-game-carousel {
+  position: relative;
+  margin-top: 0.25rem;
+  --km-game-carousel-gap: 0.875rem;
+  /* 2 full slides + 1/3 peek each side => 8/3 slide widths visible */
+  --km-game-carousel-slide-pct: 37.5%;
+}
+
+.km-game-carousel--single {
+  --km-game-carousel-slide-pct: 72%;
+}
+
+.km-game-carousel:focus {
+  outline: none;
+}
+
+.km-game-carousel:focus-visible {
+  outline: 2px solid var(--km-game-accent);
+  outline-offset: 4px;
+  border-radius: 0.75rem;
+}
+
+.km-game-carousel__stage {
+  position: relative;
+  padding-inline: 0.25rem;
+}
+
+.km-game-carousel__viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background:
+    linear-gradient(180deg, rgba(0, 212, 255, 0.04), transparent 35%),
+    rgba(0, 0, 0, 0.35);
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 212, 255, 0.18),
+    0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.km-game-carousel__track {
+  display: flex;
+  align-items: stretch;
+  gap: var(--km-game-carousel-gap);
+  padding-block: 0.875rem;
+  will-change: transform;
+  transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.km-game-carousel--reduced-motion .km-game-carousel__track {
+  transition: none;
+}
+
+.km-game-carousel__slide {
+  flex: 0 0 var(--km-game-carousel-slide-pct);
+  min-width: 0;
+  margin: 0;
+  cursor: pointer;
+  transition:
+    opacity 320ms ease,
+    transform 320ms ease,
+    filter 320ms ease;
+}
+
+.km-game-carousel__frame {
+  overflow: hidden;
+  border-radius: 0.625rem;
+  border: 1px solid rgba(0, 212, 255, 0.22);
+  background: rgba(0, 0, 0, 0.55);
+  aspect-ratio: 20 / 9;
+  transition:
+    border-color 320ms ease,
+    box-shadow 320ms ease,
+    transform 320ms ease;
+}
+
+.km-game-carousel__slide .km-media__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.km-game-carousel__slide-label {
+  margin: 0.5rem 0 0;
+  font-family: var(--km-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgba(236, 232, 255, 0.45);
+  transition: color 220ms ease;
+}
+
+.km-game-carousel__slide--lead .km-game-carousel__frame {
+  border-color: rgba(0, 212, 255, 0.72);
+  box-shadow:
+    0 0 0 1px rgba(255, 61, 154, 0.22),
+    0 0 28px rgba(0, 212, 255, 0.28);
+  transform: translateY(-2px);
+}
+
+.km-game-carousel__slide--lead .km-game-carousel__slide-label {
+  color: var(--km-game-accent);
+}
+
+.km-game-carousel__slide--mate .km-game-carousel__frame {
+  border-color: rgba(0, 212, 255, 0.48);
+  box-shadow: 0 0 18px rgba(0, 212, 255, 0.14);
+}
+
+.km-game-carousel__slide--mate .km-game-carousel__slide-label {
+  color: rgba(236, 232, 255, 0.72);
+}
+
+.km-game-carousel__slide--peek {
+  opacity: 0.72;
+  transform: scale(0.94);
+}
+
+.km-game-carousel__slide--peek .km-game-carousel__frame {
+  border-color: rgba(0, 212, 255, 0.16);
+}
+
+.km-game-carousel__slide--far {
+  opacity: 0.35;
+  transform: scale(0.9);
+}
+
+.km-game-carousel__vignette {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: min(18%, 7rem);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.km-game-carousel__vignette--left {
+  left: 0;
+  background: linear-gradient(90deg, rgba(13, 10, 22, 0.92), transparent);
+}
+
+.km-game-carousel__vignette--right {
+  right: 0;
+  background: linear-gradient(270deg, rgba(13, 10, 22, 0.92), transparent);
+}
+
+.km-game-carousel__nav {
+  position: absolute;
+  z-index: 3;
+  top: 38%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid rgba(0, 212, 255, 0.45);
+  border-radius: 999px;
+  background: rgba(13, 10, 22, 0.88);
+  color: var(--km-game-accent);
+  cursor: pointer;
+  box-shadow:
+    0 0 0 1px rgba(255, 61, 154, 0.12),
+    0 4px 20px rgba(0, 212, 255, 0.15);
+  transition:
+    border-color 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease,
+    background 150ms ease,
+    opacity 150ms ease;
+}
+
+.km-game-carousel__nav:hover:not(:disabled) {
+  border-color: var(--km-game-accent);
+  color: #ffffff;
+  background: rgba(0, 212, 255, 0.12);
+  box-shadow:
+    0 0 0 1px rgba(255, 61, 154, 0.2),
+    0 0 24px rgba(0, 212, 255, 0.35);
+}
+
+.km-game-carousel__nav:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+}
+
+.km-game-carousel__nav:focus-visible {
+  outline: 2px solid var(--km-game-accent-alt);
+  outline-offset: 2px;
+}
+
+.km-game-carousel__nav--prev {
+  left: 0.35rem;
+}
+
+.km-game-carousel__nav--next {
+  right: 0.35rem;
+}
+
+.km-game-carousel__footer {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.km-game-carousel__caption {
+  margin: 0;
+  min-height: 1.25rem;
+}
+
+.km-game-carousel__dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.km-game-carousel__dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  padding: 0;
+  border: 1px solid rgba(0, 212, 255, 0.45);
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background 150ms ease,
+    border-color 150ms ease,
+    transform 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.km-game-carousel__dot:hover {
+  border-color: var(--km-game-accent);
+  background: rgba(0, 212, 255, 0.25);
+}
+
+.km-game-carousel__dot--active {
+  border-color: var(--km-game-accent);
+  background: var(--km-game-accent);
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.45);
+  transform: scale(1.15);
+}
+
+.km-game-carousel__dot:focus-visible {
+  outline: 2px solid var(--km-game-accent-alt);
+  outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+  .km-game-carousel__stage {
+    padding-inline: 2.75rem;
+  }
+
+  .km-game-carousel__nav--prev {
+    left: 0;
+  }
+
+  .km-game-carousel__nav--next {
+    right: 0;
+  }
+}
+
 .km-game-showcase__share {
   margin-top: 2.5rem;
 }
@@ -2323,7 +2593,20 @@
 }
 
 
-/* Real users — Instagram official embeds */
+/* Real users — thumbnail fallback + optional Instagram embeds */
+.km-social-proof__embeds {
+  display: none;
+}
+
+.km-social-proof--embeds-ready .km-social-proof__fallback {
+  display: none;
+}
+
+.km-social-proof--embeds-ready .km-social-proof__embeds {
+  display: block;
+}
+
+/* Instagram official embeds (enhancement layer) */
 .km-ig-embed-grid {
   display: flex;
   gap: 1.25rem;
