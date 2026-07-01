@@ -18,10 +18,22 @@ const fallbackLinks = getKeymodCommunityCards().filter((card) => embedIds.has(ca
 
 <KeyModSection id="social-proof" eyebrow={copy.eyebrow} title={copy.title} centered>
   <div class="km-social-proof" data-km-social-proof>
-    <div class="km-social-proof__embeds" data-km-social-embeds>
+    <div class="km-social-proof__loading" data-km-social-loading aria-busy="true" aria-label="Loading Instagram posts">
+      <div class="km-social-proof__loading-grid" aria-hidden="true">
+        {embeds.map(() => (
+          <div class="km-social-proof__loading-cell" />
+        ))}
+      </div>
+    </div>
+
+    <div class="km-social-proof__embeds" data-km-social-embeds hidden>
       <div class="km-ig-embed-grid">
         {embeds.map((embed) => (
-          <KeyModInstagramEmbed embed={embed} />
+          <KeyModInstagramEmbed
+            embed={embed}
+            viewProfileLabel={copy.viewProfile}
+            viewPostLabel={copy.viewPostOnInstagram}
+          />
         ))}
       </div>
     </div>

@@ -1,8 +1,8 @@
 ---
 import KeyModModeDetail from './KeyModModeDetail.astro';
 import KeyModGameEditorCarousel from './KeyModGameEditorCarousel.astro';
+import KeyModGamepadPresetRotator from './KeyModGamepadPresetRotator.astro';
 import { keymodLinks } from '../../i18n/keymodLanding';
-import { getKeymodAsset } from '../../data/keymodAssets';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
@@ -11,13 +11,10 @@ interface Props {
 }
 
 const { gameZone, gamepad } = Astro.props;
-const gamepadHero = getKeymodAsset('modes', 'gamepad');
-const imageWidth = 2400;
-const imageHeight = 1080;
 ---
 
 <div class="km-game-showcase">
-  <div class="km-split km-game-showcase__intro">
+  <div class="km-game-showcase__intro">
     <KeyModModeDetail
       id="mode-gamepad"
       status={gamepad.badge}
@@ -26,41 +23,12 @@ const imageHeight = 1080;
       sceneId="gamepad"
       demoLinks={gamepad.demoLinks}
     />
-    {
-      gamepadHero?.src ? (
-        <figure class="km-media km-game-showcase__figure">
-          <img
-            class="km-media__img"
-            src={gamepadHero.src}
-            alt={gamepadHero.alt}
-            width={imageWidth}
-            height={imageHeight}
-            loading="lazy"
-            decoding="async"
-          />
-        </figure>
-      ) : (
-        <p class="km-media-placeholder">
-          <span class="km-media-placeholder__label">[ {gamepad.mediaLabel} ]</span>
-        </p>
-      )
-    }
   </div>
 
   <section class="km-game-showcase__block" aria-labelledby="game-preset-title">
     <h3 id="game-preset-title" class="km-game-showcase__title">{gameZone.presets.title}</h3>
     <p class="km-game-showcase__body">{gameZone.presets.body}</p>
-    <figure class="km-media km-game-showcase__figure">
-      <img
-        class="km-media__img"
-        src={gameZone.presets.imageSrc}
-        alt={gameZone.presets.imageAlt}
-        width={imageWidth}
-        height={imageHeight}
-        loading="lazy"
-        decoding="async"
-      />
-    </figure>
+    <KeyModGamepadPresetRotator layouts={gameZone.presets.layouts} />
   </section>
 
   <section class="km-game-showcase__block" aria-labelledby="game-editor-title">
