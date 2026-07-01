@@ -244,6 +244,14 @@ export const keymodAssets: KeymodAssetSlot[] = [
     kind: 'image',
     status: 'ready',
   },
+  {
+    section: 'productLine',
+    slot: 'kvm-go-use-case',
+    src: '/keymod/rebirth/product-line/kvm-go-vga-use-case-4.webp',
+    alt: 'KVM-GO controlling a laptop over VGA — video plus keyboard and mouse from one cable',
+    kind: 'image',
+    status: 'ready',
+  },
 ];
 
 export function getKeymodAsset(section: string, slot: string): KeymodAssetSlot | undefined {

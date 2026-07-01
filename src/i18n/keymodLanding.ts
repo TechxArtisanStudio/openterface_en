@@ -4,6 +4,7 @@ import { siteConfig } from '../config/site';
 export const keymodLinks = {
   crowdSupply:
     'https://www.crowdsupply.com/techxartisan/keymod?utm_source=openterface&utm_medium=landing&utm_campaign=keymod-landing-v2',
+  crowdSupplyIcon: 'https://www.crowdsupply.com/_marvin/images/crowd-supply-icon.svg',
   keycmd:
     'https://openterface.com/keycmd/?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-to-keycmd',
   docs:
@@ -11,7 +12,18 @@ export const keymodLinks = {
   discord: 'https://discord.gg/sFTU7O8Xe3',
   minikvm: '/minikvm/',
   kvmgo: '/kvmgo/',
+  gamepadTutorial:
+    'https://docs.openterface.com/tutorial/keymod/08-gamepad/?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-game-zone',
+  gamepadDemo: 'https://www.instagram.com/p/DY7XsRIBQi6/',
+  /** Temporary POV demos — @techxartisan / curated IG until final video assets ship. */
+  keymodIntroReel: 'https://www.instagram.com/reel/DUH77BoiarV/',
+  homelabKeyboardDemo: 'https://www.instagram.com/p/DZGUTGAM45Z/',
+  composeSendDemo: 'https://www.instagram.com/p/DZNZVbUBBxD/',
+  presentationTutorial:
+    'https://docs.openterface.com/tutorial/keymod/10-presentation/?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-pov-demo',
 } as const;
+
+export type KeymodDemoLink = { label: string; href: string };
 
 export type KeymodLandingStrings = {
   meta: {
@@ -31,6 +43,7 @@ export type KeymodLandingStrings = {
     headline?: string;
     lead: string;
     docsCta: string;
+    preLaunchCta: string;
   };
   whatItIs: {
     eyebrow: string;
@@ -57,16 +70,62 @@ export type KeymodLandingStrings = {
     eyebrow: string;
     title: string;
     subtitle: string;
-    basic: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
-    touchpad: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
+    basic: {
+      badge: string;
+      title: string;
+      lead: string;
+      body: string;
+      mediaLabel: string;
+      demoLinks?: KeymodDemoLink[];
+    };
+    touchpad: {
+      badge: string;
+      title: string;
+      lead: string;
+      body: string;
+      mediaLabel: string;
+      demoLinks?: KeymodDemoLink[];
+    };
     kmPro: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
     proTerminal: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
-    composeSend: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
+    composeSend: {
+      badge: string;
+      title: string;
+      lead: string;
+      body: string;
+      mediaLabel: string;
+      demoLinks?: KeymodDemoLink[];
+    };
     terminalBle: { badge: string; title: string; body: string; mediaLabel: string; notice: string };
     opsZone: { eyebrow: string };
-    gameZone: { eyebrow: string; kvmGoNote: string; kvmGoCta: string };
-    gamepad: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
-    presentation: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
+    gameZone: {
+      eyebrow: string;
+      kvmGoNote: string;
+      kvmGoCta: string;
+      presets: { title: string; body: string; imageSrc: string; imageAlt: string };
+      editor: {
+        title: string;
+        body: string;
+        panels: { imageSrc: string; imageAlt: string; caption: string }[];
+      };
+      share: { title: string; body: string };
+    };
+    gamepad: {
+      badge: string;
+      title: string;
+      lead: string;
+      body: string;
+      mediaLabel: string;
+      demoLinks: KeymodDemoLink[];
+    };
+    presentation: {
+      badge: string;
+      title: string;
+      lead: string;
+      body: string;
+      mediaLabel: string;
+      demoLinks?: KeymodDemoLink[];
+    };
     aiChat: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
     future: { title: string; chips: string[] };
   };
@@ -87,6 +146,8 @@ export type KeymodLandingStrings = {
     eyebrow: string;
     title: string;
     body: string;
+    minikvmCta: string;
+    kvmgoCta: string;
   };
   subscribe: {
     eyebrow: string;
@@ -133,6 +194,7 @@ const en: KeymodLandingStrings = {
     lead:
       'Plug into the target device. BLE control, zero driver, BIOS-ready. Server, PC, or console. Any USB port.',
     docsCta: 'Docs',
+    preLaunchCta: 'Pre-launch',
   },
   whatItIs: {
     eyebrow: 'What it is',
@@ -202,6 +264,7 @@ const en: KeymodLandingStrings = {
       lead: 'Type on your phone — characters appear on the target screen. BIOS-capable HID.',
       body: 'First-person POV — hands on phone, characters appear on the target screen. BIOS-capable HID.',
       mediaLabel: 'POV video loop — KM Basic (reshoot: 主页9)',
+      demoLinks: [{ label: 'KeyMod intro (IG)', href: keymodLinks.keymodIntroReel }],
     },
     touchpad: {
       badge: 'KM Basic · Launch',
@@ -209,6 +272,7 @@ const en: KeymodLandingStrings = {
       lead: 'Point, click, and scroll on the target from your phone.',
       body: 'Use your phone as a wireless trackpad — cursor control without a physical mouse at the machine.',
       mediaLabel: 'POV — touchpad mode (placeholder)',
+      demoLinks: [{ label: 'Keyboard + touchpad demo (IG)', href: keymodLinks.homelabKeyboardDemo }],
     },
     kmPro: {
       badge: 'KM Pro · Keyboard & Mouse',
@@ -230,6 +294,7 @@ const en: KeymodLandingStrings = {
       lead: 'Compose long strings on your phone, then send them to the target in one tap.',
       body: 'License keys, long strings, compose buffers — send once, typed on the target automatically.',
       mediaLabel: 'Compose & Send demo (IG DZNZVbUBBxD)',
+      demoLinks: [{ label: 'Compose & Send demo (IG)', href: keymodLinks.composeSendDemo }],
     },
     terminalBle: {
       badge: 'Coming later',
@@ -247,6 +312,32 @@ const en: KeymodLandingStrings = {
       kvmGoNote:
         'Same KeyCmd gamepad mode powers our KVM-GO Minecraft demos — swap the USB bridge for KeyMod when the target already has a screen.',
       kvmGoCta: 'See KVM-GO gamepad demos',
+      presets: {
+        title: 'Preset layouts',
+        body: 'Tap the Preset chip to cycle saved controller layouts — bundled emu-6 starter, import/export JSON presets (schema v7).',
+        imageSrc: '/keymod/rebirth/gamepad/gamepad-preset-layout.webp',
+        imageAlt: 'KeyCmd gamepad preset picker — cycle layouts from the toolbar chip',
+      },
+      editor: {
+        title: 'Build your layout',
+        body: 'Add D-pad, sticks, touchpads, and face buttons. Tap any module to tune behavior, size, and WASD mapping.',
+        panels: [
+          {
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-edit-mode.webp',
+            imageAlt: 'Gamepad module editor — configure stick, button, and touchpad modules',
+            caption: 'Configure modules',
+          },
+          {
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-add-mode.webp',
+            imageAlt: 'Add modules to a gamepad preset — D-pad, stick, touchpad, buttons',
+            caption: 'Add modules',
+          },
+        ],
+      },
+      share: {
+        title: 'Share presets',
+        body: 'Export layouts as JSON and share with your team — background art embeds in the file. Same gamepad mode on KeyMod and KVM-GO.',
+      },
     },
     gamepad: {
       badge: 'Gamepad mode · Preview',
@@ -254,6 +345,11 @@ const en: KeymodLandingStrings = {
       lead: 'KeyCmd gamepad mode — immersive, high-motion control from your phone.',
       body: 'KeyCmd gamepad mode — immersive, high-motion demos. Same stack works with KeyMod hardware.',
       mediaLabel: 'Gamepad video — Minecraft (8d72edeb / IG)',
+      demoLinks: [
+        { label: 'Gamepad tutorial', href: keymodLinks.gamepadTutorial },
+        { label: 'Minecraft demo (IG)', href: keymodLinks.gamepadDemo },
+        { label: 'KVM-GO gamepad demos', href: keymodLinks.kvmgo },
+      ],
     },
     presentation: {
       badge: 'Presentation',
@@ -261,6 +357,7 @@ const en: KeymodLandingStrings = {
       lead: 'Control Keynote, Google Slides, and decks from your phone.',
       body: 'Keynote, Google Slides, and deck control from your phone — secondary scenario.',
       mediaLabel: 'Presentation remote scene',
+      demoLinks: [{ label: 'Presentation tutorial', href: keymodLinks.presentationTutorial }],
     },
     aiChat: {
       badge: 'AI Chat · Preview',
@@ -290,8 +387,10 @@ const en: KeymodLandingStrings = {
   },
   productLine: {
     eyebrow: 'Openterface family',
-    title: 'Need video on your laptop?',
-    body: 'Mini-KVM and KVM-GO: video + control. KeyMod: wireless input when the target already has a screen.',
+    title: 'Also need video on your laptop?',
+    body: 'Mini-KVM and KVM-GO: video + keyboard and mouse control.',
+    minikvmCta: 'Mini-KVM →',
+    kvmgoCta: 'KVM-GO →',
   },
   subscribe: {
     eyebrow: 'Stay in the loop',

@@ -2,7 +2,8 @@
 import KeyModSection from './KeyModSection.astro';
 import KeyModPovStage from './KeyModPovStage.astro';
 import KeyModModeDetail from './KeyModModeDetail.astro';
-import { keymodLinks } from '../../i18n/keymodLanding';
+import KeyModGameZoneShowcase from './KeyModGameZoneShowcase.astro';
+import { keymodPovVisibleTabScenes } from '../../data/keymodPovScenes';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
@@ -12,9 +13,21 @@ interface Props {
 const { copy } = Astro.props;
 const m = copy;
 
-const povStageScenes = [
-  { id: 'keyboard' as const, status: m.basic.badge, title: m.basic.title, lead: m.basic.lead },
-  { id: 'touchpad' as const, status: m.touchpad.badge, title: m.touchpad.title, lead: m.touchpad.lead },
+const povStageSceneDefs = [
+  {
+    id: 'keyboard' as const,
+    status: m.basic.badge,
+    title: m.basic.title,
+    lead: m.basic.lead,
+    demoLinks: m.basic.demoLinks,
+  },
+  {
+    id: 'touchpad' as const,
+    status: m.touchpad.badge,
+    title: m.touchpad.title,
+    lead: m.touchpad.lead,
+    demoLinks: m.touchpad.demoLinks,
+  },
   {
     id: 'km-pro' as const,
     status: m.kmPro.badge,
@@ -26,13 +39,21 @@ const povStageScenes = [
     status: m.composeSend.badge,
     title: m.composeSend.title,
     lead: m.composeSend.lead,
+    demoLinks: m.composeSend.demoLinks,
   },
-  { id: 'gamepad' as const, status: m.gamepad.badge, title: m.gamepad.title, lead: m.gamepad.lead },
+  {
+    id: 'gamepad' as const,
+    status: m.gamepad.badge,
+    title: m.gamepad.title,
+    lead: m.gamepad.lead,
+    demoLinks: m.gamepad.demoLinks,
+  },
   {
     id: 'presentation' as const,
     status: m.presentation.badge,
     title: m.presentation.title,
     lead: m.presentation.lead,
+    demoLinks: m.presentation.demoLinks,
   },
   {
     id: 'terminal' as const,
@@ -42,6 +63,9 @@ const povStageScenes = [
   },
   { id: 'ai-chat' as const, status: m.aiChat.badge, title: m.aiChat.title, lead: m.aiChat.lead },
 ];
+
+const visiblePovIds = new Set(keymodPovVisibleTabScenes.map((s) => s.id));
+const povStageScenes = povStageSceneDefs.filter((s) => visiblePovIds.has(s.id));
 ---
 
 <KeyModSection id="modes-theater" title={copy.title} subtitle={copy.subtitle} centered>
@@ -61,6 +85,9 @@ const povStageScenes = [
           body={m.proTerminal.body}
           sceneId="terminal"
           compact
+          assetSection="modes"
+          assetSlot="pro-terminal"
+          mediaLabel={m.proTerminal.mediaLabel}
         />
         <KeyModModeDetail
           id="mode-compose"
@@ -68,6 +95,9 @@ const povStageScenes = [
           title={m.composeSend.title}
           body={m.composeSend.body}
           sceneId="compose-send"
+          assetSection="modes"
+          assetSlot="compose-send"
+          mediaLabel={m.composeSend.mediaLabel}
         />
         <KeyModModeDetail
           id="mode-ble"
@@ -76,6 +106,9 @@ const povStageScenes = [
           body={m.terminalBle.body}
           notice={m.terminalBle.notice}
           roadmap
+          assetSection="modes"
+          assetSlot="terminal-monitor"
+          mediaLabel={m.terminalBle.mediaLabel}
         />
       </div>
     </div>
@@ -83,36 +116,17 @@ const povStageScenes = [
     <div class="km-theater-zone km-theater-zone--game km-zone-game" data-km-zone="game">
       <div class="km-theater-zone__inner km-zone-game__inner">
         <p class="km-theater-zone__eyebrow km-eyebrow">{m.gameZone.eyebrow}</p>
-        <KeyModModeDetail
-          id="mode-gamepad"
-          status={m.gamepad.badge}
-          body={m.gamepad.body}
-          sceneId="gamepad"
-          compact
-        />
-        <p class="km-game-kvmgo">
-          {m.gameZone.kvmGoNote}
-          {' '}
-          <a href={keymodLinks.kvmgo}>{m.gameZone.kvmGoCta} →</a>
-        </p>
+        <KeyModGameZoneShowcase gameZone={m.gameZone} gamepad={m.gamepad} />
       </div>
     </div>
 
-    <div class="km-theater-split km-split">
-      <KeyModModeDetail
-        id="mode-presentation"
-        status={m.presentation.badge}
-        title={m.presentation.title}
-        body={m.presentation.body}
-        sceneId="presentation"
-      />
+    <div class="km-theater-future-wrap">
       <div class="km-card km-theater-future">
         <h3 class="km-card__title">{m.future.title}</h3>
         <KeyModModeDetail
           id="mode-ai-chat"
           status={m.aiChat.badge}
           body={m.aiChat.body}
-          sceneId="ai-chat"
           compact
         />
         <div class="km-future-chips">
@@ -151,11 +165,4 @@ const povStageScenes = [
     border: none;
   }
 
-  .km-game-kvmgo {
-    margin-top: 1.25rem;
-    font-size: 0.9375rem;
-    line-height: 1.55;
-    color: rgba(236, 232, 255, 0.78);
-    max-width: 42rem;
-  }
 </style>

@@ -50,11 +50,11 @@
 }
 
 .keymod-landing a.km-footer__keycmd-btn {
-  color: var(--km-muted);
+  color: var(--km-accent);
 }
 
 .keymod-landing a.km-footer__keycmd-btn:hover {
-  color: var(--km-accent);
+  color: #ffffff;
 }
 
 .km-footer__keycmd-btn .km-wordmark--keycmd {
@@ -259,11 +259,11 @@
 }
 
 .km-footer__keycmd-btn {
-  color: var(--km-muted);
+  color: var(--km-accent);
 }
 
 .km-footer__keycmd-btn:hover {
-  color: var(--km-accent);
+  color: #ffffff;
 }
 
 .km-eyebrow-row,
@@ -637,6 +637,13 @@
 .km-btn--ghost:hover {
   background: var(--km-accent);
   color: #ffffff;
+}
+
+.km-btn__icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  object-fit: contain;
 }
 
 /* Section shell */
@@ -1292,6 +1299,10 @@
   justify-content: center;
 }
 
+.keymod-landing .km-hero__actions a.km-btn--ghost:hover {
+  color: #ffffff;
+}
+
 /* What it is — KeyCmd Welcome screenshot + caption cards */
 .km-whatitis {
   display: flex;
@@ -1883,6 +1894,26 @@
   color: var(--km-muted);
 }
 
+.km-pov-stage__demos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem 1.25rem;
+  margin: 0.85rem 0 0;
+}
+
+.km-pov-stage__demo-link {
+  font-family: var(--km-font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--km-brand);
+}
+
+.km-pov-stage__demo-link:hover {
+  color: var(--km-accent-on-light);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .km-pov-stage__layer,
   .km-pov-stage__summary-pane,
@@ -1980,8 +2011,19 @@
   color: var(--km-accent-on-light);
 }
 
-.km-theater-split {
+.km-theater-detail--with-media {
+  margin-bottom: 3rem;
+}
+
+.km-theater-detail__media {
+  margin-top: 1.25rem;
+  max-width: 42rem;
+}
+
+.km-theater-future-wrap {
   margin-top: 2rem;
+  max-width: 42rem;
+  margin-inline: auto;
 }
 
 /* Matrix ops zone — full-bleed dark band */
@@ -2051,6 +2093,17 @@
   color: rgba(254, 243, 199, 0.95);
   background: rgba(120, 53, 15, 0.45);
   border-color: rgba(251, 191, 36, 0.45);
+}
+
+.km-zone-matrix .km-media-placeholder {
+  border-color: rgba(0, 255, 65, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+  color: rgba(232, 255, 232, 0.55);
+}
+
+.km-zone-matrix .km-media {
+  border-color: rgba(0, 255, 65, 0.25);
+  background: rgba(0, 0, 0, 0.35);
 }
 
 .km-zone-matrix + .km-zone-game {
@@ -2146,8 +2199,146 @@
     0 8px 32px rgba(0, 212, 255, 0.12);
 }
 
+.km-theater-detail__demos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.25rem;
+  margin: 0.75rem 0 0;
+}
 
-/* Community media strip — thumbnail + outbound link (no third-party embed) */
+.km-theater-detail__demo-link {
+  font-family: var(--km-font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.km-zone-game .km-theater-detail__demo-link {
+  color: var(--km-game-accent);
+}
+
+.km-zone-game .km-theater-detail__demo-link:hover {
+  color: var(--km-game-accent-alt);
+}
+
+/* Game Zone — preset / editor showcase */
+.km-game-showcase .km-theater-detail--with-media {
+  margin-bottom: 0;
+}
+
+.km-game-showcase__block {
+  margin-top: 2.5rem;
+}
+
+.km-game-showcase__title {
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.km-game-showcase__body {
+  margin: 0 0 1rem;
+  max-width: 42rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: rgba(236, 232, 255, 0.78);
+}
+
+.km-game-showcase__figure {
+  margin: 0;
+}
+
+.km-game-showcase__duo {
+  display: grid;
+  gap: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .km-game-showcase__duo {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.km-game-showcase__caption {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-align: center;
+  color: rgba(236, 232, 255, 0.65);
+}
+
+.km-game-showcase__share {
+  margin-top: 2.5rem;
+}
+
+.km-game-kvmgo {
+  margin-top: 2rem;
+  max-width: 42rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: rgba(236, 232, 255, 0.78);
+}
+
+
+/* Real users — Instagram official embeds */
+.km-ig-embed-grid {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.35rem;
+  margin-inline: -1.25rem;
+  padding-inline: 1.25rem;
+  align-items: flex-start;
+}
+
+.km-ig-embed {
+  flex: 0 0 min(92vw, 22rem);
+  scroll-snap-align: center;
+  margin: 0;
+  min-width: 0;
+}
+
+.km-ig-embed .instagram-media {
+  display: block;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+.km-ig-embed__author {
+  margin-top: 0.65rem;
+  text-align: center;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--km-muted);
+}
+
+.km-ig-embed-grid__footer {
+  margin-top: 1.75rem;
+  text-align: center;
+  max-width: none;
+}
+
+@media (min-width: 768px) {
+  .km-ig-embed-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow-x: visible;
+    margin-inline: 0;
+    padding-inline: 0;
+    gap: 1.5rem;
+  }
+
+  .km-ig-embed {
+    flex: unset;
+    scroll-snap-align: unset;
+  }
+}
+
+/* Community media strip — thumbnail + outbound link (legacy / media hub) */
 .km-community-grid {
   display: flex;
   gap: 1rem;
@@ -2336,6 +2527,34 @@
   line-height: 1.65;
 }
 
+/* Openterface family — sibling KVM products + use-case photo */
+.km-product-line__body {
+  text-align: center;
+  max-width: 38rem;
+  margin-inline: auto;
+}
+
+.km-product-line__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.km-product-line__figure {
+  margin: 2rem 0 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.km-product-line__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: none;
+}
+
 /* Launch updates — subscribe + Crowd Supply secondary */
 .km-launch-cta {
   display: grid;
@@ -2433,6 +2652,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+}
+
+/* Ghost CTAs: accent fill on hover — label / KeyCmd wordmark must stay white */
+.keymod-landing .km-footer__cta-row a.km-btn--ghost:hover {
+  color: #ffffff;
 }
 
 .km-footer__links {
