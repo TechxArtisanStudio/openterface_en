@@ -2,6 +2,7 @@ const AUTO_DELAY_MS = 3500;
 const SEND_DURATION_MAX_MS = 10000;
 const SEND_DURATION_MIN_MS = 3000;
 const COMPLETE_HOLD_MS = 2500;
+const LIBRARY_REVEAL_HOLD_MS = 3500;
 const PROGRESS_MIN_UNITS = 56;
 const INTERSECTION_THRESHOLD = 0.35;
 const LOAD_FLASH_MS = 600;
@@ -22,6 +23,7 @@ let activeText = '';
 let progressSuffix = 'left';
 let autoTimer: number | null = null;
 let completeTimer: number | null = null;
+let libraryRevealTimer: number | null = null;
 let loadFlashTimer: number | null = null;
 let sendStartMs = 0;
 let sendDurationMs = SEND_DURATION_MAX_MS;
@@ -32,6 +34,8 @@ let state: FlowState = 'idle';
 let view: PhoneView = 'compose';
 let selectedTemplateId: string | null = null;
 let userOpenedLibrary = false;
+let wasAutoSend = false;
+let hasAutoRevealedLibrary = false;
 let reducedMotion = false;
 let templates: SavedTemplate[] = [];
 let clickAbort: AbortController | null = null;
@@ -56,6 +60,10 @@ function clearTimers(): void {
   if (completeTimer !== null) {
     window.clearTimeout(completeTimer);
     completeTimer = null;
+  }
+  if (libraryRevealTimer !== null) {
+    window.clearTimeout(libraryRevealTimer);
+    libraryRevealTimer = null;
   }
   if (loadFlashTimer !== null) {
     window.clearTimeout(loadFlashTimer);
@@ -94,6 +102,24 @@ function setView(next: PhoneView): void {
   if (libraryPanel) {
     libraryPanel.hidden = next !== 'library';
   }
+
+  updateLibraryHint();
+}
+
+function updateLibraryHint(): void {
+  if (!rootEl) return;
+
+  const hideHint =
+    userOpenedLibrary || hasAutoRevealedLibrary || view === 'library' || state === 'sending' || state === 'complete';
+  const showPulse = !hideHint && (state === 'idle' || state === 'countdown');
+
+  rootEl.classList.toggle('km-compose-flow--library-hint-hidden', hideHint);
+
+  const hint = q<HTMLElement>('[data-km-compose-library-hint]');
+  const libraryBtn = q<HTMLElement>('[data-km-compose-open-library]');
+
+  if (hint) hint.hidden = hideHint;
+  if (libraryBtn) libraryBtn.classList.toggle('km-compose-flow__action--library-pulse', showPulse);
 }
 
 function updateSelectionUi(): void {
@@ -158,6 +184,8 @@ function setState(next: FlowState): void {
     const showProgress = next === 'sending' && totalUnits() >= progressMinUnits();
     progressWrap.hidden = !showProgress;
   }
+
+  updateLibraryHint();
 }
 
 function writeEditorText(text: string): void {
@@ -213,7 +241,7 @@ function scheduleAutoStart(): void {
   setState('countdown');
   autoTimer = window.setTimeout(() => {
     autoTimer = null;
-    if (state === 'countdown' && inView && view === 'compose') startSend();
+    if (state === 'countdown' && inView && view === 'compose') startSend({ auto: true });
   }, AUTO_DELAY_MS);
 }
 
@@ -227,6 +255,13 @@ function openLibrary(): void {
   if (reducedMotion || state === 'sending') return;
   clearTimers();
   userOpenedLibrary = true;
+  setState('idle');
+  setView('library');
+}
+
+function openLibraryAuto(): void {
+  if (reducedMotion || state === 'sending') return;
+  clearTimers();
   setState('idle');
   setView('library');
 }
@@ -258,9 +293,10 @@ function loadSelected(): void {
   if (live) live.textContent = 'Loaded into compose editor';
 }
 
-function startSend(): void {
+function startSend(options?: { auto?: boolean }): void {
   if (state === 'sending' || state === 'complete') return;
   clearTimers();
+  wasAutoSend = options?.auto ?? false;
   sendDurationMs = sendDurationFor(activeText);
   setState('sending');
   sendStartMs = performance.now();
@@ -286,6 +322,17 @@ function startSend(): void {
         completeTimer = null;
         if (!inView) {
           resetToIdle();
+          return;
+        }
+        if (!userOpenedLibrary && !hasAutoRevealedLibrary && wasAutoSend) {
+          hasAutoRevealedLibrary = true;
+          openLibraryAuto();
+          libraryRevealTimer = window.setTimeout(() => {
+            libraryRevealTimer = null;
+            closeLibrary();
+            resetToIdle();
+            scheduleAutoStart();
+          }, LIBRARY_REVEAL_HOLD_MS);
           return;
         }
         resetToIdle();
@@ -385,6 +432,7 @@ function bindRoot(root: HTMLElement): void {
         if (state === 'idle' && view === 'compose') scheduleAutoStart();
       } else {
         userOpenedLibrary = false;
+        hasAutoRevealedLibrary = false;
         closeLibrary();
         resetToIdle();
       }
@@ -396,6 +444,7 @@ function bindRoot(root: HTMLElement): void {
   setView('compose');
   updateSelectionUi();
   resetToIdle();
+  updateLibraryHint();
 }
 
 function unbindRoot(): void {
@@ -409,6 +458,8 @@ function unbindRoot(): void {
   view = 'compose';
   selectedTemplateId = null;
   userOpenedLibrary = false;
+  hasAutoRevealedLibrary = false;
+  wasAutoSend = false;
   inView = false;
 }
 
