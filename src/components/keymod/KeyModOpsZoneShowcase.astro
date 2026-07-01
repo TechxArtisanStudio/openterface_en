@@ -41,14 +41,14 @@ const { opsZone } = Astro.props;
   </section>
 
   <section class="km-ops-showcase__block" aria-labelledby="ops-terminal-title">
-    <span class="km-ops-showcase__badge km-ops-showcase__badge-lockup">
-      {opsZone.terminal.badge}
+    <span class="km-ops-showcase__badge">{opsZone.terminal.badge}</span>
+    <h3 id="ops-terminal-title" class="km-ops-showcase__title km-ops-showcase__title-lockup">
+      {opsZone.terminal.title}
       <KeyModExperimentalIcon
-        class="km-ops-showcase__badge-icon km-ops-showcase__badge-icon--experimental"
+        class="km-ops-showcase__title-icon km-ops-showcase__title-icon--experimental"
         title={opsZone.terminal.experimentalHint}
       />
-    </span>
-    <h3 id="ops-terminal-title" class="km-ops-showcase__title">{opsZone.terminal.title}</h3>
+    </h3>
     <p class="km-ops-showcase__body">{opsZone.terminal.body}</p>
 
     <KeyModTerminalPreviewFlow terminal={opsZone.terminal} />

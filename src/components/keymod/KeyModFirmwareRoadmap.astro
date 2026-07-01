@@ -1,6 +1,5 @@
 ---
 import KeyModSection from './KeyModSection.astro';
-import KeyModModeDetail from './KeyModModeDetail.astro';
 import { keymodLinks } from '../../i18n/keymodLanding';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
@@ -11,29 +10,44 @@ interface Props {
 const { copy } = Astro.props;
 ---
 
-<KeyModSection id="firmware-roadmap" eyebrow={copy.eyebrow} title={copy.title} subtitle={copy.subtitle} centered narrow>
+<KeyModSection
+  id="firmware-roadmap"
+  eyebrow={copy.eyebrow}
+  title={copy.title}
+  subtitle={copy.subtitle}
+  centered
+  narrow
+  variant="elevated"
+>
   <div class="km-firmware-roadmap">
-    <KeyModModeDetail
-      id="mode-ai-chat-roadmap"
-      status={copy.aiChat.badge}
-      body={copy.aiChat.body}
-      compact
-      roadmap
-    />
+    <div class="km-firmware-roadmap__panel">
+      <p class="km-firmware-roadmap__label">{copy.chipsLabel}</p>
+      <ul class="km-firmware-roadmap__chips" aria-label={copy.chipsLabel}>
+        {
+          copy.chips.map((chip) => (
+            <li>
+              <span class="km-firmware-roadmap__chip">{chip}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
 
-    <ul class="km-firmware-roadmap__chips" aria-label="Planned firmware features">
-      {
-        copy.chips.map((chip) => (
-          <li>
-            <span class="km-firmware-roadmap__chip">{chip}</span>
-          </li>
-        ))
-      }
-    </ul>
+    <article class="km-firmware-roadmap__preview" aria-labelledby="firmware-roadmap-preview-badge">
+      <span id="firmware-roadmap-preview-badge" class="km-firmware-roadmap__preview-badge">
+        {copy.aiChat.badge}
+      </span>
+      <p class="km-firmware-roadmap__preview-body">{copy.aiChat.body}</p>
+    </article>
 
     <aside class="km-firmware-roadmap__forum">
       <p class="km-firmware-roadmap__forum-text">{copy.forumPrompt}</p>
-      <a class="km-btn km-btn--ghost km-firmware-roadmap__forum-cta" href={keymodLinks.forum} target="_blank" rel="noopener noreferrer">
+      <a
+        class="km-btn km-btn--ghost km-firmware-roadmap__forum-cta"
+        href={keymodLinks.forum}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         {copy.forumCta}
       </a>
     </aside>
