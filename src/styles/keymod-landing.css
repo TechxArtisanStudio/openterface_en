@@ -1636,7 +1636,9 @@
 /* POV Stage — immersive mode demo */
 .km-pov-stage {
   margin-top: 1.5rem;
-  overflow: visible;
+  overflow-x: clip;
+  overflow-y: visible;
+  max-width: 100%;
   padding-bottom: clamp(0.5rem, 3vw, 2rem);
 }
 
@@ -1685,66 +1687,147 @@
 
 .km-pov-stage__panel {
   background: #fff;
-  overflow: visible;
+  overflow-x: clip;
+  overflow-y: visible;
+  padding-top: 0.35rem;
 }
 
 .km-pov-stage__artboard {
   position: relative;
   width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
   aspect-ratio: 2921 / 1175;
-  overflow: visible;
+  overflow-x: clip;
+  overflow-y: visible;
   background: #fff;
 }
 
-.km-pov-stage__slot,
+.km-pov-stage__layer,
 .km-pov-stage__frame {
   position: absolute;
   display: block;
   pointer-events: none;
 }
 
-.km-pov-stage__slot {
-  overflow: hidden;
+.km-pov-stage__layer--monitor {
+  left: var(--pov-mon-left-base);
+  top: var(--pov-mon-top-base);
+  width: var(--pov-mon-w-base);
+  height: var(--pov-mon-h-base);
+}
+
+.km-pov-stage__pc {
+  left: var(--pov-pc-left-base);
+  bottom: var(--pov-ph-bottom-base);
+  width: var(--pov-pc-w-base);
+  height: var(--pov-pc-h-base);
+  z-index: 3;
+}
+
+/* Landscape phone — original artboard placement (SSOT) */
+.km-pov-stage__layer--phone:not(.km-pov-stage__layer--phone-portrait) {
+  left: var(--pov-ph-land-left-base);
+  top: var(--pov-ph-land-top-base);
+  width: var(--pov-ph-land-w-base);
+  height: var(--pov-ph-land-h-base);
+  transform-origin: bottom left;
+}
+
+/* Portrait phone — same bottom baseline + same horizontal center as landscape */
+.km-pov-stage__layer--phone-portrait {
+  bottom: var(--pov-ph-bottom-base);
+  left: var(--pov-ph-center-x);
+  width: var(--pov-ph-port-w-base);
+  height: var(--pov-ph-port-h-base);
+  transform: translateX(-50%);
+  transform-origin: bottom center;
+}
+
+.km-pov-stage__layer {
+  overflow: visible;
   opacity: 0;
   transition: opacity 420ms cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 1;
 }
 
-.km-pov-stage__slot--active {
+.km-pov-stage__layer--active {
   opacity: 1;
   z-index: 2;
 }
 
-.km-pov-stage__slot--phone {
-  z-index: 3;
-}
-
-.km-pov-stage__slot--phone.km-pov-stage__slot--active {
+.km-pov-stage__layer--phone {
   z-index: 4;
 }
 
-.km-pov-stage__hands {
-  z-index: 6;
+.km-pov-stage__layer--phone.km-pov-stage__layer--active {
+  z-index: 5;
 }
 
-.km-pov-stage__slot-img {
+.km-pov-stage__layer-img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-}
-
-.km-pov-stage__slot--phone .km-pov-stage__slot-img {
-  border-radius: 2px;
-}
-
-.km-pov-stage__frame {
-  z-index: 5;
-  width: 100%;
-  height: 100%;
   object-fit: contain;
-  object-position: center;
+  object-position: center bottom;
+}
+
+.km-pov-stage__frame.km-pov-stage__pc {
+  object-fit: contain;
+  object-position: center bottom;
   transition: none;
+}
+
+/* Wide desktop — bigger monitor; scale hands from shared bottom */
+@media (min-width: 1024px) {
+  .km-pov-stage__layer--monitor {
+    width: calc(var(--pov-mon-w-base) * 1.14);
+    left: calc(var(--pov-mon-left-base) - 2%);
+    top: calc(var(--pov-mon-top-base) + 0.5%);
+  }
+
+  .km-pov-stage__layer--phone:not(.km-pov-stage__layer--phone-portrait) {
+    transform: scale(1.12);
+  }
+
+  .km-pov-stage__layer--phone-portrait {
+    transform: translateX(-50%) scale(1.15);
+  }
+}
+
+/* Portrait modes — drop monitor away from tabs; presentation gets extra breathing room */
+#km-pov-stage:has(.km-pov-stage__layer--phone-portrait.km-pov-stage__layer--active) .km-pov-stage__layer--monitor {
+  top: calc(var(--pov-mon-top-base) + 2.5%);
+}
+
+#km-pov-stage[data-active-scene='presentation'] .km-pov-stage__layer--monitor {
+  top: calc(var(--pov-mon-top-base) + 4%);
+}
+
+/* Mobile / narrow — pull portrait phone left, modest monitor boost */
+@media (max-width: 767px) {
+  .km-pov-stage__artboard {
+    aspect-ratio: 4 / 3.6;
+    max-width: 100%;
+  }
+
+  .km-pov-stage__layer--monitor {
+    width: calc(var(--pov-mon-w-base) * 1.08);
+    left: calc(var(--pov-mon-left-base) - 3%);
+    top: calc(var(--pov-mon-top-base) + 1%);
+  }
+
+  .km-pov-stage__layer--phone:not(.km-pov-stage__layer--phone-portrait) {
+    transform: scale(1.06);
+  }
+
+  .km-pov-stage__layer--phone-portrait {
+    transform: translateX(-50%) scale(1.06);
+  }
+
+  #km-pov-stage[data-active-scene='presentation'] .km-pov-stage__layer--monitor {
+    top: calc(var(--pov-mon-top-base) + 3%);
+  }
 }
 
 .km-pov-stage__summary {
@@ -1801,7 +1884,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .km-pov-stage__slot,
+  .km-pov-stage__layer,
   .km-pov-stage__summary-pane,
   .km-pov-stage__tab {
     transition: none;

@@ -1,14 +1,8 @@
 ---
 import {
-  KEYMOD_POV_HANDS_DEFAULT_SRC,
-  KEYMOD_POV_HANDS_PORTRAIT_SRC,
-  KEYMOD_POV_PORTRAIT,
-  KEYMOD_POV_PORTRAIT_HANDS_SCENE_IDS,
-  KEYMOD_POV_TEMPLATE_DESK,
-  KEYMOD_POV_VIEW,
+  KEYMOD_POV_PC_SRC,
   keymodPovScenes,
-  povPhoneRectForScene,
-  povRectToDisplayPercent,
+  povArtboardCssVars,
   type KeymodPovSceneId,
 } from '../../data/keymodPovScenes';
 
@@ -17,111 +11,74 @@ interface Props {
 }
 
 const { activeSceneId } = Astro.props;
-const template = KEYMOD_POV_TEMPLATE_DESK;
-
-const frameLayers = template.layers.filter((l) => l.kind === 'frame');
-const monitorRect = template.layers.find((l) => l.kind === 'slot' && l.id === 'monitor')!;
-const defaultHandsRect = frameLayers.find((l) => l.src.includes('hands-phone'))!.rect;
-
-const monitorStyle = povRectToDisplayPercent(monitorRect.rect);
-const defaultHandsStyle = povRectToDisplayPercent(defaultHandsRect);
-const portraitHandsStyle = povRectToDisplayPercent(KEYMOD_POV_PORTRAIT.handsRect);
-const usePortraitHands = KEYMOD_POV_PORTRAIT_HANDS_SCENE_IDS.includes(activeSceneId);
+const artboardVars = povArtboardCssVars();
 ---
 
-<div
-  class="km-pov-stage__artboard"
-  style={`--pov-view-w: ${KEYMOD_POV_VIEW.w}; --pov-view-h: ${KEYMOD_POV_VIEW.h}`}
->
+<div class="km-pov-stage__artboard" style={artboardVars}>
   {
     keymodPovScenes.map((scene) => {
       const isActive = scene.id === activeSceneId;
-      return (
-        <>
-          <div
-            class:list={[
-              'km-pov-stage__slot',
-              'km-pov-stage__slot--monitor',
-              isActive && 'km-pov-stage__slot--active',
-            ]}
-            data-pov-slot="monitor"
-            data-pov-scene={scene.id}
-            style={monitorStyle}
-          >
-            <img class="km-pov-stage__slot-img" src={scene.monitorSrc} alt="" decoding="async" />
-          </div>
-        </>
-      );
-    })
-  }
-
-  {
-    frameLayers
-      .filter((l) => l.src.includes('screen'))
-      .map((layer) => (
-        <img
-          class="km-pov-stage__frame"
-          src={layer.src}
-          alt=""
-          decoding="async"
-          style={povRectToDisplayPercent(layer.rect)}
-        />
-      ))
-  }
-
-  {
-    frameLayers
-      .filter((l) => l.src.includes('pc-with-keymod'))
-      .map((layer) => (
-        <img
-          class="km-pov-stage__frame"
-          src={layer.src}
-          alt=""
-          decoding="async"
-          style={povRectToDisplayPercent(layer.rect)}
-        />
-      ))
-  }
-
-  {
-    keymodPovScenes.map((scene) => {
-      const isActive = scene.id === activeSceneId;
-      const phoneStyle = povRectToDisplayPercent(povPhoneRectForScene(scene.id));
-      const isPortraitPhone = KEYMOD_POV_PORTRAIT_HANDS_SCENE_IDS.includes(scene.id);
       return (
         <div
           class:list={[
-            'km-pov-stage__slot',
-            'km-pov-stage__slot--phone',
-            isPortraitPhone && 'km-pov-stage__slot--phone-portrait',
-            isActive && 'km-pov-stage__slot--active',
+            'km-pov-stage__layer',
+            'km-pov-stage__layer--monitor',
+            isActive && 'km-pov-stage__layer--active',
           ]}
-          data-pov-slot="phone"
+          data-pov-layer="monitor"
           data-pov-scene={scene.id}
-          style={phoneStyle}
         >
-          <img class="km-pov-stage__slot-img" src={scene.phoneSrc} alt="" decoding="async" />
+          <img
+            class="km-pov-stage__layer-img"
+            src={scene.monitorSrc}
+            alt=""
+            decoding="async"
+            loading="lazy"
+            width={1024}
+            height={572}
+          />
         </div>
       );
     })
   }
 
   <img
-    class="km-pov-stage__frame km-pov-stage__hands"
-    src={KEYMOD_POV_HANDS_DEFAULT_SRC}
+    class="km-pov-stage__frame km-pov-stage__pc"
+    src={KEYMOD_POV_PC_SRC}
     alt=""
     decoding="async"
-    style={defaultHandsStyle}
-    data-pov-hands="default"
-    hidden={usePortraitHands}
+    loading="lazy"
+    width={578}
+    height={298}
   />
-  <img
-    class="km-pov-stage__frame km-pov-stage__hands km-pov-stage__hands--portrait"
-    src={KEYMOD_POV_HANDS_PORTRAIT_SRC}
-    alt=""
-    decoding="async"
-    style={portraitHandsStyle}
-    data-pov-hands="portrait"
-    hidden={!usePortraitHands}
-  />
+
+  {
+    keymodPovScenes.map((scene) => {
+      const isActive = scene.id === activeSceneId;
+      const isPortrait = scene.phoneLayout === 'portrait';
+      return (
+        <div
+          class:list={[
+            'km-pov-stage__layer',
+            'km-pov-stage__layer--phone',
+            isPortrait && 'km-pov-stage__layer--phone-portrait',
+            isActive && 'km-pov-stage__layer--active',
+          ]}
+          data-pov-layer="phone"
+          data-pov-scene={scene.id}
+          data-phone-layout={scene.phoneLayout}
+        >
+          <img
+            class="km-pov-stage__layer-img"
+            src={scene.phoneSrc}
+            alt=""
+            decoding="async"
+            loading="lazy"
+            width={isPortrait ? 969 : 969}
+            height={isPortrait ? 1147 : 399}
+          />
+        </div>
+      );
+    })
+  }
 </div>
