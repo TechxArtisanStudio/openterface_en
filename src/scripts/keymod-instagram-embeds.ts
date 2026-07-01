@@ -10,6 +10,10 @@ export function initKeymodInstagramEmbeds(): void {
 
 function boot(): void {
   initKeymodInstagramEmbeds();
+  /* embed.js loads async — retry once it arrives */
+  if (!window.instgrm) {
+    window.addEventListener('load', initKeymodInstagramEmbeds, { once: true });
+  }
 }
 
 if (document.readyState === 'loading') {

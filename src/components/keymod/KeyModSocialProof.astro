@@ -1,7 +1,7 @@
 ---
 import KeyModSection from './KeyModSection.astro';
-import KeyModCommunityCard from './KeyModCommunityCard.astro';
-import { getKeymodCommunityCards } from '../../data/keymodCommunityMedia';
+import KeyModInstagramEmbed from './KeyModInstagramEmbed.astro';
+import { getKeymodInstagramEmbeds } from '../../data/keymodInstagramEmbeds';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
@@ -9,16 +9,16 @@ interface Props {
 }
 
 const { copy } = Astro.props;
-const cards = getKeymodCommunityCards();
+const embeds = getKeymodInstagramEmbeds();
 ---
 
 <KeyModSection id="social-proof" eyebrow={copy.eyebrow} title={copy.title} centered>
-  <div class="km-community-grid">
-    {cards.map((card) => (
-      <KeyModCommunityCard card={card} />
+  <div class="km-ig-embed-grid">
+    {embeds.map((embed) => (
+      <KeyModInstagramEmbed embed={embed} />
     ))}
   </div>
-  <p class="km-subtitle km-community-grid__footer">
+  <p class="km-subtitle km-ig-embed-grid__footer">
     <a href="https://www.instagram.com/techxartisan/" target="_blank" rel="noopener noreferrer">
       {copy.followIg} ↗
     </a>
@@ -26,3 +26,8 @@ const cards = getKeymodCommunityCards();
     <a href="/media/?product=keymod">{copy.viewAllMedia} →</a>
   </p>
 </KeyModSection>
+
+<script async src="//www.instagram.com/embed.js"></script>
+<script>
+  import '../../scripts/keymod-instagram-embeds';
+</script>
