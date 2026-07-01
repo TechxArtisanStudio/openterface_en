@@ -89,7 +89,6 @@ export type KeymodLandingStrings = {
       demoLinks?: KeymodDemoLink[];
     };
     kmPro: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
-    proTerminal: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
     composeSend: {
       badge: string;
       title: string;
@@ -98,8 +97,35 @@ export type KeymodLandingStrings = {
       mediaLabel: string;
       demoLinks?: KeymodDemoLink[];
     };
-    terminalBle: { badge: string; title: string; body: string; mediaLabel: string; notice: string };
-    opsZone: { eyebrow: string };
+    proTerminal: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
+    opsZone: {
+      eyebrow: string;
+      intro: { title: string; body: string };
+      compose: {
+        badge: string;
+        title: string;
+        body: string;
+        demoLinks?: KeymodDemoLink[];
+        imageSrc: string;
+        imageAlt: string;
+        mediaLabel: string;
+      };
+      savedTexts: {
+        title: string;
+        body: string;
+        imageSrc: string;
+        imageAlt: string;
+        mediaLabel: string;
+      };
+      terminal: {
+        badge: string;
+        title: string;
+        body: string;
+        usb: { label: string; body: string; imageSrc: string; imageAlt: string; mediaLabel: string };
+        ble: { label: string; body: string; imageSrc: string; imageAlt: string; mediaLabel: string };
+        notice: string;
+      };
+    };
     gameZone: {
       eyebrow: string;
       presets: { title: string; body: string; layouts: { label: string; imageSrc: string; imageAlt: string }[] };
@@ -304,30 +330,63 @@ const en: KeymodLandingStrings = {
       mediaLabel: 'POV KM Pro hybrid layout (placeholder)',
     },
     proTerminal: {
-      badge: 'KM Pro · Maturing',
-      title: 'Terminal control',
-      lead: 'SSH and shell workflows from your phone. Target monitor shows the terminal.',
-      body: 'SSH and shell workflows from your phone. The target monitor shows the terminal, not a text editor.',
-      mediaLabel: 'Matrix zone terminal on monitor (reshoot)',
+      badge: 'Terminal · Preview',
+      title: 'SSH from your phone',
+      lead: 'USB when wired. Bluetooth at the rack. Preview demos ship in KeyCmd today.',
+      body: 'Dedicated Terminal mode in KeyCmd: SSH over USB ECM (Plus) or BLE-Eth (Mini). Full production link-up follows KeyMod firmware Phase 2.',
+      mediaLabel: 'Terminal SSH session (USB transport, reshoot)',
     },
     composeSend: {
       badge: 'KM Pro · Compose & Send',
       title: 'Paste on phone. Tap Send. Target types.',
       lead: 'Compose long strings on your phone, then send them to the target in one tap.',
-      body: 'License keys, long strings, compose buffers: send once and they type on the target automatically.',
+      body: 'Multi-line HID paste for license keys, deploy scripts, and login prompts. Works in BIOS and locked-down hosts where clipboard paste fails.',
       mediaLabel: 'Compose & Send demo (IG DZNZVbUBBxD)',
       demoLinks: [{ label: 'Compose & Send demo (IG)', href: keymodLinks.composeSendDemo }],
     },
-    terminalBle: {
-      badge: 'Coming later',
-      title: 'Terminal over Bluetooth',
-      body: 'Wireless serial terminal without a laptop at the rack. On the roadmap; no dates yet.',
-      mediaLabel: 'Terminal over BLE concept',
-      notice:
-        'BLE serial is not in the launch build. KM Pro terminal over USB HID is maturing now; wireless serial is a future firmware target.',
-    },
     opsZone: {
       eyebrow: 'Ops Zone',
+      intro: {
+        title: 'Phone-side ops console',
+        body: 'Paste long commands to the target, keep a personal runbook, or SSH from your pocket. No laptop at the rack.',
+      },
+      compose: {
+        badge: 'KM Pro · Compose & Send',
+        title: 'Paste on phone. Tap Send. Target types.',
+        body: 'Write multi-line commands on your phone, preview, then Send. KeyCmd types on the target over USB or Bluetooth HID. Cancel mid-send on long pastes.',
+        demoLinks: [{ label: 'Compose & Send demo (IG)', href: keymodLinks.composeSendDemo }],
+        imageSrc: '/keymod/rebirth/modes/km-compose-send.webp',
+        imageAlt: 'KeyCmd Compose and Send buffer with Send action on phone',
+        mediaLabel: 'Compose & Send long command buffer (reshoot optional)',
+      },
+      savedTexts: {
+        title: 'Saved texts',
+        body: 'Your personal runbook: pin, rename, load, or send snippets in one tap. Store deploy scripts, long passwords, and repeat one-liners (up to 60 items).',
+        imageSrc: '/keymod/rebirth/ops/ops-compose-saved-texts.webp',
+        imageAlt: 'KeyCmd Saved texts library with pinned deploy script and password templates',
+        mediaLabel: 'Saved texts sheet: pin prod-deploy, rotate-root-pass, docker compose (P0 reshoot)',
+      },
+      terminal: {
+        badge: 'Terminal · Preview',
+        title: 'SSH from your phone',
+        body: 'Dedicated Terminal mode runs SSH through the KeyMod bridge. Pick USB for speed at the machine or Bluetooth when you are across the room.',
+        usb: {
+          label: 'USB ECM · KeyMod Plus',
+          body: 'Wired path when Plus is tethered to your phone. Low latency and high throughput for full-size sessions at the rack.',
+          imageSrc: '/keymod/rebirth/ops/ops-terminal-usb.webp',
+          imageAlt: 'KeyCmd Terminal connected over USB ECM with htop on screen',
+          mediaLabel: 'Terminal Preview demo (USB transport badge, P0 reshoot)',
+        },
+        ble: {
+          label: 'BLE-Eth · KeyMod Mini',
+          body: 'Wireless SSH when Mini is on the target. Compact terminal geometry recommended. Preview demo available in KeyCmd today.',
+          imageSrc: '/keymod/rebirth/ops/ops-terminal-ble.webp',
+          imageAlt: 'KeyCmd Terminal connected over Bluetooth transport',
+          mediaLabel: 'Terminal Preview demo (Bluetooth transport badge, P0 reshoot)',
+        },
+        notice:
+          'KeyCmd ships Terminal UI and transport stack today with Preview demos (USB and Bluetooth). Live SSH through KeyMod hardware follows firmware Phase 2 sign-off.',
+      },
     },
     gameZone: {
       eyebrow: 'Game Zone',
