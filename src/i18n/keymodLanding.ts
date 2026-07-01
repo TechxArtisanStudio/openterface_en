@@ -59,6 +59,7 @@ export type KeymodLandingStrings = {
     subtitle: string;
     basic: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
     touchpad: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
+    kmPro: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
     proTerminal: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
     composeSend: { badge: string; title: string; lead: string; body: string; mediaLabel: string };
     terminalBle: { badge: string; title: string; body: string; mediaLabel: string; notice: string };
@@ -208,6 +209,13 @@ const en: KeymodLandingStrings = {
       lead: 'Point, click, and scroll on the target from your phone.',
       body: 'Use your phone as a wireless trackpad — cursor control without a physical mouse at the machine.',
       mediaLabel: 'POV — touchpad mode (placeholder)',
+    },
+    kmPro: {
+      badge: 'KM Pro · Keyboard & Mouse',
+      title: 'Hybrid keyboard + mouse layout',
+      lead: 'KeyCmd Pro mode — type and point from one phone screen. Hybrid HID layout for power users.',
+      body: 'Keyboard and Mouse Pro in KeyCmd: combined keyboard, trackpad, and shortcuts on one layout — richer than Basic, still BIOS-capable HID on the target.',
+      mediaLabel: 'POV — KM Pro hybrid layout (placeholder)',
     },
     proTerminal: {
       badge: 'KM Pro · Maturing',
