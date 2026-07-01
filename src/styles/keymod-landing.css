@@ -318,7 +318,8 @@
 .km-nav__brand-parent,
 .km-nav__product-link,
 .km-nav__wordmark,
-.km-btn {
+.km-btn,
+.km-back-to-top {
   transition:
     color 380ms ease,
     background-color 380ms ease,
@@ -4473,7 +4474,7 @@
   color: var(--km-accent-on-light);
 }
 
-/* Back to top — subtle floating control */
+/* Back to top — subtle floating control (theme follows body[data-km-active-zone] via zone nav) */
 .km-back-to-top {
   position: fixed;
   right: 1.25rem;
@@ -4497,8 +4498,10 @@
   transition:
     opacity 200ms ease,
     transform 200ms ease,
-    color 150ms ease,
-    border-color 150ms ease,
+    color 380ms ease,
+    background-color 380ms ease,
+    border-color 380ms ease,
+    box-shadow 380ms ease,
     bottom 200ms ease;
 }
 
@@ -4519,6 +4522,42 @@
 .km-back-to-top:focus-visible {
   outline: 2px solid var(--km-accent);
   outline-offset: 2px;
+}
+
+/* Back to top theme: ops (Matrix green) */
+.keymod-landing[data-km-active-zone="ops"] .km-back-to-top {
+  background: rgba(10, 10, 10, 0.94);
+  border-color: rgba(0, 255, 65, 0.35);
+  color: rgba(232, 255, 232, 0.65);
+  box-shadow: 0 2px 12px rgba(0, 255, 65, 0.1);
+}
+
+.keymod-landing[data-km-active-zone="ops"] .km-back-to-top:hover {
+  color: var(--km-matrix-accent);
+  border-color: var(--km-matrix-accent);
+  box-shadow: 0 0 16px rgba(0, 255, 65, 0.2);
+}
+
+.keymod-landing[data-km-active-zone="ops"] .km-back-to-top:focus-visible {
+  outline-color: var(--km-matrix-accent);
+}
+
+/* Back to top theme: game (neon purple/cyan) */
+.keymod-landing[data-km-active-zone="game"] .km-back-to-top {
+  background: rgba(13, 10, 22, 0.94);
+  border-color: rgba(0, 212, 255, 0.35);
+  color: rgba(236, 232, 255, 0.65);
+  box-shadow: 0 2px 12px rgba(255, 61, 154, 0.12);
+}
+
+.keymod-landing[data-km-active-zone="game"] .km-back-to-top:hover {
+  color: var(--km-game-accent);
+  border-color: var(--km-game-accent);
+  box-shadow: 0 0 16px rgba(0, 212, 255, 0.22);
+}
+
+.keymod-landing[data-km-active-zone="game"] .km-back-to-top:focus-visible {
+  outline-color: var(--km-game-accent);
 }
 
 .km-back-to-top__icon {
