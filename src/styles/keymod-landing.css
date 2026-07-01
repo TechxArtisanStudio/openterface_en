@@ -1981,15 +1981,20 @@
     text-align: center;
   }
 
-  .km-ops-showcase__intro,
-  .km-ops-showcase__block {
+  .km-ops-showcase__intro {
     text-align: center;
   }
 
-  .km-ops-showcase__body,
-  .km-ops-showcase__notice,
-  .km-ops-showcase__bullets {
+  .km-ops-showcase__block > .km-ops-showcase__badge,
+  .km-ops-showcase__block > .km-ops-showcase__badge-lockup {
+    display: block;
+    width: fit-content;
     margin-inline: auto;
+  }
+
+  .km-ops-showcase__intro > .km-ops-showcase__title,
+  .km-ops-showcase__block > .km-ops-showcase__title {
+    text-align: center;
   }
 
   .km-ops-showcase__demos {
@@ -1997,18 +2002,16 @@
   }
 
   .km-ops-showcase__demo-item {
-    margin-inline: auto;
     align-items: center;
   }
 
   .km-game-showcase__intro,
-  .km-game-showcase__block,
   .km-game-showcase__share {
     text-align: center;
   }
 
-  .km-game-showcase__body {
-    margin-inline: auto;
+  .km-game-showcase__block > .km-game-showcase__title {
+    text-align: center;
   }
 
   .km-game-showcase__intro .km-theater-detail__demos {
@@ -2363,6 +2366,27 @@
   color: rgba(232, 255, 232, 0.72);
 }
 
+@media (min-width: 768px) {
+  .km-ops-showcase__body,
+  .km-ops-showcase__notice,
+  .km-ops-showcase__bullets,
+  .km-ops-showcase__demos {
+    margin-inline: auto;
+  }
+
+  .km-ops-showcase__demo-item {
+    margin-inline: auto;
+  }
+
+  .km-ops-showcase__body,
+  .km-ops-showcase__notice,
+  .km-ops-showcase__demo-desc,
+  .km-ops-showcase__bullet,
+  .km-ops-showcase__bullet-body {
+    text-align: center;
+  }
+}
+
 /* Compose & Send — dual CSS flow demo (phone → Send → target terminal) */
 .km-compose-flow {
   position: relative;
@@ -2410,13 +2434,13 @@
 .km-compose-flow__phone {
   width: 100%;
   max-width: 20.5rem;
-  margin-inline: auto;
+  margin-inline: 0;
 }
 
 .km-compose-flow__phone-col {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   max-width: 20.5rem;
 }
@@ -2464,6 +2488,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  text-align: left;
   border-radius: 1.35rem;
   overflow: hidden;
   background: var(--km-compose-phone-bg);
@@ -3160,6 +3185,7 @@
   min-height: 9rem;
   padding: 0.75rem;
   background: #0a0f0a;
+  text-align: left;
 }
 
 .km-compose-flow__terminal-line {
@@ -3267,7 +3293,7 @@
 .km-terminal-flow__phone {
   width: 100%;
   max-width: 20.5rem;
-  margin-inline: auto;
+  margin-inline: 0;
 }
 
 .km-terminal-flow__phone-bezel {
@@ -3312,6 +3338,7 @@
   overflow: hidden;
   background: var(--km-terminal-bg);
   color: var(--km-terminal-text);
+  text-align: left;
 }
 
 .km-terminal-flow__toolbar {
@@ -3749,6 +3776,13 @@
   font-size: 0.9375rem;
   line-height: 1.55;
   color: rgba(236, 232, 255, 0.78);
+}
+
+@media (min-width: 768px) {
+  .km-game-showcase__body {
+    margin-inline: auto;
+    text-align: center;
+  }
 }
 
 .km-game-showcase__figure {
