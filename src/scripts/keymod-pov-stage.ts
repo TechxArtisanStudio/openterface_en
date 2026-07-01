@@ -1,5 +1,7 @@
 import {
   KEYMOD_POV_PORTRAIT_HANDS_SCENE_IDS,
+  isKeymodPovAutoplayScene,
+  keymodPovAutoplaySceneIds,
   type KeymodPovSceneId,
 } from '../data/keymodPovScenes';
 import { createModeCycle, type ModeCycleController } from './keymod-mode-cycle';
@@ -23,7 +25,7 @@ function prefersReducedMotion(): boolean {
 function getSceneOrder(stage: HTMLElement): KeymodPovSceneId[] {
   return [...stage.querySelectorAll<HTMLButtonElement>('[data-pov-tab]')]
     .map((tab) => tab.dataset.povTab)
-    .filter((id): id is KeymodPovSceneId => Boolean(id));
+    .filter((id): id is KeymodPovSceneId => Boolean(id && isKeymodPovAutoplayScene(id as KeymodPovSceneId)));
 }
 
 function advanceScene(): void {
@@ -41,6 +43,8 @@ function setActiveScene(
   sceneId: KeymodPovSceneId,
   opts: { fromUser?: boolean; fromCycle?: boolean; fromScrollSpy?: boolean } = {},
 ): void {
+  if (!isKeymodPovAutoplayScene(sceneId)) return;
+
   const { fromUser = false, fromScrollSpy = false } = opts;
 
   if (fromUser) {
@@ -104,7 +108,7 @@ function resolveSceneFromScroll(): KeymodPovSceneId | null {
 
   for (const el of linked) {
     const id = el.dataset.theaterScene as KeymodPovSceneId | undefined;
-    if (!id) continue;
+    if (!id || !keymodPovAutoplaySceneIds.has(id)) continue;
     const rect = el.getBoundingClientRect();
     if (rect.top <= activationY && rect.bottom > activationY) {
       return id;

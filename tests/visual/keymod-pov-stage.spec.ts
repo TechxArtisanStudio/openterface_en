@@ -7,8 +7,8 @@ test.describe('KeyMod POV Stage', () => {
 
     const stage = page.locator('#km-pov-stage');
     await expect(stage).toBeVisible({ timeout: 20_000 });
-    await expect(stage.locator('[data-pov-tab="terminal"]')).toHaveCount(0);
-    await expect(stage.locator('[data-pov-tab="ai-chat"]')).toHaveCount(0);
+    await expect(stage.locator('[data-pov-tab="terminal"]')).toBeVisible();
+    await expect(stage.locator('[data-pov-tab="ai-chat"]')).toBeVisible();
 
     await stage.locator('[data-pov-tab="keyboard"]').click();
     await expect(stage).toHaveAttribute('data-active-scene', 'keyboard', { timeout: 5000 });
@@ -17,6 +17,10 @@ test.describe('KeyMod POV Stage', () => {
     await stage.locator('[data-pov-tab="touchpad"]').click();
     await expect(stage).toHaveAttribute('data-active-scene', 'touchpad', { timeout: 5000 });
     await expect(stage.locator('[data-pov-tab="touchpad"]')).toHaveAttribute('aria-selected', 'true');
+
+    await stage.locator('[data-pov-tab="km-pro"]').click();
+    await expect(stage).toHaveAttribute('data-active-scene', 'km-pro', { timeout: 5000 });
+    await expect(stage.locator('[data-pov-tab="km-pro"]')).toHaveAttribute('aria-selected', 'true');
 
     await page.setViewportSize({ width: 375, height: 812 });
     const overflow = await page.evaluate(() => {
@@ -37,6 +41,41 @@ test.describe('KeyMod POV Stage', () => {
 
     await page.waitForTimeout(3600);
     await expect(stage).not.toHaveAttribute('data-active-scene', initialScene!, { timeout: 5000 });
+  });
+
+  test('autoplay cycles through terminal and agent tabs', async ({ page }) => {
+    test.slow();
+    test.setTimeout(120_000);
+    await page.goto('/preview/keymod-rebirth/#modes-theater', { waitUntil: 'load' });
+
+    const stage = page.locator('#km-pov-stage');
+    await expect(stage).toBeVisible({ timeout: 20_000 });
+
+    await stage.locator('[data-pov-tab="terminal"]').click();
+    await expect(stage).toHaveAttribute('data-active-scene', 'terminal', { timeout: 5000 });
+
+    await stage.locator('[data-pov-tab="ai-chat"]').click();
+    await expect(stage).toHaveAttribute('data-active-scene', 'ai-chat', { timeout: 5000 });
+
+    await stage.locator('[data-pov-tab="keyboard"]').click();
+    await page.waitForTimeout(11_000);
+
+    const order = await stage.evaluate(() =>
+      [...document.querySelectorAll<HTMLButtonElement>('[data-pov-tab]')].map((tab) => tab.dataset.povTab),
+    );
+    expect(order).toContain('terminal');
+    expect(order).toContain('ai-chat');
+
+    let sawTerminal = false;
+    let sawAiChat = false;
+    for (let i = 0; i < order.length + 1; i += 1) {
+      await page.waitForTimeout(3600);
+      const scene = await stage.getAttribute('data-active-scene');
+      if (scene === 'terminal') sawTerminal = true;
+      if (scene === 'ai-chat') sawAiChat = true;
+    }
+    expect(sawTerminal).toBe(true);
+    expect(sawAiChat).toBe(true);
   });
 
   test('POV stage visual snapshot at 1280', async ({ page }) => {

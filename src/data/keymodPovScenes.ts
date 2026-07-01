@@ -26,6 +26,7 @@ export type KeymodPovTemplate = {
 export type KeymodPovSceneId =
   | 'keyboard'
   | 'touchpad'
+  | 'km-pro'
   | 'compose-send'
   | 'gamepad'
   | 'presentation'
@@ -124,6 +125,13 @@ export const keymodPovScenes: KeymodPovScene[] = [
     phoneSrc: '/keymod/rebirth/modes/pov/touchpad-phone.webp',
   },
   {
+    id: 'km-pro',
+    tabLabel: 'KM Pro',
+    templateId: 'desk-monitor-landscape',
+    monitorSrc: '/keymod/rebirth/modes/pov/km-pro-monitor.webp',
+    phoneSrc: '/keymod/rebirth/modes/pov/km-pro-phone.webp',
+  },
+  {
     id: 'compose-send',
     tabLabel: 'Compose & Send',
     templateId: 'desk-monitor-landscape',
@@ -147,15 +155,13 @@ export const keymodPovScenes: KeymodPovScene[] = [
   {
     id: 'terminal',
     tabLabel: 'Terminal',
-    povTabHidden: true,
     templateId: 'desk-monitor-landscape',
     monitorSrc: '/keymod/rebirth/modes/pov/terminal-monitor.webp',
     phoneSrc: '/keymod/rebirth/modes/pov/terminal-phone.webp',
   },
   {
     id: 'ai-chat',
-    tabLabel: 'Ai Chat',
-    povTabHidden: true,
+    tabLabel: 'Agent(AI)',
     templateId: 'desk-monitor-landscape',
     monitorSrc: '/keymod/rebirth/modes/pov/ai-chat-monitor.webp',
     phoneSrc: '/keymod/rebirth/modes/pov/ai-chat-phone.webp',
@@ -163,6 +169,13 @@ export const keymodPovScenes: KeymodPovScene[] = [
 ];
 
 export const keymodPovVisibleTabScenes = keymodPovScenes.filter((s) => !s.povTabHidden);
+
+/** Scene ids allowed in POV autoplay, tabs, and scroll-spy (respects povTabHidden). */
+export const keymodPovAutoplaySceneIds = new Set(keymodPovVisibleTabScenes.map((s) => s.id));
+
+export function isKeymodPovAutoplayScene(id: KeymodPovSceneId): boolean {
+  return keymodPovAutoplaySceneIds.has(id);
+}
 
 /** Source artboard → browser display (center monitor, tighten vertical rhythm). */
 export const KEYMOD_POV_VIEW = {
