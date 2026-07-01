@@ -360,14 +360,14 @@ const en: KeymodLandingStrings = {
             caption: 'Hold lock & turbo',
           },
           {
-            imageSrc: '/keymod/rebirth/gamepad/gamepad-editor-dpad-keys.webp',
-            imageAlt: 'Map direction keys — D-pad cross vs split segments',
-            caption: 'Map direction keys',
-          },
-          {
             imageSrc: '/keymod/rebirth/gamepad/gamepad-editor-mouse-button.webp',
             imageAlt: 'Fine-tune mouse buttons — press timing and turbo interval',
             caption: 'Mouse button timing',
+          },
+          {
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-editor-dpad-keys.webp',
+            imageAlt: 'Map direction keys — D-pad cross vs split segments',
+            caption: 'Map direction keys',
           },
           {
             imageSrc: '/keymod/rebirth/gamepad/gamepad-editor-scroll-strip.webp',
