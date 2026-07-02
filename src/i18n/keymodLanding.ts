@@ -14,6 +14,8 @@ export const keymodLinks = {
   discord: 'https://discord.gg/sFTU7O8Xe3',
   forum:
     'https://forum.openterface.com?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-firmware-roadmap',
+  forumFooter:
+    'https://forum.openterface.com?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-footer',
   minikvm: '/minikvm/',
   kvmgo: '/kvmgo/',
   gamepadTutorial:
@@ -62,6 +64,7 @@ export type KeymodFirmwareRoadmap = {
   chips: string[];
   forumPrompt: string;
   forumCta: string;
+  forumNewBadge: string;
 };
 
 /** @deprecated Use KeymodProductJourney */
@@ -102,6 +105,7 @@ export type KeymodLandingStrings = {
     contrastLine: string;
     connectivityTitle: string;
     bleRange: string;
+    crowdSupplyCta: string;
     mini: { name: string; port: string; audience: string; connect: string; tagline: string };
     plus: { name: string; port: string; audience: string; connect: string; tagline: string };
   };
@@ -327,6 +331,9 @@ export type KeymodLandingStrings = {
   footer: {
     ctaPrimary: string;
     ctaKeycmd: string;
+    forumCta: string;
+    discordCta: string;
+    forumNewBadge: string;
     legal: string;
   };
   previewBanner: string;
@@ -376,6 +383,7 @@ const en: KeymodLandingStrings = {
     contrastLine: 'Mini for the C port in your pocket. Plus for the A port on the machine.',
     connectivityTitle: 'How your phone connects',
     bleRange: 'BLE range (both SKUs): best within ~5 m, up to ~10 m in open space.',
+    crowdSupplyCta: 'Pre-launch on Crowd Supply',
     mini: {
       name: 'KeyMod Mini',
       port: 'USB-C male → target',
@@ -780,6 +788,7 @@ pm2 reload ecosystem.config.js --env production`,
     forumPrompt:
       'Have a mode, bridge, or workflow we should prioritize? Post on the Openterface forum and swap ideas with our dev team and other builders.',
     forumCta: 'Discuss on the forum ↗',
+    forumNewBadge: 'New',
   },
   productJourney: {
     eyebrow: 'Product journey',
@@ -982,6 +991,9 @@ pm2 reload ecosystem.config.js --env production`,
   footer: {
     ctaPrimary: 'Subscribe',
     ctaKeycmd: 'KeyCmd app',
+    forumCta: 'Forum',
+    discordCta: 'Discord',
+    forumNewBadge: 'New',
     legal: `© ${new Date().getFullYear()} TechxArtisan · Openterface KeyMod Rebirth preview`,
   },
   previewBanner: 'PREVIEW · /preview/keymod-rebirth/ · Phase 1 structure · not indexed',

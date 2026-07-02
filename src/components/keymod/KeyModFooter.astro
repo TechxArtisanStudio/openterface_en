@@ -1,5 +1,6 @@
 ---
 import KeyCmdWordmark from './KeyCmdWordmark.astro';
+import KeyModNewBadge from './KeyModNewBadge.astro';
 import { keymodLinks } from '../../i18n/keymodLanding';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
@@ -24,7 +25,16 @@ const { copy } = Astro.props;
         Docs
       </a>
       <a href={keymodLinks.discord} class="km-btn km-btn--ghost" target="_blank" rel="noopener noreferrer">
-        Discord
+        {copy.discordCta}
+      </a>
+      <a
+        href={keymodLinks.forumFooter}
+        class="km-btn km-btn--ghost km-btn--has-new-badge"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {copy.forumCta}
+        <KeyModNewBadge label={copy.forumNewBadge} />
       </a>
     </div>
     <div class="km-footer__links">
