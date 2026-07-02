@@ -1,5 +1,8 @@
 import { docsPath, siteConfig } from '../../config/site';
+import { getKeymodShareImageUrl } from '../keymodAssets';
 import type { Product } from '../products';
+
+const keymodShareImage = getKeymodShareImageUrl(siteConfig.url);
 
 /**
  * KeyMod marketing payload — JSON-LD and shared product metadata for /keymod/.
@@ -16,9 +19,9 @@ export const keymodProduct: Product = {
     'Pocket USB multi-tool bridge. Plug into the target device, control from KeyCmd on your phone. BIOS-capable HID. Mini for Type-C. Plus for USB-A servers.',
   keywords:
     'KeyMod, Wireless USB Multi-tool, KeyCmd, wireless HID, BIOS keyboard, homelab, sysadmin, USB-C, USB-A',
-  heroImage: 'https://assets2.openterface.com/images/keymod/2in1.webp',
+  heroImage: keymodShareImage,
   heroImages: [
-    'https://assets2.openterface.com/images/keymod/2in1.webp',
+    keymodShareImage,
     'https://assets2.openterface.com/images/keymod/keymod.webp',
     'https://assets2.openterface.com/images/keymod/feature.webp',
   ],

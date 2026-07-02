@@ -5,6 +5,7 @@ import AnalyticsHead from '../components/AnalyticsHead.astro';
 import AnalyticsEvents from '../components/AnalyticsEvents.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import { siteConfig } from '../config/site';
+import { getKeymodShareImageAlt, getKeymodShareImageUrl } from '../data/keymodAssets';
 import { getHreflangAlternates, getXDefaultUrl } from '../data/hreflang-manifest';
 import {
   buildPageTitle,
@@ -31,8 +32,8 @@ const {
   title,
   description,
   keywords,
-  ogImage = 'https://assets2.openterface.com/images/keymod/2in1.webp',
-  ogImageAlt,
+  ogImage = getKeymodShareImageUrl(siteConfig.url),
+  ogImageAlt = getKeymodShareImageAlt(),
   canonicalPath,
   robots = 'index, follow',
   showPreviewBanner = false,

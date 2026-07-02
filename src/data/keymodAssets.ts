@@ -282,6 +282,17 @@ export function getKeymodAsset(section: string, slot: string): KeymodAssetSlot |
   return keymodAssets.find((a) => a.section === section && a.slot === slot);
 }
 
+/** Absolute URL for social / OG share card (What is it welcome-screen). */
+export function getKeymodShareImageUrl(siteUrl: string): string {
+  const asset = getKeymodAsset('whatItIs', 'welcome-screen');
+  const path = asset?.src ?? '/keymod/rebirth/keycmd-welcome-headless.webp';
+  return new URL(path, siteUrl).href;
+}
+
+export function getKeymodShareImageAlt(): string {
+  return getKeymodAsset('whatItIs', 'welcome-screen')?.alt ?? 'KeyMod dongle with KeyCmd welcome screen on phone';
+}
+
 export function getKeymodAssets(section: string, slotPrefix?: string): KeymodAssetSlot[] {
   return keymodAssets.filter(
     (a) => a.section === section && (!slotPrefix || a.slot.startsWith(slotPrefix)),
