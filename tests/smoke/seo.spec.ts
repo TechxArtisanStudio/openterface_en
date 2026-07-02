@@ -103,6 +103,12 @@ test('keymod page has Product JSON-LD and rebirth meta', async ({ page }) => {
   const product = JSON.parse(productLd!);
   expect(String(product.url)).toContain('/keymod/');
   expect(String(product.description)).toMatch(/Pocket USB multi-tool bridge/i);
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
+    'content',
+    /keycmd-welcome-headless\.webp$/,
+  );
+  await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute('content', '1280');
+  await expect(page.locator('meta[property="og:image:height"]')).toHaveAttribute('content', '1175');
 });
 
 test('home page has Organization and WebSite JSON-LD', async ({ page }) => {
