@@ -4,7 +4,7 @@ import { KEYMOD_POV_USER_RESUME_MS } from '../../src/scripts/keymod-mode-cycle';
 test.describe('KeyMod POV Stage', () => {
   test('renders tabs, switches scene, no mobile overflow', async ({ page }) => {
     test.setTimeout(90_000);
-    await page.goto('/preview/keymod-rebirth/#modes-theater', {
+    await page.goto('/keymod/#modes-theater', {
       waitUntil: 'domcontentloaded',
       timeout: 90_000,
     });
@@ -41,7 +41,7 @@ test.describe('KeyMod POV Stage', () => {
   test('auto-advances scene after cycle interval', async ({ page }) => {
     test.slow();
     test.setTimeout(60_000);
-    await page.goto('/preview/keymod-rebirth/#modes-theater', { waitUntil: 'load' });
+    await page.goto('/keymod/#modes-theater', { waitUntil: 'load' });
 
     const stage = page.locator('#km-pov-stage');
     await expect(stage).toBeVisible({ timeout: 20_000 });
@@ -55,7 +55,7 @@ test.describe('KeyMod POV Stage', () => {
   test('autoplay cycles through terminal and agent tabs', async ({ page }) => {
     test.slow();
     test.setTimeout(120_000);
-    await page.goto('/preview/keymod-rebirth/#modes-theater', { waitUntil: 'load' });
+    await page.goto('/keymod/#modes-theater', { waitUntil: 'load' });
 
     const stage = page.locator('#km-pov-stage');
     await expect(stage).toBeVisible({ timeout: 20_000 });
@@ -89,7 +89,7 @@ test.describe('KeyMod POV Stage', () => {
 
   test('POV stage visual snapshot at 1280', async ({ page }) => {
     test.setTimeout(60_000);
-    await page.goto('/preview/keymod-rebirth/#modes-theater', { waitUntil: 'networkidle' });
+    await page.goto('/keymod/#modes-theater', { waitUntil: 'load' });
     await page.setViewportSize({ width: 1280, height: 900 });
     const stage = page.locator('#km-pov-stage');
     await expect(stage).toBeVisible({ timeout: 20_000 });
@@ -102,7 +102,7 @@ test.describe('KeyMod POV Stage', () => {
 
   test('POV compose-send portrait phone at 1280', async ({ page }) => {
     test.setTimeout(60_000);
-    await page.goto('/preview/keymod-rebirth/#modes-theater', { waitUntil: 'load' });
+    await page.goto('/keymod/#modes-theater', { waitUntil: 'load' });
     await page.setViewportSize({ width: 1280, height: 900 });
     const stage = page.locator('#km-pov-stage');
     await expect(stage).toBeVisible({ timeout: 20_000 });
@@ -118,7 +118,7 @@ test.describe('KeyMod POV Stage', () => {
 
   test('POV touchpad portrait phone at 1280', async ({ page }) => {
     test.setTimeout(60_000);
-    await page.goto('/preview/keymod-rebirth/#modes-theater', { waitUntil: 'load' });
+    await page.goto('/keymod/#modes-theater', { waitUntil: 'load' });
     await page.setViewportSize({ width: 1280, height: 900 });
     const stage = page.locator('#km-pov-stage');
     await expect(stage).toBeVisible({ timeout: 20_000 });
@@ -131,7 +131,7 @@ test.describe('KeyMod POV Stage', () => {
 
   test('POV terminal portrait phone layout at 1280', async ({ page }) => {
     test.setTimeout(60_000);
-    await page.goto('/preview/keymod-rebirth/#modes-theater', { waitUntil: 'load' });
+    await page.goto('/keymod/#modes-theater', { waitUntil: 'load' });
     await page.setViewportSize({ width: 1280, height: 900 });
     const stage = page.locator('#km-pov-stage');
     await expect(stage).toBeVisible({ timeout: 20_000 });
@@ -145,7 +145,7 @@ test.describe('KeyMod POV Stage', () => {
   test('POV keyboard mobile snapshot at 375', async ({ page }) => {
     test.setTimeout(90_000);
     await page.setViewportSize({ width: 375, height: 812 });
-    await page.goto('/preview/keymod-rebirth/#modes-theater', {
+    await page.goto('/keymod/#modes-theater', {
       waitUntil: 'domcontentloaded',
       timeout: 90_000,
     });
@@ -166,7 +166,7 @@ test.describe('KeyMod POV Stage', () => {
   test('POV touchpad portrait phone at 375', async ({ page }) => {
     test.setTimeout(90_000);
     await page.setViewportSize({ width: 375, height: 812 });
-    await page.goto('/preview/keymod-rebirth/#modes-theater', {
+    await page.goto('/keymod/#modes-theater', {
       waitUntil: 'domcontentloaded',
       timeout: 90_000,
     });
@@ -190,7 +190,7 @@ test.describe('KeyMod POV Stage', () => {
   test('POV compose-send portrait phone at 375', async ({ page }) => {
     test.setTimeout(90_000);
     await page.setViewportSize({ width: 375, height: 812 });
-    await page.goto('/preview/keymod-rebirth/#modes-theater', {
+    await page.goto('/keymod/#modes-theater', {
       waitUntil: 'domcontentloaded',
       timeout: 90_000,
     });

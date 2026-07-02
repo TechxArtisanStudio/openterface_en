@@ -17,7 +17,7 @@ export const siteConfig = {
     kvmgoPurchase: 'https://www.crowdsupply.com/techxartisan/openterface-kvm-go',
     kvmextPurchase:
       'https://shop.techxartisan.com/products/openterface-kvm-ext-for-uconsole',
-    keymodCrowdsupply: 'https://www.crowdsupply.com/techxartisan/openterface-keymod',
+    keymodCrowdsupply: 'https://www.crowdsupply.com/techxartisan/keymod',
     shop: 'https://shop.techxartisan.com/',
     docs: 'https://docs.openterface.com',
     appOverview: 'https://docs.openterface.com/app/kvm/',
