@@ -48,6 +48,7 @@ export type KeymodProductJourney = {
   eyebrow: string;
   title: string;
   subtitle: string;
+  scrollHint: string;
   nowLabel: string;
   nowSublabel: string;
   milestones: KeymodTimelineMilestone[];
@@ -651,95 +652,97 @@ curl -sf http://127.0.0.1:9090/-/ready'`,
   },
   productJourney: {
     eyebrow: 'Product journey',
-    title: 'Where KeyMod is today',
-    subtitle: 'From HID emulator concept to pocket USB multi-tool bridge — and what comes next.',
-    nowLabel: 'You are here',
-      nowSublabel: 'Pre-launch · final validation before crowdfunding',
-      milestones: [
-        {
-          id: 'concept',
-          status: 'done',
-          title: 'From Mini-KVM to HID emulator',
-          lead: 'Product concept: a pocket HID bridge evolved from our Mini-KVM stack.',
-        },
-        {
-          id: 'hw-prototype',
-          status: 'done',
-          title: 'Hardware designed & prototyped',
-          lead: 'KeyMod Mini and Plus boards designed, laid out, and first articles built.',
-        },
-        {
-          id: 'cs-prelaunch',
-          status: 'done',
-          title: 'Crowd Supply pre-launch live',
-          lead: 'Campaign page is up — follow for launch day.',
-          href: keymodLinks.crowdSupply,
-        },
-        {
-          id: 'trial-batch-1',
-          status: 'done',
-          title: 'First small-batch trial run',
-          lead: 'First factory trial build to validate assembly and BOM.',
-        },
-        {
-          id: 'beta-1',
-          status: 'done',
-          title: 'Beta invites & early feedback',
-          lead: 'Closed beta with real setups — feedback shaped KeyCmd and firmware priorities.',
-        },
-        {
-          id: 'firmware-pivot',
-          status: 'pivot',
-          title: 'Firmware breakthrough — concept pivot',
-          lead: 'Reshaped as a Pocket USB multi-tool bridge — one dongle, many control modes.',
-        },
-        {
-          id: 'trial-batches',
-          status: 'done',
-          title: 'Multiple trial production runs',
-          lead: 'Iterated small batches to harden hardware before mass production.',
-        },
-        {
-          id: 'beta-2',
-          status: 'upcoming',
-          variant: 'beta',
-          badge: 'Beta · Round 2',
-          title: 'Next beta round — tester invites',
-          lead: 'Wider closed beta on refreshed firmware and hardware — help stress-test real setups before crowdfunding.',
-          timingLabel: 'Before launch',
-          href: '#updates',
-        },
-        {
-          id: 'crowdfunding',
-          status: 'upcoming',
-          title: 'Crowdfunding opens',
-          timingLabel: '~Mid-July 2026',
-        },
-        {
-          id: 'campaign',
-          status: 'upcoming',
-          title: 'Campaign live',
-          timingLabel: '~1.5 months',
-        },
-        {
-          id: 'mass-production',
-          status: 'upcoming',
-          title: 'Mass production',
-          timingLabel: '~3 months',
-        },
-        {
-          id: 'sea-freight',
-          status: 'upcoming',
-          title: 'Sea freight to US fulfillment',
-          timingLabel: '~1.5 months',
-        },
-        {
-          id: 'backer-delivery',
-          status: 'upcoming',
-          title: 'Units reach backers',
-          timingLabel: '~2–3 weeks',
-        },
-      ],
+    title: 'From concept to your desk',
+    subtitle:
+      'Seven milestones shipped. Pre-launch validation is underway — crowdfunding and fulfillment are next.',
+    scrollHint: '← Swipe for earlier milestones',
+    nowLabel: 'Now',
+    nowSublabel: 'Pre-launch · final hardware & firmware validation',
+    milestones: [
+      {
+        id: 'concept',
+        status: 'done',
+        title: 'Mini-KVM → HID emulator',
+        lead: 'Pocket HID bridge concept rooted in our Mini-KVM stack.',
+      },
+      {
+        id: 'hw-prototype',
+        status: 'done',
+        title: 'Hardware prototyped',
+        lead: 'KeyMod Mini and Plus boards designed and first articles built.',
+      },
+      {
+        id: 'cs-prelaunch',
+        status: 'done',
+        title: 'Crowd Supply pre-launch',
+        lead: 'Campaign page live — follow for launch day.',
+        href: keymodLinks.crowdSupply,
+      },
+      {
+        id: 'trial-batch-1',
+        status: 'done',
+        title: 'First trial batch',
+        lead: 'Factory trial build to validate assembly and BOM.',
+      },
+      {
+        id: 'beta-1',
+        status: 'done',
+        title: 'Beta round 1',
+        lead: 'Closed beta with real setups shaped KeyCmd and firmware priorities.',
+      },
+      {
+        id: 'firmware-pivot',
+        status: 'pivot',
+        title: 'Concept pivot',
+        lead: 'Reshaped as a pocket USB multi-tool bridge — one dongle, many modes.',
+      },
+      {
+        id: 'trial-batches',
+        status: 'done',
+        title: 'Trial production runs',
+        lead: 'Iterated small batches to harden hardware before mass production.',
+      },
+      {
+        id: 'beta-2',
+        status: 'upcoming',
+        variant: 'beta',
+        badge: 'Beta · Round 2',
+        title: 'Next beta invites',
+        lead: 'Wider closed beta on refreshed firmware and hardware before crowdfunding.',
+        timingLabel: 'Before launch',
+        href: '#updates',
+      },
+      {
+        id: 'crowdfunding',
+        status: 'upcoming',
+        title: 'Crowdfunding opens',
+        timingLabel: '~Mid-July 2026',
+      },
+      {
+        id: 'campaign',
+        status: 'upcoming',
+        title: 'Campaign live',
+        timingLabel: '~1.5 months',
+      },
+      {
+        id: 'mass-production',
+        status: 'upcoming',
+        title: 'Mass production',
+        timingLabel: '~3 months',
+      },
+      {
+        id: 'sea-freight',
+        status: 'upcoming',
+        title: 'Sea freight to US',
+        timingLabel: '~1.5 months',
+      },
+      {
+        id: 'backer-delivery',
+        status: 'upcoming',
+        title: 'Backer delivery',
+        timingLabel: '~2–3 weeks',
+      },
+    ],
   },
   socialProof: {
     eyebrow: 'Real users',

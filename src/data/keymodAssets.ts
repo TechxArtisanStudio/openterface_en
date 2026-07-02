@@ -33,7 +33,7 @@ export const keymodAssets: KeymodAssetSlot[] = [
     section: 'whatItIs',
     slot: 'welcome-screen',
     src: '/keymod/rebirth/keycmd-welcome-headless.webp',
-    alt: 'KeyCmd Welcome screen, pick a control mode on your phone',
+    alt: 'KeyMod dongle on a mini PC with KeyCmd welcome screen on phone',
     kind: 'image',
     status: 'ready',
   },

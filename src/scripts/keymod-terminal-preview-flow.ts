@@ -1,12 +1,12 @@
 import {
   TERMINAL_DEMO_CHUNKS,
-  TERMINAL_DEMO_FULL_HTML,
+  TERMINAL_DEMO_SESSION_HTML,
   TERMINAL_DEMO_TRANSPORT,
   type TerminalDemoTransport,
 } from '../data/keymodTerminalDemo';
 
 const AUTO_DELAY_MS = 2500;
-const COMPLETE_HOLD_MS = 3000;
+const COMPLETE_HOLD_MS = 8000;
 const INTERSECTION_THRESHOLD = 0.35;
 
 type FlowState = 'overlay' | 'connecting' | 'streaming' | 'complete';
@@ -24,6 +24,7 @@ let completeTimer: number | null = null;
 let userPickedTransport = false;
 let activeTransport: TerminalDemoTransport | null = null;
 let chunkIndex = 0;
+let accumulatedHtml = '';
 
 function prefersReducedMotion(): boolean {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -66,6 +67,46 @@ function transportLabel(transport: TerminalDemoTransport): string {
     : (rootEl.dataset.transportUsb ?? 'USB');
 }
 
+function outputHost(): HTMLElement | null {
+  return q<HTMLElement>('[data-km-terminal-output]')?.parentElement ?? null;
+}
+
+function scrollOutputToBottom(): void {
+  const host = outputHost();
+  if (host) host.scrollTop = host.scrollHeight;
+}
+
+function ensureCursor(): HTMLElement | null {
+  const host = outputHost();
+  if (!host) return null;
+
+  let cursor = q<HTMLElement>('[data-km-terminal-cursor]');
+  if (!cursor) {
+    cursor = document.createElement('span');
+    cursor.className = 'km-terminal-flow__cursor';
+    cursor.dataset.kmTerminalCursor = '';
+    cursor.setAttribute('aria-hidden', 'true');
+    host.appendChild(cursor);
+  } else if (cursor.parentElement !== host) {
+    host.appendChild(cursor);
+  }
+
+  return cursor;
+}
+
+function updateHeader(): void {
+  const header = q<HTMLElement>('[data-km-terminal-header]');
+  if (!header) return;
+  header.hidden = state === 'overlay';
+}
+
+function updateCursor(): void {
+  const cursor = ensureCursor();
+  if (!cursor) return;
+  const show = state === 'streaming' || state === 'complete';
+  cursor.hidden = !show;
+}
+
 function setState(next: FlowState): void {
   state = next;
   if (!rootEl) return;
@@ -92,6 +133,8 @@ function setState(next: FlowState): void {
   if (host) host.hidden = next === 'overlay';
   if (badge) badge.hidden = next === 'overlay' || next === 'connecting';
 
+  updateHeader();
+  updateCursor();
   updateBlePulse();
 }
 
@@ -119,8 +162,10 @@ function setTransportBadge(transport: TerminalDemoTransport): void {
 }
 
 function clearOutput(): void {
+  accumulatedHtml = '';
   const output = q<HTMLElement>('[data-km-terminal-output]');
   if (output) output.innerHTML = '';
+  ensureCursor();
 }
 
 function resetToOverlay(): void {
@@ -154,8 +199,11 @@ function feedNextChunk(): void {
     return;
   }
 
-  output.insertAdjacentHTML('beforeend', chunks[chunkIndex]);
+  accumulatedHtml += chunks[chunkIndex];
+  output.innerHTML = accumulatedHtml;
   chunkIndex += 1;
+  ensureCursor();
+  scrollOutputToBottom();
 
   if (chunkIndex >= chunks.length) {
     finishDemo();
@@ -169,6 +217,7 @@ function feedNextChunk(): void {
 function finishDemo(): void {
   chunkTimer = null;
   setState('complete');
+  scrollOutputToBottom();
   const live = q<HTMLElement>('[data-km-terminal-live]');
   if (live) live.textContent = 'Terminal preview complete';
 
@@ -210,9 +259,11 @@ function startDemo(transport: TerminalDemoTransport, auto = false): void {
 function showStaticComplete(): void {
   if (!rootEl) return;
   const output = q<HTMLElement>('[data-km-terminal-output]');
-  if (output) output.innerHTML = TERMINAL_DEMO_FULL_HTML;
+  if (output) output.innerHTML = TERMINAL_DEMO_SESSION_HTML;
   setTransportBadge('ble');
   setState('complete');
+  ensureCursor();
+  scrollOutputToBottom();
   const overlay = q<HTMLElement>('[data-km-terminal-overlay]');
   if (overlay) overlay.hidden = true;
   const host = q<HTMLElement>('[data-km-terminal-host]');
@@ -281,6 +332,7 @@ function unbindRoot(): void {
   userPickedTransport = false;
   activeTransport = null;
   chunkIndex = 0;
+  accumulatedHtml = '';
 }
 
 export function initKeymodTerminalPreviewFlow(): void {
