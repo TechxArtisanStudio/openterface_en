@@ -16,7 +16,6 @@ export type KeymodPovSceneId =
 
 export type KeymodPovScene = {
   id: KeymodPovSceneId;
-  tabLabel: string;
   /** Flask icon — experimental / preview feature. */
   experimental?: boolean;
   /** When true, tab is omitted from POV stage (scroll-spy may still use the scene). */
@@ -52,49 +51,42 @@ export const KEYMOD_POV_LAYOUT = {
 export const keymodPovScenes: KeymodPovScene[] = [
   {
     id: 'keyboard',
-    tabLabel: 'Keyboard',
     monitorSrc: '/keymod/rebirth/modes/pov/keyboard-monitor.webp',
     phoneSrc: '/keymod/rebirth/modes/pov/keyboard-phone.webp',
     phoneLayout: 'landscape',
   },
   {
     id: 'touchpad',
-    tabLabel: 'Touchpad',
     monitorSrc: '/keymod/rebirth/modes/pov/touchpad-monitor.webp',
     phoneSrc: '/keymod/rebirth/modes/pov/touchpad-phone.webp',
     phoneLayout: 'portrait',
   },
   {
     id: 'km-pro',
-    tabLabel: 'KM Pro',
     monitorSrc: '/keymod/rebirth/modes/pov/km-pro-monitor.webp',
     phoneSrc: '/keymod/rebirth/modes/pov/km-pro-phone.webp',
     phoneLayout: 'landscape',
   },
   {
     id: 'compose-send',
-    tabLabel: 'Compose & Send',
     monitorSrc: '/keymod/rebirth/modes/pov/compose-send-monitor.webp',
     phoneSrc: '/keymod/rebirth/modes/pov/compose-send-phone.webp',
     phoneLayout: 'portrait',
   },
   {
     id: 'gamepad',
-    tabLabel: 'Gamepad',
     monitorSrc: '/keymod/rebirth/modes/pov/gamepad-monitor.webp',
     phoneSrc: '/keymod/rebirth/modes/pov/gamepad-phone.webp',
     phoneLayout: 'landscape',
   },
   {
     id: 'presentation',
-    tabLabel: 'Presentation',
     monitorSrc: '/keymod/rebirth/modes/pov/presentation-monitor.webp',
     phoneSrc: '/keymod/rebirth/modes/pov/presentation-phone.webp',
     phoneLayout: 'portrait',
   },
   {
     id: 'terminal',
-    tabLabel: 'Terminal',
     experimental: true,
     monitorSrc: '/keymod/rebirth/modes/pov/terminal-monitor.webp',
     phoneSrc: '/keymod/rebirth/modes/pov/terminal-phone.webp',
@@ -102,7 +94,6 @@ export const keymodPovScenes: KeymodPovScene[] = [
   },
   {
     id: 'ai-chat',
-    tabLabel: 'Agent',
     experimental: true,
     monitorSrc: '/keymod/rebirth/modes/pov/ai-chat-monitor.webp',
     phoneSrc: '/keymod/rebirth/modes/pov/ai-chat-phone.webp',

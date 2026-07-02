@@ -10,10 +10,11 @@ import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
   copy: KeymodLandingStrings['modesTheater'];
+  povTabs: KeymodLandingStrings['povTabs'];
   crowdSupplyCampaign: KeymodLandingStrings['crowdSupplyCampaign'];
 }
 
-const { copy, crowdSupplyCampaign } = Astro.props;
+const { copy, povTabs, crowdSupplyCampaign } = Astro.props;
 const m = copy;
 
 const povStageSceneDefs = [
@@ -81,7 +82,7 @@ const povStageScenes = povStageSceneDefs.filter((s) => visiblePovIds.has(s.id));
   </div>
 
   <div data-km-zone="pov">
-    <KeyModPovStage scenes={povStageScenes} defaultSceneId="keyboard" />
+    <KeyModPovStage scenes={povStageScenes} tabLabels={povTabs} defaultSceneId="keyboard" />
   </div>
 
   <div class="km-theater-crowd-cta">

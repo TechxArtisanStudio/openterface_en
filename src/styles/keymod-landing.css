@@ -661,6 +661,51 @@
   height: 1rem;
 }
 
+.km-nav__locale {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.km-nav .locale-switcher__toggle {
+  border-color: var(--km-border);
+  color: var(--km-muted);
+  background: transparent;
+}
+
+.km-nav .locale-switcher__toggle:hover {
+  color: var(--km-accent);
+  background: transparent;
+}
+
+.km-nav[data-km-nav-theme="ops"] .locale-switcher__toggle,
+.km-nav[data-km-nav-theme="game"] .locale-switcher__toggle,
+.km-nav[data-km-nav-theme="agent"] .locale-switcher__toggle {
+  border-color: rgba(255, 255, 255, 0.28);
+  color: rgba(255, 255, 255, 0.85);
+  background: transparent;
+}
+
+.km-nav[data-km-nav-theme="ops"] .locale-switcher__toggle:hover {
+  color: var(--km-matrix-accent);
+}
+
+.km-nav[data-km-nav-theme="game"] .locale-switcher__toggle:hover {
+  color: var(--km-game-accent);
+}
+
+.km-nav[data-km-nav-theme="agent"] .locale-switcher__toggle:hover {
+  color: #c5cae9;
+}
+
+[dir="rtl"] .km-nav__inner {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .km-pov-stage__tabs {
+  direction: rtl;
+}
+
 @media (max-width: 479px) {
   .km-nav__inner {
     gap: 0.5rem;
