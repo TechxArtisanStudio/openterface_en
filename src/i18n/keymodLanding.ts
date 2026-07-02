@@ -68,6 +68,8 @@ export type KeymodFirmwareRoadmap = {
 /** @deprecated Use KeymodProductJourney */
 export type KeymodProductTimeline = KeymodProductJourney;
 
+export type ComposeTargetScenario = 'terminal' | 'markdown' | 'browser' | 'apiKey';
+
 export type KeymodLandingStrings = {
   meta: {
     title: string;
@@ -149,6 +151,12 @@ export type KeymodLandingStrings = {
         demoLinks?: KeymodDemoLink[];
         demoText: string;
         terminalPrompt: string;
+        targets: {
+          terminal: { title: string };
+          markdown: { title: string };
+          browser: { title: string };
+          apiKey: { title: string; fieldLabel: string; buttonLabel: string };
+        };
         sendLabel: string;
         stopLabel: string;
         autoSendHint: string;
@@ -167,6 +175,8 @@ export type KeymodLandingStrings = {
           pinned: boolean;
           meta: string;
           content: string;
+          scenario: ComposeTargetScenario;
+          scenarioLabel: string;
         }[];
       };
       terminal: {
@@ -450,6 +460,16 @@ docker compose up -d && \\
 docker compose ps && \\
 curl -sf http://127.0.0.1:9090/-/ready'`,
         terminalPrompt: 'deploy@homelab:~$',
+        targets: {
+          terminal: { title: 'Target terminal' },
+          markdown: { title: 'Notes.md' },
+          browser: { title: 'Browser' },
+          apiKey: {
+            title: 'Activate license',
+            fieldLabel: 'Enter API key',
+            buttonLabel: 'Activate',
+          },
+        },
         sendLabel: 'Send',
         stopLabel: 'Stop',
         autoSendHint: 'Tap Send',
@@ -464,39 +484,74 @@ curl -sf http://127.0.0.1:9090/-/ready'`,
         selectFirstHint: 'Select a saved text first',
         templates: [
           {
-            id: 'prod-deploy',
-            title: 'prod-deploy',
+            id: 'release-notes',
+            title: 'release-notes',
             pinned: true,
             meta: '2d ago',
+            scenario: 'markdown',
+            scenarioLabel: 'Notes',
+            content: `# KeyMod v0.9.2 release notes
+
+## Highlights
+- Compose & Send saved texts (60 items)
+- BLE transport stability fixes
+
+## Upgrade
+1. Pull latest KeyCmd from Play Store
+2. Re-pair KeyMod if prompted`,
+          },
+          {
+            id: 'rotate-root-pass',
+            title: 'license-key',
+            pinned: true,
+            meta: '1w ago',
+            scenario: 'apiKey',
+            scenarioLabel: 'License',
+            content: 'Kx9m-P2nQ-7vL4-wR8j-H3tF-6yN1-0pS5-8uV2-4zA7',
+          },
+          {
+            id: 'homelab-monitoring',
+            title: 'homelab-monitoring',
+            pinned: true,
+            meta: '5h ago',
+            scenario: 'terminal',
+            scenarioLabel: 'Terminal',
+            content: `ssh deploy@192.168.11.10 'cd /opt/stacks/monitoring && \\
+docker compose pull prometheus grafana node-exporter && \\
+docker compose up -d && \\
+docker compose ps && \\
+curl -sf http://127.0.0.1:9090/-/ready'`,
+          },
+          {
+            id: 'campaign-url',
+            title: 'campaign-url',
+            pinned: false,
+            meta: '4h ago',
+            scenario: 'browser',
+            scenarioLabel: 'Browser',
+            content:
+              'https://www.crowd.supply/techxartisan/openterface-keymod-mini?utm_source=keycmd&utm_medium=compose-demo',
+          },
+          {
+            id: 'prod-deploy',
+            title: 'prod-deploy',
+            pinned: false,
+            meta: '2d ago',
+            scenario: 'terminal',
+            scenarioLabel: 'Terminal',
             content: `cd /opt/app && git pull origin main && \\
 npm ci --omit=dev && \\
 npm run build && \\
 pm2 reload ecosystem.config.js --env production`,
           },
           {
-            id: 'rotate-root-pass',
-            title: 'rotate-root-pass',
-            pinned: true,
-            meta: '1w ago',
-            content: 'Open1face-Demo-2026-Rotate-Me-Not-Real',
-          },
-          {
             id: 'docker-prune-safe',
             title: 'docker-prune-safe',
             pinned: false,
             meta: '3d ago',
+            scenario: 'terminal',
+            scenarioLabel: 'Terminal',
             content: 'docker system prune -af --filter "until=168h" && docker volume ls',
-          },
-          {
-            id: 'homelab-monitoring',
-            title: 'homelab-monitoring',
-            pinned: false,
-            meta: '5h ago',
-            content: `ssh deploy@192.168.11.10 'cd /opt/stacks/monitoring && \\
-docker compose pull prometheus grafana node-exporter && \\
-docker compose up -d && \\
-docker compose ps && \\
-curl -sf http://127.0.0.1:9090/-/ready'`,
           },
         ],
       },
