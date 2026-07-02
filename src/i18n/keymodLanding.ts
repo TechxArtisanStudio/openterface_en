@@ -60,7 +60,6 @@ export type KeymodFirmwareRoadmap = {
   subtitle: string;
   chipsLabel: string;
   chips: string[];
-  aiChat: { badge: string; body: string };
   forumPrompt: string;
   forumCta: string;
 };
@@ -158,6 +157,7 @@ export type KeymodLandingStrings = {
           apiKey: { title: string; fieldLabel: string; buttonLabel: string };
         };
         sendLabel: string;
+        bridgeLabel: string;
         stopLabel: string;
         autoSendHint: string;
         interactiveDemoLabel: string;
@@ -203,6 +203,33 @@ export type KeymodLandingStrings = {
         usb: { label: string; body: string };
         ble: { label: string; body: string };
         notice: string;
+      };
+    };
+    agentZone: {
+      eyebrow: string;
+      intro: { title: string; body: string };
+      agent: {
+        badge: string;
+        title: string;
+        body: string;
+        notice: string;
+        capabilities: { label: string; body: string }[];
+        demo: {
+          interactiveDemoLabel: string;
+          overlayTitle: string;
+          overlaySummary: string;
+          sessionSubtitle: string;
+          connectionReady: string;
+          pickerHint: string;
+          planLabel: string;
+          actPrompt: string;
+          approveLabel: string;
+          editPlanLabel: string;
+          cancelLabel: string;
+          terminalExecutingLabel: string;
+          macroExecutingLabel: string;
+          uiFidelityNote: string;
+        };
       };
     };
     gameZone: {
@@ -253,6 +280,12 @@ export type KeymodLandingStrings = {
     mediaLabel: string;
   };
   crowdSupplyCampaign: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    cta: string;
+  };
+  crowdSupplySupport: {
     eyebrow: string;
     title: string;
     body: string;
@@ -428,29 +461,29 @@ const en: KeymodLandingStrings = {
       eyebrow: 'Ops Zone',
       intro: {
         title: 'Phone-side ops console',
-        body: 'Paste long commands to the target, keep a personal runbook, or SSH from your pocket. No laptop at the rack.',
+        body: 'Paste long commands to the target, keep a personal runbook, or SSH from your pocket. Plug in KeyMod. The target sees a standard keyboard and mouse with nothing to install or configure. No laptop at the rack.',
       },
       compose: {
         badge: 'KM Pro · Compose & Send',
         title: 'Paste on phone. Tap Send. Target types.',
-        body: 'Write multi-line commands on your phone, preview, then Send. KeyCmd types on the target over USB or Bluetooth HID. Cancel mid-send on long pastes. Your personal runbook: pin, rename, load, or send snippets in one tap (up to 60 items).',
+        body: 'Write multi-line commands on your phone, preview, then Send. KeyCmd types on the target over USB or Bluetooth HID. Zero install on the host. Cancel mid-send on long pastes. Your personal runbook: pin, rename, load, or send snippets in one tap (up to 60 items).',
         demoLinks: [
           {
             label: 'Long API string send (IG)',
             description:
-              'Real screen capture — paste a multi-line API call on your phone, tap Send, and watch KeyCmd type it on the target.',
+              'Real screen capture: paste a multi-line API call on your phone, tap Send, and watch KeyCmd type it on the target.',
             href: keymodLinks.composeSendDemo,
           },
           {
             label: 'Long code block send (IG Reel)',
             description:
-              'Real demo — compose a long script on the phone and send it character-by-character to a locked-down host.',
+              'Real demo: compose a long script on the phone and send it character-by-character to a locked-down host.',
             href: keymodLinks.composeSendCodeReel,
           },
           {
             label: 'Windows CMD: batch-rename images (X)',
             description:
-              'Real screen capture — paste a batch-rename script on your phone, send it into Windows CMD, and let KeyMod type through dozens of filenames for you.',
+              'Real screen capture: paste a batch-rename script on your phone, send it into Windows CMD, and let KeyMod type through dozens of filenames for you.',
             href: keymodLinks.composeSendBatchRenameDemo,
           },
         ],
@@ -471,6 +504,7 @@ curl -sf http://127.0.0.1:9090/-/ready'`,
           },
         },
         sendLabel: 'Send',
+        bridgeLabel: 'HID Send',
         stopLabel: 'Stop',
         autoSendHint: 'Tap Send',
         interactiveDemoLabel: 'Interactive demo',
@@ -480,7 +514,7 @@ curl -sf http://127.0.0.1:9090/-/ready'`,
         sendSelectedLabel: 'Send selected',
         backLabel: 'Back to compose',
         openLibraryLabel: 'Open saved texts',
-        libraryHint: 'Saved texts · tap to browse your runbook',
+        libraryHint: 'Tap a saved text to load and send',
         selectFirstHint: 'Select a saved text first',
         templates: [
           {
@@ -559,11 +593,11 @@ pm2 reload ecosystem.config.js --env production`,
         badge: 'Terminal · Preview',
         title: 'SSH from your phone',
         body: 'Dedicated Terminal mode runs SSH through the KeyMod bridge. Pick USB for speed at the machine or Bluetooth when you are across the room.',
-        experimentalHint: 'Preview feature — live SSH through KeyMod hardware follows firmware Phase 2',
+        experimentalHint: 'Preview feature. Live SSH through KeyMod hardware follows firmware Phase 2.',
         demo: {
           interactiveDemoLabel: 'Interactive demo',
           title: 'Terminal Preview',
-          summary: 'Try the canned SSH session replay — no hardware required.',
+          summary: 'Try the canned SSH session replay. No hardware required.',
           statusDisconnected: 'Disconnected',
           statusConnecting: 'Connecting…',
           statusConnected: 'Connected',
@@ -571,7 +605,7 @@ pm2 reload ecosystem.config.js --env production`,
           demoUsbLabel: 'Preview demo (USB)',
           transportBle: 'BLE',
           transportUsb: 'USB',
-          uiFidelityNote: 'Approximate UI — refer to KeyCmd on your phone for the live app.',
+          uiFidelityNote: 'Approximate UI. Check KeyCmd on your phone for the live app.',
           ctrlLabel: 'Ctrl',
           escLabel: 'Esc',
           tabLabel: 'Tab',
@@ -683,33 +717,75 @@ pm2 reload ecosystem.config.js --env production`,
       demoLinks: [{ label: 'Presentation tutorial', href: keymodLinks.presentationTutorial }],
     },
     aiChat: {
-      badge: 'AI Chat · Preview',
-      title: 'Gibby on your phone',
-      lead: 'Chat with Gibby on KeyCmd. Agent actions on the target are still on the roadmap.',
-      body: 'Gibby AI Chat pairs with KeyMod for conversational control. Preview builds are on the KeyCmd roadmap.',
-      mediaLabel: 'Gibby AI Chat mascot and phone UI',
+      badge: 'Agent · Experimental',
+      title: 'Agent on your phone',
+      lead: 'One sentence drives Terminal, macros, and HID on your target.',
+      body: 'Connect your LLM API key in KeyCmd. Agent Mode plans each step and waits for your approval before KeyMod acts on the host.',
+      mediaLabel: 'Agent Mode chat UI on KeyCmd',
+    },
+    agentZone: {
+      eyebrow: 'Agent Zone',
+      intro: {
+        title: 'Say it once. KeyMod does the rest.',
+        body:
+          'Connect your LLM API key in KeyCmd. Agent Mode reads your intent, builds a step-by-step plan across Terminal, macros, HID, and shortcuts, then waits for your approval before anything runs on the host.',
+      },
+      agent: {
+        badge: 'Agent Mode · Experimental',
+        title: 'Plan, approve, act',
+        body:
+          'Bring your own API key (or sign in for limited free tier in KeyCmd). One sentence can chain SSH checks, macro playback, and keyboard shortcuts through the KeyMod bridge: the same firmware stack you use manually, orchestrated by an LLM.',
+        notice:
+          'Preview demo on this page. No API key required. Live Agent chat with host execution ships in KeyCmd preview builds; full firmware-side automation follows our standard KeyCmd-first rollout.',
+        capabilities: [
+          {
+            label: 'Terminal',
+            body: 'SSH remote checks and shell commands on the target.',
+          },
+          {
+            label: 'Macros & HID',
+            body: 'Multi-step desktop workflows and shortcut injection.',
+          },
+          {
+            label: 'Shortcuts & Compose',
+            body: 'Saved texts and one-shot sends, callable from a plan step.',
+          },
+        ],
+        demo: {
+          interactiveDemoLabel: 'Interactive demo',
+          overlayTitle: 'Agent Preview',
+          overlaySummary: 'Pick a scripted workflow. No API key or hardware required.',
+          sessionSubtitle: 'Approve before KeyCmd acts on your host.',
+          connectionReady: 'KeyMod · Ready',
+          pickerHint: 'Pick a demo to preview how Agent plans and acts on your target device.',
+          planLabel: 'PLAN',
+          actPrompt: 'Review the plan before KeyCmd acts on your host.',
+          approveLabel: 'Approve & Run',
+          editPlanLabel: 'Edit plan',
+          cancelLabel: 'Cancel',
+          terminalExecutingLabel: 'TERMINAL · EXECUTING',
+          macroExecutingLabel: 'MACRO · EXECUTING',
+          uiFidelityNote: 'Approximate UI. Check KeyCmd on your phone for the live app.',
+        },
+      },
     },
   },
   firmwareRoadmap: {
     eyebrow: 'Firmware roadmap',
     title: 'What we are building next',
     subtitle:
-      'Modes and bridges ship through KeyCmd first — then land on KeyMod firmware. Here is what is queued up today.',
+      'Modes and bridges ship through KeyCmd first, then land on KeyMod firmware. Here is what is queued up today.',
     chipsLabel: 'Queued for firmware',
     chips: ['Network bridge', 'Audio bridge', 'MIDI', 'CLI + MCP automation', 'Remote relay'],
-    aiChat: {
-      badge: 'AI Chat · Preview',
-      body: 'Gibby AI Chat pairs with KeyMod for conversational control. Preview builds are on the KeyCmd roadmap.',
-    },
     forumPrompt:
-      'Have a mode, bridge, or workflow we should prioritize? Post on the Openterface forum — swap ideas with our dev team and other builders.',
+      'Have a mode, bridge, or workflow we should prioritize? Post on the Openterface forum and swap ideas with our dev team and other builders.',
     forumCta: 'Discuss on the forum ↗',
   },
   productJourney: {
     eyebrow: 'Product journey',
     title: 'From concept to your desk',
     subtitle:
-      'Seven milestones shipped. Pre-launch validation is underway — crowdfunding and fulfillment are next.',
+      'Seven milestones shipped. Pre-launch validation is underway. Crowdfunding and fulfillment are next.',
     scrollHint: '← Swipe for earlier milestones',
     nowLabel: 'Now',
     nowSublabel: 'Pre-launch · final hardware & firmware validation',
@@ -730,7 +806,7 @@ pm2 reload ecosystem.config.js --env production`,
         id: 'cs-prelaunch',
         status: 'done',
         title: 'Crowd Supply pre-launch',
-        lead: 'Campaign page live — follow for launch day.',
+        lead: 'Campaign page live. Follow for launch day.',
         href: keymodLinks.crowdSupply,
       },
       {
@@ -749,7 +825,7 @@ pm2 reload ecosystem.config.js --env production`,
         id: 'firmware-pivot',
         status: 'pivot',
         title: 'Concept pivot',
-        lead: 'Reshaped as a pocket USB multi-tool bridge — one dongle, many modes.',
+        lead: 'Reshaped as a pocket USB multi-tool bridge: one dongle, many modes.',
       },
       {
         id: 'trial-batches',
@@ -821,16 +897,23 @@ pm2 reload ecosystem.config.js --env production`,
     eyebrow: 'Crowd Supply',
     title: 'Pre-launch on Crowd Supply',
     body:
-      'Back KeyMod Mini and Plus on Crowd Supply: pocket USB bridges that turn your phone into a wireless console. BIOS-capable HID, zero driver on the target.',
+      'Back KeyMod Mini and Plus on Crowd Supply — pocket USB bridges that turn your phone into a wireless console. Support us to make it real!',
     cta: 'Pre-launch',
+  },
+  crowdSupplySupport: {
+    eyebrow: 'Back the project',
+    title: 'Help us ship what is next',
+    body:
+      'Follow KeyMod on Crowd Supply and back the campaign when it opens. Experimental modes like Agent ship faster when more builders support the project — every backer helps move the firmware roadmap from queue to reality.',
+    cta: 'Follow on Crowd Supply',
   },
   crowdSupplyOpensource: {
     eyebrow: 'Open by design',
-    title: 'Open-source hardware & software',
+    title: 'Open hardware, built in the open',
     body:
-      'KeyCmd, firmware, and hardware docs publish as the project matures, following the same open stack approach as Openterface Mini-KVM and KVM-GO.',
-    cta: 'Pre-launch',
-    badgesLabel: 'Open-source hardware and software',
+      'KeyMod follows the same open-hardware spirit as Openterface Mini-KVM and KVM-GO: transparent design, community feedback, and docs that grow with the product. Open hardware is rare and costly to get right — your support helps us keep building that way.',
+    cta: 'Back open hardware',
+    badgesLabel: 'Open hardware community certifications',
     osiAlt: 'Open Source Initiative approved open-source license',
     oshAlt: 'Open Source Hardware Association',
   },
@@ -864,7 +947,7 @@ pm2 reload ecosystem.config.js --env production`,
     items: [
       {
         q: 'Is this a Bluetooth keyboard app?',
-        a: 'No. KeyMod is USB HID on the target. BLE (or Plus USB) is phone ↔ KeyMod only—not a Bluetooth keyboard emulating into the host OS. Your PC never pairs with your phone over Bluetooth.',
+        a: 'No. KeyMod is USB HID on the target. BLE (or Plus USB) is phone ↔ KeyMod only, not a Bluetooth keyboard emulating into the host OS. Your PC never pairs with your phone over Bluetooth.',
       },
       {
         q: 'KeyMod Mini vs Plus?',
@@ -872,11 +955,11 @@ pm2 reload ecosystem.config.js --env production`,
       },
       {
         q: 'KM Basic vs KM Pro?',
-        a: 'Both are Keyboard & Mouse modes inside KeyCmd—not separate products. KM Basic is keyboard, numpad, and touchpad only: simple, physical-style controls with nothing to learn. KM Pro adds strip shortcuts, Compose & Send, Saved texts, and Shortcut Hub for power-user workflows. Terminal is a separate KeyCmd mode (Preview today).',
+        a: 'Both are Keyboard & Mouse modes inside KeyCmd, not separate products. KM Basic is keyboard, numpad, and touchpad only: simple, physical-style controls with nothing to learn. KM Pro adds strip shortcuts, Compose & Send, Saved texts, and Shortcut Hub for power-user workflows. Terminal is a separate KeyCmd mode (Preview today).',
       },
       {
         q: 'Does the target need software or drivers?',
-        a: 'No. KeyMod emulates a standard USB keyboard and mouse. The target sees plug-and-play HID hardware—BIOS-capable, zero install on the host.',
+        a: 'No. KeyMod emulates a standard USB keyboard and mouse. The target sees plug-and-play HID hardware. BIOS-capable, zero install on the host.',
       },
       {
         q: 'Does KeyMod capture video?',
@@ -884,11 +967,15 @@ pm2 reload ecosystem.config.js --env production`,
       },
       {
         q: 'Does Gamepad mode make the PC see an Xbox or PlayStation controller?',
-        a: 'No. KeyCmd maps sticks and buttons to keyboard and mouse actions—the target sees standard keyboard + mouse HID, not native gamepad HID.',
+        a: 'No. KeyCmd maps sticks and buttons to keyboard and mouse actions. The target sees standard keyboard + mouse HID, not native gamepad HID.',
       },
       {
         q: 'Why did the story change?',
         a: 'CH32 platform work pushed KeyMod toward a Wireless USB Multi-tool with a scenario-first launch story.',
+      },
+      {
+        q: 'Why is Agent Mode experimental?',
+        a: 'Agent Mode connects an LLM to KeyMod firmware capabilities (Terminal, macros, HID, and shortcuts) with a plan-and-approve safety model. It ships in KeyCmd preview builds first; full host execution and firmware-side automation follow our standard KeyCmd-first rollout. Backing the Crowd Supply campaign helps us dedicate more engineering time to experimental modes.',
       },
     ],
   },

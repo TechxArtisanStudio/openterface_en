@@ -3,6 +3,7 @@ import KeyModSection from './KeyModSection.astro';
 import KeyModPovStage from './KeyModPovStage.astro';
 import KeyModGameZoneShowcase from './KeyModGameZoneShowcase.astro';
 import KeyModOpsZoneShowcase from './KeyModOpsZoneShowcase.astro';
+import KeyModAgentZoneShowcase from './KeyModAgentZoneShowcase.astro';
 import KeyModCrowdSupplyCta from './KeyModCrowdSupplyCta.astro';
 import { keymodPovVisibleTabScenes } from '../../data/keymodPovScenes';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
@@ -90,6 +91,13 @@ const povStageScenes = povStageSceneDefs.filter((s) => visiblePovIds.has(s.id));
       <div class="km-theater-zone__inner km-zone-matrix__inner">
         <p class="km-theater-zone__eyebrow km-eyebrow">{m.opsZone.eyebrow}</p>
         <KeyModOpsZoneShowcase opsZone={m.opsZone} />
+      </div>
+    </div>
+
+    <div class="km-theater-zone km-theater-zone--agent km-zone-agent" data-km-zone="agent">
+      <div class="km-theater-zone__inner km-zone-agent__inner">
+        <p class="km-theater-zone__eyebrow km-eyebrow">{m.agentZone.eyebrow}</p>
+        <KeyModAgentZoneShowcase agentZone={m.agentZone} />
       </div>
     </div>
 
