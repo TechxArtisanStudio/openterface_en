@@ -102,9 +102,6 @@ export type KeymodLandingStrings = {
     eyebrow: string;
     title: string;
     stackLine: string;
-    contrastLine: string;
-    connectivityTitle: string;
-    bleRange: string;
     crowdSupplyCta: string;
     mini: { name: string; port: string; audience: string; connect: string; tagline: string };
     plus: { name: string; port: string; audience: string; connect: string; tagline: string };
@@ -380,23 +377,21 @@ const en: KeymodLandingStrings = {
     eyebrow: 'Choose your port',
     title: 'Mini vs Plus',
     stackLine: 'Same KeyCmd app. Different dongle for the port on your machine.',
-    contrastLine: 'Mini for the C port in your pocket. Plus for the A port on the machine.',
-    connectivityTitle: 'How your phone connects',
-    bleRange: 'BLE range (both SKUs): best within ~5 m, up to ~10 m in open space.',
     crowdSupplyCta: 'Pre-launch on Crowd Supply',
     mini: {
       name: 'KeyMod Mini',
       port: 'USB-C male → target',
       audience: 'Type-C-first · ultra-compact EDC',
-      connect: 'Phone link: BLE wireless only.',
-      tagline: 'The Type-C-first pocket bridge',
+      connect: 'Phone link: BLE wireless · ~5–10 m in open space.',
+      tagline: 'The C-port dongle for your pocket.',
     },
     plus: {
       name: 'KeyMod Plus',
       port: 'USB-A male → target',
       audience: 'Servers · legacy · rack ops',
-      connect: 'Phone link: BLE or USB wired to the dongle. USB wired is steadier and has more bandwidth (ideal for KM Pro).',
-      tagline: 'The A port on the machine',
+      connect:
+        'Phone link: BLE or USB wired to the dongle. Wired is steadier and has more bandwidth (ideal for SSH over USB, etc).',
+      tagline: 'The A-port dongle on the machine.',
     },
   },
   scenarios: {
