@@ -9,6 +9,7 @@ const LOAD_FLASH_MS = 600;
 
 type FlowState = 'idle' | 'countdown' | 'sending' | 'complete';
 type PhoneView = 'compose' | 'library';
+type TargetScenario = 'terminal' | 'markdown' | 'browser' | 'apiKey';
 
 interface SavedTemplate {
   id: string;
@@ -16,10 +17,20 @@ interface SavedTemplate {
   pinned: boolean;
   meta: string;
   content: string;
+  scenario: TargetScenario;
+  scenarioLabel: string;
 }
+
+const SCENARIO_BRIDGE_LABEL: Record<TargetScenario, string> = {
+  terminal: '→ Terminal',
+  markdown: '→ Notes',
+  browser: '→ Browser',
+  apiKey: '→ License',
+};
 
 let rootEl: HTMLElement | null = null;
 let activeText = '';
+let activeScenario: TargetScenario = 'terminal';
 let progressSuffix = 'left';
 let autoTimer: number | null = null;
 let completeTimer: number | null = null;
@@ -85,6 +96,82 @@ function sendDurationFor(text: string): number {
 
 function progressMinUnits(): number {
   return Math.min(PROGRESS_MIN_UNITS, totalUnits());
+}
+
+function getTemplate(id: string | null): SavedTemplate | undefined {
+  if (!id) return undefined;
+  return templates.find((t) => t.id === id);
+}
+
+function scenarioForTemplate(id: string | null): TargetScenario {
+  const fromRow = id
+    ? (q<HTMLElement>(`[data-template-id="${id}"]`)?.dataset.templateScenario as TargetScenario | undefined)
+    : undefined;
+  if (fromRow) return fromRow;
+  return getTemplate(id)?.scenario ?? 'terminal';
+}
+
+function setScenario(next: TargetScenario): void {
+  activeScenario = next;
+  if (!rootEl) return;
+
+  rootEl.dataset.composeScenario = next;
+  rootEl.classList.toggle('km-compose-flow--scenario-terminal', next === 'terminal');
+  rootEl.classList.toggle('km-compose-flow--scenario-markdown', next === 'markdown');
+  rootEl.classList.toggle('km-compose-flow--scenario-browser', next === 'browser');
+  rootEl.classList.toggle('km-compose-flow--scenario-apiKey', next === 'apiKey');
+
+  qa<HTMLElement>('[data-km-compose-target]').forEach((panel) => {
+    const isActive = panel.dataset.kmComposeTarget === next;
+    panel.hidden = !isActive;
+  });
+
+  const bridgeTarget = q<HTMLElement>('[data-km-compose-bridge-target]');
+  if (bridgeTarget) bridgeTarget.textContent = SCENARIO_BRIDGE_LABEL[next];
+}
+
+function scrollMarkdownToBottom(): void {
+  const scroll = q<HTMLElement>('[data-km-compose-markdown-scroll]');
+  if (scroll) scroll.scrollTop = scroll.scrollHeight;
+}
+
+function clearTargetOutputs(): void {
+  const slice = activeText.slice(0, 0);
+  const terminalOut = q<HTMLElement>('[data-km-compose-terminal-output]');
+  const markdownOut = q<HTMLElement>('[data-km-compose-markdown-output]');
+  const browserOut = q<HTMLElement>('[data-km-compose-browser-output]');
+  const apiKeyOut = q<HTMLElement>('[data-km-compose-apikey-output]');
+  if (terminalOut) terminalOut.textContent = slice;
+  if (markdownOut) markdownOut.textContent = slice;
+  if (browserOut) browserOut.textContent = slice;
+  if (apiKeyOut) apiKeyOut.textContent = slice;
+}
+
+function writeTargetOutput(completed: number): void {
+  const text = activeText.slice(0, completed);
+  switch (activeScenario) {
+    case 'terminal': {
+      const out = q<HTMLElement>('[data-km-compose-terminal-output]');
+      if (out) out.textContent = text;
+      break;
+    }
+    case 'markdown': {
+      const out = q<HTMLElement>('[data-km-compose-markdown-output]');
+      if (out) out.textContent = text;
+      scrollMarkdownToBottom();
+      break;
+    }
+    case 'browser': {
+      const out = q<HTMLElement>('[data-km-compose-browser-output]');
+      if (out) out.textContent = text;
+      break;
+    }
+    case 'apiKey': {
+      const out = q<HTMLElement>('[data-km-compose-apikey-output]');
+      if (out) out.textContent = text;
+      break;
+    }
+  }
 }
 
 function setView(next: PhoneView): void {
@@ -211,28 +298,38 @@ function updateProgress(completed: number, total: number): void {
 
   const bar = q<HTMLElement>('[data-km-compose-progress-bar]');
   const label = q<HTMLElement>('[data-km-compose-progress-label]');
-  const terminalOut = q<HTMLElement>('[data-km-compose-terminal-output]');
   const live = q<HTMLElement>('[data-km-compose-live]');
 
   if (bar) bar.style.width = `${pct}%`;
   if (label) label.textContent = `${remaining} ${progressSuffix}`;
-  if (terminalOut) terminalOut.textContent = activeText.slice(0, completed);
+  writeTargetOutput(completed);
   if (live && state === 'sending') {
     live.textContent = `Sending: ${remaining} ${progressSuffix}`;
   }
 }
 
 function showStaticComplete(): void {
+  setScenario('terminal');
   updateProgress(totalUnits(), totalUnits());
   setState('complete');
 }
 
 function resetToIdle(): void {
   clearTimers();
-  updateProgress(0, totalUnits());
+  clearTargetOutputs();
   setState('idle');
   const live = q<HTMLElement>('[data-km-compose-live]');
   if (live) live.textContent = '';
+}
+
+function stopSend(): void {
+  if (state !== 'sending') return;
+  clearTimers();
+  wasAutoSend = false;
+  clearTargetOutputs();
+  setState('idle');
+  const live = q<HTMLElement>('[data-km-compose-live]');
+  if (live) live.textContent = 'Send stopped';
 }
 
 function scheduleAutoStart(): void {
@@ -248,7 +345,12 @@ function scheduleAutoStart(): void {
 function getSelectedContent(): string | null {
   if (!selectedTemplateId) return null;
   const row = q<HTMLElement>(`[data-template-id="${selectedTemplateId}"]`);
-  return row?.dataset.templateContent ?? templates.find((t) => t.id === selectedTemplateId)?.content ?? null;
+  return row?.dataset.templateContent ?? getTemplate(selectedTemplateId)?.content ?? null;
+}
+
+function applySelectedScenario(): void {
+  if (!selectedTemplateId) return;
+  setScenario(scenarioForTemplate(selectedTemplateId));
 }
 
 function openLibrary(): void {
@@ -286,6 +388,8 @@ function loadSelected(): void {
     if (live) live.textContent = hint;
     return;
   }
+  applySelectedScenario();
+  clearTargetOutputs();
   writeEditorText(content);
   closeLibrary();
   flashEditorLoaded();
@@ -300,6 +404,7 @@ function startSend(options?: { auto?: boolean }): void {
   sendDurationMs = sendDurationFor(activeText);
   setState('sending');
   sendStartMs = performance.now();
+  clearTargetOutputs();
   updateProgress(0, totalUnits());
 
   const tick = (now: number): void => {
@@ -355,9 +460,12 @@ function sendSelectedFromLibrary(): void {
     if (live) live.textContent = hint;
     return;
   }
+  applySelectedScenario();
   writeEditorText(content);
   clearTimers();
+  clearTargetOutputs();
   setState('idle');
+  closeLibrary();
   startSend();
 }
 
@@ -387,6 +495,10 @@ function onRootClick(event: MouseEvent): void {
 
   if (target.closest('[data-km-compose-send]')) {
     if (reducedMotion) return;
+    if (state === 'sending') {
+      stopSend();
+      return;
+    }
     if (state === 'idle' || state === 'countdown') {
       clearTimers();
       startSend();
@@ -434,6 +546,7 @@ function bindRoot(root: HTMLElement): void {
         userOpenedLibrary = false;
         hasAutoRevealedLibrary = false;
         closeLibrary();
+        setScenario('terminal');
         resetToIdle();
       }
     },
@@ -441,6 +554,7 @@ function bindRoot(root: HTMLElement): void {
   );
   observer.observe(root);
 
+  setScenario('terminal');
   setView('compose');
   updateSelectionUi();
   resetToIdle();
@@ -456,6 +570,7 @@ function unbindRoot(): void {
   rootEl = null;
   state = 'idle';
   view = 'compose';
+  activeScenario = 'terminal';
   selectedTemplateId = null;
   userOpenedLibrary = false;
   hasAutoRevealedLibrary = false;
