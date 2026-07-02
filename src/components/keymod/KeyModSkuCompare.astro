@@ -1,6 +1,7 @@
 ---
 import KeyModSection from './KeyModSection.astro';
 import { getKeymodAsset } from '../../data/keymodAssets';
+import { keymodLinks } from '../../i18n/keymodLanding';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
@@ -37,6 +38,24 @@ const plusAsset = getKeymodAsset('sku', 'plus');
       </p>
       <p class="km-card__body km-sku__connect">{copy.mini.connect}</p>
       <p class="km-card__body km-sku__tagline">{copy.mini.tagline}</p>
+      <a
+        href={keymodLinks.crowdSupply}
+        class="km-btn km-btn--primary km-sku__cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {copy.crowdSupplyCta}
+        <img
+          class="km-btn__icon"
+          src={keymodLinks.crowdSupplyIcon}
+          alt=""
+          width="20"
+          height="20"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        />
+      </a>
     </article>
     <article class="km-card km-sku__card">
       {
@@ -61,6 +80,24 @@ const plusAsset = getKeymodAsset('sku', 'plus');
       </p>
       <p class="km-card__body km-sku__connect">{copy.plus.connect}</p>
       <p class="km-card__body km-sku__tagline">{copy.plus.tagline}</p>
+      <a
+        href={keymodLinks.crowdSupply}
+        class="km-btn km-btn--primary km-sku__cta"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {copy.crowdSupplyCta}
+        <img
+          class="km-btn__icon"
+          src={keymodLinks.crowdSupplyIcon}
+          alt=""
+          width="20"
+          height="20"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        />
+      </a>
     </article>
   </div>
 
