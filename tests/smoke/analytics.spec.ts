@@ -154,6 +154,13 @@ test('crowdsupply_click includes landing UTM params', async ({ page }) => {
     .toBe(true);
 });
 
+test('keymod landing exposes crowdsupply_click analytics CTAs', async ({ page }) => {
+  await page.goto('/keymod/', { waitUntil: 'domcontentloaded' });
+  await page.locator('#cookie-consent-accept').click();
+  await expect(page.locator('[data-analytics-event="crowdsupply_click"]').first()).toBeVisible();
+  await expect(page.locator('[data-analytics-placement="keymod_hero"]')).toBeVisible();
+});
+
 test('analytics events do not fire before consent', async ({ page }) => {
   await page.goto('/', { waitUntil: 'domcontentloaded' });
   await page.locator('[data-analytics-event="crowdsupply_click"]').first().click();

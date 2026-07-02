@@ -1,9 +1,8 @@
 import { siteConfig } from '../config/site';
 
-/** UTM-appended outbound URLs — never hand-build in components. */
+/** Outbound URLs — never hand-build in components. */
 export const keymodLinks = {
-  crowdSupply:
-    'https://www.crowdsupply.com/techxartisan/keymod?utm_source=openterface&utm_medium=landing&utm_campaign=keymod-landing-v2',
+  crowdSupply: siteConfig.links.keymodCrowdsupply,
   crowdSupplyIcon: '/keymod/badges/crowd-supply-icon.svg',
   openSourceInitiative: '/keymod/badges/open-source-initiative.svg',
   openSourceHardware: '/keymod/badges/open-source-hardware.svg',
@@ -333,7 +332,6 @@ export type KeymodLandingStrings = {
     forumNewBadge: string;
     legal: string;
   };
-  previewBanner: string;
 };
 
 const en: KeymodLandingStrings = {
@@ -989,9 +987,8 @@ pm2 reload ecosystem.config.js --env production`,
     forumCta: 'Forum',
     discordCta: 'Discord',
     forumNewBadge: 'New',
-    legal: `© ${new Date().getFullYear()} TechxArtisan · Openterface KeyMod Rebirth preview`,
+    legal: `© ${new Date().getFullYear()} TechxArtisan · Openterface KeyMod`,
   },
-  previewBanner: 'PREVIEW · /preview/keymod-rebirth/ · Phase 1 structure · not indexed',
 };
 
 const translations: Record<string, KeymodLandingStrings> = { en };

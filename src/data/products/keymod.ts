@@ -2,28 +2,27 @@ import { docsPath, siteConfig } from '../../config/site';
 import type { Product } from '../products';
 
 /**
- * KeyMod marketing payload — Phase 1E flat landing at /keymod/.
- * Sourced from docs/products/keymod/ (index, features, use-cases).
+ * KeyMod marketing payload — JSON-LD and shared product metadata for /keymod/.
  */
 export const keymodProduct: Product = {
   slug: 'keymod',
-  title: 'Openterface KeyMod Series',
-  slogan: 'Turn Your Phone into a Smart Keyboard',
-  subtitle: 'Programmable keyboard and mouse control for tech, professionals, and gaming.',
+  title: 'KeyMod | Wireless USB Multi-tool | Openterface',
+  slogan: 'Pocket USB multi-tool bridge.',
+  subtitle: 'Plug into the target device, control from KeyCmd on your phone.',
   status: 'pre-launch',
   description:
-    'A compact, programmable USB + Bluetooth HID emulator that turns your phone into a portable keyboard and trackpad console. Built on the proven HID core from Openterface Mini-KVM — plug and play, 100% open source.',
+    'Pocket USB multi-tool bridge. Plug into the target device, control from KeyCmd on your phone. BIOS-capable HID. Mini for Type-C. Plus for USB-A servers.',
   seoDescription:
-    'KeyMod Series turns your phone into a portable keyboard and trackpad. USB + Bluetooth HID emulator, open source, perfect for kiosks, smart TVs, and workflow shortcuts.',
+    'Pocket USB multi-tool bridge. Plug into the target device, control from KeyCmd on your phone. BIOS-capable HID. Mini for Type-C. Plus for USB-A servers.',
   keywords:
-    'KeyMod, HID emulator, phone keyboard, Bluetooth keyboard, USB keyboard, portable keyboard, open source, gamepad, macro',
+    'KeyMod, Wireless USB Multi-tool, KeyCmd, wireless HID, BIOS keyboard, homelab, sysadmin, USB-C, USB-A',
   heroImage: 'https://assets2.openterface.com/images/keymod/2in1.webp',
   heroImages: [
     'https://assets2.openterface.com/images/keymod/2in1.webp',
     'https://assets2.openterface.com/images/keymod/keymod.webp',
     'https://assets2.openterface.com/images/keymod/feature.webp',
   ],
-  buyLabel: 'Support NOW',
+  buyLabel: 'Pre-launch',
   buyHref: siteConfig.links.keymodCrowdsupply,
   painPoints: [
     'Carrying a full keyboard for kiosk or TV setup is impractical',

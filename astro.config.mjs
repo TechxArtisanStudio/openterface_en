@@ -8,6 +8,7 @@ export default defineConfig({
   trailingSlash: 'always',
   // site-refactor-redirects:start (Phase 1B: full slug-map redirects)
   redirects: {
+    '/preview/keymod-rebirth/': '/keymod/',
     '/products/keymod/': '/keymod/',
     '/products/kvm-go/': '/kvmgo/',
     '/products/minikvm/': '/minikvm/',
@@ -24,7 +25,7 @@ export default defineConfig({
   // site-refactor-redirects:end
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/404'),
+      filter: (page) => !page.includes('/404') && !page.includes('/preview/'),
       namespaces: { news: false, video: false, xhtml: false },
     }),
   ],
