@@ -1585,39 +1585,6 @@
   align-self: flex-start;
 }
 
-.km-sku__connectivity {
-  margin-top: 2rem;
-  padding: 1.25rem 1.5rem;
-  border-radius: 0.75rem;
-  border: 1px solid var(--km-border);
-  background: var(--km-surface);
-  text-align: center;
-  max-width: 40rem;
-  margin-inline: auto;
-}
-
-.km-sku__connectivity-title {
-  margin: 0 0 0.5rem;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--km-accent-on-light);
-}
-
-.km-sku__connectivity-body {
-  margin: 0;
-  font-size: 0.9375rem;
-  line-height: 1.55;
-  color: var(--km-muted);
-}
-
-.km-sku__contrast {
-  margin-top: 1.75rem;
-  text-align: center;
-  max-width: none;
-}
-
 /* Grid / cards */
 .km-grid {
   display: grid;
@@ -2214,6 +2181,15 @@
 /* Theater scroll — mode detail entries */
 .km-theater-scroll {
   margin-top: clamp(2rem, 5vw, 3.5rem);
+}
+
+/* Game zone ends the theater — no extra white band below the dark band */
+#modes-theater.km-section {
+  padding-bottom: 0;
+}
+
+#updates.km-section {
+  padding-top: clamp(2.5rem, 7vw, 4.5rem);
 }
 
 @media (min-width: 768px) {
