@@ -93,6 +93,18 @@ test('product page has Product JSON-LD and og:type product', async ({ page }) =>
   expect(String(product.url)).toContain('/minikvm/');
 });
 
+test('keymod page has Product JSON-LD and rebirth meta', async ({ page }) => {
+  await page.goto('/keymod/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.locator('meta[property="og:type"]')).toHaveAttribute('content', 'product');
+  await expect(page).toHaveTitle(/Wireless USB Multi-tool/i);
+  const jsonLdScripts = await page.locator('script[type="application/ld+json"]').allTextContents();
+  const productLd = jsonLdScripts.find((text) => text.includes('"@type":"Product"'));
+  expect(productLd).toBeTruthy();
+  const product = JSON.parse(productLd!);
+  expect(String(product.url)).toContain('/keymod/');
+  expect(String(product.description)).toMatch(/Pocket USB multi-tool bridge/i);
+});
+
 test('home page has Organization and WebSite JSON-LD', async ({ page }) => {
   await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
   const jsonLdScripts = await page.locator('script[type="application/ld+json"]').allTextContents();

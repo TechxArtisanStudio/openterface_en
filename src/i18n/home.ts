@@ -16,7 +16,7 @@ const en: HomeStrings = {
   "sectionSubtitle": "Open-source, ultra-compact hardware with cross-platform apps. Control headless machines from the device you already carry.",
   "viewAll": "View all products",
   "downloadApp": "Download Openterface App",
-  "keymodBlurb": "Phone as keyboard & trackpad",
+  "keymodBlurb": "Pocket USB multi-tool bridge",
   "kvmgoBlurb": "Keychain-sized KVM",
   "minikvmBlurb": "Laptop as KVM console",
   "kvmextBlurb": "uConsole KVM board",

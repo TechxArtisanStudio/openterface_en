@@ -25,9 +25,9 @@ export const homeSlides: HomeSlide[] = [
   {
     id: 1,
     category: 'KeyMod Series',
-    headline: 'Turn Your Phone into a Mini Keyboard',
+    headline: 'Pocket USB multi-tool bridge',
     description:
-      'A compact USB + Bluetooth HID emulator that turns your phone into a portable keyboard and trackpad. Plug and play, 100% open source. Perfect for kiosks, smart TVs, and quick workflow shortcuts.',
+      'Plug into the target device, control from KeyCmd on your phone. BIOS-capable HID — Mini for Type-C, Plus for USB-A servers.',
     image: 'https://assets2.openterface.com/images/keymod/2in1.webp',
     imageAlt: 'Openterface KeyMod Series',
     images: [
@@ -36,7 +36,7 @@ export const homeSlides: HomeSlide[] = [
       'https://assets2.openterface.com/images/keymod/feature.webp',
     ],
     primaryCta: {
-      label: 'Support NOW',
+      label: 'Pre-launch',
       href: siteConfig.links.keymodCrowdsupply,
       external: true,
       analyticsEvent: 'crowdsupply_click',
@@ -44,7 +44,7 @@ export const homeSlides: HomeSlide[] = [
     },
     secondaryCta: { label: 'View Product', href: '/keymod/' },
     progressSmall: 'KeyMod Series',
-    progressLarge: 'Turn Your Phone into a Mini Keyboard',
+    progressLarge: 'Pocket USB multi-tool bridge',
   },
   {
     id: 2,
