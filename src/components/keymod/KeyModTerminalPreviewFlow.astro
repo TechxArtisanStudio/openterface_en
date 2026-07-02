@@ -1,6 +1,6 @@
 ---
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
-import { TERMINAL_DEMO_HOST } from '../../data/keymodTerminalDemo';
+import { TERMINAL_DEMO_HOST, TERMINAL_DEMO_HEADER_HTML } from '../../data/keymodTerminalDemo';
 
 interface Props {
   terminal: KeymodLandingStrings['modesTheater']['opsZone']['terminal'];
@@ -22,11 +22,12 @@ const demo = terminal.demo;
   role="region"
   aria-label="Terminal Preview interactive demo"
 >
-  <p class="km-terminal-flow__demo-label">{demo.interactiveDemoLabel}</p>
+  <div class="km-terminal-flow__demo-col">
+    <p class="km-terminal-flow__demo-label">{demo.interactiveDemoLabel}</p>
 
-  <div class="km-terminal-flow__stage">
-    <div class="km-terminal-flow__phone">
-      <div class="km-terminal-flow__phone-bezel">
+    <div class="km-terminal-flow__stage">
+      <div class="km-terminal-flow__phone">
+        <div class="km-terminal-flow__phone-bezel">
         <div class="km-terminal-flow__phone-notch" aria-hidden="true"></div>
         <div class="km-terminal-flow__phone-screen">
           <header class="km-terminal-flow__toolbar">
@@ -41,7 +42,8 @@ const demo = terminal.demo;
           </header>
 
           <div class="km-terminal-flow__screen-stack">
-            <pre class="km-terminal-flow__output" aria-hidden="true"><code data-km-terminal-output></code></pre>
+            <pre class="km-terminal-flow__header" data-km-terminal-header hidden set:html={TERMINAL_DEMO_HEADER_HTML}></pre>
+            <pre class="km-terminal-flow__output" aria-hidden="true"><code data-km-terminal-output></code><span class="km-terminal-flow__cursor" data-km-terminal-cursor aria-hidden="true" hidden></span></pre>
 
             <div class="km-terminal-flow__overlay" data-km-terminal-overlay>
               <img
@@ -72,11 +74,12 @@ const demo = terminal.demo;
             <span>{demo.tabLabel}</span>
           </footer>
         </div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <p class="km-terminal-flow__fidelity-note">{demo.uiFidelityNote}</p>
+    <p class="km-terminal-flow__fidelity-note">{demo.uiFidelityNote}</p>
+  </div>
 
   <p class="km-terminal-flow__sr" data-km-terminal-live aria-live="polite"></p>
 </div>
