@@ -206,7 +206,7 @@ function previewLine(content: string, maxLen = 72): string {
     </div>
 
     <div class="km-compose-flow__bridge" aria-hidden="true">
-      <span class="km-compose-flow__bridge-label">Send</span>
+      <span class="km-compose-flow__bridge-label">{compose.bridgeLabel}</span>
       <span class="km-compose-flow__bridge-target" data-km-compose-bridge-target></span>
       <div class="km-compose-flow__bridge-line">
         <span class="km-compose-flow__bridge-dot"></span>
@@ -258,7 +258,9 @@ function previewLine(content: string, maxLen = 72): string {
               </div>
             </div>
             <div class="km-compose-flow__target-body km-compose-flow__target-body--browser">
-              <span class="km-compose-flow__browser-page" aria-hidden="true"></span>
+              <div class="km-compose-flow__browser-page" aria-hidden="true">
+                <span class="km-wordmark km-wordmark--openterface km-compose-flow__browser-logo"></span>
+              </div>
             </div>
           </div>
 

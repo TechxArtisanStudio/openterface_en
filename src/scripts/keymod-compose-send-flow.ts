@@ -374,12 +374,6 @@ function closeLibrary(): void {
   setView('compose');
 }
 
-function selectTemplate(id: string): void {
-  if (state === 'sending') return;
-  selectedTemplateId = selectedTemplateId === id ? null : id;
-  updateSelectionUi();
-}
-
 function loadSelected(): void {
   const content = getSelectedContent();
   if (!content) {
@@ -452,21 +446,30 @@ function startSend(options?: { auto?: boolean }): void {
   rafId = window.requestAnimationFrame(tick);
 }
 
-function sendSelectedFromLibrary(): void {
+function sendTemplateFromLibrary(id: string): void {
+  if (reducedMotion || state === 'sending' || !rootEl) return;
+
+  selectedTemplateId = id;
   const content = getSelectedContent();
-  if (!content) {
-    const hint = rootEl?.dataset.selectFirstHint ?? 'Select a saved text first';
-    const live = q<HTMLElement>('[data-km-compose-live]');
-    if (live) live.textContent = hint;
-    return;
-  }
-  applySelectedScenario();
+  if (!content) return;
+
+  setScenario(scenarioForTemplate(id));
   writeEditorText(content);
   clearTimers();
   clearTargetOutputs();
   setState('idle');
   closeLibrary();
   startSend();
+}
+
+function sendSelectedFromLibrary(): void {
+  if (!selectedTemplateId) {
+    const hint = rootEl?.dataset.selectFirstHint ?? 'Select a saved text first';
+    const live = q<HTMLElement>('[data-km-compose-live]');
+    if (live) live.textContent = hint;
+    return;
+  }
+  sendTemplateFromLibrary(selectedTemplateId);
 }
 
 function onRootClick(event: MouseEvent): void {
@@ -507,8 +510,8 @@ function onRootClick(event: MouseEvent): void {
   }
 
   const row = target.closest<HTMLElement>('[data-km-saved-row]');
-  if (row?.dataset.templateId) {
-    selectTemplate(row.dataset.templateId);
+  if (row?.dataset.templateId && view === 'library') {
+    sendTemplateFromLibrary(row.dataset.templateId);
   }
 }
 

@@ -102,7 +102,7 @@ export const keymodPovScenes: KeymodPovScene[] = [
   },
   {
     id: 'ai-chat',
-    tabLabel: 'Agent(AI)',
+    tabLabel: 'Agent',
     experimental: true,
     monitorSrc: '/keymod/rebirth/modes/pov/ai-chat-monitor.webp',
     phoneSrc: '/keymod/rebirth/modes/pov/ai-chat-phone.webp',

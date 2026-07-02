@@ -4,14 +4,22 @@ import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
   variant: 'campaign' | 'opensource';
-  copy: KeymodLandingStrings['crowdSupplyCampaign'] | KeymodLandingStrings['crowdSupplyOpensource'];
+  copy:
+    | KeymodLandingStrings['crowdSupplyCampaign']
+    | KeymodLandingStrings['crowdSupplySupport']
+    | KeymodLandingStrings['crowdSupplyOpensource'];
   id?: string;
   elevated?: boolean;
 }
 
 const { variant, copy, id, elevated = true } = Astro.props;
 const sectionId = id ?? (variant === 'campaign' ? 'crowd-supply' : 'open-source');
-const ariaLabel = variant === 'campaign' ? 'Crowd Supply pre-launch' : 'Open-source hardware and software';
+const ariaLabel =
+  variant === 'campaign'
+    ? id === 'back-the-project'
+      ? 'Back KeyMod on Crowd Supply'
+      : 'Crowd Supply pre-launch'
+    : 'Open hardware and community design';
 ---
 
 <section
