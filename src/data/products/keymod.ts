@@ -6,7 +6,7 @@ import type { Product } from '../products';
  */
 export const keymodProduct: Product = {
   slug: 'keymod',
-  title: 'KeyMod | Wireless USB Multi-tool | Openterface',
+  title: 'Openterface KeyMod Series',
   slogan: 'Pocket USB multi-tool bridge.',
   subtitle: 'Plug into the target device, control from KeyCmd on your phone.',
   status: 'pre-launch',

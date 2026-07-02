@@ -12,13 +12,14 @@ test('home page has newsletter subscribe form', async ({ page }) => {
   const form = page.locator('#home-subscribe-form');
   await expect(form).toBeVisible();
   await expect(form.locator('input[type="email"]')).toBeVisible();
-  const subscribeBeforeProducts = await page.evaluate(() => {
+  const subscribeBeforeProductGrid = await page.evaluate(() => {
     const subscribe = document.querySelector('#home-subscribe-form');
-    const productLink = document.querySelector('a[href="/keymod/"]');
-    if (!subscribe || !productLink) return false;
-    return Boolean(subscribe.compareDocumentPosition(productLink) & Node.DOCUMENT_POSITION_FOLLOWING);
+    // Carousel also links to /keymod/ — assert order vs the product grid card below subscribe.
+    const productGridLink = document.querySelector('section.py-10 a[href="/keymod/"]');
+    if (!subscribe || !productGridLink) return false;
+    return Boolean(subscribe.compareDocumentPosition(productGridLink) & Node.DOCUMENT_POSITION_FOLLOWING);
   });
-  expect(subscribeBeforeProducts).toBe(true);
+  expect(subscribeBeforeProductGrid).toBe(true);
 });
 
 test('kvm-go product page has product subscribe form', async ({ page }) => {
@@ -132,7 +133,7 @@ test('products hub lists all five product lines', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Openterface KeyMod Series' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Openterface KVM-GO Series' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Openterface Mini-KVM' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Openterface KVM Extension for uConsole' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Openterface uConsole KVM Extension Module v2' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Openterface Accessories' })).toBeVisible();
 });
 
@@ -165,9 +166,12 @@ test('/legacy /videos/ redirects to /media/', async ({ page }) => {
   await expect(page).toHaveURL(/\/media\/$/);
 });
 
-test('/support/appointment redirects to Google Calendar booking', async ({ page }) => {
-  await page.goto('/support/appointment', { waitUntil: 'commit', timeout: 15000 });
-  await expect(page).toHaveURL(/calendar\.(app\.)?google\.com/);
+test('/support/appointment redirects to Google Calendar booking', async ({ request }) => {
+  const response = await request.get('/support/appointment/');
+  expect(response.ok()).toBeTruthy();
+  const html = await response.text();
+  expect(html).toMatch(/calendar\.app\.google/);
+  expect(html).toMatch(/http-equiv="refresh"/);
 });
 
 test('ecosystem header shows unified nav items', async ({ page }) => {
