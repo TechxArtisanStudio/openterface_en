@@ -63,10 +63,6 @@ test('no gtag console errors on load', async ({ page }) => {
 });
 
 test('accepting cookies enables GA4 page view tracking', async ({ page }) => {
-  if (process.env.PLAYWRIGHT_BASE_URL?.includes('127.0.0.1')) {
-    test.skip(true, 'GA4 consent + page_view requires production analytics bootstrap');
-  }
-
   const collectRequests: string[] = [];
   page.on('request', (req) => {
     const url = req.url();
@@ -76,6 +72,10 @@ test('accepting cookies enables GA4 page view tracking', async ({ page }) => {
   });
 
   await page.goto('/', { waitUntil: 'networkidle' });
+  if (await isLocalPreview(page)) {
+    test.skip(true, 'GA4 consent + page_view requires production analytics bootstrap');
+  }
+
   await expect(page.evaluate(() => typeof window.gtag === 'function')).resolves.toBe(true);
 
   await page.locator('#cookie-consent-accept').click();
