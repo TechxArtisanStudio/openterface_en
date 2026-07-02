@@ -10,9 +10,17 @@ interface Props {
     | KeymodLandingStrings['crowdSupplyOpensource'];
   id?: string;
   elevated?: boolean;
+  analyticsPlacement?: string;
 }
 
-const { variant, copy, id, elevated = true } = Astro.props;
+const { variant, copy, id, elevated = true, analyticsPlacement } = Astro.props;
+const crowdPlacement =
+  analyticsPlacement ??
+  (id === 'back-the-project'
+    ? 'keymod_back_project'
+    : variant === 'opensource'
+      ? 'keymod_opensource_crowd'
+      : 'keymod_crowd_block');
 const sectionId = id ?? (variant === 'campaign' ? 'crowd-supply' : 'open-source');
 const ariaLabel =
   variant === 'campaign'
@@ -28,6 +36,6 @@ const ariaLabel =
   aria-label={ariaLabel}
 >
   <div class="km-section__inner km-section__inner--narrow">
-    <KeyModCrowdSupplyCta variant={variant} copy={copy} />
+    <KeyModCrowdSupplyCta variant={variant} copy={copy} analyticsPlacement={crowdPlacement} />
   </div>
 </section>

@@ -80,10 +80,12 @@ const povStageScenes = povStageSceneDefs.filter((s) => visiblePovIds.has(s.id));
     <span class="km-eyebrow km-eyebrow-lockup__text">{copy.eyebrow}</span>
   </div>
 
-  <KeyModPovStage scenes={povStageScenes} defaultSceneId="keyboard" />
+  <div data-km-zone="pov">
+    <KeyModPovStage scenes={povStageScenes} defaultSceneId="keyboard" />
+  </div>
 
   <div class="km-theater-crowd-cta">
-    <KeyModCrowdSupplyCta variant="campaign" copy={crowdSupplyCampaign} />
+    <KeyModCrowdSupplyCta variant="campaign" copy={crowdSupplyCampaign} analyticsPlacement="keymod_theater_crowd" />
   </div>
 
   <div class="km-theater-scroll">

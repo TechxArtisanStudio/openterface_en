@@ -30,6 +30,9 @@ const profileUrl = `https://www.instagram.com/${embed.author.replace(/^@/, '')}/
       href={profileUrl}
       target="_blank"
       rel="noopener noreferrer"
+      data-analytics-event="community_click"
+      data-analytics-product="keymod"
+      data-analytics-placement={`keymod_social_instagram_${embed.id}_profile`}
     >
       {viewProfileLabel}
     </a>
@@ -38,6 +41,9 @@ const profileUrl = `https://www.instagram.com/${embed.author.replace(/^@/, '')}/
       href={permalink}
       target="_blank"
       rel="noopener noreferrer"
+      data-analytics-event="community_click"
+      data-analytics-product="keymod"
+      data-analytics-placement={`keymod_social_instagram_${embed.id}`}
     >
       {viewPostLabel}
     </a>

@@ -44,7 +44,14 @@ const { copy } = Astro.props;
 
     <p class="km-launch-cta__crowd">
       {copy.crowdSupplyPrompt}
-      <a href={keymodLinks.crowdSupply} target="_blank" rel="noopener noreferrer">
+      <a
+        href={keymodLinks.crowdSupply}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-analytics-event="crowdsupply_click"
+        data-analytics-product="keymod"
+        data-analytics-placement="keymod_subscribe_crowd"
+      >
         {copy.crowdSupplyLink}
       </a>
     </p>

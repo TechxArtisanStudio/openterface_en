@@ -5,9 +5,10 @@ import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 interface Props {
   variant: 'campaign' | 'opensource';
   copy: KeymodLandingStrings['crowdSupplyCampaign'] | KeymodLandingStrings['crowdSupplyOpensource'];
+  analyticsPlacement?: string;
 }
 
-const { variant, copy } = Astro.props;
+const { variant, copy, analyticsPlacement = 'keymod_crowd_block' } = Astro.props;
 const isOpensource = variant === 'opensource';
 const opensourceCopy = isOpensource
   ? (copy as KeymodLandingStrings['crowdSupplyOpensource'])
@@ -58,7 +59,7 @@ const opensourceCopy = isOpensource
       rel="noopener noreferrer"
       data-analytics-event="crowdsupply_click"
       data-analytics-product="keymod"
-      data-analytics-placement="keymod_crowd_block"
+      data-analytics-placement={analyticsPlacement}
     >
       {copy.cta}
       <img

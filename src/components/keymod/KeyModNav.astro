@@ -24,7 +24,15 @@ const { copy } = Astro.props;
     </div>
 
     <nav class="km-nav__actions" aria-label="KeyMod landing">
-      <a href={keymodLinks.docs} class="km-nav__link" target="_blank" rel="noopener noreferrer">
+      <a
+        href={keymodLinks.docs}
+        class="km-nav__link"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-analytics-event="docs_click"
+        data-analytics-product="keymod"
+        data-analytics-placement="keymod_nav_docs"
+      >
         {copy.docs}
       </a>
       <a

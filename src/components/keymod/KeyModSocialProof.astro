@@ -49,11 +49,25 @@ const fallbackLinks = getKeymodCommunityCards().filter((card) => embedIds.has(ca
   </div>
 
   <p class="km-subtitle km-ig-embed-grid__footer">
-    <a href="https://www.instagram.com/techxartisan/" target="_blank" rel="noopener noreferrer">
+    <a
+      href="https://www.instagram.com/techxartisan/"
+      target="_blank"
+      rel="noopener noreferrer"
+      data-analytics-event="community_click"
+      data-analytics-product="keymod"
+      data-analytics-placement="keymod_social_instagram"
+    >
       {copy.followIg} ↗
     </a>
     {' · '}
-    <a href="/media/?product=keymod">{copy.viewAllMedia} →</a>
+    <a
+      href="/media/?product=keymod"
+      data-analytics-event="internal_click"
+      data-analytics-product="keymod"
+      data-analytics-placement="keymod_social_media_hub"
+    >
+      {copy.viewAllMedia} →
+    </a>
   </p>
 </KeyModSection>
 
