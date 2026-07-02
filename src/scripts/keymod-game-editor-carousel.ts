@@ -39,7 +39,7 @@ function getActiveIndex(root: HTMLElement): number {
 
 function getMaxIndex(slideCount: number): number {
   if (slideCount <= 1) return 0;
-  return dualLayout ? Math.max(0, slideCount - 2) : slideCount - 1;
+  return slideCount - 1;
 }
 
 function clampIndex(index: number, slideCount: number): number {
@@ -58,10 +58,21 @@ function updateSlideStates(root: HTMLElement, activeIndex: number): void {
     );
 
     if (dualLayout) {
-      if (i === activeIndex) slide.classList.add('km-game-carousel__slide--lead');
-      else if (i === activeIndex + 1) slide.classList.add('km-game-carousel__slide--mate');
-      else if (i === activeIndex - 1 || i === activeIndex + 2) slide.classList.add('km-game-carousel__slide--peek');
-      else slide.classList.add('km-game-carousel__slide--far');
+      const isTailSolo = activeIndex === slides.length - 1;
+
+      if (isTailSolo) {
+        if (i === activeIndex) slide.classList.add('km-game-carousel__slide--lead');
+        else if (i === activeIndex - 1) slide.classList.add('km-game-carousel__slide--peek');
+        else slide.classList.add('km-game-carousel__slide--far');
+      } else if (i === activeIndex) {
+        slide.classList.add('km-game-carousel__slide--lead');
+      } else if (i === activeIndex + 1) {
+        slide.classList.add('km-game-carousel__slide--mate');
+      } else if (i === activeIndex - 1 || i === activeIndex + 2) {
+        slide.classList.add('km-game-carousel__slide--peek');
+      } else {
+        slide.classList.add('km-game-carousel__slide--far');
+      }
     } else if (i === activeIndex) {
       slide.classList.add('km-game-carousel__slide--lead');
     } else if (i === activeIndex - 1 || i === activeIndex + 1) {
@@ -117,7 +128,8 @@ function setSlide(root: HTMLElement, index: number): void {
 
   if (captionEl) {
     const lead = slides[next];
-    const mate = dualLayout ? slides[next + 1] : null;
+    const hasMate = dualLayout && next < slides.length - 1;
+    const mate = hasMate ? slides[next + 1] : null;
     const leadCaption = lead?.dataset.caption ?? '';
     const mateCaption = mate?.dataset.caption ?? '';
     captionEl.textContent =
