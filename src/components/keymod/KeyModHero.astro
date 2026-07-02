@@ -52,7 +52,15 @@ const heroAsset = getKeymodAsset('hero', 'center');
     <p class="km-hero__lead">{copy.lead}</p>
 
     <div class="km-hero__actions">
-      <a href={keymodLinks.docs} class="km-btn km-btn--ghost" target="_blank" rel="noopener noreferrer">
+      <a
+        href={keymodLinks.docs}
+        class="km-btn km-btn--ghost"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-analytics-event="docs_click"
+        data-analytics-product="keymod"
+        data-analytics-placement="keymod_hero_docs"
+      >
         {copy.docsCta}
       </a>
       <a

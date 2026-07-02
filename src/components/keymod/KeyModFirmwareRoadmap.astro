@@ -41,6 +41,9 @@ const { copy } = Astro.props;
         href={keymodLinks.forum}
         target="_blank"
         rel="noopener noreferrer"
+        data-analytics-event="forum_click"
+        data-analytics-product="keymod"
+        data-analytics-placement="keymod_roadmap_forum"
       >
         {copy.forumCta}
         <KeyModNewBadge label={copy.forumNewBadge} />

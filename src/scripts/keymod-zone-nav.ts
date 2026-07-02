@@ -1,3 +1,5 @@
+import { trackKeymodTheaterNav } from './keymod-analytics';
+
 type KmNavTheme = 'default' | 'ops' | 'agent' | 'game';
 
 let navEl: HTMLElement | null = null;
@@ -43,6 +45,9 @@ function applyTheme(theme: KmNavTheme): void {
   if (navEl.dataset.kmNavTheme === theme) return;
   navEl.dataset.kmNavTheme = theme;
   document.body.dataset.kmActiveZone = theme;
+  if (theme === 'ops' || theme === 'agent' || theme === 'game') {
+    trackKeymodTheaterNav(theme);
+  }
 }
 
 function updateTheme(): void {

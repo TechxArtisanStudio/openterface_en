@@ -4,6 +4,7 @@ import {
   type KeymodPovSceneId,
 } from '../data/keymodPovScenes';
 import { createModeCycle, KEYMOD_POV_USER_RESUME_MS, type ModeCycleController } from './keymod-mode-cycle';
+import { trackKeymodPovTab } from './keymod-analytics';
 
 let stageEl: HTMLElement | null = null;
 let cycle: ModeCycleController | null = null;
@@ -79,6 +80,7 @@ function onTabClick(e: Event): void {
   const sceneId = btn.dataset.povTab as KeymodPovSceneId | undefined;
   if (!sceneId || sceneId === stageEl.dataset.activeScene) return;
   setActiveScene(stageEl, sceneId, { fromUser: true });
+  trackKeymodPovTab(sceneId);
 }
 
 function onJumpClick(e: Event): void {
@@ -89,6 +91,7 @@ function onJumpClick(e: Event): void {
   e.preventDefault();
   stageEl.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
   setActiveScene(stageEl, sceneId, { fromUser: true });
+  trackKeymodPovTab(sceneId);
 }
 
 function resolveSceneFromScroll(): KeymodPovSceneId | null {
