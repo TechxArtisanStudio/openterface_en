@@ -4017,7 +4017,7 @@
 
 .km-game-carousel__stage {
   position: relative;
-  padding-inline: 0.25rem;
+  padding-inline: 1.25rem;
 }
 
 .km-game-carousel__viewport {
@@ -4123,25 +4123,6 @@
   transform: scale(0.9);
 }
 
-.km-game-carousel__vignette {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: min(18%, 7rem);
-  pointer-events: none;
-  z-index: 2;
-}
-
-.km-game-carousel__vignette--left {
-  left: 0;
-  background: linear-gradient(90deg, rgba(13, 10, 22, 0.92), transparent);
-}
-
-.km-game-carousel__vignette--right {
-  right: 0;
-  background: linear-gradient(270deg, rgba(13, 10, 22, 0.92), transparent);
-}
-
 .km-game-carousel__nav {
   position: absolute;
   z-index: 3;
@@ -4189,11 +4170,11 @@
 }
 
 .km-game-carousel__nav--prev {
-  left: 0.35rem;
+  left: 0;
 }
 
 .km-game-carousel__nav--next {
-  right: 0.35rem;
+  right: 0;
 }
 
 .km-game-carousel__footer {
@@ -4250,15 +4231,15 @@
 
 @media (min-width: 768px) {
   .km-game-carousel__stage {
-    padding-inline: 2.75rem;
+    padding-inline: 3.25rem;
   }
 
   .km-game-carousel__nav--prev {
-    left: 0;
+    left: -0.5rem;
   }
 
   .km-game-carousel__nav--next {
-    right: 0;
+    right: -0.5rem;
   }
 }
 
