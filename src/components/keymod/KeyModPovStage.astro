@@ -14,10 +14,11 @@ export type PovStageSceneCopy = {
 
 interface Props {
   scenes: PovStageSceneCopy[];
+  tabLabels: Record<KeymodPovSceneId, string>;
   defaultSceneId?: KeymodPovSceneId;
 }
 
-const { scenes, defaultSceneId = 'keyboard' } = Astro.props;
+const { scenes, tabLabels, defaultSceneId = 'keyboard' } = Astro.props;
 const defaultScene = scenes.find((s) => s.id === defaultSceneId) ?? scenes[0];
 ---
 
@@ -35,7 +36,7 @@ const defaultScene = scenes.find((s) => s.id === defaultSceneId) ?? scenes[0];
           data-pov-tab={scene.id}
         >
           <span class="km-pov-stage__tab-label">
-            {scene.tabLabel}
+            {tabLabels[scene.id]}
             {
               scene.experimental ? (
                 <KeyModExperimentalIcon class="km-pov-stage__tab-icon km-pov-stage__tab-icon--experimental" />
