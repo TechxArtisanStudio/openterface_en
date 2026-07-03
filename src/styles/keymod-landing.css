@@ -748,8 +748,8 @@
   }
 }
 
-@media (max-width: 767px) and (orientation: portrait) {
-  .km-nav__cta {
+@media (max-width: 767px) {
+  .km-nav__cta-icon {
     display: none;
   }
 }
