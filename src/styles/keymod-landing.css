@@ -5886,19 +5886,7 @@
   border: 1px solid var(--km-border);
   background: var(--km-surface);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-}
-
-.km-community-card__thumb--landscape {
-  aspect-ratio: 16 / 9;
-}
-
-.km-community-card__thumb--portrait {
-  aspect-ratio: 9 / 16;
-  max-height: 22rem;
-}
-
-.km-community-card__thumb--post {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
 }
 
 .km-community-card__thumb img {
@@ -5906,6 +5894,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .km-community-card__platform {
@@ -5950,6 +5939,67 @@
   padding-top: 0.75rem;
 }
 
+.km-community-card__author-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.km-community-card__avatar {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 1px solid var(--km-border);
+}
+
+.km-community-card__avatar--fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--km-accent);
+  background: var(--km-surface);
+}
+
+.km-community-card__author {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--km-text);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.km-community-card__engagement {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-left: auto;
+  flex-shrink: 0;
+  font-family: var(--km-font-mono);
+  font-size: 0.6875rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--km-muted);
+}
+
+.km-community-card__stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.km-community-card__stat svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  opacity: 0.85;
+}
+
 .km-community-card__tag {
   margin: 0 0 0.35rem;
   font-family: var(--km-font-mono);
@@ -5959,11 +6009,11 @@
   color: var(--km-muted);
 }
 
-.km-community-card__author {
-  margin: 0;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--km-text);
+@media (min-width: 768px) {
+  .km-community-card__avatar {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
 }
 
 .km-community-card__title {
