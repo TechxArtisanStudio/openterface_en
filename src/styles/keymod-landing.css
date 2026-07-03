@@ -629,6 +629,8 @@
   flex-shrink: 0;
   flex-wrap: nowrap;
   margin-left: auto;
+  /* Shared control height: matches .km-nav__cta (padding + line-height + 2px border). */
+  --km-nav-control-size: 2.375rem;
 }
 
 .km-nav__link {
@@ -668,6 +670,11 @@
 }
 
 .km-nav .locale-switcher__toggle {
+  box-sizing: border-box;
+  width: var(--km-nav-control-size);
+  height: var(--km-nav-control-size);
+  padding: 0;
+  border-width: 2px;
   border-color: var(--km-border);
   color: var(--km-muted);
   background: transparent;
@@ -727,6 +734,7 @@
 
   .km-nav__actions {
     gap: 0.5rem;
+    --km-nav-control-size: 2.3125rem;
   }
 
   .km-nav__link {
@@ -737,6 +745,12 @@
   .km-nav__cta.km-btn--primary {
     padding: 0.4375rem 0.625rem;
     font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 767px) and (orientation: portrait) {
+  .km-nav__cta {
+    display: none;
   }
 }
 
