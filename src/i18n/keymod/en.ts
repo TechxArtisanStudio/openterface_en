@@ -576,21 +576,21 @@ pm2 reload ecosystem.config.js --env production`,
     eyebrow: 'Crowd Supply',
     title: 'Pre-launch on Crowd Supply',
     body:
-      'Back KeyMod Mini and Plus on Crowd Supply — pocket USB bridges that turn your phone into a wireless console. Support us to make it real!',
+      'Back KeyMod Mini and Plus on Crowd Supply. Pocket USB bridges that turn your phone into a wireless console. Follow for launch day.',
     cta: 'Pre-launch',
   },
   crowdSupplySupport: {
     eyebrow: 'Back the project',
     title: 'Help us ship what is next',
     body:
-      'Follow KeyMod on Crowd Supply and back the campaign when it opens. Experimental modes like Agent ship faster when more builders support the project — every backer helps move the firmware roadmap from queue to reality.',
+      'Follow KeyMod on Crowd Supply and back the campaign when it opens. Experimental modes like Agent ship faster when more builders support the project. Every backer buys us more engineering time on the firmware roadmap.',
     cta: 'Follow on Crowd Supply',
   },
   crowdSupplyOpensource: {
     eyebrow: 'Open by design',
     title: 'Open hardware, built in the open',
     body:
-      'KeyMod follows the same open-hardware spirit as Openterface Mini-KVM and KVM-GO: transparent design, community feedback, and docs that grow with the product. Open hardware is rare and costly to get right — your support helps us keep building that way.',
+      'KeyMod follows the same open-hardware spirit as Openterface Mini-KVM and KVM-GO: transparent design, community feedback, and docs that grow with the product. Open hardware is rare and costly to get right. Your support is what lets us keep building that way.',
     cta: 'Back open hardware',
     badgesLabel: 'Open hardware community certifications',
     osiAlt: 'Open Source Initiative approved open-source license',
