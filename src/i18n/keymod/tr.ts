@@ -453,10 +453,10 @@ export const tr: KeymodLandingStrings = {
       },
     },
     firmwareRoadmap: {
-      eyebrow: "Firmware yol haritası",
+      eyebrow: "Roadmap",
       title: "Sırada neler geliştiriyoruz",
-      subtitle: "Modlar ve köprüler önce KeyCmd üzerinden sunulur, ardından KeyMod firmware'ine entegre edilir. İşte bugün sırada olanlar.",
-      chipsLabel: "Firmware için sırada",
+      subtitle: "İşte bugün sırada olanlar.",
+      chipsLabel: "Sırada: firmware / özellikler",
       chips: [
         "Ağ köprüsü",
         "Ses köprüsü",
@@ -464,7 +464,7 @@ export const tr: KeymodLandingStrings = {
         "CLI + MCP otomasyonu",
         "Uzaktan röle",
       ],
-      forumPrompt: "Öncelik vermemiz gereken bir mod, köprü veya iş akışı mı var? Openterface forumunda paylaşın ve geliştirici ekibimiz ile diğer üreticilerle fikir alışverişinde bulunun.",
+      forumPrompt: "Gerçekten istediğin bir mod, köprü veya iş akışı mı var? Openterface forumunda yaz. Aynı şeyi çok kişi isterse, genelde sıradaki yerini yükseltir. KeyMod, sizinle birlikte geliştirildikçe daha iyi olur.",
       forumCta: "Forumda tartışın ↗",
       forumNewBadge: "Yeni",
     },

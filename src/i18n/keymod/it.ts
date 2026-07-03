@@ -453,10 +453,10 @@ export const it: KeymodLandingStrings = {
       },
     },
     firmwareRoadmap: {
-      eyebrow: "Roadmap del firmware",
+      eyebrow: "Roadmap",
       title: "Cosa stiamo costruendo dopo",
-      subtitle: "Modalità e bridge vengono distribuiti prima su KeyCmd, poi arrivano sul firmware KeyMod. Ecco cosa è in coda oggi.",
-      chipsLabel: "In coda per il firmware",
+      subtitle: "Ecco cosa è in coda oggi.",
+      chipsLabel: "In coda: firmware / funzionalità",
       chips: [
         "Network bridge",
         "Audio bridge",
@@ -464,7 +464,7 @@ export const it: KeymodLandingStrings = {
         "CLI + MCP automation",
         "Remote relay",
       ],
-      forumPrompt: "Hai in mente una modalità, un bridge o un flusso di lavoro da farci prioritizzare? Scrivi sul forum Openterface e scambia idee con il nostro team di sviluppo e altri costruttori.",
+      forumPrompt: "C'è una modalità, un bridge o un flusso che vorresti davvero? Scrivilo sul forum Openterface. Se lo chiedono in tanti, di solito sale in lista. KeyMod funziona meglio se lo costruiamo insieme a voi.",
       forumCta: "Discuti sul forum ↗",
       forumNewBadge: "Nuovo",
     },

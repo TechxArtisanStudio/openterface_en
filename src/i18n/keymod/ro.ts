@@ -453,10 +453,10 @@ export const ro: KeymodLandingStrings = {
       },
     },
     firmwareRoadmap: {
-      eyebrow: "Foaia de parcurs firmware",
+      eyebrow: "Roadmap",
       title: "Ce construim în continuare",
-      subtitle: "Modurile și punțile sunt livrate mai întâi prin KeyCmd, apoi ajung pe firmware-ul KeyMod. Iată ce este programat astăzi.",
-      chipsLabel: "Programat pentru firmware",
+      subtitle: "Iată ce este programat astăzi.",
+      chipsLabel: "Programat: firmware / funcții",
       chips: [
         "Punte de rețea",
         "Punte audio",
@@ -464,7 +464,7 @@ export const ro: KeymodLandingStrings = {
         "Automatizare CLI + MCP",
         "Releu remote",
       ],
-      forumPrompt: "Ai un mod, o punte sau un flux de lucru pe care ar trebui să le prioritizăm? Postează pe forumul Openterface și schimbă idei cu echipa noastră de dezvoltare și alți constructori.",
+      forumPrompt: "Ai un mod, o punte sau un flux pe care îl vrei cu adevărat? Scrie pe forumul Openterface. Dacă îl cer mulți, de obicei urcă în listă. KeyMod merge mai bine când îl construim împreună cu voi.",
       forumCta: "Discută pe forum ↗",
       forumNewBadge: "Nou",
     },

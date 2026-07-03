@@ -453,10 +453,10 @@ export const pt: KeymodLandingStrings = {
       },
     },
     firmwareRoadmap: {
-      eyebrow: "Firmware roadmap",
+      eyebrow: "Roadmap",
       title: "What we are building next",
-      subtitle: "Modes and bridges ship through KeyCmd first, then land on KeyMod firmware. Here is what is queued up today.",
-      chipsLabel: "Queued for firmware",
+      subtitle: "Here is what is queued up today.",
+      chipsLabel: "Queued for firmware / features",
       chips: [
         "Network bridge",
         "Audio bridge",
@@ -464,7 +464,7 @@ export const pt: KeymodLandingStrings = {
         "CLI + MCP automation",
         "Remote relay",
       ],
-      forumPrompt: "Have a mode, bridge, or workflow we should prioritize? Post on the Openterface forum and swap ideas with our dev team and other builders.",
+      forumPrompt: "Got a mode, bridge, or workflow you really want? Post on the Openterface forum. If lots of builders ask for the same thing, it often moves up the queue. KeyMod works better when we build it with you.",
       forumCta: "Discuss on the forum ↗",
       forumNewBadge: "New",
     },

@@ -1581,6 +1581,19 @@
   margin-bottom: 0;
 }
 
+.km-whatitis-step__keycmd-link {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--km-brand) 45%, transparent);
+  text-underline-offset: 0.15em;
+}
+
+.km-whatitis-step__keycmd-link:hover {
+  color: var(--km-brand);
+  text-decoration-color: var(--km-brand);
+}
+
 @media (min-width: 768px) {
   .km-whatitis__steps {
     max-width: 40rem;
@@ -6977,6 +6990,22 @@
 .km-crowd-cta__btn {
   flex-shrink: 0;
   align-self: flex-start;
+}
+
+.km-opensource-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem 1.25rem;
+  margin-top: 0.25rem;
+}
+
+.km-opensource-badges__badge {
+  display: block;
+  width: auto;
+  height: 3.75rem;
+  object-fit: contain;
 }
 
 .km-crowd-cta-section--opensource {
