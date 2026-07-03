@@ -566,6 +566,7 @@ export const tw: KeymodLandingStrings = {
       title: "真實用戶，真實搭建",
       followIg: "關注 @techxartisan 查看更多演示",
       viewAllMedia: "所有 KeyMod 媒體內容",
+      showAllPosts: "顯示全部貼文",
     },
     keycmdBridge: {
       eyebrow: "配套軟件",

@@ -559,6 +559,7 @@ pm2 reload ecosystem.config.js --env production`,
     title: 'Real users, real setups',
     followIg: 'More demos on @techxartisan',
     viewAllMedia: 'All KeyMod media',
+    showAllPosts: 'Show all posts',
   },
   keycmdBridge: {
     eyebrow: 'Software companion',

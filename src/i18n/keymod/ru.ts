@@ -566,6 +566,7 @@ export const ru: KeymodLandingStrings = {
       title: "Реальные пользователи, реальные сетапы",
       followIg: "Больше демо в @techxartisan",
       viewAllMedia: "Все медиа KeyMod",
+      showAllPosts: "Показать все публикации",
     },
     keycmdBridge: {
       eyebrow: "Программный компаньон",
