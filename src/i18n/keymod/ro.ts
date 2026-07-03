@@ -566,6 +566,7 @@ export const ro: KeymodLandingStrings = {
       title: "Utilizatori reali, configurații reale",
       followIg: "Mai multe demo-uri pe @techxartisan",
       viewAllMedia: "Toate materialele media KeyMod",
+      showAllPosts: "Afișează toate postările",
     },
     keycmdBridge: {
       eyebrow: "Însoțitor software",

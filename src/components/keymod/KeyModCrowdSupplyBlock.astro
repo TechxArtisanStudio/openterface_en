@@ -14,6 +14,8 @@ interface Props {
 }
 
 const { variant, copy, id, elevated = true, analyticsPlacement } = Astro.props;
+const isOpensource = variant === 'opensource';
+const sectionElevated = elevated && !isOpensource;
 const crowdPlacement =
   analyticsPlacement ??
   (id === 'back-the-project'
@@ -31,7 +33,12 @@ const ariaLabel =
 ---
 
 <section
-  class:list={['km-section', 'km-crowd-cta-section', elevated && 'km-section--elevated']}
+  class:list={[
+    'km-section',
+    'km-crowd-cta-section',
+    isOpensource && 'km-crowd-cta-section--opensource',
+    sectionElevated && 'km-section--elevated',
+  ]}
   id={sectionId}
   aria-label={ariaLabel}
 >

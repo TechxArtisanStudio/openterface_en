@@ -566,6 +566,7 @@ export const zh: KeymodLandingStrings = {
       title: "真实用户，真实搭建",
       followIg: "关注 @techxartisan 查看更多演示",
       viewAllMedia: "所有 KeyMod 媒体内容",
+      showAllPosts: "显示全部帖子",
     },
     keycmdBridge: {
       eyebrow: "配套软件",

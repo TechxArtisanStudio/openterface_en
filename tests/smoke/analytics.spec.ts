@@ -170,9 +170,7 @@ test('keymod landing splits CS placements by section', async ({ page }) => {
     'keymod_hero',
     'keymod_theater_crowd',
     'keymod_subscribe_crowd',
-    'keymod_sku_mini',
-    'keymod_sku_plus',
-    'keymod_opensource_crowd',
+    'keymod_sku_compare',
     'keymod_back_project',
   ]) {
     await expect(page.locator(`[data-analytics-placement="${placement}"]`)).toHaveCount(1);

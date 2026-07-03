@@ -566,6 +566,7 @@ export const ar: KeymodLandingStrings = {
       title: "مستخدمون حقيقيون، إعدادات حقيقية",
       followIg: "مزيد من العروض التوضيحية على @techxartisan",
       viewAllMedia: "جميع وسائط KeyMod",
+      showAllPosts: "عرض جميع المنشورات",
     },
     keycmdBridge: {
       eyebrow: "الرفيق البرمجي",

@@ -566,6 +566,7 @@ export const ja: KeymodLandingStrings = {
       title: "実際のユーザーと実践的なセットアップ",
       followIg: "@techxartisan でさらに多くのデモをチェック",
       viewAllMedia: "KeyModのすべてのメディア",
+      showAllPosts: "すべての投稿を表示",
     },
     keycmdBridge: {
       eyebrow: "ソフトウェアコンパニオン",

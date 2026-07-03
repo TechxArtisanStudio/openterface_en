@@ -566,6 +566,7 @@ export const tr: KeymodLandingStrings = {
       title: "Gerçek kullanıcılar, gerçek kurulumlar",
       followIg: "@techxartisan'da daha fazla demo",
       viewAllMedia: "Tüm KeyMod medyaları",
+      showAllPosts: "Tüm gönderileri göster",
     },
     keycmdBridge: {
       eyebrow: "Yazılım asistanı",

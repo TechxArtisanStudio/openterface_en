@@ -566,6 +566,7 @@ export const de: KeymodLandingStrings = {
       title: "Echte Nutzer, echte Setups",
       followIg: "Mehr Demos auf @techxartisan",
       viewAllMedia: "Alle KeyMod-Medien",
+      showAllPosts: "Alle Beiträge anzeigen",
     },
     keycmdBridge: {
       eyebrow: "Software-Begleiter",

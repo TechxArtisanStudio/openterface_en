@@ -566,6 +566,7 @@ export const ko: KeymodLandingStrings = {
       title: "실제 사용자, 실제 세팅",
       followIg: "@techxartisan에서 더 많은 데모 확인하기",
       viewAllMedia: "KeyMod 전체 미디어",
+      showAllPosts: "모든 게시물 보기",
     },
     keycmdBridge: {
       eyebrow: "소프트웨어 컴패니언",
