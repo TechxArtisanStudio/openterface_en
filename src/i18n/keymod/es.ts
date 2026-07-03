@@ -562,14 +562,10 @@ export const es: KeymodLandingStrings = {
       ],
     },
     socialProof: {
-      eyebrow: "Usuarios reales",
+      eyebrow: "Comunidad",
       title: "Usuarios reales, configuraciones reales",
       followIg: "Más demos en @techxartisan",
       viewAllMedia: "Todo el contenido multimedia de KeyMod",
-      fallbackNote: "Vistas previas de Instagram no disponibles. Abre las publicaciones directamente:",
-      viewOnInstagram: "Ver en Instagram ↗",
-      viewProfile: "Ver perfil",
-      viewPostOnInstagram: "Ver en Instagram",
     },
     keycmdBridge: {
       eyebrow: "Compañero de software",

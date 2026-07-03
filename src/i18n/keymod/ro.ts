@@ -562,14 +562,10 @@ export const ro: KeymodLandingStrings = {
       ],
     },
     socialProof: {
-      eyebrow: "Utilizatori reali",
+      eyebrow: "Comunitate",
       title: "Utilizatori reali, configurații reale",
       followIg: "Mai multe demo-uri pe @techxartisan",
       viewAllMedia: "Toate materialele media KeyMod",
-      fallbackNote: "Previzualizările Instagram nu sunt disponibile. Deschide postările direct:",
-      viewOnInstagram: "Vezi pe Instagram ↗",
-      viewProfile: "Vezi profilul",
-      viewPostOnInstagram: "Vezi pe Instagram",
     },
     keycmdBridge: {
       eyebrow: "Însoțitor software",

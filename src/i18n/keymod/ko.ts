@@ -562,14 +562,10 @@ export const ko: KeymodLandingStrings = {
       ],
     },
     socialProof: {
-      eyebrow: "실제 사용자",
+      eyebrow: "커뮤니티",
       title: "실제 사용자, 실제 세팅",
       followIg: "@techxartisan에서 더 많은 데모 확인하기",
       viewAllMedia: "KeyMod 전체 미디어",
-      fallbackNote: "Instagram 미리보기를 사용할 수 없습니다. 게시물을 직접 열어보세요:",
-      viewOnInstagram: "Instagram에서 보기 ↗",
-      viewProfile: "프로필 보기",
-      viewPostOnInstagram: "Instagram에서 보기",
     },
     keycmdBridge: {
       eyebrow: "소프트웨어 컴패니언",
