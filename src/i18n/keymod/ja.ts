@@ -453,10 +453,10 @@ export const ja: KeymodLandingStrings = {
       },
     },
     firmwareRoadmap: {
-      eyebrow: "ファームウェアロードマップ",
+      eyebrow: "ロードマップ",
       title: "次に開発しているもの",
-      subtitle: "モードとブリッジはまずKeyCmdを通じて提供され、その後KeyModファームウェアに実装されます。現在予定されている機能は以下の通りです。",
-      chipsLabel: "ファームウェアへの実装予定",
+      subtitle: "現在予定されている内容は以下の通りです。",
+      chipsLabel: "ファームウェア / 機能の予定",
       chips: [
         "ネットワークブリッジ",
         "オーディオブリッジ",
@@ -464,7 +464,7 @@ export const ja: KeymodLandingStrings = {
         "CLI + MCP自動化",
         "リモートリレー",
       ],
-      forumPrompt: "優先すべきモード、ブリッジ、またはワークフローのアイデアはありませんか？Openterfaceフォーラムに投稿して、開発チームや他のビルダーとアイデアを交換しましょう。",
+      forumPrompt: "本当に欲しいモード、ブリッジ、ワークフローはありますか？Openterfaceフォーラムに書いてください。同じ機能を求める人が多いほど、優先度は上がりやすくなります。KeyModは、使う人と一緒に作るほど良くなります。",
       forumCta: "フォーラムで議論する ↗",
       forumNewBadge: "新着",
     },

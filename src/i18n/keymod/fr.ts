@@ -453,10 +453,10 @@ export const fr: KeymodLandingStrings = {
       },
     },
     firmwareRoadmap: {
-      eyebrow: "Feuille de route du firmware",
+      eyebrow: "Roadmap",
       title: "Ce que nous construisons ensuite",
-      subtitle: "Les modes et les ponts sont d'abord livrés via KeyCmd, puis intégrés au firmware KeyMod. Voici ce qui est en attente aujourd'hui.",
-      chipsLabel: "En attente pour le firmware",
+      subtitle: "Voici ce qui est en attente aujourd’hui.",
+      chipsLabel: "En attente : firmware / fonctionnalités",
       chips: [
         "Pont réseau",
         "Pont audio",
@@ -464,7 +464,7 @@ export const fr: KeymodLandingStrings = {
         "Automatisation CLI + MCP",
         "Relais à distance",
       ],
-      forumPrompt: "Vous avez un mode, un pont ou un workflow que nous devrions prioriser ? Postez sur le forum Openterface et échangez des idées avec notre équipe de développement et d'autres constructeurs.",
+      forumPrompt: "Un mode, un pont ou un workflow que vous voulez vraiment ? Postez sur le forum Openterface. Si beaucoup de monde le demande, ça remonte souvent dans la liste. KeyMod s'améliore quand on le construit avec vous.",
       forumCta: "Discuter sur le forum ↗",
       forumNewBadge: "Nouveau",
     },

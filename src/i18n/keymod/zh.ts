@@ -453,10 +453,10 @@ export const zh: KeymodLandingStrings = {
       },
     },
     firmwareRoadmap: {
-      eyebrow: "固件路线图",
+      eyebrow: "路线图",
       title: "我们下一步要构建什么",
-      subtitle: "模式和桥接功能首先通过KeyCmd推出，然后落地到KeyMod固件。以下是当前已排期的内容。",
-      chipsLabel: "固件已排期",
+      subtitle: "以下是当前已排期的内容。",
+      chipsLabel: "固件 / 功能已排期",
       chips: [
         "网络桥接",
         "音频桥接",
@@ -464,7 +464,7 @@ export const zh: KeymodLandingStrings = {
         "CLI + MCP自动化",
         "远程中继",
       ],
-      forumPrompt: "有没有我们应优先考虑的模式、桥接或工作流程？在Openterface论坛上发帖，与我们的开发团队和其他构建者交流想法。",
+      forumPrompt: "有没有特别想要的功能、桥接或工作流？到 Openterface 论坛说一声。同一需求的人越多，排期往往越靠前。KeyMod 需要和你们一起打磨，才会更好用。",
       forumCta: "在论坛讨论 ↗",
       forumNewBadge: "新",
     },

@@ -453,10 +453,10 @@ export const ko: KeymodLandingStrings = {
       },
     },
     firmwareRoadmap: {
-      eyebrow: "펌웨어 로드맵",
+      eyebrow: "로드맵",
       title: "앞으로 개발할 기능",
-      subtitle: "모드와 브리지는 먼저 KeyCmd를 통해 출시된 후 KeyMod 펌웨어에 적용됩니다. 현재 대기 중인 기능 목록입니다.",
-      chipsLabel: "펌웨어 적용 예정",
+      subtitle: "현재 대기 중인 기능 목록입니다.",
+      chipsLabel: "펌웨어 / 기능 적용 예정",
       chips: [
         "네트워크 브리지",
         "오디오 브리지",
@@ -464,7 +464,7 @@ export const ko: KeymodLandingStrings = {
         "CLI + MCP 자동화",
         "원격 릴레이",
       ],
-      forumPrompt: "우선적으로 개발해야 할 모드, 브리지 또는 워크플로우가 있으신가요? Openterface 포럼에 글을 남겨 개발팀 및 다른 빌더들과 아이디어를 교류해 보세요.",
+      forumPrompt: "정말 원하는 모드, 브리지, 워크플로가 있나요? Openterface 포럼에 남겨 주세요. 같은 기능을 원하는 사람이 많을수록 우선순위가 올라갑니다. KeyMod는 함께 만들수록 더 좋아집니다.",
       forumCta: "포럼에서 의견 나누기 ↗",
       forumNewBadge: "신규",
     },
