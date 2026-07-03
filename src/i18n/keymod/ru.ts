@@ -562,14 +562,10 @@ export const ru: KeymodLandingStrings = {
       ],
     },
     socialProof: {
-      eyebrow: "Реальные пользователи",
+      eyebrow: "Сообщество",
       title: "Реальные пользователи, реальные сетапы",
       followIg: "Больше демо в @techxartisan",
       viewAllMedia: "Все медиа KeyMod",
-      fallbackNote: "Превью Instagram недоступны. Откройте посты напрямую:",
-      viewOnInstagram: "Смотреть в Instagram ↗",
-      viewProfile: "Открыть профиль",
-      viewPostOnInstagram: "Смотреть в Instagram",
     },
     keycmdBridge: {
       eyebrow: "Программный компаньон",

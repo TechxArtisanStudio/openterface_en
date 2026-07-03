@@ -562,14 +562,10 @@ export const ja: KeymodLandingStrings = {
       ],
     },
     socialProof: {
-      eyebrow: "実際のユーザー",
+      eyebrow: "コミュニティ",
       title: "実際のユーザーと実践的なセットアップ",
       followIg: "@techxartisan でさらに多くのデモをチェック",
       viewAllMedia: "KeyModのすべてのメディア",
-      fallbackNote: "Instagramのプレビューは表示できません。直接ポストをご覧ください:",
-      viewOnInstagram: "Instagramで見る ↗",
-      viewProfile: "プロフィールを見る",
-      viewPostOnInstagram: "Instagramで見る",
     },
     keycmdBridge: {
       eyebrow: "ソフトウェアコンパニオン",

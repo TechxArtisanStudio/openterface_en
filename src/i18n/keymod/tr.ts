@@ -562,14 +562,10 @@ export const tr: KeymodLandingStrings = {
       ],
     },
     socialProof: {
-      eyebrow: "Gerçek kullanıcılar",
+      eyebrow: "Topluluk",
       title: "Gerçek kullanıcılar, gerçek kurulumlar",
       followIg: "@techxartisan'da daha fazla demo",
       viewAllMedia: "Tüm KeyMod medyaları",
-      fallbackNote: "Instagram önizlemeleri kullanılamıyor. Gönderileri doğrudan açın:",
-      viewOnInstagram: "Instagram'da görüntüle ↗",
-      viewProfile: "Profili görüntüle",
-      viewPostOnInstagram: "Instagram'da görüntüle",
     },
     keycmdBridge: {
       eyebrow: "Yazılım asistanı",

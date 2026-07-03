@@ -562,14 +562,10 @@ export const zh: KeymodLandingStrings = {
       ],
     },
     socialProof: {
-      eyebrow: "真实用户",
+      eyebrow: "社区",
       title: "真实用户，真实搭建",
       followIg: "关注 @techxartisan 查看更多演示",
       viewAllMedia: "所有 KeyMod 媒体内容",
-      fallbackNote: "Instagram 预览不可用。请直接打开帖子：",
-      viewOnInstagram: "在 Instagram 上查看 ↗",
-      viewProfile: "查看主页",
-      viewPostOnInstagram: "在 Instagram 上查看",
     },
     keycmdBridge: {
       eyebrow: "配套软件",
