@@ -137,19 +137,19 @@ test('products hub lists all five product lines', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Openterface Accessories' })).toBeVisible();
 });
 
-test('app hub and subpages load with expected CTAs', async ({ page }) => {
+test('app hub lists downloads and legacy app landings redirect', async ({ page }) => {
   await page.goto('/apps/', { waitUntil: 'commit', timeout: 15000 });
-  await expect(page.getByRole('heading', { level: 1, name: 'Openterface Apps' })).toHaveCount(1);
   await expect(page.getByRole('heading', { level: 2, name: 'Openterface KVM' })).toBeVisible();
-  await expect(page.getByRole('link', { name: /Openterface KVM overview/i })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 3, name: 'iPadOS' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 3, name: 'Web' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 2, name: 'KeyCmd' })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Installer/i }).first()).toBeVisible();
 
   await page.goto('/kvm/', { waitUntil: 'commit', timeout: 15000 });
-  await expect(page.getByRole('heading', { level: 1, name: 'Openterface KVM' })).toHaveCount(1);
-  await expect(page.getByRole('link', { name: 'Download on docs' }).first()).toBeVisible();
+  await expect(page).toHaveURL(/\/apps\/$/);
 
   await page.goto('/keycmd/', { waitUntil: 'commit', timeout: 15000 });
-  await expect(page.getByRole('heading', { level: 1, name: 'KeyCmd' })).toHaveCount(1);
-  await expect(page.getByRole('link', { name: 'Download Android beta APK' })).toBeVisible();
+  await expect(page).toHaveURL(/\/apps\/$/);
 });
 
 test('home page App CTA links to /apps/', async ({ page }) => {
@@ -199,7 +199,7 @@ test('/use-cases/ redirects to /products/', async ({ page }) => {
 });
 
 test('products hub and flat product routes return 200', async ({ page }) => {
-  for (const path of ['/products/', '/minikvm/', '/kvmgo/', '/keymod/', '/kvmext/', '/accessories/', '/apps/', '/media/', '/community/', '/kvm/', '/keycmd/']) {
+  for (const path of ['/products/', '/minikvm/', '/kvmgo/', '/keymod/', '/kvmext/', '/accessories/', '/apps/', '/media/', '/community/']) {
     const response = await page.goto(path, { waitUntil: 'commit', timeout: 15000 });
     expect(response?.status()).toBe(200);
   }
