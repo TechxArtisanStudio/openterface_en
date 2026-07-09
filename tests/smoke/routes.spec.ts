@@ -140,10 +140,11 @@ test('products hub lists all five product lines', async ({ page }) => {
 test('app hub and subpages load with expected CTAs', async ({ page }) => {
   await page.goto('/apps/', { waitUntil: 'commit', timeout: 15000 });
   await expect(page.getByRole('heading', { level: 1, name: 'Openterface Apps' })).toHaveCount(1);
-  await expect(page.getByRole('link', { name: /Explore KVM Control/i })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 2, name: 'Openterface KVM' })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Openterface KVM overview/i })).toBeVisible();
 
   await page.goto('/kvm/', { waitUntil: 'commit', timeout: 15000 });
-  await expect(page.getByRole('heading', { level: 1, name: 'KVM Control' })).toHaveCount(1);
+  await expect(page.getByRole('heading', { level: 1, name: 'Openterface KVM' })).toHaveCount(1);
   await expect(page.getByRole('link', { name: 'Download on docs' }).first()).toBeVisible();
 
   await page.goto('/keycmd/', { waitUntil: 'commit', timeout: 15000 });
