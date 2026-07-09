@@ -82,7 +82,7 @@ export const socialPosts: SocialPost[] = [
     "format": "reel",
     "product": "keymod",
     "author": "@cybermax560",
-    "title": "@cybermax560 on instagram",
+    "title": "",
     "language": "en",
     "date": "2026-06-07",
     "featuredPlacements": [

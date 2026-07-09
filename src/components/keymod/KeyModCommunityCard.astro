@@ -17,8 +17,22 @@ function platformLabel(platform: SocialPlatform | 'youtube'): string {
   return PLATFORM_DISPLAY_NAMES[platform] ?? platform;
 }
 
+/** Sync used to invent "@handle on platform" when caption was missing — skip those. */
+function isMeaningfulTitle(title: string | undefined, author: string, platform: string): title is string {
+  const t = title?.trim();
+  if (!t) return false;
+  const a = author.trim().toLowerCase();
+  const p = platform.trim().toLowerCase();
+  const lower = t.toLowerCase();
+  if (lower === `${a} on ${p}`) return false;
+  if (lower === `community on ${p}`) return false;
+  return true;
+}
+
+const displayTitle = isMeaningfulTitle(card.title, card.author, card.platform) ? card.title.trim() : undefined;
+
 const thumbAlt =
-  card.excerpt ?? card.title ?? `${platformLabel(card.platform)} post by ${card.author}`;
+  card.excerpt ?? displayTitle ?? `${platformLabel(card.platform)} post by ${card.author}`;
 
 const authorInitial = getAuthorInitialForCard(card.author);
 const showEngagement =
@@ -125,8 +139,8 @@ const cardClass = clone
       {
         card.excerpt ? (
           <p class="km-community-card__excerpt">&ldquo;{card.excerpt}&rdquo;</p>
-        ) : card.title ? (
-          <p class="km-community-card__title">{card.title}</p>
+        ) : displayTitle ? (
+          <p class="km-community-card__title">{displayTitle}</p>
         ) : null
       }
     </div>
