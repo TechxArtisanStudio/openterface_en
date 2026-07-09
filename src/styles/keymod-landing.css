@@ -6092,7 +6092,9 @@
   opacity: 0.85;
 }
 
+/* Hidden until scenario tags are reviewed for the community strip. */
 .km-community-card__tag {
+  display: none;
   margin: 0 0 0.35rem;
   font-family: var(--km-font-mono);
   font-size: 0.6875rem;
