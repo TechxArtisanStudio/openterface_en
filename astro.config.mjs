@@ -18,6 +18,7 @@ export default defineConfig({
     '/product/': '/products/',
     '/app/': '/apps/',
     '/videos/': '/media/',
+    '/community/': 'https://forum.openterface.com/',
     '/appointment/': 'https://calendar.app.google/9nyjjpA9m3TUpzsaA',
     '/support/appointment/': 'https://calendar.app.google/9nyjjpA9m3TUpzsaA',
   },

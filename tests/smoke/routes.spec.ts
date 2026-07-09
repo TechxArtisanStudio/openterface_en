@@ -173,9 +173,34 @@ test('ecosystem header shows unified nav items', async ({ page }) => {
   await page.setViewportSize({ width: 1400, height: 900 });
   await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
   const header = page.locator('header');
-  for (const label of ['Products', 'Apps', 'Docs', 'Media', 'News', 'Community']) {
+  for (const label of ['Products', 'Apps', 'Docs', 'Media', 'News', 'Forum']) {
     await expect(header).toContainText(label);
   }
+});
+
+test('header Forum link points to forum.openterface.com with New badge', async ({ page }) => {
+  await page.setViewportSize({ width: 1400, height: 900 });
+  await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
+  const forumLink = page.locator('nav[aria-label="Main navigation"] a.site-header__nav-link', { hasText: 'Forum' });
+  await expect(forumLink).toHaveAttribute('href', /forum\.openterface\.com/);
+  await expect(forumLink).toHaveAttribute('target', '_blank');
+  await expect(page.locator('nav[aria-label="Main navigation"] .site-header__nav-badge', { hasText: 'New' })).toBeVisible();
+});
+
+test('footer shows social channel icon links', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
+  const social = page.locator('nav.footer-social');
+  await expect(social).toBeVisible();
+  await expect(social.getByRole('link', { name: 'Discord' })).toHaveAttribute('href', /discord\.gg/);
+  await expect(social.getByRole('link', { name: 'YouTube' })).toHaveAttribute('href', /youtube\.com/);
+});
+
+test('/community/ redirects to forum', async ({ request }) => {
+  const response = await request.get('/community/');
+  expect(response.ok()).toBeTruthy();
+  const html = await response.text();
+  expect(html).toMatch(/forum\.openterface\.com/);
+  expect(html).toMatch(/http-equiv="refresh"/);
 });
 
 test('products mega-menu opens and links to flat product pages', async ({ page }) => {
@@ -231,7 +256,7 @@ test('/use-cases/ redirects to /products/', async ({ page }) => {
 });
 
 test('products hub and flat product routes return 200', async ({ page }) => {
-  for (const path of ['/products/', '/minikvm/', '/kvmgo/', '/keymod/', '/kvmext/', '/accessories/', '/apps/', '/kvm/', '/keycmd/', '/media/', '/community/']) {
+  for (const path of ['/products/', '/minikvm/', '/kvmgo/', '/keymod/', '/kvmext/', '/accessories/', '/apps/', '/kvm/', '/keycmd/', '/media/']) {
     const response = await page.goto(path, { waitUntil: 'commit', timeout: 15000 });
     expect(response?.status()).toBe(200);
   }

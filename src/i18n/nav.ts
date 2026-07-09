@@ -15,7 +15,8 @@ export const enNavLabels: EcosystemNavLabels = {
   docs: 'Docs',
   media: 'Media',
   news: 'News',
-  community: 'Community',
+  forum: 'Forum',
+  forumNewBadge: 'New',
 };
 
 export const enNavMobile = {
