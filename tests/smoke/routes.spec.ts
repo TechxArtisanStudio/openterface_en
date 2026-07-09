@@ -137,7 +137,7 @@ test('products hub lists all five product lines', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Openterface Accessories' })).toBeVisible();
 });
 
-test('app hub lists downloads and legacy app landings redirect', async ({ page }) => {
+test('app hub lists downloads and flat app pages serve content', async ({ page }) => {
   await page.goto('/apps/', { waitUntil: 'commit', timeout: 15000 });
   await expect(page.getByRole('heading', { level: 2, name: 'Openterface KVM' })).toBeVisible();
   await expect(page.getByRole('heading', { level: 3, name: 'iPadOS' })).toBeVisible();
@@ -146,15 +146,17 @@ test('app hub lists downloads and legacy app landings redirect', async ({ page }
   await expect(page.getByRole('link', { name: /Installer/i }).first()).toBeVisible();
 
   await page.goto('/kvm/', { waitUntil: 'commit', timeout: 15000 });
-  await expect(page).toHaveURL(/\/apps\/$/);
+  await expect(page).toHaveURL(/\/kvm\/$/);
+  await expect(page.getByRole('heading', { level: 1, name: 'Openterface KVM' })).toBeVisible();
 
   await page.goto('/keycmd/', { waitUntil: 'commit', timeout: 15000 });
-  await expect(page).toHaveURL(/\/apps\/$/);
+  await expect(page).toHaveURL(/\/keycmd\/$/);
+  await expect(page.getByRole('heading', { level: 1, name: 'KeyCmd' })).toBeVisible();
 });
 
-test('home page App CTA links to /apps/', async ({ page }) => {
+test('home page App CTA links to /kvm/', async ({ page }) => {
   await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
-  await expect(page.getByRole('link', { name: 'Download Openterface App' })).toHaveAttribute('href', '/apps/');
+  await expect(page.getByRole('link', { name: 'Download Openterface App' })).toHaveAttribute('href', '/kvm/');
 });
 
 test('/legacy /app/ redirects to /apps/', async ({ page }) => {
@@ -195,6 +197,28 @@ test('products mega-menu opens and links to flat product pages', async ({ page }
   await expect(panel.getByRole('link', { name: /Openterface KVM-GO Series/i })).toHaveAttribute('href', '/kvmgo/');
 });
 
+test('apps mega-menu opens with curated tiles and no inner scroll', async ({ page }) => {
+  await page.setViewportSize({ width: 1400, height: 900 });
+  await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
+  const trigger = page.locator('nav[aria-label="Main navigation"] .apps-mega__trigger');
+  await trigger.click();
+  const panel = page.locator('#apps-mega-panel');
+  await expect(panel).toBeVisible({ timeout: 5000 });
+  await expect(panel.getByRole('link', { name: 'All downloads →' }).first()).toHaveAttribute('href', '/kvm/');
+  await expect(panel.getByRole('link', { name: 'All downloads →' }).nth(1)).toHaveAttribute('href', '/keycmd/');
+  await expect(panel.getByRole('link', { name: 'Installer' }).first()).toHaveAttribute('href', /github\.com/);
+  await expect(panel.getByRole('link', { name: 'All Linux packages' })).toHaveAttribute('href', '/kvm/#linux');
+  await expect(panel.getByRole('link', { name: 'Beta APK' })).toHaveAttribute('href', /github\.com|openterface/);
+
+  const noInnerScroll = await page.evaluate(() => {
+    const columns = document.querySelector('.apps-mega__columns');
+    if (!columns) return false;
+    const style = window.getComputedStyle(columns);
+    return style.overflowY !== 'auto' && style.overflowY !== 'scroll';
+  });
+  expect(noInnerScroll).toBe(true);
+});
+
 test('home secondary CTA links to /keymod/ not /products/', async ({ page }) => {
   await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
   await expect(page.getByRole('link', { name: 'View all products' })).toHaveAttribute('href', '/keymod/');
@@ -220,7 +244,7 @@ test('/use-cases/ redirects to /products/', async ({ page }) => {
 });
 
 test('products hub and flat product routes return 200', async ({ page }) => {
-  for (const path of ['/products/', '/minikvm/', '/kvmgo/', '/keymod/', '/kvmext/', '/accessories/', '/apps/', '/media/', '/community/']) {
+  for (const path of ['/products/', '/minikvm/', '/kvmgo/', '/keymod/', '/kvmext/', '/accessories/', '/apps/', '/kvm/', '/keycmd/', '/media/', '/community/']) {
     const response = await page.goto(path, { waitUntil: 'commit', timeout: 15000 });
     expect(response?.status()).toBe(200);
   }
