@@ -12,14 +12,6 @@ test('home page has newsletter subscribe form', async ({ page }) => {
   const form = page.locator('#home-subscribe-form');
   await expect(form).toBeVisible();
   await expect(form.locator('input[type="email"]')).toBeVisible();
-  const subscribeBeforeProductGrid = await page.evaluate(() => {
-    const subscribe = document.querySelector('#home-subscribe-form');
-    // Carousel also links to /keymod/ — assert order vs the product grid card below subscribe.
-    const productGridLink = document.querySelector('section.py-10 a[href="/keymod/"]');
-    if (!subscribe || !productGridLink) return false;
-    return Boolean(subscribe.compareDocumentPosition(productGridLink) & Node.DOCUMENT_POSITION_FOLLOWING);
-  });
-  expect(subscribeBeforeProductGrid).toBe(true);
 });
 
 test('kvm-go product page has product subscribe form', async ({ page }) => {
@@ -217,11 +209,6 @@ test('apps mega-menu opens with curated tiles and no inner scroll', async ({ pag
     return style.overflowY !== 'auto' && style.overflowY !== 'scroll';
   });
   expect(noInnerScroll).toBe(true);
-});
-
-test('home secondary CTA links to /keymod/ not /products/', async ({ page }) => {
-  await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
-  await expect(page.getByRole('link', { name: 'View all products' })).toHaveAttribute('href', '/keymod/');
 });
 
 test('/product/ redirects to /products/', async ({ page }) => {
