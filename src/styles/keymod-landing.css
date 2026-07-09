@@ -6119,12 +6119,13 @@
   overflow: hidden;
 }
 
+/* Hidden until excerpts are reviewed/approved as real user quotes. */
 .km-community-card__excerpt {
+  display: none;
   margin: 0.35rem 0 0;
   font-size: 0.8125rem;
   line-height: 1.45;
   color: var(--km-muted);
-  display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
