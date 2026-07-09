@@ -17,8 +17,6 @@ export default defineConfig({
     '/use-cases/': '/products/',
     '/product/': '/products/',
     '/app/': '/apps/',
-    '/kvm/': '/apps/',
-    '/keycmd/': '/apps/',
     '/videos/': '/media/',
     '/appointment/': 'https://calendar.app.google/9nyjjpA9m3TUpzsaA',
     '/support/appointment/': 'https://calendar.app.google/9nyjjpA9m3TUpzsaA',

@@ -28,12 +28,12 @@ export const homeSlides: HomeSlide[] = [
     headline: 'Pocket USB multi-tool bridge',
     description:
       'Plug into the target device, control from KeyCmd on your phone. BIOS-capable HID — Mini for Type-C, Plus for USB-A servers.',
-    image: 'https://assets2.openterface.com/images/keymod/2in1.webp',
+    image: '/keymod/rebirth/hero-center.webp',
     imageAlt: 'Openterface KeyMod Series',
     images: [
-      'https://assets2.openterface.com/images/keymod/2in1.webp',
-      'https://assets2.openterface.com/images/keymod/keymod.webp',
-      'https://assets2.openterface.com/images/keymod/feature.webp',
+      '/keymod/rebirth/hero-center.webp',
+      '/keymod/rebirth/sku-plus.webp',
+      '/keymod/rebirth/sku-mini.webp',
     ],
     primaryCta: {
       label: 'Pre-launch',
