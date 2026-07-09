@@ -183,6 +183,27 @@ test('ecosystem header shows unified nav items', async ({ page }) => {
     await expect(header).toContainText(label);
   }
 });
+
+test('products mega-menu opens and links to flat product pages', async ({ page }) => {
+  await page.setViewportSize({ width: 1400, height: 900 });
+  await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
+  const trigger = page.locator('nav[aria-label="Main navigation"] .products-mega__trigger');
+  await trigger.click();
+  const panel = page.locator('#products-mega-panel');
+  await expect(panel).toBeVisible({ timeout: 5000 });
+  await expect(panel.getByRole('link', { name: /Openterface KeyMod Series/i })).toHaveAttribute('href', '/keymod/');
+  await expect(panel.getByRole('link', { name: /Openterface KVM-GO Series/i })).toHaveAttribute('href', '/kvmgo/');
+});
+
+test('home secondary CTA links to /keymod/ not /products/', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.getByRole('link', { name: 'View all products' })).toHaveAttribute('href', '/keymod/');
+});
+
+test('/product/ redirects to /products/', async ({ page }) => {
+  await page.goto('/product/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page).toHaveURL(/\/products\/$/);
+});
 test('legacy /products/keymod/ redirects to /keymod/', async ({ page }) => {
   await page.goto('/products/keymod/', { waitUntil: 'commit', timeout: 15000 });
   await expect(page).toHaveURL(/\/keymod\/$/);
