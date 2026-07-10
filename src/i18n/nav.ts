@@ -13,11 +13,16 @@ export const enNavLabels: EcosystemNavLabels = {
   kvmControl: 'Openterface KVM',
   keycmd: 'KeyCmd',
   docs: 'Docs',
+  productDocs: 'Docs →',
+  allDocumentation: 'All documentation →',
   media: 'Media',
   news: 'News',
   forum: 'Forum',
   forumNewBadge: 'New',
 };
+
+/** Alias so shared mega-menu code can import one symbol across EN + locale sites. */
+export const localeNavLabels = enNavLabels;
 
 export const enNavMobile = {
   ecosystem: 'Ecosystem',
