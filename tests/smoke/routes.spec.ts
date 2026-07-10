@@ -171,11 +171,20 @@ test('/support/appointment redirects to Google Calendar booking', async ({ reque
 
 test('ecosystem header shows unified nav items', async ({ page }) => {
   await page.setViewportSize({ width: 1400, height: 900 });
-  await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
-  const header = page.locator('header');
-  for (const label of ['Products', 'Apps', 'Docs', 'Media', 'News', 'Forum']) {
-    await expect(header).toContainText(label);
-  }
+  await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 15000 });
+  const nav = page.locator('nav[aria-label="Main navigation"]');
+  await expect(nav).toBeVisible();
+  const labels = await nav.locator('.site-header__nav-link').evaluateAll((nodes) =>
+    nodes.map((node) =>
+      (node.textContent || '')
+        .replace(/[▾▴]/g, '')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .replace(/\s*New\s*$/i, '')
+        .trim(),
+    ),
+  );
+  expect(labels).toEqual(['Products', 'Apps', 'Media', 'News', 'Forum']);
 });
 
 test('header Forum link points to forum.openterface.com with New badge', async ({ page }) => {
@@ -212,6 +221,13 @@ test('products mega-menu opens and links to flat product pages', async ({ page }
   await expect(panel).toBeVisible({ timeout: 5000 });
   await expect(panel.getByRole('link', { name: /Openterface KeyMod Series/i })).toHaveAttribute('href', '/keymod/');
   await expect(panel.getByRole('link', { name: /Openterface KVM-GO Series/i })).toHaveAttribute('href', '/kvmgo/');
+  await expect(panel.locator('.products-mega__docs-link').first()).toHaveAttribute(
+    'href',
+    /docs\.openterface\.com\/products\/keymod/,
+  );
+  await expect(panel.getByRole('link', { name: 'Docs →' })).toHaveCount(5);
+  await expect(panel.locator('.products-mega__docs-strip')).toHaveCount(0);
+  await expect(panel.getByRole('link', { name: 'All documentation →' })).toHaveCount(0);
 });
 
 test('apps mega-menu opens with curated tiles and no inner scroll', async ({ page }) => {
@@ -226,6 +242,7 @@ test('apps mega-menu opens with curated tiles and no inner scroll', async ({ pag
   await expect(panel.getByRole('link', { name: 'Installer' }).first()).toHaveAttribute('href', /github\.com/);
   await expect(panel.getByRole('link', { name: 'All Linux packages' })).toHaveAttribute('href', '/kvm/#linux');
   await expect(panel.getByRole('link', { name: 'Beta APK' })).toHaveAttribute('href', /github\.com|openterface/);
+  await expect(panel.getByRole('link', { name: 'All documentation →' })).toHaveCount(0);
 
   const noInnerScroll = await page.evaluate(() => {
     const columns = document.querySelector('.apps-mega__columns');
@@ -234,6 +251,18 @@ test('apps mega-menu opens with curated tiles and no inner scroll', async ({ pag
     return style.overflowY !== 'auto' && style.overflowY !== 'scroll';
   });
   expect(noInnerScroll).toBe(true);
+});
+
+test('mobile nav nests docs hub under Products and Apps', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/', { waitUntil: 'domcontentloaded', timeout: 15000 });
+  await page.locator('.mobile-nav > summary').click();
+  const mobile = page.locator('nav[aria-label="Mobile navigation"]');
+  await expect(mobile).toBeVisible();
+  const docsLinks = mobile.getByRole('link', { name: 'All documentation →' });
+  await expect(docsLinks).toHaveCount(2);
+  await expect(docsLinks.first()).toHaveAttribute('href', /docs\.openterface\.com\/?$/);
+  await expect(mobile.getByRole('link', { name: 'Docs' })).toHaveCount(0);
 });
 
 test('/product/ redirects to /products/', async ({ page }) => {
