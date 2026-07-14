@@ -14,6 +14,7 @@ export const enNavLabels: EcosystemNavLabels = {
   keycmd: 'KeyCmd',
   docs: 'Docs',
   productDocs: 'Docs →',
+  productFaqs: 'FAQs',
   allDocumentation: 'All documentation →',
   media: 'Media',
   news: 'News',
