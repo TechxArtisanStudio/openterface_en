@@ -560,6 +560,11 @@ pm2 reload ecosystem.config.js --env production`,
     viewAllMedia: 'All KeyMod media',
     showAllPosts: 'Show all posts',
   },
+  youtubeReviews: {
+    eyebrow: 'Reviews',
+    title: 'See it in action on YouTube',
+    viewAllMedia: 'All KeyMod media',
+  },
   keycmdBridge: {
     eyebrow: 'Software companion',
     title: 'Controlled from KeyCmd on your phone',

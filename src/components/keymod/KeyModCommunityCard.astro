@@ -5,9 +5,10 @@ import { getAuthorInitialForCard, type KeymodCommunityCardView } from '../../lib
 interface Props {
   card: KeymodCommunityCardView;
   clone?: boolean;
+  variant?: 'default' | 'review';
 }
 
-const { card, clone = false } = Astro.props;
+const { card, clone = false, variant = 'default' } = Astro.props;
 
 const isVideo =
   card.platform === 'youtube' || card.format === 'short' || card.format === 'reel';
@@ -35,12 +36,15 @@ const thumbAlt =
   card.excerpt ?? displayTitle ?? `${platformLabel(card.platform)} post by ${card.author}`;
 
 const authorInitial = getAuthorInitialForCard(card.author);
+const showViews = variant === 'review' && Boolean(card.viewsFormatted);
 const showEngagement =
-  card.likeCount != null || card.commentCount != null;
+  card.likeCount != null || card.commentCount != null || showViews;
 
 const cardClass = clone
   ? 'km-community-card km-community-card--clone'
-  : 'km-community-card';
+  : variant === 'review'
+    ? 'km-community-card km-community-card--review'
+    : 'km-community-card';
 ---
 
 <article
@@ -111,6 +115,17 @@ const cardClass = clone
         {
           showEngagement ? (
             <div class="km-community-card__engagement" aria-label="Post engagement">
+              {
+                showViews ? (
+                  <span class="km-community-card__stat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    {card.viewsFormatted}
+                  </span>
+                ) : null
+              }
               {
                 card.likeCount != null ? (
                   <span class="km-community-card__stat">

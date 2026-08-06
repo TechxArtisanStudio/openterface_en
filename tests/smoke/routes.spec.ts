@@ -105,6 +105,30 @@ test('keymod landing has single h1 and Crowd Supply CTA', async ({ page }) => {
   await expect(page.getByRole('link', { name: 'KeyCmd app' }).first()).toBeVisible();
 });
 
+test('keymod landing has YouTube reviews and UGC social proof sections', async ({ page }) => {
+  await page.goto('/keymod/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.locator('#youtube-reviews')).toBeVisible();
+  await expect(page.getByRole('heading', { level: 2, name: 'See it in action on YouTube' })).toBeVisible();
+  await expect(page.locator('#youtube-review-grid a[href*="youtube.com"]').first()).toBeVisible();
+  await expect(page.locator('#social-proof')).toBeVisible();
+  await expect(page.getByRole('heading', { level: 2, name: 'Real users, real setups' })).toBeVisible();
+  await expect(page.locator('#social-proof-posts .km-community-card').first()).toBeVisible();
+});
+
+test('keymod landing routes YouTube Shorts to social proof not reviews', async ({ page }) => {
+  await page.goto('/keymod/', { waitUntil: 'commit', timeout: 15000 });
+  const shortHref = 'nl24-rPjOr8';
+  await expect(page.locator(`#youtube-review-grid a[href*="${shortHref}"]`)).toHaveCount(0);
+  await expect(page.locator(`#social-proof-posts a[href*="${shortHref}"]`).first()).toBeVisible();
+});
+
+test('keymod youtube reviews show engagement stats including views', async ({ page }) => {
+  await page.goto('/keymod/', { waitUntil: 'commit', timeout: 15000 });
+  const engagement = page.locator('#youtube-review-grid .km-community-card__engagement').first();
+  await expect(engagement).toBeVisible();
+  await expect(engagement.locator('.km-community-card__stat').first()).toBeVisible();
+});
+
 test('kvmext landing has single h1 and Order NOW CTA', async ({ page }) => {
   await page.goto('/kvmext/', { waitUntil: 'commit', timeout: 15000 });
   await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
