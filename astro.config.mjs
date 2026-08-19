@@ -21,7 +21,6 @@ export default defineConfig({
     '/community/': 'https://forum.openterface.com/',
     '/appointment/': 'https://calendar.app.google/9nyjjpA9m3TUpzsaA',
     '/support/appointment/': 'https://calendar.app.google/9nyjjpA9m3TUpzsaA',
-    '/day_glow_launch/': 'https://www.youtube.com/playlist?list=PLoHh3GdjF7AGJ-dg4lmwdSNmVCPBr7aOn',
   },
   // site-refactor-redirects:end
   integrations: [
