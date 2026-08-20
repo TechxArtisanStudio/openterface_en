@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const TARGET = 'https://www.youtube.com/playlist?list=PLoHh3GdjF7AGJ-dg4lmwdSNmVCPBr7aOn';
+const TARGET = 'https://www.youtube.com/live/txn5ixQNQTU';
 ---
 
 <BaseLayout
@@ -27,7 +27,7 @@ const TARGET = 'https://www.youtube.com/playlist?list=PLoHh3GdjF7AGJ-dg4lmwdSNmV
     </p>
   </section>
 
-  <script define:vars={{ target: 'https://www.youtube.com/playlist?list=PLoHh3GdjF7AGJ-dg4lmwdSNmVCPBr7aOn' }}>
+  <script define:vars={{ target: 'https://www.youtube.com/live/txn5ixQNQTU' }}>
     // Immediate JS redirect as a faster alternative to meta refresh
     window.location.replace(target);
   </script>
