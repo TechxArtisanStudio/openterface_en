@@ -101,7 +101,7 @@ test('kvmgo landing has single h1 and pre-order CTA', async ({ page }) => {
 test('keymod landing has single h1 and Crowd Supply CTA', async ({ page }) => {
   await page.goto('/keymod/', { waitUntil: 'commit', timeout: 15000 });
   await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
-  await expect(page.getByRole('link', { name: 'Pre-launch' }).first()).toBeVisible();
+  await expect(page.getByRole('link', { name: /Back on Crowd Supply|Crowd Supply/i }).first()).toBeVisible();
   await expect(page.getByRole('link', { name: 'KeyCmd app' }).first()).toBeVisible();
 });
 
