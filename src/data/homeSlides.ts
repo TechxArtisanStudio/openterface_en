@@ -36,7 +36,7 @@ export const homeSlides: HomeSlide[] = [
       '/keymod/rebirth/sku-mini.webp',
     ],
     primaryCta: {
-      label: 'Pre-launch',
+      label: 'Back on Crowd Supply',
       href: siteConfig.links.keymodCrowdsupply,
       external: true,
       analyticsEvent: 'crowdsupply_click',
