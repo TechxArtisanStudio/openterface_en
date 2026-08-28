@@ -586,6 +586,13 @@ pm2 reload ecosystem.config.js --env production`,
         url: 'https://www.hackster.io/news/in-case-of-emergency-plug-in-a-keymod-8e4d8552d930',
         favicon: 'https://www.google.com/s2/favicons?domain=hackster.io&sz=32',
       },
+      {
+        publication: 'Open Source For You',
+        headline: 'Open-Source KeyMod Turns Phones Into USB Controllers',
+        url: 'https://www.opensourceforu.com/2026/08/open-source-keymod-turns-phones-into-usb-controllers/',
+        favicon: 'https://www.google.com/s2/favicons?domain=opensourceforu.com&sz=32',
+        quote: 'A compact USB multi-tool that allows smartphones and tablets to control PCs, servers, kiosks, Raspberry Pi boards and other USB hosts.',
+      },
     ],
   },
   keycmdBridge: {
