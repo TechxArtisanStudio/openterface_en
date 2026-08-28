@@ -585,6 +585,7 @@ pm2 reload ecosystem.config.js --env production`,
         headline: 'In Case of Emergency, Plug in a KeyMod',
         url: 'https://www.hackster.io/news/in-case-of-emergency-plug-in-a-keymod-8e4d8552d930',
         favicon: 'https://www.google.com/s2/favicons?domain=hackster.io&sz=32',
+        quote: 'It plugs into a USB port and communicates wirelessly with a phone, turning it into a makeshift keyboard and mouse.',
       },
       {
         publication: 'Open Source For You',
