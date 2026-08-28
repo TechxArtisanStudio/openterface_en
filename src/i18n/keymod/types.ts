@@ -247,6 +247,16 @@ export type KeymodLandingStrings = {
     title: string;
     viewAllMedia: string;
   };
+  press?: {
+    eyebrow: string;
+    title: string;
+    articles: {
+      publication: string;
+      headline: string;
+      url: string;
+      quote?: string;
+    }[];
+  };
   keycmdBridge: {
     eyebrow: string;
     title: string;

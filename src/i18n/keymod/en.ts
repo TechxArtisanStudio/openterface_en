@@ -562,6 +562,29 @@ pm2 reload ecosystem.config.js --env production`,
     title: 'See it in action on YouTube',
     viewAllMedia: 'All KeyMod media',
   },
+  press: {
+    eyebrow: 'As seen in',
+    title: 'What the tech press is saying',
+    articles: [
+      {
+        publication: 'CNX-Software',
+        headline: 'Openterface KeyMod turns your smartphone into a USB keyboard, mouse, gamepad, or SSH client',
+        url: 'https://www.cnx-software.com/2026/08/24/openterface-keymod-turns-your-smartphone-into-a-usb-keyboard-mouse-gamepad-or-ssh-client/',
+        quote: 'KeyMod does two USB jobs at the same time.',
+      },
+      {
+        publication: "It's FOSS",
+        headline: 'This Tiny USB Device Turns Your Phone Into a Keyboard, Mouse, and SSH Terminal',
+        url: 'https://itsfoss.com/news/openterface-keymod-crowdfunding-campaign/',
+        quote: 'It works without an OS loaded, KeyMod reaches BIOS screens, boot menus, and recovery environments.',
+      },
+      {
+        publication: 'Hackster.io',
+        headline: 'In Case of Emergency, Plug in a KeyMod',
+        url: 'https://www.hackster.io/news/in-case-of-emergency-plug-in-a-keymod-8e4d8552d930',
+      },
+    ],
+  },
   keycmdBridge: {
     eyebrow: 'Software companion',
     title: 'Controlled from KeyCmd on your phone',
