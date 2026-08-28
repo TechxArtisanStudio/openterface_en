@@ -25,7 +25,19 @@ const articles = copy?.articles ?? [];
             data-analytics-product="keymod"
             data-analytics-placement={article.publication.toLowerCase().replace(/[^a-z0-9]+/g, '_')}
           >
-            <span class="km-press-card__publication">{article.publication}</span>
+            <span class="km-press-card__publication">
+              {article.favicon && (
+                <img
+                  class="km-press-card__favicon"
+                  src={article.favicon}
+                  alt=""
+                  width="16"
+                  height="16"
+                  loading="lazy"
+                />
+              )}
+              {article.publication}
+            </span>
             <span class="km-press-card__headline">{article.headline}</span>
             {article.quote && (
               <blockquote class="km-press-card__quote">"{article.quote}"</blockquote>

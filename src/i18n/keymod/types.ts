@@ -254,6 +254,7 @@ export type KeymodLandingStrings = {
       publication: string;
       headline: string;
       url: string;
+      favicon?: string;
       quote?: string;
     }[];
   };
