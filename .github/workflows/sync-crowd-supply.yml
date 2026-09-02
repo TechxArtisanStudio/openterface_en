@@ -2,8 +2,8 @@ name: Sync Crowd Supply campaign stats
 
 on:
   schedule:
-    # Every Monday at 09:00 UTC
-    - cron: '0 9 * * 1'
+    # Every 3 hours (8x daily) during crowdfunding
+    - cron: '0 */3 * * *'
   workflow_dispatch:
 
 permissions:
