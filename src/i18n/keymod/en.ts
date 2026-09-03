@@ -11,6 +11,7 @@ export const en: KeymodLandingStrings = {
   },
   nav: {
     docs: 'Docs',
+    forum: "Forum",
     preLaunchCta: 'Back on Crowd Supply',
   },
   povTabs: {

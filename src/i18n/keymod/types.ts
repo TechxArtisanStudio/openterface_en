@@ -51,6 +51,7 @@ export type KeymodLandingStrings = {
   };
   nav: {
     docs: string;
+    forum: string;
     preLaunchCta: string;
   };
   povTabs: KeymodPovTabs;

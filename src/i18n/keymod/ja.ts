@@ -9,6 +9,7 @@ export const ja: KeymodLandingStrings = {
     },
     nav: {
       docs: "ドキュメント",
+    forum: "フォーラム",
       preLaunchCta: "プレローンチ",
     },
     povTabs: {
