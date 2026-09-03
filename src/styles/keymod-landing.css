@@ -1586,9 +1586,10 @@
 .km-hero__campaign-meta[data-updated]::after {
   content: "Updated: " attr(data-updated);
   position: absolute;
-  bottom: calc(100% + 0.5rem);
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
+  margin-top: 0.5rem;
   padding: 0.375rem 0.75rem;
   font-size: 0.75rem;
   line-height: 1.4;
