@@ -26,13 +26,14 @@ let stats: {
 if (crowdSupplyStats) {
   try {
     const data = await import('../../config/crowd-supply.generated.json').then((m) => m.default ?? m);
+    const keymodData = data.keymod || data; // fallback to flat structure for backward compat
     stats = {
-      raised: data.raised,
-      goal: data.goal,
-      percentFunded: data.percentFunded,
-      backers: data.backers,
-      daysLeft: data.daysLeft,
-      fetchedAt: data.fetchedAt ?? '',
+      raised: keymodData.raised,
+      goal: keymodData.goal,
+      percentFunded: keymodData.percentFunded,
+      backers: keymodData.backers,
+      daysLeft: keymodData.daysLeft,
+      fetchedAt: keymodData.fetchedAt ?? '',
     };
   } catch {
     stats = null;

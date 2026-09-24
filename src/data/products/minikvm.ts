@@ -1,5 +1,8 @@
 import { docsPath, siteConfig } from '../../config/site';
 import type { Product } from '../products';
+import crowdData from '../../config/crowd-supply.generated.json';
+
+const miniKvmFunding = crowdData['minikvm'];
 
 /**
  * Mini-KVM marketing payload — reference template for Phase 1D–1G.
@@ -24,7 +27,15 @@ export const minikvmProduct: Product = {
   ],
   buyLabel: 'Order NOW',
   buyHref: siteConfig.links.minikvmPurchase,
-  funding: { amount: '$505,471', date: 'Funded on Jun 13, 2024', backers: '3,775' },
+  funding: miniKvmFunding ? {
+    amount: `$${miniKvmFunding.raised.toLocaleString('en-US')}`,
+    date: 'Funded on Jun 13, 2024',
+    backers: miniKvmFunding.backers?.toLocaleString('en-US') ?? '4,036',
+  } : {
+    amount: '$545,518',
+    date: 'Funded on Jun 13, 2024',
+    backers: '4,036',
+  },
   painPoints: [
     'Lugging a monitor and keyboard for every server fix is impractical',
     'Network KVM requires configuration and connectivity',

@@ -1,4 +1,8 @@
 import { siteConfig } from '../config/site';
+import crowdData from '../config/crowd-supply.generated.json';
+
+const kvmGoFunding = crowdData['kvm-go'];
+const miniKvmFunding = crowdData['minikvm'];
 
 export interface HomeSlide {
   id: number;
@@ -68,7 +72,15 @@ export const homeSlides: HomeSlide[] = [
       logo: '/keymod/badges/crowd-supply-icon.svg',
     },
     secondaryCta: { label: 'View Product', href: '/kvmgo/' },
-    funding: { amount: '$101,548', date: 'Funded on Dec 30, 2025', backers: '478' },
+    funding: kvmGoFunding ? {
+      amount: `$${kvmGoFunding.raised.toLocaleString('en-US')}`,
+      date: 'Funded on Dec 30, 2025',
+      backers: kvmGoFunding.backers?.toLocaleString('en-US') ?? '627',
+    } : {
+      amount: '$137,201',
+      date: 'Funded on Dec 30, 2025',
+      backers: '627',
+    },
     progressSmall: 'KVM-GO Series',
     progressLarge: 'The Ultra-Compact KVM That Fits on Your Keychain',
   },
@@ -92,7 +104,15 @@ export const homeSlides: HomeSlide[] = [
       analyticsProduct: 'minikvm',
     },
     secondaryCta: { label: 'View Product', href: '/minikvm/' },
-    funding: { amount: '$505,471', date: 'Funded on Jun 13, 2024', backers: '3,775' },
+    funding: miniKvmFunding ? {
+      amount: `$${miniKvmFunding.raised.toLocaleString('en-US')}`,
+      date: 'Funded on Jun 13, 2024',
+      backers: miniKvmFunding.backers?.toLocaleString('en-US') ?? '4,036',
+    } : {
+      amount: '$545,518',
+      date: 'Funded on Jun 13, 2024',
+      backers: '4,036',
+    },
     progressSmall: 'Mini-KVM Series',
     progressLarge: 'The Compact KVM Solution for Professionals',
   },

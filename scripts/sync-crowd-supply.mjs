@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Fetch live campaign stats from Crowd Supply and write src/config/crowd-supply.generated.json.
+ * Fetch live campaign stats from Crowd Supply for all campaigns and write
+ * src/config/crowd-supply.generated.json keyed by product slug.
  * Falls back to the existing generated file on network failure so the build never breaks.
  */
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
@@ -11,7 +12,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = join(__dirname, '..');
 const GENERATED_PATH = join(REPO_ROOT, 'src/config/crowd-supply.generated.json');
 
-const CAMPAIGN_URL = 'https://www.crowdsupply.com/techxartisan/openterface-keymod';
+const CAMPAIGNS = [
+  { slug: 'keymod', url: 'https://www.crowdsupply.com/techxartisan/openterface-keymod' },
+  { slug: 'kvm-go', url: 'https://www.crowdsupply.com/techxartisan/openterface-kvm-go' },
+  { slug: 'minikvm', url: 'https://www.crowdsupply.com/techxartisan/openterface-mini-kvm' },
+];
+
 const USER_AGENT = 'openterface-marketing-build';
 
 /** Parse a dollar text like "$16,590" or "<sup>$</sup>16,590" into an integer. */
@@ -27,8 +33,8 @@ function extractNumber(text) {
 }
 
 /** Fetch the campaign page and return raw HTML. */
-async function fetchCampaignHtml() {
-  const res = await fetch(CAMPAIGN_URL, {
+async function fetchCampaignHtml(url) {
+  const res = await fetch(url, {
     headers: { 'User-Agent': USER_AGENT },
     redirect: 'follow',
   });
@@ -72,57 +78,45 @@ function loadExisting() {
   if (existsSync(GENERATED_PATH)) {
     return JSON.parse(readFileSync(GENERATED_PATH, 'utf8'));
   }
-  return null;
+  return {};
 }
 
 async function main() {
   const existing = loadExisting();
+  const updated = { ...existing };
+  const now = new Date().toISOString();
 
-  let html;
-  try {
-    html = await fetchCampaignHtml();
-  } catch (err) {
-    console.error(`sync-crowd-supply: fetch failed: ${err.message}`);
-    if (existing) {
-      console.log('sync-crowd-supply: keeping existing data (fetch failed)');
-      return;
-    }
-    throw new Error('No existing data and fetch failed');
-  }
+  for (const campaign of CAMPAIGNS) {
+    try {
+      const html = await fetchCampaignHtml(campaign.url);
+      const fresh = parseStats(html);
 
-  const fresh = parseStats(html);
-  const merged = { ...existing, ...fresh };
-
-  // Validate we got at least the key fields
-  if (!merged.raised || !merged.goal) {
-    console.error('sync-crowd-supply: could not parse raised/goal from page HTML');
-    if (existing) {
-      console.log('sync-crowd-supply: keeping existing data (parse failed)');
-      return;
-    }
-    throw new Error('Could not parse campaign data and no existing fallback');
-  }
-
-  merged.fetchedAt = new Date().toISOString();
-
-  // Log changes
-  if (existing) {
-    const changes = [];
-    for (const key of ['raised', 'goal', 'percentFunded', 'backers', 'daysLeft', 'updates']) {
-      if (fresh[key] !== undefined && fresh[key] !== existing[key]) {
-        changes.push(`${key}: ${existing[key]} → ${fresh[key]}`);
+      if (!fresh.raised || !fresh.goal) {
+        console.error(`sync-crowd-supply [${campaign.slug}]: could not parse raised/goal from page HTML`);
+        continue;
       }
+
+      const prev = updated[campaign.slug] || {};
+      const changes = [];
+      for (const key of ['raised', 'goal', 'percentFunded', 'backers', 'daysLeft', 'updates']) {
+        if (fresh[key] !== undefined && fresh[key] !== prev[key]) {
+          changes.push(`${key}: ${prev[key]} → ${fresh[key]}`);
+        }
+      }
+
+      updated[campaign.slug] = { ...prev, ...fresh, fetchedAt: now };
+
+      if (changes.length > 0) {
+        console.log(`sync-crowd-supply [${campaign.slug}]: updated — ${changes.join(', ')}`);
+      } else {
+        console.log(`sync-crowd-supply [${campaign.slug}]: no changes`);
+      }
+    } catch (err) {
+      console.error(`sync-crowd-supply [${campaign.slug}]: fetch failed: ${err.message}`);
     }
-    if (changes.length > 0) {
-      console.log(`sync-crowd-supply: updated — ${changes.join(', ')}`);
-    } else {
-      console.log('sync-crowd-supply: no changes detected');
-    }
-  } else {
-    console.log(`sync-crowd-supply: initial fetch — raised=$${merged.raised}, ${merged.percentFunded}% funded, ${merged.backers} backers`);
   }
 
-  writeFileSync(GENERATED_PATH, `${JSON.stringify(merged, null, 2)}\n`);
+  writeFileSync(GENERATED_PATH, `${JSON.stringify(updated, null, 2)}\n`);
   console.log(`sync-crowd-supply: wrote ${GENERATED_PATH}`);
 }
 

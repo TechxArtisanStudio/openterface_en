@@ -1,5 +1,8 @@
 import { docsPath, siteConfig } from '../../config/site';
 import type { Product } from '../products';
+import crowdData from '../../config/crowd-supply.generated.json';
+
+const kvmGoFunding = crowdData['kvm-go'];
 
 /**
  * KVM-GO marketing payload — cloned from Mini-KVM template (Phase 1D).
@@ -25,7 +28,15 @@ export const kvmgoProduct: Product = {
   buyLabel: 'Order on Crowd Supply',
   buyHref: siteConfig.links.kvmgoPurchase,
   buyLogo: '/keymod/badges/crowd-supply-icon.svg',
-  funding: { amount: '$101,548', date: 'Funded on Dec 30, 2025', backers: '478' },
+  funding: kvmGoFunding ? {
+    amount: `$${kvmGoFunding.raised.toLocaleString('en-US')}`,
+    date: 'Funded on Dec 30, 2025',
+    backers: kvmGoFunding.backers?.toLocaleString('en-US') ?? '627',
+  } : {
+    amount: '$137,201',
+    date: 'Funded on Dec 30, 2025',
+    backers: '627',
+  },
   painPoints: [
     'Traditional KVM gear is bulky and requires separate video cables',
     'Emergency server access in the field needs a pocket-sized tool',
