@@ -10,7 +10,7 @@ export const kvmgoProduct: Product = {
   title: 'Openterface KVM-GO Series',
   slogan: 'Ultra-Compact KVM That Fits on Your Keychain',
   subtitle: 'For Critical Tech Moments — Plug. Control. Go.',
-  status: 'pre-order',
+  status: 'shipping',
   description:
     'The next-generation KVM-over-USB solution with built-in video connectors (HDMI, DisplayPort, or VGA). Ultra-compact, keychain-sized, and built for rapid IT operations in data centers, server rooms, and the field — no loose video cables required.',
   seoDescription:
@@ -22,7 +22,7 @@ export const kvmgoProduct: Product = {
     'https://assets.openterface.com/images/cover/kvm-go-triple.webp',
     'https://assets.openterface.com/images/cover/kvm-go-triple-2.webp',
   ],
-  buyLabel: 'Pre-Order NOW',
+  buyLabel: 'Order NOW',
   buyHref: siteConfig.links.kvmgoPurchase,
   funding: { amount: '$101,548', date: 'Funded on Dec 30, 2025', backers: '478' },
   painPoints: [
