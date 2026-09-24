@@ -14,6 +14,7 @@ export interface HomeSlide {
     external?: boolean;
     analyticsEvent?: string;
     analyticsProduct?: string;
+    logo?: string;
   };
   secondaryCta?: { label: string; href: string; external?: boolean };
   funding?: { amount: string; date: string; backers: string };
@@ -59,11 +60,12 @@ export const homeSlides: HomeSlide[] = [
       'https://assets.openterface.com/images/cover/kvm-go-triple-2.webp',
     ],
     primaryCta: {
-      label: 'Pre-Order NOW',
+      label: 'Order on Crowd Supply',
       href: siteConfig.links.kvmgoPurchase,
       external: true,
       analyticsEvent: 'crowdsupply_click',
       analyticsProduct: 'kvm-go',
+      logo: '/keymod/badges/crowd-supply-icon.svg',
     },
     secondaryCta: { label: 'View Product', href: '/kvmgo/' },
     funding: { amount: '$101,548', date: 'Funded on Dec 30, 2025', backers: '478' },
