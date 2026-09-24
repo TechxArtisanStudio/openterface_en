@@ -28,13 +28,20 @@ const buyAnalyticsEvent = product.buyHref.includes('shop.techxartisan.com')
         <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
           <a
             href={product.buyHref}
-            class="btn btn-primary"
+            class="btn btn-primary flex items-center gap-2"
             target={product.buyHref.startsWith('http') ? '_blank' : undefined}
             rel={product.buyHref.startsWith('http') ? 'noopener noreferrer' : undefined}
             data-analytics-event={buyAnalyticsEvent}
             data-analytics-product={product.slug}
             data-analytics-placement="product_hero"
           >
+            {product.buyLogo && (
+              <img
+                src={product.buyLogo}
+                alt="Crowd Supply"
+                class="h-4 w-auto"
+              />
+            )}
             {product.buyLabel}
           </a>
           <a href={siteConfig.links.appOverview} class="btn btn-secondary" target="_blank" rel="noopener">
@@ -189,13 +196,20 @@ const buyAnalyticsEvent = product.buyHref.includes('shop.techxartisan.com')
       <div class="mt-6 flex flex-wrap justify-center gap-3">
         <a
           href={product.buyHref}
-          class="btn bg-white text-primary-dark hover:bg-gray-100"
+          class="btn flex items-center gap-2 bg-white text-primary-dark hover:bg-gray-100"
           target={product.buyHref.startsWith('http') ? '_blank' : undefined}
           rel={product.buyHref.startsWith('http') ? 'noopener noreferrer' : undefined}
           data-analytics-event={buyAnalyticsEvent}
           data-analytics-product={product.slug}
           data-analytics-placement="product_footer"
         >
+          {product.buyLogo && (
+            <img
+              src={product.buyLogo}
+              alt="Crowd Supply"
+              class="h-4 w-auto"
+            />
+          )}
           {product.buyLabel}
         </a>
         <a href={siteConfig.links.appOverview} class="btn border border-white/40 hover:bg-white/10" target="_blank" rel="noopener">

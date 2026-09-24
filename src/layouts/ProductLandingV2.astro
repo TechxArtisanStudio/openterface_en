@@ -59,13 +59,20 @@ const videoProductSlug = product.videoProductSlug ?? product.slug;
         <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
           <a
             href={product.buyHref}
-            class="btn btn-primary"
+            class="btn btn-primary flex items-center gap-2"
             target={product.buyHref.startsWith('http') ? '_blank' : undefined}
             rel={product.buyHref.startsWith('http') ? 'noopener noreferrer' : undefined}
             data-analytics-event={buyAnalyticsEvent}
             data-analytics-product={product.slug}
             data-analytics-placement="product_hero"
           >
+            {product.buyLogo && (
+              <img
+                src={product.buyLogo}
+                alt="Crowd Supply"
+                class="h-4 w-auto"
+              />
+            )}
             {product.buyLabel}
           </a>
           <a href={siteConfig.links.appOverview} class="btn btn-secondary" target="_blank" rel="noopener">
@@ -196,6 +203,7 @@ const videoProductSlug = product.videoProductSlug ?? product.slug;
     subtitle={p.ctaSubtitle}
     buyLabel={product.buyLabel}
     buyHref={product.buyHref}
+    buyLogo={product.buyLogo}
     buyAnalyticsEvent={buyAnalyticsEvent}
     productSlug={product.slug}
     placement="product_footer"

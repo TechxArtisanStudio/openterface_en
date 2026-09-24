@@ -37,6 +37,8 @@ export interface Product {
   heroVideoEmbedUrl?: string;
   buyLabel: string;
   buyHref: string;
+  /** Optional logo/image for the buy button (e.g. Crowd Supply logo). */
+  buyLogo?: string;
   /** Shipping / pre-order badge shown in ProductLandingV2 hero. */
   status?: ProductStatus;
   painPoints: string[];

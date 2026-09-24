@@ -22,8 +22,9 @@ export const kvmgoProduct: Product = {
     'https://assets.openterface.com/images/cover/kvm-go-triple.webp',
     'https://assets.openterface.com/images/cover/kvm-go-triple-2.webp',
   ],
-  buyLabel: 'Order NOW',
+  buyLabel: 'Order on Crowd Supply',
   buyHref: siteConfig.links.kvmgoPurchase,
+  buyLogo: '/keymod/badges/crowd-supply-icon.svg',
   funding: { amount: '$101,548', date: 'Funded on Dec 30, 2025', backers: '478' },
   painPoints: [
     'Traditional KVM gear is bulky and requires separate video cables',
