@@ -68,11 +68,15 @@ const productUrl = new URL(canonicalPath, siteConfig.url).href;
                     data-analytics-event="shop_click"
                     data-analytics-product={product.slug}
                     data-analytics-placement="accessories_sku"
+                    data-analytics-sku={sku.sku}
                   >
                     Shop
                   </a>
                   <a
                     href={sku.docsHref}
+                    data-analytics-event="docs_click"
+                    data-analytics-placement="accessories_sku"
+                    data-analytics-sku={sku.sku}
                     class="btn btn-secondary text-sm"
                     target="_blank"
                     rel="noopener noreferrer"

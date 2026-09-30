@@ -2,6 +2,8 @@ import { docsPath, siteConfig } from '../../config/site';
 import type { Product } from '../products';
 
 export interface AccessorySku {
+  /** Stable analytics identifier, independent of display title and vendor URL. */
+  sku: string;
   title: string;
   description: string;
   image: string;
@@ -16,6 +18,7 @@ export interface AccessorySku {
  */
 export const accessorySkus: AccessorySku[] = [
   {
+    sku: 'vga-to-hdmi',
     title: 'VGA to HDMI Converter Cable',
     description: 'VGA video + 3.5 mm audio to HDMI — connect legacy targets to modern displays. USB-powered, up to 1080p.',
     image: 'https://assets.openterface.com/images/product/part/CABLE100-VGA2HDMI-1.webp',
@@ -24,6 +27,7 @@ export const accessorySkus: AccessorySku[] = [
     badge: 'Video adapter',
   },
   {
+    sku: 'nylon-usb-c-150',
     title: 'Upgraded Nylon USB-C Cable',
     description: '1.5 m orange nylon USB-C cable with USB-A adapter — 240 W charging, 10 Gbps data for host connections.',
     image: 'https://assets.openterface.com/images/product/part/nylon-usb-c-cable.webp',
@@ -33,6 +37,7 @@ export const accessorySkus: AccessorySku[] = [
     badge: 'Host cable',
   },
   {
+    sku: 'usb-c-to-c-150',
     title: 'Type-C to Type-C Cable with Adapter',
     description: '1.5 m orange host cable with USB-C to USB-A adapter — 240 W fast charging and high-speed data.',
     image: 'https://assets.openterface.com/images/product/part/OP-05-CABLE150-C2C.webp',
@@ -42,6 +47,7 @@ export const accessorySkus: AccessorySku[] = [
     badge: 'Host cable',
   },
   {
+    sku: 'usb-c-to-a-30',
     title: 'Type-C to USB-A Cable (30 cm)',
     description: 'Short black target-side cable with USB-A/C adapter — keyboard, mouse, and data to the target device.',
     image: 'https://assets.openterface.com/images/product/part/OP-04-CABLE30-C2A.webp',
@@ -50,6 +56,7 @@ export const accessorySkus: AccessorySku[] = [
     badge: 'Target cable',
   },
   {
+    sku: 'hdmi-30',
     title: 'HDMI Male-to-Male Cable (30 cm)',
     description: 'Compact HDMI for target video capture — pairs with Mini-KVM and KVM-GO setups.',
     image: 'https://assets.openterface.com/images/product/part/OP-03-CABLE30-HDMI.webp',
@@ -58,6 +65,7 @@ export const accessorySkus: AccessorySku[] = [
     badge: 'Video cable',
   },
   {
+    sku: 'toolkit-bag',
     title: 'Openterface Toolkit Bag',
     description: '180 × 115 × 50 mm carry bag with mesh pockets — organize Mini-KVM, cables, and adapters on the go.',
     image: 'https://assets.openterface.com/images/product/part/OP-06-BAG-TOOLKIT.webp',

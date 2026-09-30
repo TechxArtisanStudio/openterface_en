@@ -41,7 +41,7 @@ const docsOverviewHref = product.docsOverviewHref ?? `${siteConfig.links.docs}${
 const videoProductSlug = product.videoProductSlug ?? product.slug;
 ---
 
-<article class="product-landing-v2">
+<article class="product-landing-v2" data-analytics-page-product={product.slug}>
   <section class="product-section product-section--hero bg-gradient-to-br from-brand-light to-white">
     <div class="product-section__inner">
       {
@@ -75,7 +75,7 @@ const videoProductSlug = product.videoProductSlug ?? product.slug;
             )}
             {product.buyLabel}
           </a>
-          <a href={siteConfig.links.appOverview} class="btn btn-secondary" target="_blank" rel="noopener">
+          <a href={siteConfig.links.appOverview} data-analytics-event="app_click" data-analytics-placement="product_hero" class="btn btn-secondary" target="_blank" rel="noopener">
             {p.downloadApp}
           </a>
         </div>
@@ -175,7 +175,7 @@ const videoProductSlug = product.videoProductSlug ?? product.slug;
         <div class="product-section__inner text-center">
           <h2 class="section-title">{product.latestNewsTitle ?? 'Latest updates'}</h2>
           <p class="section-subtitle">{product.latestNewsSubtitle ?? 'Product news and firmware releases.'}</p>
-          <a href={product.latestNewsHref} class="btn btn-secondary mt-6">
+          <a href={product.latestNewsHref} data-analytics-event="news_click" data-analytics-placement="product_updates" class="btn btn-secondary mt-6">
             {product.latestNewsLabel ?? 'Read on Openterface News →'}
           </a>
         </div>
@@ -189,7 +189,7 @@ const videoProductSlug = product.videoProductSlug ?? product.slug;
       <div class="mt-6 flex flex-wrap justify-center gap-3">
         {
           product.docLinks.map((link) => (
-            <a href={link.href} class="btn btn-secondary" target="_blank" rel="noopener">
+            <a href={link.href} data-analytics-event={new URL(link.href, siteConfig.url).hostname === "shop.techxartisan.com" ? "shop_click" : link.href === siteConfig.links.appOverview ? "app_click" : "docs_click"} data-analytics-placement="product_documentation" class="btn btn-secondary" target="_blank" rel="noopener">
               {link.label} →
             </a>
           ))

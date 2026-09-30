@@ -28,7 +28,7 @@ const { title, items, docsHref, docsLabel = 'See all use cases on docs →' } = 
             </>
           );
           return item.href ? (
-            <a href={item.href} class="card block transition hover:border-primary-dark/40" target="_blank" rel="noopener">
+            <a href={item.href} data-analytics-event="docs_click" data-analytics-placement="product_use_cases" class="card block transition hover:border-primary-dark/40" target="_blank" rel="noopener">
               {inner}
             </a>
           ) : (
@@ -40,7 +40,7 @@ const { title, items, docsHref, docsLabel = 'See all use cases on docs →' } = 
     {
       docsHref && (
         <p class="mt-6 text-center">
-          <a href={docsHref} class="text-sm font-semibold text-accent-on-light hover:underline" target="_blank" rel="noopener">
+          <a href={docsHref} data-analytics-event="docs_click" data-analytics-placement="product_use_cases" class="text-sm font-semibold text-accent-on-light hover:underline" target="_blank" rel="noopener">
             {docsLabel}
           </a>
         </p>

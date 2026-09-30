@@ -56,12 +56,12 @@ const buyRel = buyHref.startsWith('http') ? 'noopener noreferrer' : undefined;
         )}
         {buyLabel}
       </a>
-      <a href={appHref} class="btn border border-white/40 hover:bg-white/10" target="_blank" rel="noopener">
+      <a href={appHref} data-analytics-event="app_click" data-analytics-placement="product_footer" class="btn border border-white/40 hover:bg-white/10" target="_blank" rel="noopener">
         {appLabel}
       </a>
       {
         docsHref && docsLabel && (
-          <a href={docsHref} class="btn border border-white/40 hover:bg-white/10" target="_blank" rel="noopener">
+          <a href={docsHref} data-analytics-event="docs_click" data-analytics-placement="product_footer" class="btn border border-white/40 hover:bg-white/10" target="_blank" rel="noopener">
             {docsLabel}
           </a>
         )

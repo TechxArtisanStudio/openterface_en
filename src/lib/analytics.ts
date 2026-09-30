@@ -35,8 +35,10 @@ export function trackEvent(
   if (!hasAnalyticsConsent(storageKey)) return false;
   if (typeof window.gtag !== 'function') return false;
 
+  const pageProduct = document.querySelector<HTMLElement>('[data-analytics-page-product]')?.dataset.analyticsPageProduct;
   const payload: Record<string, string> = {
     site_locale: siteLocale,
+    ...(pageProduct ? { product: pageProduct } : {}),
     ...landingCampaign(storageKey),
   };
 
@@ -101,6 +103,8 @@ export function initAnalyticsEvents(siteLocale: string, storageKey: string): voi
       product: target.dataset.analyticsProduct,
       link_url: linkUrl,
       placement: target.dataset.analyticsPlacement,
+      sku: target.dataset.analyticsSku,
+      variant: target.dataset.analyticsVariant,
     });
   };
   document.addEventListener('click', handleClick);

@@ -74,7 +74,7 @@ const setupDocs = [
             <li>100M ready on all uConsole base boards</li>
             <li>Best if you already have the Upgrade Kit</li>
           </ul>
-          <a href={shopUrl} target="_blank" rel="noopener" class="btn-primary mt-4 inline-block text-sm">
+          <a href={shopUrl} data-analytics-event="shop_click" data-analytics-product={product.slug} data-analytics-placement="purchase_options" data-analytics-variant="extension_only" target="_blank" rel="noopener" class="btn-primary mt-4 inline-block text-sm">
             Order Extension v2 →
           </a>
         </div>
@@ -86,13 +86,13 @@ const setupDocs = [
             <li>Includes HackerGadgets uConsole Upgrade Kit</li>
             <li>Gigabit-ready out of the box</li>
           </ul>
-          <a href={shopUrl} target="_blank" rel="noopener" class="btn-primary mt-4 inline-block text-sm">
+          <a href={shopUrl} data-analytics-event="shop_click" data-analytics-product={product.slug} data-analytics-placement="purchase_options" data-analytics-variant="upgrade_bundle" target="_blank" rel="noopener" class="btn-primary mt-4 inline-block text-sm">
             Order Bundle →
           </a>
         </div>
       </div>
       <p class="mx-auto mt-6 max-w-2xl text-center text-sm text-muted">
-        <a href={docsPath('/products/kvmext/purchase-options/')} class="font-medium text-primary-dark hover:underline">
+        <a href={docsPath('/products/kvmext/purchase-options/')} data-analytics-event="docs_click" data-analytics-placement="purchase_options" class="font-medium text-primary-dark hover:underline">
           Compare options on docs →
         </a>
       </p>
@@ -118,7 +118,7 @@ const setupDocs = [
         </div>
       </div>
       <p class="mx-auto mt-6 max-w-2xl text-center text-sm text-muted">
-        <a href={docsPath('/products/kvmext/ethernet/')} class="font-medium text-primary-dark hover:underline">
+        <a href={docsPath('/products/kvmext/ethernet/')} data-analytics-event="docs_click" data-analytics-placement="ethernet_cards" class="font-medium text-primary-dark hover:underline">
           Ethernet setup guide →
         </a>
       </p>
@@ -226,7 +226,7 @@ const setupDocs = [
       <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {
           setupDocs.map((doc) => (
-            <a href={doc.href} target="_blank" rel="noopener" class="card hover:border-primary-dark hover:shadow-md">
+            <a href={doc.href} data-analytics-event="docs_click" data-analytics-placement="setup_documentation" target="_blank" rel="noopener" class="card hover:border-primary-dark hover:shadow-md">
               <h3 class="text-lg font-semibold text-primary-dark">{doc.title} →</h3>
               <p class="mt-2 text-sm text-muted">{doc.description}</p>
             </a>

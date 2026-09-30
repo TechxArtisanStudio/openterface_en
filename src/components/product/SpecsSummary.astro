@@ -32,7 +32,7 @@ if (specs.length === 0) return null;
     {
       docsHref && (
         <p class="mt-6 text-center">
-          <a href={docsHref} class="text-sm font-semibold text-accent-on-light hover:underline" target="_blank" rel="noopener">
+          <a href={docsHref} data-analytics-event="docs_click" data-analytics-placement="product_specs" class="text-sm font-semibold text-accent-on-light hover:underline" target="_blank" rel="noopener">
             {docsLabel}
           </a>
         </p>

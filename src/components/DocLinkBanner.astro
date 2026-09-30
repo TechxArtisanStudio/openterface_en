@@ -23,7 +23,7 @@ const cta = linkLabel ?? ui.docLinkBanner.linkLabel;
 <div class="border-y border-brand-light bg-brand-light px-4 py-3 text-center md:py-3.5" role="status">
   <p class="text-sm leading-relaxed text-ink">{text}</p>
   <a
-    href={docsPath()}
+    href={docsPath()} data-analytics-event="docs_click" data-analytics-placement="docs_banner"
     class="mt-2 inline-block text-sm font-semibold text-ink underline decoration-primary-dark underline-offset-2 hover:text-primary-dark"
     target="_blank"
     rel="noopener"

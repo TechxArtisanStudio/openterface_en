@@ -10,6 +10,7 @@ interface Props {
   emailPlaceholder?: string;
   footnote?: string;
   analyticsPlacement?: string;
+  analyticsProduct?: string;
   /** When false, hide the optional name field (footer compact). */
   showNameField?: boolean;
 }
@@ -22,6 +23,7 @@ const {
   emailPlaceholder = 'Work email *',
   footnote = 'At most one email per month. Unsubscribe anytime. Questions? info@openterface.com',
   analyticsPlacement = 'subscribe_form',
+  analyticsProduct,
   showNameField = true,
 } = Astro.props;
 
@@ -37,6 +39,7 @@ const isCompact = variant === 'compact';
   ]}
   data-subscribe-endpoint={siteConfig.links.subscribe}
   data-analytics-placement={analyticsPlacement}
+  data-analytics-product={analyticsProduct}
   novalidate
 >
   <div class="subscribe-fields">
@@ -313,6 +316,8 @@ const isCompact = variant === 'compact';
         if (result?.success) {
           window.__openterfaceAnalytics?.track?.('newsletter_subscribe', {
             placement: form.dataset.analyticsPlacement ?? 'subscribe_form',
+            product: form.dataset.analyticsProduct,
+            form_id: form.id,
           });
           submitBtn.textContent = messages.success;
           submitBtn.dataset.state = 'success';

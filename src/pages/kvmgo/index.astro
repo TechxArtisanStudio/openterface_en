@@ -107,7 +107,7 @@ const highlightCallouts = [
       <div class="grid gap-6 md:grid-cols-2">
         {
           highlightCallouts.map((item) => (
-            <a href={item.href} class="card hover:border-primary-dark hover:shadow-md" target="_blank" rel="noopener">
+            <a href={item.href} data-analytics-event="docs_click" data-analytics-placement="product_highlights" class="card hover:border-primary-dark hover:shadow-md" target="_blank" rel="noopener">
               <h3 class="text-lg font-semibold text-primary-dark">{item.title}</h3>
               <p class="mt-2 text-sm text-muted">{item.description}</p>
               <span class="mt-4 inline-block text-sm font-semibold text-primary-dark">Learn more on docs →</span>
