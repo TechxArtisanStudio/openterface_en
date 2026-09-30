@@ -26,9 +26,9 @@ test('locale switch preserves UTM params but not _gl in href', async ({ page }) 
   expect(href).not.toContain('_ga');
 });
 
-test('_gl is removed from address bar after page load', async ({ page }) => {
+test('_gl remains available for the Google tag to consume', async ({ page }) => {
   await page.goto('/?_gl=1*abc*_ga*xyz', { waitUntil: 'domcontentloaded' });
-  await expect.poll(() => new URL(page.url()).searchParams.has('_gl')).toBe(false);
+  expect(new URL(page.url()).searchParams.get('_gl')).toBe('1*abc*_ga*xyz');
 });
 
 test('gtag config uses shared cookie domain', async ({ page }) => {
