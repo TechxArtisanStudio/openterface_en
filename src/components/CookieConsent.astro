@@ -57,12 +57,14 @@ const { title, description, storageKey, acceptLabel, rejectLabel } = siteConfig.
   document.getElementById('cookie-consent-accept')?.addEventListener('click', () => {
     localStorage.setItem(storageKey, 'granted');
     window.__openterfaceAnalytics?.grant();
+    window.dispatchEvent(new Event('openterface:consent-change'));
     hideBanner();
   });
 
   document.getElementById('cookie-consent-reject')?.addEventListener('click', () => {
     localStorage.setItem(storageKey, 'denied');
     window.__openterfaceAnalytics?.deny();
+    window.dispatchEvent(new Event('openterface:consent-change'));
     hideBanner();
   });
 

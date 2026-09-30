@@ -1,4 +1,5 @@
 ---
+import { siteConfig } from '../../config/site';
 import KeyCmdWordmark from './KeyCmdWordmark.astro';
 import KeyModNewBadge from './KeyModNewBadge.astro';
 import { keymodLinks } from '../../i18n/keymodLanding';
@@ -93,6 +94,9 @@ const { copy } = Astro.props;
       >
         KeyCmd
       </a>
+      {siteConfig.analytics.enabled && (
+        <a href="#" id="cookie-settings">Cookie settings</a>
+      )}
     </div>
     <p class="km-footer__legal">{copy.legal}</p>
   </div>

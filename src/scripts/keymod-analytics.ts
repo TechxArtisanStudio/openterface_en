@@ -2,20 +2,16 @@
 
 const SESSION_PREFIX = 'km-analytics:';
 
-function trackKeymod(eventName: string, params: Record<string, string>): void {
-  window.__openterfaceAnalytics?.track?.(eventName, params);
-}
-
-function oncePerSession(key: string): boolean {
-  const storageKey = `${SESSION_PREFIX}${key}`;
-  if (sessionStorage.getItem(storageKey)) return false;
-  sessionStorage.setItem(storageKey, '1');
+// Mark an interaction as sent only when the consent-gated tracker actually queues it.
+const sentInMemory = new Set<string>();
+export function trackKeymodOnce(eventName: string, sessionKey: string, params: Record<string, string>): boolean {
+  const key = `${SESSION_PREFIX}${sessionKey}`;
+  if (sentInMemory.has(key)) return true;
+  try { if (sessionStorage.getItem(key)) return true; } catch { /* Use memory instead. */ }
+  if (!window.__openterfaceAnalytics?.track?.(eventName, params)) return false;
+  sentInMemory.add(key);
+  try { sessionStorage.setItem(key, '1'); } catch { /* Use memory instead. */ }
   return true;
-}
-
-export function trackKeymodOnce(eventName: string, sessionKey: string, params: Record<string, string>): void {
-  if (!oncePerSession(sessionKey)) return;
-  trackKeymod(eventName, params);
 }
 
 export function trackKeymodZoneView(zone: string): void {
@@ -45,16 +41,17 @@ export function initKeymodScrollDepth(): void {
     const percent = Math.min(100, Math.round((scrollTop / height) * 100));
     for (const threshold of thresholds) {
       if (percent >= threshold && threshold > maxReported) {
-        maxReported = threshold;
-        trackKeymodOnce('scroll_depth', `scroll:${threshold}`, {
+        const sent = trackKeymodOnce('scroll_depth', `scroll:${threshold}`, {
           percent: String(threshold),
           product: 'keymod',
         });
+        if (sent) maxReported = threshold;
       }
     }
   };
 
   window.addEventListener('scroll', report, { passive: true });
+  window.addEventListener('openterface:consent-change', report);
   report();
 }
 
@@ -62,12 +59,22 @@ export function initKeymodZoneObservers(): void {
   const zones = document.querySelectorAll<HTMLElement>('[data-km-zone]');
   if (zones.length === 0) return;
 
+  const visibleZones = new Set<string>();
+  window.addEventListener('openterface:consent-change', () => {
+    visibleZones.forEach(trackKeymodZoneView);
+  });
+
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
         const zone = entry.target.getAttribute('data-km-zone');
-        if (zone) trackKeymodZoneView(zone);
+        if (!zone) continue;
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+          visibleZones.add(zone);
+          trackKeymodZoneView(zone);
+        } else {
+          visibleZones.delete(zone);
+        }
       }
     },
     { threshold: 0.35 },

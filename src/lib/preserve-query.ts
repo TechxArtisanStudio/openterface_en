@@ -8,13 +8,14 @@ const LOCALE_SWITCH_QUERY_KEYS = new Set([
   'utm_id',
   'gclid',
   'fbclid',
+  'oppref',
   'product',
   'sort',
   'lang',
   'l',
 ]);
 
-/** GA linker noise stripped on cross-locale navigation. */
+/** Do not copy stale incoming linker values; Google decorates outgoing links at click time. */
 const LOCALE_SWITCH_STRIP_KEYS = new Set(['_gl', '_ga', '_gac', '_gid']);
 
 /** Return whitelisted query string for locale-switch hrefs (`?foo=bar` or ``). */

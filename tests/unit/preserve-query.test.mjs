@@ -33,3 +33,7 @@ test('preserveQueryForLocaleSwitch returns empty when only _gl remains', () => {
 test('preserveQueryForLocaleSwitch handles leading question mark', () => {
   assert.equal(preserveQueryForLocaleSwitch('utm_medium=social'), '?utm_medium=social');
 });
+
+test('locale switches retain OpenAI click reference without copying stale GA linker values', () => {
+  assert.equal(preserveQueryForLocaleSwitch('?oppref=click123&utm_source=chatgpt&_gl=stale'), '?oppref=click123&utm_source=chatgpt');
+});

@@ -7,21 +7,15 @@ export const keymodLinks = {
   crowdSupplyIcon: '/keymod/badges/crowd-supply-icon.svg',
   openSourceInitiative: '/keymod/badges/open-source-initiative.svg',
   openSourceHardware: '/keymod/badges/open-source-hardware.svg',
-  keycmd:
-    'https://openterface.com/keycmd/?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-to-keycmd',
-  docs:
-    `${docsPath('/products/keymod/')}?utm_source=openterface&utm_medium=landing&utm_campaign=keymod-landing-v2`,
+  keycmd: 'https://openterface.com/keycmd/',
+  docs: docsPath('/products/keymod/'),
   discord: 'https://discord.gg/sFTU7O8Xe3',
-  forum:
-    'https://forum.openterface.com?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-firmware-roadmap',
-  forumNav:
-    'https://forum.openterface.com/c/keymod/9?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-nav',
-  forumFooter:
-    'https://forum.openterface.com?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-footer',
+  forum: 'https://forum.openterface.com',
+  forumNav: 'https://forum.openterface.com/c/keymod/9',
+  forumFooter: 'https://forum.openterface.com',
   minikvm: '/minikvm/',
   kvmgo: '/kvmgo/',
-  gamepadTutorial:
-    `${docsPath('/tutorial/keymod/08-gamepad/')}?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-game-zone`,
+  gamepadTutorial: docsPath('/tutorial/keymod/08-gamepad/'),
   gamepadDemo: 'https://www.instagram.com/p/DY7XsRIBQi6/',
   /** Temporary POV demos — @techxartisan / curated IG until final video assets ship. */
   keymodIntroReel: 'https://www.instagram.com/reel/DUH77BoiarV/',
@@ -29,6 +23,5 @@ export const keymodLinks = {
   composeSendDemo: 'https://www.instagram.com/p/DZNZVbUBBxD/',
   composeSendCodeReel: 'https://www.instagram.com/techxartisan/reel/DYXUmH2zSzD/',
   composeSendBatchRenameDemo: 'https://x.com/TechxArtisan/status/2057121671400554849',
-  presentationTutorial:
-    `${docsPath('/tutorial/keymod/10-presentation/')}?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-pov-demo`,
+  presentationTutorial: docsPath('/tutorial/keymod/10-presentation/'),
 } as const;

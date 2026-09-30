@@ -1,11 +1,5 @@
-export const UTM_PARAM_KEYS = [
-  'utm_source',
-  'utm_medium',
-  'utm_campaign',
-  'utm_content',
-  'utm_term',
-  'utm_id',
-] as const;
+import { UTM_PARAM_KEYS, getCampaign, crowdSupplyCampaignUrl } from './campaign-attribution';
+export { UTM_PARAM_KEYS };
 
 export type UtmParamKey = (typeof UTM_PARAM_KEYS)[number];
 
@@ -17,24 +11,19 @@ declare global {
       grant: () => void;
       deny: () => void;
       showBanner: () => void;
-      track?: (eventName: string, params?: Record<string, string | undefined>) => void;
+      track?: (eventName: string, params?: Record<string, string | undefined>) => boolean;
     };
   }
 }
 
-export function getLandingUtmParams(): Record<string, string> {
-  if (typeof window === 'undefined') return {};
-  const search = new URLSearchParams(window.location.search);
-  const out: Record<string, string> = {};
-  for (const key of UTM_PARAM_KEYS) {
-    const value = search.get(key);
-    if (value) out[key] = value;
-  }
-  return out;
+export function hasAnalyticsConsent(storageKey: string): boolean {
+  try { return localStorage.getItem(storageKey) === 'granted'; } catch { return false; }
 }
 
-export function hasAnalyticsConsent(storageKey: string): boolean {
-  return localStorage.getItem(storageKey) === 'granted';
+function landingCampaign(storageKey: string): Record<string, string> {
+  let storage: Storage | undefined;
+  try { storage = window.sessionStorage; } catch { /* Storage may be blocked. */ }
+  return getCampaign(window.location.search, hasAnalyticsConsent(storageKey), storage);
 }
 
 export function trackEvent(
@@ -42,13 +31,13 @@ export function trackEvent(
   storageKey: string,
   siteLocale: string,
   params: Record<string, string | undefined> = {},
-): void {
-  if (!hasAnalyticsConsent(storageKey)) return;
-  if (typeof window.gtag !== 'function') return;
+): boolean {
+  if (!hasAnalyticsConsent(storageKey)) return false;
+  if (typeof window.gtag !== 'function') return false;
 
   const payload: Record<string, string> = {
     site_locale: siteLocale,
-    ...getLandingUtmParams(),
+    ...landingCampaign(storageKey),
   };
 
   for (const [key, value] of Object.entries(params)) {
@@ -56,11 +45,12 @@ export function trackEvent(
   }
 
   window.gtag('event', eventName, payload);
+  return true;
 }
 
 export function initAnalyticsEvents(siteLocale: string, storageKey: string): void {
   const track = (eventName: string, params?: Record<string, string | undefined>) => {
-    trackEvent(eventName, storageKey, siteLocale, params);
+    return trackEvent(eventName, storageKey, siteLocale, params);
   };
 
   if (window.__openterfaceAnalytics) {
@@ -74,7 +64,26 @@ export function initAnalyticsEvents(siteLocale: string, storageKey: string): voi
     };
   }
 
-  document.addEventListener('click', (event) => {
+  // Decorate real hrefs, so keyboard, middle-click and context-menu navigation work too.
+  const originalHrefs = new WeakMap<HTMLAnchorElement, string>();
+  const decorate = () => {
+    const campaign = landingCampaign(storageKey);
+    document.querySelectorAll<HTMLAnchorElement>('a[data-analytics-event="crowdsupply_click"]').forEach(link => {
+      const original = originalHrefs.get(link) ?? link.href;
+      originalHrefs.set(link, original);
+      link.href = crowdSupplyCampaignUrl(original, campaign, link.dataset.analyticsProduct);
+    });
+  };
+  decorate();
+  window.addEventListener('openterface:consent-change', decorate);
+  window.addEventListener('pageshow', decorate);
+  document.addEventListener('pointerdown', decorate);
+  document.addEventListener('focusin', decorate);
+  document.addEventListener('contextmenu', decorate);
+
+  const handleClick = (event: MouseEvent) => {
+    if (event.type === 'auxclick' && event.button !== 1) return;
+    decorate();
     const target = (event.target as Element | null)?.closest('[data-analytics-event]');
     if (!target || !(target instanceof HTMLElement)) return;
 
@@ -93,5 +102,7 @@ export function initAnalyticsEvents(siteLocale: string, storageKey: string): voi
       link_url: linkUrl,
       placement: target.dataset.analyticsPlacement,
     });
-  });
+  };
+  document.addEventListener('click', handleClick);
+  document.addEventListener('auxclick', handleClick);
 }

@@ -17,11 +17,7 @@ const { storageKey } = consent;
   }
   window.gtag = gtag;
 
-  if (location.search.includes('_gl=')) {
-    const url = new URL(location.href);
-    url.searchParams.delete('_gl');
-    history.replaceState(null, '', url.pathname + url.search + url.hash);
-  }
+  // Keep incoming _gl until Google's tag has consumed the linker identifier.
 
   if (!isProductionHost) {
     window.__openterfaceAnalytics = {
