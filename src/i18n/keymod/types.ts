@@ -274,6 +274,10 @@ export type KeymodLandingStrings = {
     overFunded: string;
     backers: string;
     daysLeft: string;
+    hoursLeft?: string;
+    minutesLeft?: string;
+    secondsLeft?: string;
+    fundingEnded?: string;
     updates: string;
     cta: string;
     lastUpdated: string;
