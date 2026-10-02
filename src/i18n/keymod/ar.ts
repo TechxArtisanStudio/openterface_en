@@ -10,7 +10,7 @@ export const ar: KeymodLandingStrings = {
     nav: {
       docs: "الوثائق",
     forum: "المنتدى",
-      preLaunchCta: "قبل الإطلاق",
+      preLaunchCta: "طلب مسبق",
     },
     povTabs: {
       keyboard: "لوحة المفاتيح",
@@ -29,7 +29,7 @@ export const ar: KeymodLandingStrings = {
       equationEquals: "=",
       lead: "قم بتوصيله بالجهاز المستهدف. تحكم عبر BLE، بدون تعريف، جاهز لـ BIOS. خادم، كمبيوتر شخصي، أو وحدة ألعاب. أي منفذ USB.",
       docsCta: "الوثائق",
-      preLaunchCta: "ما قبل الإطلاق",
+      preLaunchCta: "طلب مسبق",
     },
     whatItIs: {
       eyebrow: "ما هو",
@@ -50,7 +50,7 @@ export const ar: KeymodLandingStrings = {
       eyebrow: "اختر منفذك",
       title: "ميني مقابل بلاس",
       stackLine: "نفس تطبيق KeyCmd. دونجل مختلف حسب المنفذ في جهازك.",
-      crowdSupplyCta: "الطلب المُسبق على Crowd Supply",
+      crowdSupplyCta: "طلب مسبق",
       mini: {
         name: "KeyMod Mini",
         port: "ذكر USB-C → الهدف",
@@ -580,19 +580,19 @@ export const ar: KeymodLandingStrings = {
       eyebrow: "Crowd Supply",
       title: "الإطلاق المسبق على Crowd Supply",
       body: "ادعم KeyMod Mini و Plus على Crowd Supply — جسور USB بحجم الجيب تحوّل هاتفك إلى وحدة تحكم لاسلكية. ادعمنا لنجعله واقعاً!",
-      cta: "الإطلاق المسبق",
+      cta: "طلب مسبق",
     },
     crowdSupplySupport: {
       eyebrow: "ادعم المشروع",
       title: "ساعدنا في إطلاق ما هو قادم",
       body: "تابع KeyMod على Crowd Supply وادعم الحملة عند انطلاقها. الأوضاع التجريبية مثل Agent تُطرح بشكل أسرع عندما يدعمها المزيد من المطورين — فكل داعم يساعد في نقل خارطة طريق البرامج الثابتة من قائمة الانتظار إلى أرض الواقع.",
-      cta: "تابع على Crowd Supply",
+      cta: "طلب مسبق",
     },
     crowdSupplyOpensource: {
       eyebrow: "مفتوح بحكم التصميم",
       title: "عتاد مفتوح، يُطور في العلن",
       body: "يسير KeyMod على نفس نهج العتاد المفتوح الذي تتبناه Openterface Mini-KVM و KVM-GO: تصميم شفاف، وتغذية راجعة من المجتمع، ووثائق تتطور مع تطور المنتج. إن تطوير العتاد المفتوح أمر نادر ومكلف لإتقانه — ودعمك يساعدنا على الاستمرار في الابتكار بهذا النهج.",
-      cta: "ادعم العتاد المفتوح",
+      cta: "طلب مسبق",
       badgesLabel: "شهادات مجتمع العتاد المفتوح",
       osiAlt: "ترخيص مفتوح المصدر معتمد من مبادرة المصدر المفتوح",
       oshAlt: "جمعية عتاد المصدر المفتوح",

@@ -10,7 +10,7 @@ export const tw: KeymodLandingStrings = {
     nav: {
       docs: "文檔",
     forum: "論壇",
-      preLaunchCta: "預售",
+      preLaunchCta: "預購",
     },
     povTabs: {
       keyboard: "鍵盤",
@@ -29,7 +29,7 @@ export const tw: KeymodLandingStrings = {
       equationEquals: "=",
       lead: "插入目標設備。BLE 控制，免驅設計，BIOS 級就緒。服務器、PC 或遊戲主機。任意 USB 接口。",
       docsCta: "文檔",
-      preLaunchCta: "預熱",
+      preLaunchCta: "預購",
     },
     whatItIs: {
       eyebrow: "產品簡介",
@@ -50,7 +50,7 @@ export const tw: KeymodLandingStrings = {
       eyebrow: "選擇您的接口",
       title: "Mini 與 Plus",
       stackLine: "相同的 KeyCmd 應用，不同的接口設備以適配您的電腦。",
-      crowdSupplyCta: "在 Crowd Supply 開啟預售",
+      crowdSupplyCta: "預購",
       mini: {
         name: "KeyMod Mini",
         port: "USB-C 公頭 → 目標設備",
@@ -580,19 +580,19 @@ export const tw: KeymodLandingStrings = {
       eyebrow: "Crowd Supply",
       title: "Crowd Supply 預售開啟",
       body: "在 Crowd Supply 支持 KeyMod Mini 和 Plus —— 口袋級 USB 橋接器，將您的手機變身無線控制台。支持我們，讓夢想成真！",
-      cta: "參與預售",
+      cta: "預購",
     },
     crowdSupplySupport: {
       eyebrow: "支持本項目",
       title: "助力我們推出下一代產品",
       body: "在 Crowd Supply 上關注 KeyMod，並在眾籌開啟時支持我們。當更多開發者支持本項目時，像 Agent 這樣的實驗性功能就能更快落地——每一位支持者的助力，都能讓固件路線圖從規劃變為現實。",
-      cta: "在 Crowd Supply 關注",
+      cta: "預購",
     },
     crowdSupplyOpensource: {
       eyebrow: "設計即開源",
       title: "開源硬件，開放構建",
       body: "KeyMod 延續了 Openterface Mini-KVM 和 KVM-GO 的開源硬件精神：設計透明、傾聽社區反饋，並讓文檔與產品同步迭代。做好開源硬件殊為不易且成本高昂——您的支持將助力我們堅守這一初心。",
-      cta: "支持開源硬件",
+      cta: "預購",
       badgesLabel: "開源硬件社區認證",
       osiAlt: "開源促進會認證的開源許可證",
       oshAlt: "開源硬件協會",

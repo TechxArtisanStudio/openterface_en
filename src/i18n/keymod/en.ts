@@ -12,7 +12,7 @@ export const en: KeymodLandingStrings = {
   nav: {
     docs: 'Docs',
     forum: "Forum",
-    preLaunchCta: 'Back on Crowd Supply',
+    preLaunchCta: 'Pre-Order',
   },
   povTabs: {
     keyboard: 'Keyboard',
@@ -32,7 +32,7 @@ export const en: KeymodLandingStrings = {
     lead:
       'Plug into the target device. BLE control, zero driver, BIOS-ready. Server, PC, or console. Any USB port.',
     docsCta: 'Docs',
-    preLaunchCta: 'Back on Crowd Supply',
+    preLaunchCta: 'Pre-Order',
   },
   whatItIs: {
     eyebrow: 'What it is',
@@ -53,7 +53,7 @@ export const en: KeymodLandingStrings = {
     eyebrow: 'Choose your port',
     title: 'Mini vs Plus',
     stackLine: 'Same KeyCmd app. Different dongle for the port on your machine.',
-    crowdSupplyCta: 'Live on Crowd Supply',
+    crowdSupplyCta: 'Pre-Order',
     mini: {
       name: 'KeyMod Mini',
       port: 'USB-C male → target',
@@ -618,7 +618,7 @@ pm2 reload ecosystem.config.js --env production`,
     secondsLeft: 'seconds left',
     fundingEnded: 'Funding ended',
     updates: 'updates',
-    cta: 'Back the campaign',
+    cta: 'Pre-Order',
     lastUpdated: 'Updated',
     updatedJustNow: 'just now',
     updatedYesterday: 'yesterday',
@@ -629,21 +629,21 @@ pm2 reload ecosystem.config.js --env production`,
     title: 'Live on Crowd Supply',
     body:
       'Back KeyMod Mini and Plus on Crowd Supply. Pocket USB bridges that turn your phone into a wireless console. Campaign is live.',
-    cta: 'Back the campaign',
+    cta: 'Pre-Order',
   },
   crowdSupplySupport: {
     eyebrow: 'Back the project',
     title: 'Help us ship what is next',
     body:
       'KeyMod is live on Crowd Supply. Back the campaign and help us build out the firmware roadmap. Experimental modes like Agent ship faster when more builders support the project. Every backer buys us more engineering time.',
-    cta: 'Back on Crowd Supply',
+    cta: 'Pre-Order',
   },
   crowdSupplyOpensource: {
     eyebrow: 'Open by design',
     title: 'Open hardware, built in the open',
     body:
       'KeyMod follows the same open-hardware spirit as Openterface Mini-KVM and KVM-GO: transparent design, community feedback, and docs that grow with the product. Open hardware is rare and costly to get right. Your support is what lets us keep building that way.',
-    cta: 'Back open hardware',
+    cta: 'Pre-Order',
     badgesLabel: 'Open hardware community certifications',
     osiAlt: 'Open Source Initiative approved open-source license',
     oshAlt: 'Open Source Hardware Association',

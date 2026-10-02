@@ -104,16 +104,6 @@ function formatCurrency(n: number): string {
           <span class="km-hero__campaign-meta-item">
             <strong>{stats.backers}</strong> {crowdSupplyStats.backers}
           </span>
-          <span class="km-hero__campaign-meta-dot" aria-hidden="true"></span>
-          <span class="km-hero__campaign-meta-item">
-            {stats.timeLeft === null ? (crowdSupplyStats.fundingEnded ?? 'Funding ended') : (
-              <><strong>{stats.timeLeft?.value ?? stats.daysLeft}</strong>{' '}{
-                stats.timeLeft?.unit === 'hours' ? (crowdSupplyStats.hoursLeft ?? 'hours left') :
-                stats.timeLeft?.unit === 'minutes' ? (crowdSupplyStats.minutesLeft ?? 'minutes left') :
-                stats.timeLeft?.unit === 'seconds' ? (crowdSupplyStats.secondsLeft ?? 'seconds left') : crowdSupplyStats.daysLeft
-              }</>
-            )}
-          </span>
         </div>
       </div>
     ) : null}

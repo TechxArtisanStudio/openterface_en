@@ -10,7 +10,7 @@ export const nl: KeymodLandingStrings = {
     nav: {
       docs: "Docs",
     forum: "Forum",
-      preLaunchCta: "Pre-launch",
+      preLaunchCta: "Pre-order",
     },
     povTabs: {
       keyboard: "Toetsenbord",
@@ -29,7 +29,7 @@ export const nl: KeymodLandingStrings = {
       equationEquals: "=",
       lead: "Sluit aan op het doelapparaat. BLE-bediening, geen drivers vereist, BIOS-klaar. Server, pc of console. Elke USB-poort.",
       docsCta: "Docs",
-      preLaunchCta: "Pre-launch",
+      preLaunchCta: "Pre-order",
     },
     whatItIs: {
       eyebrow: "Wat het is",
@@ -50,7 +50,7 @@ export const nl: KeymodLandingStrings = {
       eyebrow: "Kies je poort",
       title: "Mini vs Plus",
       stackLine: "Dezelfde KeyCmd-app. Een andere dongle voor de poort van je machine.",
-      crowdSupplyCta: "Pre-lancering op Crowd Supply",
+      crowdSupplyCta: "Pre-order",
       mini: {
         name: "KeyMod Mini",
         port: "USB-C male → doelapparaat",
@@ -580,19 +580,19 @@ export const nl: KeymodLandingStrings = {
       eyebrow: "Crowd Supply",
       title: "Pre-launch on Crowd Supply",
       body: "Back KeyMod Mini and Plus on Crowd Supply — pocket USB bridges that turn your phone into a wireless console. Support us to make it real!",
-      cta: "Pre-launch",
+      cta: "Pre-order",
     },
     crowdSupplySupport: {
       eyebrow: "Back the project",
       title: "Help us ship what is next",
       body: "Follow KeyMod on Crowd Supply and back the campaign when it opens. Experimental modes like Agent ship faster when more builders support the project — every backer helps move the firmware roadmap from queue to reality.",
-      cta: "Follow on Crowd Supply",
+      cta: "Pre-order",
     },
     crowdSupplyOpensource: {
       eyebrow: "Open by design",
       title: "Open hardware, built in the open",
       body: "KeyMod follows the same open-hardware spirit as Openterface Mini-KVM and KVM-GO: transparent design, community feedback, and docs that grow with the product. Open hardware is rare and costly to get right — your support helps us keep building that way.",
-      cta: "Back open hardware",
+      cta: "Pre-order",
       badgesLabel: "Open hardware community certifications",
       osiAlt: "Open Source Initiative approved open-source license",
       oshAlt: "Open Source Hardware Association",

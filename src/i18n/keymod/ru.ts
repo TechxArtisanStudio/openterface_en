@@ -10,7 +10,7 @@ export const ru: KeymodLandingStrings = {
     nav: {
       docs: "Документация",
     forum: "Форум",
-      preLaunchCta: "Предзапуск",
+      preLaunchCta: "Предзаказ",
     },
     povTabs: {
       keyboard: "Клавиатура",
@@ -29,7 +29,7 @@ export const ru: KeymodLandingStrings = {
       equationEquals: "=",
       lead: "Подключите к целевому устройству. Управление по BLE, без драйверов, поддержка BIOS. Сервер, ПК или консоль. Любой USB-порт.",
       docsCta: "Документация",
-      preLaunchCta: "Предзапуск",
+      preLaunchCta: "Предзаказ",
     },
     whatItIs: {
       eyebrow: "Что это",
@@ -50,7 +50,7 @@ export const ru: KeymodLandingStrings = {
       eyebrow: "Выберите тип порта",
       title: "Mini vs Plus",
       stackLine: "То же приложение KeyCmd. Разные донглы для портов вашего компьютера.",
-      crowdSupplyCta: "Предзапуск на Crowd Supply",
+      crowdSupplyCta: "Предзаказ",
       mini: {
         name: "KeyMod Mini",
         port: "USB-C штекер → целевое устройство",
@@ -580,19 +580,19 @@ export const ru: KeymodLandingStrings = {
       eyebrow: "Crowd Supply",
       title: "Предзапуск на Crowd Supply",
       body: "Поддержите KeyMod Mini и Plus на Crowd Supply — карманные USB-мосты, превращающие ваш смартфон в беспроводную консоль. Поддержите нас, чтобы воплотить проект в жизнь!",
-      cta: "Предзапуск",
+      cta: "Предзаказ",
     },
     crowdSupplySupport: {
       eyebrow: "Поддержите проект",
       title: "Помогите нам выпустить новые решения",
       body: "Подпишитесь на KeyMod на Crowd Supply и поддержите кампанию, как только она откроется. Экспериментальные режимы, такие как Agent, выходят быстрее, когда больше энтузиастов поддерживают проект — каждый спонсор помогает воплотить дорожную карту развития прошивки в реальность.",
-      cta: "Подписаться на Crowd Supply",
+      cta: "Предзаказ",
     },
     crowdSupplyOpensource: {
       eyebrow: "Открытость как принцип",
       title: "Открытое оборудование, создаваемое открыто",
       body: "KeyMod наследует философию открытого оборудования Openterface Mini-KVM и KVM-GO: прозрачная архитектура, обратная связь от сообщества и документация, развивающаяся вместе с продуктом. Открытое железо — редкость, и его создание требует серьезных ресурсов. Ваша поддержка помогает нам продолжать работать в этом ключе.",
-      cta: "Поддержать открытое оборудование",
+      cta: "Предзаказ",
       badgesLabel: "Сертификаты сообщества открытого оборудования",
       osiAlt: "Лицензия с открытым исходным кодом, одобренная Open Source Initiative",
       oshAlt: "Open Source Hardware Association",

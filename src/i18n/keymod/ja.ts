@@ -10,7 +10,7 @@ export const ja: KeymodLandingStrings = {
     nav: {
       docs: "ドキュメント",
     forum: "フォーラム",
-      preLaunchCta: "プレローンチ",
+      preLaunchCta: "予約注文",
     },
     povTabs: {
       keyboard: "キーボード",
@@ -29,7 +29,7 @@ export const ja: KeymodLandingStrings = {
       equationEquals: "=",
       lead: "対象デバイスに接続するだけ。BLE制御、ドライバ不要、BIOS対応。サーバー、PC、コンソール。あらゆるUSBポートで。",
       docsCta: "ドキュメント",
-      preLaunchCta: "プレローンチ",
+      preLaunchCta: "予約注文",
     },
     whatItIs: {
       eyebrow: "概要",
@@ -50,7 +50,7 @@ export const ja: KeymodLandingStrings = {
       eyebrow: "ポートを選択",
       title: "Mini vs Plus",
       stackLine: "KeyCmdアプリは共通。お使いのマシンのポートに合わせたドングル。",
-      crowdSupplyCta: "Crowd Supplyでプレローンチ",
+      crowdSupplyCta: "予約注文",
       mini: {
         name: "KeyMod Mini",
         port: "USB-C オス → ターゲット",
@@ -580,19 +580,19 @@ export const ja: KeymodLandingStrings = {
       eyebrow: "Crowd Supply",
       title: "Crowd Supplyでプレローンチ",
       body: "Crowd SupplyでKeyMod MiniとPlusを応援してください。スマートフォンをワイヤレスコンソールへと変える、ポケットサイズのUSBブリッジです。プロジェクトの実現に向けて、ぜひご支援を！",
-      cta: "プレローンチ",
+      cta: "予約注文",
     },
     crowdSupplySupport: {
       eyebrow: "プロジェクトを支援する",
       title: "次の製品の実現にご支援ください",
       body: "Crowd SupplyでKeyModをフォローし、キャンペーン開始時にぜひご支援ください。Agentのような実験的モードは、より多くのビルダーによる支援によってより早くお届けできます。すべてのご支援が、ファームウェアのロードマップを計画から現実へと前進させます。",
-      cta: "Crowd Supplyでフォローする",
+      cta: "予約注文",
     },
     crowdSupplyOpensource: {
       eyebrow: "設計からオープンに",
       title: "オープンハードウェア、すべてをオープンに開発",
       body: "KeyModは、Openterface Mini-KVMおよびKVM-GOと同じオープンハードウェアの精神を受け継いでいます。透明性の高い設計、コミュニティからのフィードバック、そして製品と共に進化し続けるドキュメント。オープンハードウェアを正しく実現するには多大なコストと労力がかかりますが、皆様のご支援が、この開発スタイルを継続する力になります。",
-      cta: "オープンハードウェアを支援する",
+      cta: "予約注文",
       badgesLabel: "オープンハードウェアコミュニティの認証",
       osiAlt: "Open Source Initiativeが承認したオープンソースライセンス",
       oshAlt: "Open Source Hardware Association",

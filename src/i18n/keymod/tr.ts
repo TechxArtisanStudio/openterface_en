@@ -10,7 +10,7 @@ export const tr: KeymodLandingStrings = {
     nav: {
       docs: "Dokümanlar",
     forum: "Forum",
-      preLaunchCta: "Ön Lansman",
+      preLaunchCta: "Ön Sipariş",
     },
     povTabs: {
       keyboard: "Klavye",
@@ -29,7 +29,7 @@ export const tr: KeymodLandingStrings = {
       equationEquals: "=",
       lead: "Hedef cihaza takın. BLE kontrolü, sürücü gerektirmez, BIOS uyumlu. Sunucu, PC veya konsol. Herhangi bir USB portu.",
       docsCta: "Belgeler",
-      preLaunchCta: "Ön lansman",
+      preLaunchCta: "Ön Sipariş",
     },
     whatItIs: {
       eyebrow: "Nedir",
@@ -50,7 +50,7 @@ export const tr: KeymodLandingStrings = {
       eyebrow: "Bağlantı noktanızı seçin",
       title: "Mini vs Plus",
       stackLine: "Aynı KeyCmd uygulaması. Cihazınızdaki bağlantı noktası için farklı dongle.",
-      crowdSupplyCta: "Crowd Supply'da Ön Lansman",
+      crowdSupplyCta: "Ön Sipariş",
       mini: {
         name: "KeyMod Mini",
         port: "USB-C erkek → hedef",
@@ -580,19 +580,19 @@ export const tr: KeymodLandingStrings = {
       eyebrow: "Crowd Supply",
       title: "Crowd Supply'da Ön Lansman",
       body: "Crowd Supply'da KeyMod Mini ve Plus'a destek olun — telefonunuzu kablosuz bir konsola dönüştüren cep boyutunda USB köprüleri. Bunu gerçeğe dönüştürmemiz için bize destek olun!",
-      cta: "Ön Lansman",
+      cta: "Ön Sipariş",
     },
     crowdSupplySupport: {
       eyebrow: "Projeyi destekleyin",
       title: "Sıradaki yeniliği sunmamıza yardımcı olun",
       body: "Crowd Supply'da KeyMod'u takip edin ve kampanya başladığında destek olun. Agent gibi deneysel modlar, daha fazla geliştirici projeyi desteklediğinde çok daha hızlı hayata geçiyor — her destekçi, ürün yazılımı yol haritasının bekleme listesinden gerçeğe dönüşmesine katkı sağlıyor.",
-      cta: "Crowd Supply'da Takip Et",
+      cta: "Ön Sipariş",
     },
     crowdSupplyOpensource: {
       eyebrow: "Açık tasarım",
       title: "Açık donanım, şeffaf bir şekilde geliştirildi",
       body: "KeyMod, Openterface Mini-KVM ve KVM-GO ile aynı açık donanım ruhunu paylaşıyor: şeffaf tasarım, topluluk geri bildirimleri ve ürünle birlikte büyüyen dokümantasyon. İyi bir açık donanım geliştirmek nadir ve maliyetli bir süreçtir — desteğiniz, bu şekilde üretmeye devam etmemize olanak tanıyor.",
-      cta: "Açık donanımı destekle",
+      cta: "Ön Sipariş",
       badgesLabel: "Açık donanım topluluk sertifikaları",
       osiAlt: "Open Source Initiative onaylı açık kaynak lisansı",
       oshAlt: "Open Source Hardware Association",

@@ -10,7 +10,7 @@ export const pl: KeymodLandingStrings = {
     nav: {
       docs: "Dokumentacja",
     forum: "Forum",
-      preLaunchCta: "Przedpremierowo",
+      preLaunchCta: "Przedsprzedaż",
     },
     povTabs: {
       keyboard: "Klawiatura",
@@ -29,7 +29,7 @@ export const pl: KeymodLandingStrings = {
       equationEquals: "=",
       lead: "Podłącz do urządzenia docelowego. Sterowanie BLE, zero sterowników, gotowość do BIOS. Serwer, PC lub konsola. Dowolny port USB.",
       docsCta: "Dokumentacja",
-      preLaunchCta: "Przedpremierowo",
+      preLaunchCta: "Przedsprzedaż",
     },
     whatItIs: {
       eyebrow: "Czym jest",
@@ -50,7 +50,7 @@ export const pl: KeymodLandingStrings = {
       eyebrow: "Wybierz port",
       title: "Mini vs Plus",
       stackLine: "Ta sama aplikacja KeyCmd. Inny dongle do portu w Twoim komputerze.",
-      crowdSupplyCta: "Przedsprzedaż na Crowd Supply",
+      crowdSupplyCta: "Przedsprzedaż",
       mini: {
         name: "KeyMod Mini",
         port: "USB-C męski → urządzenie docelowe",
@@ -586,13 +586,13 @@ export const pl: KeymodLandingStrings = {
       eyebrow: "Wesprzyj projekt",
       title: "Pomóż nam dostarczyć to, co nowe",
       body: "Obserwuj KeyMod na Crowd Supply i wesprzyj kampanię, gdy tylko wystartuje. Eksperymentalne tryby, takie jak Agent, są wdrażane szybciej, gdy projekt wspiera więcej twórców — każdy wspierający pomaga urzeczywistnić roadmapę firmware'u.",
-      cta: "Obserwuj na Crowd Supply",
+      cta: "Przedsprzedaż",
     },
     crowdSupplyOpensource: {
       eyebrow: "Otwarte z założenia",
       title: "Otwarty sprzęt, rozwijany w otwartym środowisku",
       body: "KeyMod kontynuuje filozofię otwartego sprzętu znaną z Openterface Mini-KVM i KVM-GO: transparentny projekt, opinie społeczności i dokumentacja, która rozwija się razem z produktem. Otwarty sprzęt to rzadkość, a jego rzetelne wykonanie wymaga dużych nakładów — Twoje wsparcie pozwala nam kontynuować tę misję.",
-      cta: "Wesprzyj otwarty sprzęt",
+      cta: "Przedsprzedaż",
       badgesLabel: "Certyfikaty społeczności otwartego sprzętu",
       osiAlt: "Licencja open-source zatwierdzona przez Open Source Initiative",
       oshAlt: "Open Source Hardware Association",

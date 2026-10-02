@@ -10,7 +10,7 @@ export const de: KeymodLandingStrings = {
     nav: {
       docs: "Dokumentation",
     forum: "Forum",
-      preLaunchCta: "Pre-Launch",
+      preLaunchCta: "Vorbestellen",
     },
     povTabs: {
       keyboard: "Tastatur",
@@ -29,7 +29,7 @@ export const de: KeymodLandingStrings = {
       equationEquals: "=",
       lead: "An das Zielgerät anschließen. BLE-Steuerung, treiberlos, BIOS-bereit. Server, PC oder Konsole. Jeder USB-Anschluss.",
       docsCta: "Dokumentation",
-      preLaunchCta: "Pre-Launch",
+      preLaunchCta: "Vorbestellen",
     },
     whatItIs: {
       eyebrow: "Was es ist",
@@ -50,7 +50,7 @@ export const de: KeymodLandingStrings = {
       eyebrow: "Wähle deinen Anschluss",
       title: "Mini vs Plus",
       stackLine: "Gleiche KeyCmd-App. Unterschiedlicher Dongle für den Port an deinem Gerät.",
-      crowdSupplyCta: "Pre-Launch auf Crowd Supply",
+      crowdSupplyCta: "Vorbestellen",
       mini: {
         name: "KeyMod Mini",
         port: "USB-C Stecker → Zielgerät",
@@ -580,19 +580,19 @@ export const de: KeymodLandingStrings = {
       eyebrow: "Crowd Supply",
       title: "Pre-Launch auf Crowd Supply",
       body: "Unterstütze KeyMod Mini und Plus auf Crowd Supply – USB-Brücken für die Hosentasche, die dein Smartphone in eine kabellose Konsole verwandeln. Unterstütze uns, damit es Realität wird!",
-      cta: "Pre-Launch",
+      cta: "Vorbestellen",
     },
     crowdSupplySupport: {
       eyebrow: "Projekt unterstützen",
       title: "Hilf uns, die nächste Innovation auszuliefern",
       body: "Folge KeyMod auf Crowd Supply und unterstütze die Kampagne, sobald sie startet. Experimentelle Modi wie Agent werden schneller realisiert, wenn mehr Entwickler das Projekt unterstützen – jeder Unterstützer hilft, die Firmware-Roadmap aus der Warteschlange in die Realität zu holen.",
-      cta: "Auf Crowd Supply folgen",
+      cta: "Vorbestellen",
     },
     crowdSupplyOpensource: {
       eyebrow: "Von Grund auf offen",
       title: "Open Hardware, transparent entwickelt",
       body: "KeyMod folgt demselben Open-Hardware-Gedanken wie Openterface Mini-KVM und KVM-GO: transparentes Design, Community-Feedback und eine Dokumentation, die mit dem Produkt wächst. Open Hardware ist selten und aufwendig umzusetzen – Ihre Unterstützung hilft uns, diesen Weg konsequent weiterzugehen.",
-      cta: "Open Hardware unterstützen",
+      cta: "Vorbestellen",
       badgesLabel: "Zertifizierungen der Open-Hardware-Community",
       osiAlt: "Von der Open Source Initiative genehmigte Open-Source-Lizenz",
       oshAlt: "Open Source Hardware Association",

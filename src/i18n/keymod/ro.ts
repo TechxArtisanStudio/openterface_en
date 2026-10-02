@@ -10,7 +10,7 @@ export const ro: KeymodLandingStrings = {
     nav: {
       docs: "Documentație",
     forum: "Forum",
-      preLaunchCta: "Pre-lansare",
+      preLaunchCta: "Pre-comandă",
     },
     povTabs: {
       keyboard: "Tastatură",
@@ -29,7 +29,7 @@ export const ro: KeymodLandingStrings = {
       equationEquals: "=",
       lead: "Conectează-l la dispozitivul țintă. Control BLE, zero drivere, pregătit pentru BIOS. Server, PC sau consolă. Orice port USB.",
       docsCta: "Documentație",
-      preLaunchCta: "Pre-lansare",
+      preLaunchCta: "Pre-comandă",
     },
     whatItIs: {
       eyebrow: "Ce este",
@@ -50,7 +50,7 @@ export const ro: KeymodLandingStrings = {
       eyebrow: "Alegeți portul",
       title: "Mini vs Plus",
       stackLine: "Aceeași aplicație KeyCmd. Un dongle diferit pentru portul mașinii tale.",
-      crowdSupplyCta: "Pre-lansare pe Crowd Supply",
+      crowdSupplyCta: "Pre-comandă",
       mini: {
         name: "KeyMod Mini",
         port: "USB-C mascul → țintă",
@@ -580,19 +580,19 @@ export const ro: KeymodLandingStrings = {
       eyebrow: "Crowd Supply",
       title: "Pre-lansare pe Crowd Supply",
       body: "Susține KeyMod Mini și Plus pe Crowd Supply — punți USB de buzunar care transformă telefonul tău într-o consolă wireless. Sprijină-ne pentru a face acest lucru realitate!",
-      cta: "Pre-lansare",
+      cta: "Pre-comandă",
     },
     crowdSupplySupport: {
       eyebrow: "Susține proiectul",
       title: "Ajută-ne să lansăm următoarea etapă",
       body: "Urmărește KeyMod pe Crowd Supply și susține campania când se deschide. Modurile experimentale precum Agent se lansează mai repede atunci când mai mulți developeri sprijină proiectul — fiecare susținător ajută la transformarea roadmap-ului firmware-ului din așteptare în realitate.",
-      cta: "Urmărește pe Crowd Supply",
+      cta: "Pre-comandă",
     },
     crowdSupplyOpensource: {
       eyebrow: "Deschis prin design",
       title: "Hardware deschis, construit în mod transparent",
       body: "KeyMod urmează aceeași filozofie de hardware deschis ca Openterface Mini-KVM și KVM-GO: design transparent, feedback din partea comunității și documentație care evoluează împreună cu produsul. Hardware-ul deschis este rar și costisitor de realizat corect — sprijinul tău ne ajută să continuăm să construim în acest mod.",
-      cta: "Susține hardware-ul deschis",
+      cta: "Pre-comandă",
       badgesLabel: "Certificări ale comunității de hardware deschis",
       osiAlt: "Licență open-source aprobată de Open Source Initiative",
       oshAlt: "Open Source Hardware Association",

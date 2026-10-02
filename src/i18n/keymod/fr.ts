@@ -10,7 +10,7 @@ export const fr: KeymodLandingStrings = {
     nav: {
       docs: "Docs",
     forum: "Forum",
-      preLaunchCta: "Pré-lancement",
+      preLaunchCta: "Precommander",
     },
     povTabs: {
       keyboard: "Clavier",
@@ -29,7 +29,7 @@ export const fr: KeymodLandingStrings = {
       equationEquals: "=",
       lead: "Branchez-le à l'appareil cible. Contrôle BLE, zéro pilote, prêt pour le BIOS. Serveur, PC ou console. N'importe quel port USB.",
       docsCta: "Documentation",
-      preLaunchCta: "Pré-lancement",
+      preLaunchCta: "Precommander",
     },
     whatItIs: {
       eyebrow: "Ce que c'est",
@@ -50,7 +50,7 @@ export const fr: KeymodLandingStrings = {
       eyebrow: "Choisissez votre port",
       title: "Mini vs Plus",
       stackLine: "Même application KeyCmd. Dongle différent selon le port de votre machine.",
-      crowdSupplyCta: "Pré-lancement sur Crowd Supply",
+      crowdSupplyCta: "Precommander",
       mini: {
         name: "KeyMod Mini",
         port: "USB-C mâle → cible",
@@ -580,19 +580,19 @@ export const fr: KeymodLandingStrings = {
       eyebrow: "Crowd Supply",
       title: "Pré-lancement sur Crowd Supply",
       body: "Soutenez KeyMod Mini et Plus sur Crowd Supply — des ponts USB de poche qui transforment votre smartphone en console sans fil. Soutenez-nous pour le concrétiser !",
-      cta: "Pré-lancement",
+      cta: "Precommander",
     },
     crowdSupplySupport: {
       eyebrow: "Soutenez le projet",
       title: "Aidez-nous à concrétiser la suite",
       body: "Suivez KeyMod sur Crowd Supply et soutenez la campagne dès son lancement. Les modes expérimentaux comme Agent arrivent plus vite lorsque plus de makers soutiennent le projet — chaque contributeur aide à transformer la feuille de route firmware en réalité.",
-      cta: "Suivre sur Crowd Supply",
+      cta: "Precommander",
     },
     crowdSupplyOpensource: {
       eyebrow: "Ouvert par conception",
       title: "Hardware ouvert, construit en toute transparence",
       body: "KeyMod suit le même esprit open hardware qu'Openterface Mini-KVM et KVM-GO : conception transparente, retours de la communauté et documentation qui évolue avec le produit. L'open hardware est rare et coûteux à réaliser correctement — votre soutien nous aide à continuer de construire de cette manière.",
-      cta: "Soutenez l'open hardware",
+      cta: "Precommander",
       badgesLabel: "Certifications de la communauté open hardware",
       osiAlt: "Licence open source approuvée par l'Open Source Initiative",
       oshAlt: "Open Source Hardware Association",
