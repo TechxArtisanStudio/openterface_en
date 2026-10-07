@@ -4,10 +4,10 @@
     "goal": 15000,
     "percentFunded": 354,
     "updates": 9,
-    "backers": 499,
+    "backers": 500,
     "daysLeft": 0,
     "timeLeft": null,
-    "fetchedAt": "2026-10-06T04:16:28.269Z"
+    "fetchedAt": "2026-10-07T03:43:05.353Z"
   },
   "kvm-go": {
     "raised": 140424,
@@ -17,16 +17,16 @@
     "backers": 643,
     "daysLeft": 0,
     "timeLeft": null,
-    "fetchedAt": "2026-10-06T04:16:28.269Z"
+    "fetchedAt": "2026-10-07T03:43:05.353Z"
   },
   "minikvm": {
-    "raised": 549708,
+    "raised": 549966,
     "goal": 12000,
-    "percentFunded": 4580,
+    "percentFunded": 4583,
     "updates": 18,
-    "backers": 4062,
+    "backers": 4064,
     "daysLeft": 0,
     "timeLeft": null,
-    "fetchedAt": "2026-10-06T04:16:28.269Z"
+    "fetchedAt": "2026-10-07T03:43:05.353Z"
   }
 }
