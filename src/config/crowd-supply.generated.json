@@ -7,7 +7,7 @@
     "backers": 503,
     "daysLeft": 0,
     "timeLeft": null,
-    "fetchedAt": "2026-10-08T06:07:13.343Z"
+    "fetchedAt": "2026-10-08T06:21:17.263Z"
   },
   "kvm-go": {
     "raised": 140543,
@@ -17,7 +17,7 @@
     "backers": 644,
     "daysLeft": 0,
     "timeLeft": null,
-    "fetchedAt": "2026-10-08T06:07:13.343Z"
+    "fetchedAt": "2026-10-08T06:21:17.263Z"
   },
   "minikvm": {
     "raised": 550482,
@@ -27,6 +27,6 @@
     "backers": 4065,
     "daysLeft": 0,
     "timeLeft": null,
-    "fetchedAt": "2026-10-08T06:07:13.343Z"
+    "fetchedAt": "2026-10-08T06:21:17.263Z"
   }
 }
