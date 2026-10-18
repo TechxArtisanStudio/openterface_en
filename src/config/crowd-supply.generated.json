@@ -1,13 +1,13 @@
 {
   "keymod": {
-    "raised": 57415,
+    "raised": 56691,
     "goal": 15000,
-    "percentFunded": 382,
+    "percentFunded": 377,
     "updates": 9,
-    "backers": 517,
+    "backers": 520,
     "daysLeft": 0,
     "timeLeft": null,
-    "fetchedAt": "2026-10-17T02:31:01.744Z"
+    "fetchedAt": "2026-10-18T02:31:30.303Z"
   },
   "kvm-go": {
     "raised": 141976,
@@ -17,16 +17,16 @@
     "backers": 651,
     "daysLeft": 0,
     "timeLeft": null,
-    "fetchedAt": "2026-10-17T02:31:01.744Z"
+    "fetchedAt": "2026-10-18T02:31:30.303Z"
   },
   "minikvm": {
-    "raised": 553875,
+    "raised": 554194,
     "goal": 12000,
-    "percentFunded": 4615,
+    "percentFunded": 4618,
     "updates": 18,
-    "backers": 4085,
+    "backers": 4086,
     "daysLeft": 0,
     "timeLeft": null,
-    "fetchedAt": "2026-10-17T02:31:01.744Z"
+    "fetchedAt": "2026-10-18T02:31:30.303Z"
   }
 }
