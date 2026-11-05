@@ -21,6 +21,7 @@ export default defineConfig({
     '/community/': 'https://forum.openterface.com/',
     '/appointment/': 'https://calendar.app.google/9nyjjpA9m3TUpzsaA',
     '/support/appointment/': 'https://calendar.app.google/9nyjjpA9m3TUpzsaA',
+    '/keymod/plus/eu-doc/': 'https://assets.openterface.com/keymod/keymod-plus-eu-declaration.pdf',
   },
   // site-refactor-redirects:end
   integrations: [
