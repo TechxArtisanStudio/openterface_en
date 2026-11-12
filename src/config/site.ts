@@ -22,7 +22,8 @@ export const siteConfig = {
     docs: 'https://docs.openterface.com',
     forum: 'https://forum.openterface.com/',
     appOverview: 'https://docs.openterface.com/app/kvm/',
-    keycmdAndroidApk: 'https://assets2.openterface.com/data/KeyCmd-release-0.19.apk',
+    keycmdAndroidApk:
+      'https://github.com/TechxArtisanStudio/Openterface_KeyCmd_Android/releases/latest/download/KeyCmd-release.apk',
     subscribe: 'https://subscribe.openterface.com/api/subscribe/',
     news: 'https://news.openterface.com',
   },
