@@ -1,0 +1,348 @@
+---
+import KeyModLayout from '../../../layouts/KeyModLayout.astro';
+import KeyModNav from '../../../components/keymod/KeyModNav.astro';
+import KeyModFooter from '../../../components/keymod/KeyModFooter.astro';
+import { getKeymodLanding, keymodLinks } from '../../../i18n/keymodLanding';
+
+const copy = getKeymodLanding();
+const canonicalPath = '/keymod/compliance/';
+
+const documents = [
+  {
+    sku: 'KeyMod Plus',
+    model: 'OP-KeyMod-Plus',
+    document: 'EU Declaration of Conformity',
+    status: 'Available',
+    href: keymodLinks.euDocPlus,
+    placement: 'keymod_compliance_plus_eu',
+  },
+  {
+    sku: 'KeyMod Plus',
+    model: 'OP-KeyMod-Plus',
+    document: 'UK Declaration of Conformity (UKCA)',
+    status: 'Available',
+    href: keymodLinks.ukDocPlus,
+    placement: 'keymod_compliance_plus_uk',
+  },
+  {
+    sku: 'KeyMod Mini',
+    model: 'OP-KeyMod-Mini',
+    document: 'UK Declaration of Conformity (UKCA)',
+    status: 'Available',
+    href: keymodLinks.ukDocMini,
+    placement: 'keymod_compliance_mini_uk',
+  },
+  {
+    sku: 'KeyMod Mini',
+    model: 'OP-KeyMod-Mini',
+    document: 'EU Declaration of Conformity',
+    status: 'In final certification',
+    href: keymodLinks.euDocMini,
+    placement: 'keymod_compliance_mini_eu',
+  },
+];
+
+const manufacturer = {
+  name: 'Guangzhou Billio Technology Co., Ltd',
+  address:
+    'Room 11, No. 1, Longjing North Street, Haizhu District, Guangzhou City, Guangdong Province, 510320 China',
+};
+---
+
+<KeyModLayout
+  title="KeyMod compliance and declarations"
+  description="EU and UK declarations of conformity for Openterface KeyMod Plus (OP-KeyMod-Plus) and KeyMod Mini (OP-KeyMod-Mini), issued by Guangzhou Billio Technology Co., Ltd."
+  canonicalPath={canonicalPath}
+>
+  <KeyModNav copy={copy.nav} />
+  <main class="km-compliance">
+    <section class="km-section">
+      <div class="km-section__inner km-section__inner--narrow">
+        <p class="km-eyebrow">Compliance</p>
+        <h1>KeyMod compliance and declarations</h1>
+        <p class="km-body">
+          Every KeyMod ships with an EU Declaration of Conformity and a UK (UKCA)
+          Declaration of Conformity. The signed documents are published here and
+          are updated in place when a certificate is reissued.
+        </p>
+
+        <div class="km-compliance__table-wrap">
+          <table class="km-docs">
+            <caption class="km-docs__caption">Declarations of conformity by SKU</caption>
+            <thead>
+              <tr>
+                <th scope="col">SKU</th>
+                <th scope="col">Document</th>
+                <th scope="col">Status</th>
+                <th scope="col">Document PDF</th>
+              </tr>
+            </thead>
+            <tbody>
+              {documents.map((entry) => (
+                <tr>
+                  <th scope="row">
+                    <span class="km-docs__sku">{entry.sku}</span>
+                    <span class="km-docs__model">{entry.model}</span>
+                  </th>
+                  <td data-label="Document">{entry.document}</td>
+                  <td data-label="Status">
+                    <span
+                      class:list={[
+                        'km-status',
+                        entry.status !== 'Available' && 'km-status--pending',
+                      ]}
+                    >
+                      {entry.status}
+                    </span>
+                  </td>
+                  <td data-label="Document PDF">
+                    <a
+                      href={entry.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-analytics-event="docs_click"
+                      data-analytics-product="keymod"
+                      data-analytics-placement={entry.placement}
+                    >
+                      {entry.status === 'Available' ? 'Open PDF' : 'View status'}
+                      <span aria-hidden="true"> →</span>
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="km-compliance__heading">Manufacturer</h2>
+        <dl class="km-facts">
+          <div>
+            <dt>Manufacturer</dt>
+            <dd>{manufacturer.name}</dd>
+          </div>
+          <div>
+            <dt>Address</dt>
+            <dd>{manufacturer.address}</dd>
+          </div>
+          <div>
+            <dt>Brand</dt>
+            <dd>Openterface</dd>
+          </div>
+        </dl>
+
+        <h2 class="km-compliance__heading">Links printed on packaging</h2>
+        <p class="km-body">
+          KeyMod packaging carries short declaration links of the form
+          <code>/keymod/&lt;sku&gt;/&lt;eu|uk&gt;-doc/</code>. Those addresses stay
+          valid and open the same documents listed above, so printed artwork never
+          needs reissuing when the index moves.
+        </p>
+
+        <p class="km-body km-compliance__contact">
+          Need a declaration for an order in progress, or a statement for a
+          regulatory file? Reach us through the
+          <a href={keymodLinks.forum} target="_blank" rel="noopener noreferrer"
+            >Openterface forum</a
+          >
+          or the
+          <a href={keymodLinks.docs} target="_blank" rel="noopener noreferrer"
+            >KeyMod documentation</a
+          >.
+        </p>
+      </div>
+    </section>
+  </main>
+  <KeyModFooter copy={copy.footer} />
+</KeyModLayout>
+
+<style>
+  .km-compliance .km-section {
+    padding-block: 2.5rem 5rem;
+  }
+
+  .km-compliance h1 {
+    margin: 0.5rem 0 0;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    line-height: 1.15;
+    color: var(--km-text);
+  }
+
+  .km-compliance .km-body {
+    margin-top: 1rem;
+    max-width: 48rem;
+  }
+
+  .km-compliance__heading {
+    margin: 2.75rem 0 1rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--km-text);
+  }
+
+  .km-compliance__table-wrap {
+    margin-top: 2rem;
+  }
+
+  .km-docs {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+
+  .km-docs__caption {
+    padding-bottom: 0.75rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--km-muted);
+  }
+
+  .km-docs th,
+  .km-docs td {
+    padding: 0.85rem 0.75rem;
+    border-bottom: 1px solid var(--km-border);
+    text-align: left;
+    vertical-align: top;
+    color: var(--km-text);
+  }
+
+  .km-docs thead th {
+    padding-block: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--km-muted);
+  }
+
+  .km-docs tbody th {
+    font-weight: 600;
+  }
+
+  .km-docs__sku {
+    display: block;
+  }
+
+  .km-docs__model {
+    display: block;
+    margin-top: 0.15rem;
+    font-family: var(--km-font-mono);
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--km-muted);
+  }
+
+  .km-docs td a {
+    font-weight: 600;
+    color: var(--km-accent-on-light);
+  }
+
+  .km-docs td a:hover {
+    color: var(--km-accent);
+  }
+
+  .km-status {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    border: 1px solid var(--km-border);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--km-muted);
+    white-space: nowrap;
+  }
+
+  .km-status--pending {
+    border-color: var(--km-accent);
+    background: var(--km-brand-light);
+    color: var(--km-accent-on-light);
+  }
+
+  .km-facts {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--km-border);
+    border-radius: 0.5rem;
+    background: var(--km-surface);
+  }
+
+  .km-facts div {
+    display: grid;
+    grid-template-columns: minmax(7rem, 10rem) 1fr;
+    gap: 0.75rem;
+  }
+
+  .km-facts dt {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--km-muted);
+  }
+
+  .km-facts dd {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--km-text);
+  }
+
+  .km-compliance code {
+    padding: 0.1rem 0.3rem;
+    border-radius: 0.25rem;
+    background: var(--km-surface);
+    font-family: var(--km-font-mono);
+    font-size: 0.85em;
+  }
+
+  .km-compliance__contact a {
+    font-weight: 600;
+    color: var(--km-accent-on-light);
+  }
+
+  @media (max-width: 720px) {
+    .km-docs thead {
+      display: none;
+    }
+
+    .km-docs__caption {
+      display: block;
+      width: 100%;
+    }
+
+    .km-docs,
+    .km-docs tbody,
+    .km-docs tr,
+    .km-docs th,
+    .km-docs td {
+      display: block;
+      width: 100%;
+    }
+
+    .km-docs tr {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--km-border);
+    }
+
+    .km-docs th,
+    .km-docs td {
+      padding: 0.15rem 0;
+      border-bottom: 0;
+    }
+
+    .km-docs td::before {
+      content: attr(data-label) ' · ';
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--km-muted);
+    }
+
+    .km-facts div {
+      grid-template-columns: 1fr;
+      gap: 0.15rem;
+    }
+  }
+</style>

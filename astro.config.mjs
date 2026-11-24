@@ -21,7 +21,6 @@ export default defineConfig({
     '/community/': 'https://forum.openterface.com/',
     '/appointment/': 'https://calendar.app.google/9nyjjpA9m3TUpzsaA',
     '/support/appointment/': 'https://calendar.app.google/9nyjjpA9m3TUpzsaA',
-    '/keymod/plus/eu-doc/': 'https://assets.openterface.com/keymod/keymod-plus-eu-declaration.pdf',
     // Apex CF rules only match the trailing-slash form; these origin stubs
     // let GitHub Pages 301 the bare /qt form to /qt/ so the rule can fire.
     '/qt/': 'https://github.com/TechxArtisanStudio/Openterface_QT',
@@ -40,11 +39,21 @@ export default defineConfig({
     '/appstore/': 'https://apps.apple.com/us/app/openterface-mini-kvm/id6478481082',
     '/shop/': 'https://shop.techxartisan.com/',
     '/feedback/': 'https://forms.gle/YJLrCKwro8tbi6ar7',
+    // KeyMod declarations of conformity.
+    // Canonical routes live under /keymod/compliance/; the shorter
+    // /keymod/<sku>/<eu|uk>-doc/ form is printed on packaging. Both forms point
+    // straight at the PDF and never at another route, because these are static
+    // meta-refresh stubs rather than HTTP redirects: chaining them fails silently.
+    '/keymod/compliance/plus/eu-doc/': 'https://assets.openterface.com/keymod/keymod-plus-eu-declaration.pdf',
+    '/keymod/compliance/plus/uk-doc/': 'https://assets.openterface.com/keymod/keymod-plus-uk-declaration.pdf',
+    '/keymod/compliance/mini/uk-doc/': 'https://assets.openterface.com/keymod/keymod-mini-uk-declaration.pdf',
+    '/keymod/plus/eu-doc/': 'https://assets.openterface.com/keymod/keymod-plus-eu-declaration.pdf',
     '/keymod/plus/uk-doc/': 'https://assets.openterface.com/keymod/keymod-plus-uk-declaration.pdf',
-    // KeyMod Mini EU DoC: served by src/pages/keymod/mini/eu-doc.astro until the
-    // signed PDF exists. Swap that page for a redirect to
-    // https://assets.openterface.com/keymod/keymod-mini-eu-declaration.pdf afterwards.
     '/keymod/mini/uk-doc/': 'https://assets.openterface.com/keymod/keymod-mini-uk-declaration.pdf',
+    // KeyMod Mini EU DoC is still in certification, so this route resolves to the
+    // status page instead of a PDF. When keymod-mini-eu-declaration.pdf is
+    // published, point this and /keymod/compliance/mini/eu-doc/ straight at it.
+    '/keymod/mini/eu-doc/': '/keymod/compliance/mini/eu-doc/',
   },
   // site-refactor-redirects:end
   integrations: [
@@ -53,7 +62,7 @@ export default defineConfig({
         !page.includes('/404') &&
         !page.includes('/preview/') &&
         // Holding page for the pending KeyMod Mini EU DoC (noindex) — drop once the PDF lands.
-        !page.includes('/keymod/mini/eu-doc'),
+        !page.includes('/keymod/compliance/mini/eu-doc'),
       namespaces: { news: false, video: false, xhtml: false },
     }),
   ],

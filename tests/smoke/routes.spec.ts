@@ -327,3 +327,36 @@ test('legacy nested product URLs redirect to flat paths', async ({ page }) => {
     await expect(page).toHaveURL(toPattern);
   }
 });
+
+test('KeyMod declaration URLs resolve to their documents', async ({ request }) => {
+  // Every declaration route is a static meta-refresh stub. Two rules matter:
+  // each one must exist, and each one must jump straight at its target so that
+  // the URLs printed on KeyMod packaging never chain through another route.
+  const routes: [string, string][] = [
+    ['/keymod/compliance/plus/eu-doc/', 'keymod-plus-eu-declaration.pdf'],
+    ['/keymod/compliance/plus/uk-doc/', 'keymod-plus-uk-declaration.pdf'],
+    ['/keymod/compliance/mini/uk-doc/', 'keymod-mini-uk-declaration.pdf'],
+    ['/keymod/plus/eu-doc/', 'keymod-plus-eu-declaration.pdf'],
+    ['/keymod/plus/uk-doc/', 'keymod-plus-uk-declaration.pdf'],
+    ['/keymod/mini/uk-doc/', 'keymod-mini-uk-declaration.pdf'],
+    ['/keymod/mini/eu-doc/', '/keymod/compliance/mini/eu-doc/'],
+  ];
+
+  for (const [path, expectedTarget] of routes) {
+    const response = await request.get(path);
+    expect(response.status(), `${path} should resolve`).toBe(200);
+    const body = await response.text();
+    const target = body.match(/http-equiv="refresh"[^>]*url=([^">]+)/i)?.[1];
+    expect(target, `${path} should meta-refresh`).toBeTruthy();
+    expect(target, `${path} should target ${expectedTarget}`).toContain(expectedTarget);
+  }
+});
+
+test('KeyMod compliance index lists every declaration', async ({ page }) => {
+  const response = await page.goto('/keymod/compliance/', { waitUntil: 'commit', timeout: 15000 });
+  expect(response?.status()).toBe(200);
+  await expect(page.getByRole('heading', { level: 1, name: 'KeyMod compliance and declarations' })).toBeVisible();
+  const rows = page.locator('.km-docs tbody tr');
+  await expect(rows).toHaveCount(4);
+  await expect(rows.locator('a')).toHaveCount(4);
+});

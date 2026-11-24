@@ -24,9 +24,14 @@ export const keymodLinks = {
   composeSendCodeReel: 'https://www.instagram.com/techxartisan/reel/DYXUmH2zSzD/',
   composeSendBatchRenameDemo: 'https://x.com/TechxArtisan/status/2057121671400554849',
   presentationTutorial: docsPath('/tutorial/keymod/10-presentation/'),
-  /** Declarations of conformity — these paths are printed on KeyMod packaging. */
-  euDocPlus: '/keymod/plus/eu-doc/',
-  ukDocPlus: '/keymod/plus/uk-doc/',
-  euDocMini: '/keymod/mini/eu-doc/',
-  ukDocMini: '/keymod/mini/uk-doc/',
+  /** Compliance index for the KeyMod declarations of conformity. */
+  compliance: '/keymod/compliance/',
+  /**
+   * Canonical declaration routes. The shorter /keymod/<sku>/<eu|uk>-doc/ form
+   * printed on packaging resolves to the same documents.
+   */
+  euDocPlus: '/keymod/compliance/plus/eu-doc/',
+  ukDocPlus: '/keymod/compliance/plus/uk-doc/',
+  euDocMini: '/keymod/compliance/mini/eu-doc/',
+  ukDocMini: '/keymod/compliance/mini/uk-doc/',
 } as const;

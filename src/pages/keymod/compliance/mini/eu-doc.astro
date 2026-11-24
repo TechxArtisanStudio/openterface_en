@@ -1,0 +1,105 @@
+---
+/**
+ * Placeholder for the KeyMod Mini EU Declaration of Conformity.
+ *
+ * This address is printed on KeyMod Mini packaging (via /keymod/mini/eu-doc/),
+ * so it must resolve while the signed document is still in certification.
+ *
+ * TODO: once keymod-mini-eu-declaration.pdf is published on
+ * https://assets.openterface.com/keymod/, delete this page, add redirects for
+ * both /keymod/compliance/mini/eu-doc/ and /keymod/mini/eu-doc/ to the PDF in
+ * astro.config.mjs, and drop the sitemap exclusion for this path.
+ */
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { keymodLinks } from '../../../../i18n/keymodLanding';
+
+const canonicalPath = '/keymod/compliance/mini/eu-doc/';
+
+const available = [
+  { label: 'UK DoC — KeyMod Mini', href: keymodLinks.ukDocMini, placement: 'keymod_mini_eu_uk_doc' },
+  { label: 'EU DoC — KeyMod Plus', href: keymodLinks.euDocPlus, placement: 'keymod_mini_eu_plus_eu_doc' },
+  { label: 'UK DoC — KeyMod Plus', href: keymodLinks.ukDocPlus, placement: 'keymod_mini_eu_plus_uk_doc' },
+];
+---
+
+<BaseLayout
+  title="EU Declaration of Conformity — KeyMod Mini"
+  description="EU Declaration of Conformity status for Openterface KeyMod Mini (OP-KeyMod-Mini), with the UK declaration for KeyMod Mini and both declarations for KeyMod Plus."
+  canonicalPath={canonicalPath}
+  robots="noindex, follow"
+>
+  <section class="py-16">
+    <div class="mx-auto max-w-3xl px-4">
+      <a href={keymodLinks.compliance} class="text-sm font-medium text-muted hover:text-brand">
+        ← KeyMod compliance
+      </a>
+
+      <p class="mt-8 text-xs font-bold uppercase tracking-widest text-accent-on-light">
+        EU Declaration of Conformity
+      </p>
+      <h1 class="mt-2 text-4xl font-bold">KeyMod Mini (OP-KeyMod-Mini)</h1>
+
+      <p class="mt-4 inline-flex items-center rounded-full border border-primary bg-brand-light px-3 py-1 text-xs font-semibold text-accent-on-light">
+        In final certification
+      </p>
+
+      <p class="mt-6 text-lg leading-relaxed text-muted">
+        The EU Declaration of Conformity for Openterface KeyMod Mini is completing
+        its certification round. The signed PDF will be published at this address;
+        until then this page is the official status for the document.
+      </p>
+
+      <dl class="mt-8 divide-y divide-neutral-200 rounded-lg border border-neutral-200">
+        <div class="grid gap-1 px-5 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4">
+          <dt class="text-sm font-semibold text-muted">Manufacturer</dt>
+          <dd class="text-sm">Guangzhou Billio Technology Co., Ltd</dd>
+        </div>
+        <div class="grid gap-1 px-5 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4">
+          <dt class="text-sm font-semibold text-muted">Address</dt>
+          <dd class="text-sm">
+            Room 11, No. 1, Longjing North Street, Haizhu District, Guangzhou City,
+            Guangdong Province, 510320 China
+          </dd>
+        </div>
+        <div class="grid gap-1 px-5 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4">
+          <dt class="text-sm font-semibold text-muted">Product name</dt>
+          <dd class="text-sm">Openterface KeyMod Mini</dd>
+        </div>
+        <div class="grid gap-1 px-5 py-4 sm:grid-cols-[10rem_1fr] sm:gap-4">
+          <dt class="text-sm font-semibold text-muted">Model</dt>
+          <dd class="text-sm">OP-KeyMod-Mini</dd>
+        </div>
+      </dl>
+
+      <h2 class="mt-12 text-xl font-bold">Available now</h2>
+      <div class="mt-4 flex flex-wrap gap-3">
+        {available.map((item) => (
+          <a
+            href={item.href}
+            class="btn btn-secondary"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-analytics-event="docs_click"
+            data-analytics-product="keymod"
+            data-analytics-placement={item.placement}
+          >
+            {item.label}
+            <span aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
+
+      <p class="mt-10 text-sm leading-relaxed text-muted">
+        Need a declaration for an order in progress, or a statement for a
+        regulatory file? Reach us through the
+        <a href={keymodLinks.forum} class="font-semibold text-brand" target="_blank" rel="noopener noreferrer"
+          >Openterface forum</a
+        >
+        or the
+        <a href={keymodLinks.docs} class="font-semibold text-brand" target="_blank" rel="noopener noreferrer"
+          >KeyMod documentation</a
+        >.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
