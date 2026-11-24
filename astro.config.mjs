@@ -46,23 +46,19 @@ export default defineConfig({
     // meta-refresh stubs rather than HTTP redirects: chaining them fails silently.
     '/keymod/compliance/plus/eu-doc/': 'https://assets.openterface.com/keymod/keymod-plus-eu-declaration.pdf',
     '/keymod/compliance/plus/uk-doc/': 'https://assets.openterface.com/keymod/keymod-plus-uk-declaration.pdf',
+    '/keymod/compliance/mini/eu-doc/': 'https://assets.openterface.com/keymod/keymod-mini-eu-declaration.pdf',
     '/keymod/compliance/mini/uk-doc/': 'https://assets.openterface.com/keymod/keymod-mini-uk-declaration.pdf',
     '/keymod/plus/eu-doc/': 'https://assets.openterface.com/keymod/keymod-plus-eu-declaration.pdf',
     '/keymod/plus/uk-doc/': 'https://assets.openterface.com/keymod/keymod-plus-uk-declaration.pdf',
+    '/keymod/mini/eu-doc/': 'https://assets.openterface.com/keymod/keymod-mini-eu-declaration.pdf',
     '/keymod/mini/uk-doc/': 'https://assets.openterface.com/keymod/keymod-mini-uk-declaration.pdf',
-    // KeyMod Mini EU DoC is still in certification, so this route resolves to the
-    // status page instead of a PDF. When keymod-mini-eu-declaration.pdf is
-    // published, point this and /keymod/compliance/mini/eu-doc/ straight at it.
-    '/keymod/mini/eu-doc/': '/keymod/compliance/mini/eu-doc/',
   },
   // site-refactor-redirects:end
   integrations: [
     sitemap({
       filter: (page) =>
         !page.includes('/404') &&
-        !page.includes('/preview/') &&
-        // Holding page for the pending KeyMod Mini EU DoC (noindex) — drop once the PDF lands.
-        !page.includes('/keymod/compliance/mini/eu-doc'),
+        !page.includes('/preview/'),
       namespaces: { news: false, video: false, xhtml: false },
     }),
   ],
