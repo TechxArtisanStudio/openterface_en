@@ -40,11 +40,20 @@ export default defineConfig({
     '/appstore/': 'https://apps.apple.com/us/app/openterface-mini-kvm/id6478481082',
     '/shop/': 'https://shop.techxartisan.com/',
     '/feedback/': 'https://forms.gle/YJLrCKwro8tbi6ar7',
+    '/keymod/plus/uk-doc/': 'https://assets.openterface.com/keymod/keymod-plus-uk-declaration.pdf',
+    // KeyMod Mini EU DoC: served by src/pages/keymod/mini/eu-doc.astro until the
+    // signed PDF exists. Swap that page for a redirect to
+    // https://assets.openterface.com/keymod/keymod-mini-eu-declaration.pdf afterwards.
+    '/keymod/mini/uk-doc/': 'https://assets.openterface.com/keymod/keymod-mini-uk-declaration.pdf',
   },
   // site-refactor-redirects:end
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/404') && !page.includes('/preview/'),
+      filter: (page) =>
+        !page.includes('/404') &&
+        !page.includes('/preview/') &&
+        // Holding page for the pending KeyMod Mini EU DoC (noindex) — drop once the PDF lands.
+        !page.includes('/keymod/mini/eu-doc'),
       namespaces: { news: false, video: false, xhtml: false },
     }),
   ],

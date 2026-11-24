@@ -7521,6 +7521,19 @@
   color: var(--km-accent);
 }
 
+.km-footer__compliance {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  margin-block: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--km-muted);
+}
+
+.km-footer__compliance a {
+  color: var(--km-accent);
+}
+
 .km-footer__legal {
   font-size: 0.8125rem;
   color: var(--km-muted);

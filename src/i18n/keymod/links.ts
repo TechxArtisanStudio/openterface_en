@@ -24,4 +24,9 @@ export const keymodLinks = {
   composeSendCodeReel: 'https://www.instagram.com/techxartisan/reel/DYXUmH2zSzD/',
   composeSendBatchRenameDemo: 'https://x.com/TechxArtisan/status/2057121671400554849',
   presentationTutorial: docsPath('/tutorial/keymod/10-presentation/'),
+  /** Declarations of conformity — these paths are printed on KeyMod packaging. */
+  euDocPlus: '/keymod/plus/eu-doc/',
+  ukDocPlus: '/keymod/plus/uk-doc/',
+  euDocMini: '/keymod/mini/eu-doc/',
+  ukDocMini: '/keymod/mini/uk-doc/',
 } as const;

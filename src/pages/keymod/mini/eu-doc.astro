@@ -1,0 +1,205 @@
+---
+/**
+ * Holding page for the KeyMod Mini EU Declaration of Conformity.
+ *
+ * This URL is printed on KeyMod Mini packaging, so it must not 404 while the
+ * signed document is still going through certification.
+ *
+ * TODO: once keymod-mini-eu-declaration.pdf is published on
+ * https://assets.openterface.com/keymod/, delete this page and add
+ * '/keymod/mini/eu-doc/': 'https://assets.openterface.com/keymod/keymod-mini-eu-declaration.pdf'
+ * to the redirects block in astro.config.mjs.
+ */
+import KeyModLayout from '../../../layouts/KeyModLayout.astro';
+import KeyModNav from '../../../components/keymod/KeyModNav.astro';
+import KeyModFooter from '../../../components/keymod/KeyModFooter.astro';
+import { getKeymodLanding, keymodLinks } from '../../../i18n/keymodLanding';
+
+const copy = getKeymodLanding();
+const canonicalPath = '/keymod/mini/eu-doc/';
+const title = 'KeyMod Mini — EU Declaration of Conformity';
+const description =
+  'Declaration of Conformity status for Openterface KeyMod Mini (OP-KeyMod-Mini), with the UK declaration for Mini and the EU and UK declarations for KeyMod Plus.';
+---
+
+<KeyModLayout
+  title={title}
+  description={description}
+  canonicalPath={canonicalPath}
+  robots="noindex, follow"
+>
+  <KeyModNav copy={copy.nav} />
+  <main class="km-doc">
+    <section class="km-section">
+      <div class="km-section__inner km-section__inner--narrow">
+        <p class="km-eyebrow">Compliance</p>
+        <h1>{title}</h1>
+        <p class="km-doc__status">EU DoC in final certification</p>
+
+        <p class="km-body">
+          The EU Declaration of Conformity for Openterface KeyMod Mini
+          (OP-KeyMod-Mini) is completing its certification round. The signed PDF
+          will be published at this exact address, so this page stands in for it
+          until then. The UK Declaration of Conformity for KeyMod Mini is already
+          available, together with both declarations for KeyMod Plus.
+        </p>
+
+        <h2 class="km-doc__heading">Manufacturer</h2>
+        <dl class="km-doc__facts">
+          <div>
+            <dt>Manufacturer</dt>
+            <dd>Guangzhou Billio Technology Co., Ltd</dd>
+          </div>
+          <div>
+            <dt>Address</dt>
+            <dd>
+              Room 11, No. 1, Longjing North Street, Haizhu District, Guangzhou
+              City, Guangdong Province, 510320 China
+            </dd>
+          </div>
+          <div>
+            <dt>Product name</dt>
+            <dd>Openterface KeyMod Mini</dd>
+          </div>
+          <div>
+            <dt>Model</dt>
+            <dd>OP-KeyMod-Mini</dd>
+          </div>
+        </dl>
+
+        <h2 class="km-doc__heading">Available declarations</h2>
+        <div class="km-doc__links">
+          <a
+            href={keymodLinks.ukDocMini}
+            class="km-btn km-btn--ghost"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-analytics-event="docs_click"
+            data-analytics-product="keymod"
+            data-analytics-placement="keymod_mini_uk_doc"
+          >
+            UK DoC — KeyMod Mini (PDF)
+          </a>
+          <a
+            href={keymodLinks.euDocPlus}
+            class="km-btn km-btn--ghost"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-analytics-event="docs_click"
+            data-analytics-product="keymod"
+            data-analytics-placement="keymod_plus_eu_doc"
+          >
+            EU DoC — KeyMod Plus (PDF)
+          </a>
+          <a
+            href={keymodLinks.ukDocPlus}
+            class="km-btn km-btn--ghost"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-analytics-event="docs_click"
+            data-analytics-product="keymod"
+            data-analytics-placement="keymod_plus_uk_doc"
+          >
+            UK DoC — KeyMod Plus (PDF)
+          </a>
+        </div>
+
+        <p class="km-body km-doc__contact">
+          Need a declaration for an order in progress, or have a compliance
+          question? Reach us through the
+          <a href={keymodLinks.forum} target="_blank" rel="noopener noreferrer"
+            >Openterface forum</a
+          >
+          or the
+          <a href={keymodLinks.docs} target="_blank" rel="noopener noreferrer"
+            >KeyMod documentation</a
+          >.
+        </p>
+      </div>
+    </section>
+  </main>
+  <KeyModFooter copy={copy.footer} />
+</KeyModLayout>
+
+<style>
+  .km-doc {
+    padding-block: clamp(2.5rem, 6vw, 4rem) 0;
+  }
+
+  .km-doc h1 {
+    margin: 0.5rem 0 0;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    line-height: 1.15;
+    color: var(--km-text);
+  }
+
+  .km-doc__status {
+    display: inline-block;
+    margin: 1.25rem 0 1.5rem;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--km-accent);
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--km-accent-on-light);
+    background: var(--km-brand-light);
+  }
+
+  .km-doc__heading {
+    margin: 2.5rem 0 1rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--km-text);
+  }
+
+  .km-doc__facts {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--km-border);
+    border-radius: 0.5rem;
+    background: var(--km-surface);
+  }
+
+  .km-doc__facts div {
+    display: grid;
+    grid-template-columns: minmax(7rem, 10rem) 1fr;
+    gap: 0.75rem;
+  }
+
+  .km-doc__facts dt {
+    font-size: 0.8125rem;
+    font-weight: 700;
+    color: var(--km-muted);
+  }
+
+  .km-doc__facts dd {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--km-text);
+  }
+
+  .km-doc__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .km-doc__contact {
+    margin-top: 2.5rem;
+  }
+
+  .km-doc__contact a {
+    color: var(--km-accent-on-light);
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .km-doc__facts div {
+      grid-template-columns: 1fr;
+      gap: 0.15rem;
+    }
+  }
+</style>
