@@ -360,3 +360,13 @@ test('KeyMod compliance index lists every declaration', async ({ page }) => {
   await expect(rows).toHaveCount(4);
   await expect(rows.locator('a')).toHaveCount(4);
 });
+
+test('KeyMod Mini EU DoC status page renders the pending declaration', async ({ page }) => {
+  const response = await page.goto('/keymod/compliance/mini/eu-doc/', { waitUntil: 'commit', timeout: 15000 });
+  expect(response?.status()).toBe(200);
+  await expect(
+    page.getByRole('heading', { level: 1, name: 'EU Declaration of Conformity — KeyMod Mini' }),
+  ).toBeVisible();
+  await expect(page.getByText('In final certification')).toBeVisible();
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex, follow');
+});
